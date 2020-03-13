@@ -52,6 +52,13 @@
             <version>${spring.boot.version}</version>
         </dependency>
 
+        <!--springboot AOP的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
         <!--数据库依赖-->
         <dependency>
             <groupId>mysql</groupId>
