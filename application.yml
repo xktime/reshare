@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: test
+
+  flyway:
+    check-location: false
