@@ -1,4 +1,4 @@
-CREATE TABLE `ap_article` (
+CREATE TABLE `article` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '标题',
   `author_id` int(11) unsigned DEFAULT NULL COMMENT '文章作者的ID',

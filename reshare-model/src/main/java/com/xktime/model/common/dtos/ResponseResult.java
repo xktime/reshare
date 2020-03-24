@@ -1,6 +1,6 @@
 package com.xktime.model.common.dtos;
 
-import com.xktime.model.common.enums.AppHttpCodeEnum;
+import com.xktime.model.common.enums.HttpCodeEnum;
 
 import java.io.Serializable;
 
@@ -49,26 +49,26 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static ResponseResult okResult(Object data) {
-        ResponseResult result = setAppHttpCodeEnum(AppHttpCodeEnum.SUCCESS, AppHttpCodeEnum.SUCCESS.getErrorMessage());
+        ResponseResult result = setAppHttpCodeEnum(HttpCodeEnum.SUCCESS, HttpCodeEnum.SUCCESS.getErrorMessage());
         if(data!=null) {
             result.setData(data);
         }
         return result;
     }
 
-    public static ResponseResult errorResult(AppHttpCodeEnum enums){
+    public static ResponseResult errorResult(HttpCodeEnum enums){
         return setAppHttpCodeEnum(enums,enums.getErrorMessage());
     }
 
-    public static ResponseResult errorResult(AppHttpCodeEnum enums, String errorMessage){
+    public static ResponseResult errorResult(HttpCodeEnum enums, String errorMessage){
         return setAppHttpCodeEnum(enums,errorMessage);
     }
 
-    public static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums){
+    public static ResponseResult setAppHttpCodeEnum(HttpCodeEnum enums){
         return okResult(enums.getCode(),enums.getErrorMessage());
     }
 
-    private static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums, String errorMessage){
+    private static ResponseResult setAppHttpCodeEnum(HttpCodeEnum enums, String errorMessage){
         return okResult(enums.getCode(),errorMessage);
     }
 

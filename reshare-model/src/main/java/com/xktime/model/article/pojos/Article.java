@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class ApArticle {
+public class Article {
     private Integer id;
     private String title;
     private Long authorId;
