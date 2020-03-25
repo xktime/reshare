@@ -10,14 +10,19 @@
     </parent>
 
     <artifactId>reshare-apis</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <name>reshare-apis</name>
     <description>公共接口项目</description>
+
+    <properties>
+        <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.xktime</groupId>
             <artifactId>reshare-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${reshare.version}</version>
         </dependency>
     </dependencies>
 
@@ -27,32 +32,5 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>dev</id>
-            <build>
-                <filters>
-                    <filter>maven_dev.yml</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>test</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <filters>
-                    <filter>maven_test.yml</filter>
-                </filters>
-            </build>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <build>
-                <filters>
-                    <filter>maven_prod.yml</filter>
-                </filters>
-            </build>
-        </profile>
     </profiles>
 </project>
