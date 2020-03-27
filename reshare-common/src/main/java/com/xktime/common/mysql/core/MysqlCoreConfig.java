@@ -2,20 +2,28 @@ package com.xktime.common.mysql.core;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@PropertySource("classpath:mysql-core-jdbc.yml")
+@MapperScan(basePackages = "com.xktime.model.mappers", sqlSessionFactoryRef = "mysqlCoreSqlSessionFactory")
 public class MysqlCoreConfig {
 
-    @ConfigurationProperties(prefix = "spring.datasource")
     @Bean("mysqlCoreDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource druidDataSource() {
         return new DruidDataSource();
     }
@@ -31,5 +39,22 @@ public class MysqlCoreConfig {
         //设置初始化参数
         bean.setInitParameters(initParams);
         return bean;
+    }
+
+    /**
+     * 这是Mybatis的Session
+     *
+     */
+    @Bean
+    public SqlSessionFactoryBean mysqlCoreSqlSessionFactory(@Qualifier("mysqlCoreDataSource") DataSource mysqlCoreDataSource) throws IOException {
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(mysqlCoreDataSource);
+        sessionFactory.setMapperLocations(resolver.getResources("classpath*:mappers/**/*.xml"));
+        sessionFactory.setTypeAliasesPackage("com.xktime.model.**.pojos");
+        org.apache.ibatis.session.Configuration mybatisConf = new org.apache.ibatis.session.Configuration();
+        mybatisConf.setMapUnderscoreToCamelCase(true);
+        sessionFactory.setConfiguration(mybatisConf);
+        return sessionFactory;
     }
 }

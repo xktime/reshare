@@ -1,6 +1,3 @@
-server:
-  port: 8990
-
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT
