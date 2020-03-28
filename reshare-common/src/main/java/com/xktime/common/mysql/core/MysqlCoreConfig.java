@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@PropertySource("classpath:mysql-core-jdbc.yml")
 @MapperScan(basePackages = "com.xktime.model.mappers", sqlSessionFactoryRef = "mysqlCoreSqlSessionFactory")
 public class MysqlCoreConfig {
 
