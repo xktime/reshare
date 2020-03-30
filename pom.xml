@@ -104,12 +104,12 @@
             <version>${lombok.version}</version>
         </dependency>
 
-        <!--flyway依赖-->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>${flyway.version}</version>
-        </dependency>
+        <!--&lt;!&ndash;flyway依赖&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.flywaydb</groupId>-->
+            <!--<artifactId>flyway-core</artifactId>-->
+            <!--<version>${flyway.version}</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>

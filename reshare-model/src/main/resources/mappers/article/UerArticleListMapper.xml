@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xktime.model.mappers.article.UserArticleListMapper">
+
+    <!--<resultMap type="com.xktime.model.user.pojos.UserArticleList" id="userArticleListMapper">-->
+        <!--<result column="id" property="id"/>-->
+        <!--<result column="userId" property="userId"/>-->
+        <!--<result column="channelId" property="channelId"/>-->
+        <!--<result column="articleId" property="articleId"/>-->
+        <!--<result column="isShow" property="isShow"/>-->
+        <!--<result column="recommendTime" property="recommendTime"/>-->
+        <!--<result column="isRead" property="isRead"/>-->
+        <!--<result column="strategyId" property="strategyId"/>-->
+    <!--</resultMap>-->
+
+    <select id="loadArticleIdListByUser" resultType="com.xktime.model.user.pojos.UserArticleList">
+    </select>
+</mapper>
