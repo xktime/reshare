@@ -16,5 +16,5 @@ public interface ArticleMapper {
 
     List<Article> loadArticleListByLocation(@Param("dto") ArticleHomeDto dto);
 
-    List<Article> loadArticleListByIdList(List<UserArticleList> userArticleLists);
+    List<Article> loadArticleListByIdList(@Param("list")List<UserArticleList> list);
 }

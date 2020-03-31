@@ -29,16 +29,16 @@
         SELECT * FROM article
         <where>
             <if test="dto.provinceId != null">
-              AND article.provinceId = #{dto.provinceId}
+              AND province_id = #{dto.provinceId}
             </if>
             <if test="dto.cityId != null">
-                AND article.cityId = #{dto.cityId}
+                AND city_id = #{dto.cityId}
             </if>
             <if test="dto.countyId != null">
-                AND article.countyId = #{dto.countyId}
+                AND county_id = #{dto.countyId}
             </if>
             <if test="dto.tag != null">
-                AND article.authorId = #{dto.tag}
+                AND channel_id = #{dto.tag}
             </if>
         </where>
         <if test="dto.size != null">
@@ -47,5 +47,13 @@
     </select>
 
     <select id="loadArticleListByIdList" resultType="com.xktime.model.article.pojos.Article">
+        SELECT * FROM user_article_list
+        WHERE id IN (
+            <trim suffix="" suffixOverrides=",">
+                <foreach collection="list" item="item" separator=",">
+                    #{item.article_id}
+                </foreach>
+            </trim>
+        )
     </select>
 </mapper>

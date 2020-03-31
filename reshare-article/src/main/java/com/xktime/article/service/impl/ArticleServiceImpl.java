@@ -30,7 +30,7 @@ public class ArticleServiceImpl implements ArticleService {
             return new ResponseResult().ok(articleList);
         } else if (status == UserStatusEnum.UNLOGIN) {
             User user = new User();
-            List<UserArticleList> userArticleLists = userArticleListMapper.loadArticleIdListByUser(user);
+            List<UserArticleList> userArticleLists = userArticleListMapper.loadArticleIdListByUser(user, dto);
             List<Article> articleList = articleMapper.loadArticleListByIdList(userArticleLists);
         }
         return null;

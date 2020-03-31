@@ -14,5 +14,15 @@
     <!--</resultMap>-->
 
     <select id="loadArticleIdListByUser" resultType="com.xktime.model.user.pojos.UserArticleList">
+        SELECT * FROM user_article_list
+        <where>
+            user_id = #{user.id} AND is_show = 1 AND is_read = 1
+            <if test="dto.tag != null">
+                AND channel_id = #{dto.tag}
+            </if>
+        </where>
+        <if test="dto.size != null">
+            LIMIT #{dto.size}
+        </if>
     </select>
 </mapper>
