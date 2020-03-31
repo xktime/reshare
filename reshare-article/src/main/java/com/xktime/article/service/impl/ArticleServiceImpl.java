@@ -27,6 +27,7 @@ public class ArticleServiceImpl implements ArticleService {
     public ResponseResult load(ArticleHomeDto dto, UserStatusEnum status) {
         if (status == UserStatusEnum.LOGGED) {
             List<Article> articleList = articleMapper.loadArticleListByLocation(dto);
+            return new ResponseResult().ok(articleList);
         } else if (status == UserStatusEnum.UNLOGIN) {
             User user = new User();
             List<UserArticleList> userArticleLists = userArticleListMapper.loadArticleIdListByUser(user);
