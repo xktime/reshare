@@ -15,6 +15,7 @@
         <module>reshare-apis</module>
         <module>reshare-model</module>
         <module>reshare-article</module>
+        <module>reshare-behavior</module>
     </modules>
 
     <properties>

@@ -35,3 +35,8 @@ spring:
 
 port:
   article: 8991
+  behavior: 8992
+
+servicename:
+  article: article
+  behavior: behavior
