@@ -1,5 +1,5 @@
 server:
-  port: 8991
+  port: 8990
 
 spring:
   datasource:
@@ -32,3 +32,6 @@ spring:
 
   flyway:
      enabled: false
+
+port:
+  article: 8991
