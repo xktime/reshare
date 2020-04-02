@@ -30,8 +30,8 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-  flyway:
-     enabled: false
+#  flyway:
+#     enabled: false
 
 port:
   article: 8991
