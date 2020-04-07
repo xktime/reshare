@@ -1,8 +1,7 @@
 package com.xktime.model.behavior.dtos;
 
 
-import com.heima.model.annotation.IdEncrypt;
-import com.heima.model.article.pojos.ApArticle;
+import com.xktime.model.article.pojos.Article;
 import lombok.Data;
 
 import java.util.List;
@@ -10,9 +9,7 @@ import java.util.List;
 @Data
 public class ShowBehaviorDto {
 
-    // 设备ID
-    @IdEncrypt
     Integer equipmentId;
-    List<ApArticle> articleIds;
+    List<Article> articleIds;
 
 }

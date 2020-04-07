@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("home")
 public class ArticleHomeController implements ArticleHomeControllerApi {
 
     @Autowired
@@ -21,4 +21,5 @@ public class ArticleHomeController implements ArticleHomeControllerApi {
     public ResponseResult load(ArticleHomeDto dto) {
         return null;
     }
+
 }
