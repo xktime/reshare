@@ -13,8 +13,6 @@ public class Article {
     private String authorName;
     private Integer channelId;
     private String channelName;
-    private Short layout;
-    private Byte flag;
     private String images;
     private String labels;
     private Integer likes;
@@ -26,5 +24,5 @@ public class Article {
     private Integer countyId;
     private Date createdTime;
     private Date publishTime;
-    private Boolean syncStatus;
+    private Integer origin;
 }
