@@ -12,7 +12,7 @@
     <artifactId>reshare-model</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>reshare-model</name>
-    <description>公共model项目</description>
+    <description>公共model模块</description>
 
     <dependencies>
     </dependencies>
