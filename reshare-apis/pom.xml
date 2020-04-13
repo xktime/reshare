@@ -12,7 +12,7 @@
     <artifactId>reshare-apis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>reshare-apis</name>
-    <description>公共接口项目</description>
+    <description>公共接口模块</description>
 
     <properties>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>

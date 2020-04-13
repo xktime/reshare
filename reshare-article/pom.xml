@@ -12,7 +12,7 @@
     <artifactId>reshare-article</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>reshare-article</name>
-    <description>文章管理类</description>
+    <description>文章管理模块</description>
 
     <properties>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>

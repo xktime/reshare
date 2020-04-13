@@ -12,7 +12,7 @@
     <artifactId>reshare-utils</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>reshare-utils</name>
-    <description>公共工具项目</description>
+    <description>公共工具模块</description>
 
     <dependencies>
     </dependencies>
