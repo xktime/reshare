@@ -1,4 +1,4 @@
-CREATE TABLE `ap_show_behavior` (
+CREATE TABLE `show_behavior` (
   `id` int(11) unsigned NOT NULL,
   `entry_id` int(11) unsigned DEFAULT NULL COMMENT '实体ID',
   `article_id` int(11) unsigned DEFAULT NULL COMMENT '文章ID',

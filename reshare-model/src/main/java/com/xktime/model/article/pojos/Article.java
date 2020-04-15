@@ -19,10 +19,7 @@ public class Article {
     private Integer collection;
     private Integer comment;
     private Integer views;
-    private Integer provinceId;
-    private Integer cityId;
-    private Integer countyId;
-    private Date createdTime;
     private Date publishTime;
-    private Integer origin;
+    private String origin;
+    private String content;
 }
