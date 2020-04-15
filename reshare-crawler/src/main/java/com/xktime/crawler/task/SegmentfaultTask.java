@@ -11,13 +11,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
+@EnableScheduling
 public class SegmentfaultTask {
 
     @Autowired
@@ -28,6 +31,7 @@ public class SegmentfaultTask {
         String url = "https://segmentfault.com/hottest";
         String html = httpUtils.doGetHtml(url);
         parseHtml(html);
+        System.out.println("当前时间" + new Date());
     }
 
     private List<Article> parseHtml(String html) {
