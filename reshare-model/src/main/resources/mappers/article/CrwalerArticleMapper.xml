@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xktime.model.mappers.article.CrawlerArticleMapper">
+
+    <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.CrawlerArticle">
+        INSERT INTO crwaler_article(title,content,author_name,channel_name,images,labels,publish_time,origin,url)
+        VALUES (#{title},#{content},#{authorName},#{channelName},#{images},#{labels},#{publishTime},#{origin},#{url})
+    </insert>
+</mapper>
