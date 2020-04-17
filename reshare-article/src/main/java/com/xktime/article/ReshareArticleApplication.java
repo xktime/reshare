@@ -3,7 +3,7 @@ package com.xktime.article;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.xktime.common")
+@SpringBootApplication(scanBasePackages = {"com.xktime.common","com.xktime.article"})
 public class ReshareArticleApplication {
 
     public static void main(String[] args) {
