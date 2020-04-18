@@ -16,24 +16,13 @@
     <description>爬虫模块</description>
 
     <properties>
-        <httpclient.version>4.5.2</httpclient.version>
-        <jsoup.version>1.11.3</jsoup.version>
+        <webMagic.version>0.7.3</webMagic.version>
         <commons.io.version>2.6</commons.io.version>
         <commons.lang.version>3.7</commons.lang.version>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
-        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -58,6 +47,17 @@
             <groupId>com.xktime</groupId>
             <artifactId>reshare-article</artifactId>
             <version>${reshare.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+            <version>${webMagic.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-extension</artifactId>
+            <version>${webMagic.version}</version>
         </dependency>
     </dependencies>
 

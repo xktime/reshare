@@ -15,17 +15,23 @@ public class CrawlerArticleServiceImpl implements CrawlerArticleService {
     CrawlerArticleMapper articleMapper;
 
     @Override
+    public void save(CrawlerArticle article) {
+        articleMapper.saveArticle(article);
+    }
+
+    @Override
+    public int getUrlCount(String url) {
+        return articleMapper.getUrlCount(url);
+    }
+
+    @Override
     public void save(List<CrawlerArticle> articleList) {
         if (articleList == null || articleList.isEmpty()) {
             return;
         }
         for (CrawlerArticle article : articleList) {
-            articleMapper.saveArticle(article);
+            save(article);
         }
     }
 
-    @Override
-    public Integer findByUrl(String url) {
-        return articleMapper.findByUrl(url);
-    }
 }

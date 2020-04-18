@@ -9,5 +9,7 @@ public interface CrawlerArticleService {
 
     void save(List<CrawlerArticle> articleList);
 
-    Integer findByUrl(@Param("url") String url);
+    void save(CrawlerArticle articleList);
+
+    int getUrlCount(@Param("url") String url);
 }

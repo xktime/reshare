@@ -18,6 +18,5 @@ public class ArticleTest {
 
     @org.junit.Test
     public void testArticle() {
-        System.out.println(articleService1.findByUrl("aa"));
     }
 }

@@ -11,10 +11,5 @@ public interface CrawlerArticleMapper {
 
     void saveArticle(CrawlerArticle article);
 
-    /**
-     *
-     * @param url
-     * @return  文章id
-     */
-    Integer findByUrl(@Param("url") String url);
+    int getUrlCount(@Param("url") String url);
 }
