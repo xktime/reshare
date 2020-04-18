@@ -1,8 +1,8 @@
 package com.xktime.crawler.task;
 
+import com.xktime.article.service.CrawlerArticleService;
 import com.xktime.crawler.util.HttpUtils;
-import com.xktime.model.article.pojos.Article;
-import com.xktime.model.mappers.article.ArticleMapper;
+import com.xktime.model.article.pojos.CrawlerArticle;
 import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -26,34 +26,41 @@ public class SegmentfaultTask {
     @Autowired
     HttpUtils httpUtils;
 
+    @Autowired
+    CrawlerArticleService articleService;
+
     @Scheduled(fixedDelay = 30 * 1000)
     public void crawling() {
         String url = "https://segmentfault.com/hottest";
         String html = httpUtils.doGetHtml(url);
-        parseHtml(html);
+        List<CrawlerArticle> crawlerArticles = parseHtml(html);
+        articleService.save(crawlerArticles);
         System.out.println("当前时间" + new Date());
     }
 
-    private List<Article> parseHtml(String html) {
+    private List<CrawlerArticle> parseHtml(String html) {
         if (html == null) {
             return null;
         }
         Document doc = Jsoup.parse(html);
         Element element = doc.getElementsByClass("news-list").first();
         Elements elements = element.children();
-        List<Article> articles = new ArrayList<>();
+        List<CrawlerArticle> articles = new ArrayList<>();
         for (Element e : elements) {
             Attributes attributes = e.attributes();
             String dataId = attributes.get("data-id");
-            Article article = parseArticle("https://segmentfault.com/a/" + dataId);
-            if (article != null) {
-                articles.add(article);
+            String url = "https://segmentfault.com/a/" + dataId;
+            if (articleService.findByUrl(url) == null) {//防止重复爬取
+                CrawlerArticle article = parseArticle(url);
+                if (article != null) {
+                    articles.add(article);
+                }
             }
         }
         return articles;
     }
 
-    private Article parseArticle(@NonNull String url) {
+    private CrawlerArticle parseArticle(@NonNull String url) {
         String html = httpUtils.doGetHtml(url);
         if (StringUtils.isBlank(html)) {
             return null;
@@ -62,7 +69,7 @@ public class SegmentfaultTask {
         if (doc == null) {
             return null;
         }
-        Article article = new Article();
+        CrawlerArticle article = new CrawlerArticle();
         //获取标题
         String title = doc.getElementsByTag("title").first().text();
         if (title == null) {
@@ -103,6 +110,8 @@ public class SegmentfaultTask {
         if (autherName != null) {
             article.setAuthorName(autherName.text());
         }
+        //设置url
+        article.setUrl(url);
         return article;
     }
 }

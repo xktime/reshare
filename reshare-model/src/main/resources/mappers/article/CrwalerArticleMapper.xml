@@ -6,4 +6,8 @@
         INSERT INTO crwaler_article(title,content,author_name,channel_name,images,labels,publish_time,origin,url)
         VALUES (#{title},#{content},#{authorName},#{channelName},#{images},#{labels},#{publishTime},#{origin},#{url})
     </insert>
+
+    <select id="findByUrl" resultType="java.lang.Integer">
+      SELECT id FROM crwaler_article WHERE url = #{url}
+    </select>
 </mapper>

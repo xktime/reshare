@@ -1,6 +1,7 @@
 package com.xktime.article;
 
 import com.xktime.article.service.ArticleService;
+import com.xktime.article.service.CrawlerArticleService;
 import com.xktime.model.article.dtos.ArticleHomeDto;
 import com.xktime.model.common.enums.UserStatusEnum;
 import org.junit.runner.RunWith;
@@ -13,11 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ArticleTest {
 
     @Autowired
-    ArticleService articleService;
+    CrawlerArticleService articleService1;
 
     @org.junit.Test
     public void testArticle() {
-        ArticleHomeDto dto = new ArticleHomeDto();
-        System.out.println(articleService.load(dto, UserStatusEnum.LOGGED));
+        System.out.println(articleService1.findByUrl("aa"));
     }
 }
