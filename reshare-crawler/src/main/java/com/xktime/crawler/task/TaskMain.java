@@ -16,28 +16,13 @@ import java.util.Date;
 @EnableScheduling
 public class TaskMain {
 
-
-    @Autowired
-    CrawlerArticleService articleService;
-
     @Autowired
     private DatabasePipeline databasePipeline;
 
     @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void crawling() {
-        Spider.create(new SegmentfaultTaskImpl())
-                .addUrl("https://segmentfault.com/hottest")
-                .addUrl("https://segmentfault.com/newest")
-                .addUrl("https://segmentfault.com/")
-                .addPipeline(this.databasePipeline)
-                .run();
-        Spider.create(new CsdnTaskImpl())
-                .addUrl("https://www.csdn.net/")
-                .addUrl("https://www.csdn.net/nav/java")
-                .addUrl("https://www.csdn.net/nav/career")
-                .addUrl("https://www.csdn.net/nav/fund")
-                .addPipeline(this.databasePipeline)
-                .run();
+        new CsdnTaskImpl().run(this.databasePipeline);
+        new SegmentfaultTaskImpl().run(this.databasePipeline);
         System.out.println("当前时间" + new Date());
     }
 

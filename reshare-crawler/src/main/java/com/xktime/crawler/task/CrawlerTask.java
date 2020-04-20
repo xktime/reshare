@@ -1,6 +1,8 @@
 package com.xktime.crawler.task;
 
+import com.xktime.crawler.pipe.DatabasePipeline;
 import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.Date;
@@ -23,6 +25,12 @@ public abstract class CrawlerTask implements PageProcessor {
         page.putField("authorName", getAuthorName(page));
         page.putField("publishTime", getPublishTime(page));
     }
+
+    /**
+     * 启动爬虫
+     * @param pipeline
+     */
+    public abstract void run(Pipeline pipeline);
 
     /**
      * 跳转页面列表

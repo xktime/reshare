@@ -6,6 +6,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.text.ParseException;
@@ -14,6 +16,18 @@ import java.util.Date;
 import java.util.List;
 
 public class CsdnTaskImpl extends CrawlerTask {
+
+    @Override
+    public void run(Pipeline pipeline) {
+        Spider.create(this)
+                .addUrl("https://www.csdn.net/")
+                .addUrl("https://www.csdn.net/nav/java")
+                .addUrl("https://www.csdn.net/nav/career")
+                .addUrl("https://www.csdn.net/nav/fund")
+                .addPipeline(pipeline)
+                .run();
+    }
+
     @Override
     public List<String> getTargetRequests(Page page) {
         if (page == null) {
@@ -47,7 +61,10 @@ public class CsdnTaskImpl extends CrawlerTask {
     public String getChannelName(Page page) {
         Elements elements = page.getHtml().getDocument().select(".tag-link");
         if (elements != null) {
-            return elements.first().text();
+            Element first = elements.first();
+            if (first != null) {
+                return first.text();
+            }
         }
         return null;
     }
@@ -75,7 +92,10 @@ public class CsdnTaskImpl extends CrawlerTask {
     public String getLables(Page page) {
         Elements elements = page.getHtml().getDocument().select(".tag-link");
         if (elements != null) {
-            return elements.nextAll().toString();
+            Elements nextAll = elements.nextAll();
+            if (nextAll != null) {
+                return nextAll.text();
+            }
         }
         return null;
     }

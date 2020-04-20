@@ -1,16 +1,29 @@
 package com.xktime.crawler.task.impl;
 
+import com.xktime.crawler.pipe.DatabasePipeline;
 import com.xktime.crawler.task.CrawlerTask;
 import com.xktime.crawler.util.FormatUtil;
 import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.Date;
 import java.util.List;
 
 public class SegmentfaultTaskImpl extends CrawlerTask {
+
+    @Override
+    public void run(Pipeline pipeline) {
+        Spider.create(this)
+                .addUrl("https://segmentfault.com/hottest")
+                .addUrl("https://segmentfault.com/newest")
+                .addUrl("https://segmentfault.com/")
+                .addPipeline(pipeline)
+                .run();
+    }
 
     @Override
     public List<String> getTargetRequests(Page page) {
