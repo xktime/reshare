@@ -1,18 +1,17 @@
 package com.xktime.crawler.task.impl;
 
 import com.xktime.crawler.task.CrawlerTask;
-import org.apache.commons.lang3.StringUtils;
-import org.jsoup.nodes.Element;
+import com.xktime.crawler.util.FormatUtil;
 import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class SegmentfaultTaskImpl extends CrawlerTask {
+
     @Override
     public List<String> getTargetRequests(Page page) {
         if (page == null) {
@@ -55,27 +54,15 @@ public class SegmentfaultTaskImpl extends CrawlerTask {
 
     @Override
     public String getOrigin(Page page) {
-        Elements title = page.getHtml().getDocument().select("title");
-        if (title != null) {
-            String[] split = splitTitle(title.first().text());
-            return split[2];
-        }
-        return null;
+        return "SegmentFault 思否";
     }
 
     @Override
     public String getContent(Page page) {
-        Elements content = page.getHtml().getDocument().select("article");
+        Elements elements = page.getHtml().getDocument().select("article");
+        Elements content = FormatUtil.contentFormat(elements);
         if (content != null) {
-            Elements contents = content.first().children();
-            Iterator<Element> itr = contents.iterator();
-            while (itr.hasNext()) {
-                Element next = itr.next();
-                if (StringUtils.isBlank(next.text())) {
-                    next.remove();
-                }
-            }
-            return contents.toString();
+            return content.toString();
         }
         return null;
     }
@@ -110,9 +97,11 @@ public class SegmentfaultTaskImpl extends CrawlerTask {
         return site;
     }
 
+
     /**
      * SegmentFault标题解析格式为 【标题】 - 【标签】 - SegmentFault 思否
      * split[0]为文章标题 split[1]为标签 split[2]为文章来源
+     *
      * @param title
      * @return
      */

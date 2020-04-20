@@ -11,10 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CrawlerTest {
 
     @Autowired
-    TaskMain main;
+    TaskMain taskMain;
 
     @org.junit.Test
     public void test() {
-        main.crawling();
+        taskMain.crawling();
     }
 }
