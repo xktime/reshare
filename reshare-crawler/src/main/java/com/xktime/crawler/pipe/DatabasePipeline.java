@@ -40,14 +40,14 @@ public class DatabasePipeline implements Pipeline {
         Object origin = all.get("origin");
         Object content = all.get("content");
         Object lables = all.get("lables");
-        Object autherName = all.get("autherName");
+        Object authorName = all.get("authorName");
         Object publishTime = all.get("publishTime");
         article.setUrl(url);
         if (title instanceof String) {
             article.setTitle((String) title);
         }
-        if (autherName instanceof String) {
-            article.setAuthorName((String) autherName);
+        if (authorName instanceof String) {
+            article.setAuthorName((String) authorName);
         }
         if (content instanceof String) {
             article.setContent((String) content);

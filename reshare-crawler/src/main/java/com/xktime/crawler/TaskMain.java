@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Component
 @EnableScheduling
-public class main {
+public class TaskMain {
 
     @Autowired
     HttpUtils httpUtils;
@@ -25,7 +25,7 @@ public class main {
     @Autowired
     private  DatabasePipeline databasePipeline;
 
-    @Scheduled(fixedDelay = 30 * 1000)
+    @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void crawling() {
         Spider.create(new SegmentfaultTask())
                 .addUrl("https://segmentfault.com/hottest")
