@@ -11,7 +11,6 @@ public class CrawlerArticle {
     private String content;
     private String authorName;
     private String channelName;
-    private String images;
     private String labels;
     private Date publishTime;
     private String url;

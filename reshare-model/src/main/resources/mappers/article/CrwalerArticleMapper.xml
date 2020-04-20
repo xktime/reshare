@@ -3,8 +3,8 @@
 <mapper namespace="com.xktime.model.mappers.article.CrawlerArticleMapper">
 
     <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.CrawlerArticle">
-        INSERT INTO crwaler_article(title,content,author_name,channel_name,images,labels,publish_time,origin,url)
-        VALUES (#{title},#{content},#{authorName},#{channelName},#{images},#{labels},#{publishTime},#{origin},#{url})
+        INSERT INTO crwaler_article(title,content,author_name,channel_name,labels,publish_time,origin,url)
+        VALUES (#{title},#{content},#{authorName},#{channelName},#{labels},#{publishTime},#{origin},#{url})
     </insert>
 
     <select id="getUrlCount" resultType="java.lang.Integer">

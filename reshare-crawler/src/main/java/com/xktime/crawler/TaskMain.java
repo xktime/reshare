@@ -29,6 +29,8 @@ public class TaskMain {
     public void crawling() {
         Spider.create(new SegmentfaultTask())
                 .addUrl("https://segmentfault.com/hottest")
+                .addUrl("https://segmentfault.com/newest")
+                .addUrl("https://segmentfault.com/")
                 .addPipeline(this.databasePipeline)
                 .run();
         System.out.println("当前时间" + new Date());

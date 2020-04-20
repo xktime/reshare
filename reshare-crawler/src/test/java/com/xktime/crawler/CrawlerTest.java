@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CrawlerTest {
 
     @Autowired
-    main main;
+    TaskMain main;
 
     @org.junit.Test
     public void test() {

@@ -21,12 +21,18 @@ public class DatabasePipeline implements Pipeline {
     @Autowired
     CrawlerArticleService articleService;
 
+    private static final Object LOCK_ME = new Object();
+
 
     @Override
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.getRequest().getUrl();
         if (this.articleService.getUrlCount(url) == 0) {//防止重复爬取
-            this.articleService.save(trans(resultItems));
+            synchronized (LOCK_ME) {
+                if (this.articleService.getUrlCount(url) == 0) {
+                    this.articleService.save(trans(resultItems));
+                }
+            }
         }
 
     }
