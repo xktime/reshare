@@ -1,8 +1,8 @@
-package com.xktime.crawler;
+package com.xktime.crawler.task;
 
 import com.xktime.article.service.CrawlerArticleService;
 import com.xktime.crawler.pipe.DatabasePipeline;
-import com.xktime.crawler.task.SegmentfaultTask;
+import com.xktime.crawler.task.impl.SegmentfaultTaskImpl;
 import com.xktime.crawler.util.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -27,7 +27,7 @@ public class TaskMain {
 
     @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void crawling() {
-        Spider.create(new SegmentfaultTask())
+        Spider.create(new SegmentfaultTaskImpl())
                 .addUrl("https://segmentfault.com/hottest")
                 .addUrl("https://segmentfault.com/newest")
                 .addUrl("https://segmentfault.com/")

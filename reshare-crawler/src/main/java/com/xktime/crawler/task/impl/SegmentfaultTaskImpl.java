@@ -1,39 +1,70 @@
-package com.xktime.crawler.task;
+package com.xktime.crawler.task.impl;
 
+import com.xktime.crawler.task.CrawlerTask;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
-@Component
-public class SegmentfaultTask implements PageProcessor {
-
-    private Site site = Site.me().setRetryTimes(1).setSleepTime(1000);
+public class SegmentfaultTaskImpl extends CrawlerTask {
+    @Override
+    public List<String> getTargetRequests(Page page) {
+        if (page == null) {
+            return null;
+        }
+        Selectable list = page.getHtml().css(".news-list");
+        if (list != null) {
+            return list.links().regex("https://segmentfault.com/a/.*").all();
+        }
+        return null;
+    }
 
     @Override
-    public void process(Page page) {
-        //抽取文章的超链接
-        page.addTargetRequests(page.getHtml().css(".news-list").links().
-                                    regex("https://segmentfault.com/a/.*").all());
-        if (!page.getUrl().regex("https://segmentfault.com/a/.*").match()) {
-            page.setSkip(true);
-            return;
+    public boolean checkSkipCondition(Page page) {
+        if (page == null) {
+            return false;
         }
-        //获取标题
+        return !page.getUrl().regex("https://segmentfault.com/a/.*").match();
+    }
+
+    @Override
+    public String getTitle(Page page) {
         Elements title = page.getHtml().getDocument().select("title");
         if (title != null) {
             String[] split = splitTitle(title.first().text());
-            page.putField("title", split[0]);
-            page.putField("channelName", split[1]);
-            page.putField("origin", split[2]);
+            return split[0];
         }
-        //内容格式化
+        return null;
+    }
+
+    @Override
+    public String getChannelName(Page page) {
+        Elements title = page.getHtml().getDocument().select("title");
+        if (title != null) {
+            String[] split = splitTitle(title.first().text());
+            return split[1];
+        }
+        return null;
+    }
+
+    @Override
+    public String getOrigin(Page page) {
+        Elements title = page.getHtml().getDocument().select("title");
+        if (title != null) {
+            String[] split = splitTitle(title.first().text());
+            return split[2];
+        }
+        return null;
+    }
+
+    @Override
+    public String getContent(Page page) {
         Elements content = page.getHtml().getDocument().select("article");
         if (content != null) {
             Elements contents = content.first().children();
@@ -44,20 +75,35 @@ public class SegmentfaultTask implements PageProcessor {
                     next.remove();
                 }
             }
-            page.putField("content", contents.toString());
+            return contents.toString();
         }
-        //获取标签
+        return null;
+    }
+
+    @Override
+    public String getLables(Page page) {
         Elements lables = page.getHtml().getDocument().select("[name = keywords]");
         if (lables != null) {
-            page.putField("lables", lables.attr("content"));
+            return lables.attr("content");
         }
-        //获取作者名字
+        return null;
+    }
+
+    @Override
+    public String getAuthorName(Page page) {
         Elements authorName = page.getHtml().getDocument().select("strong");
         if (authorName != null) {
-            page.putField("authorName", authorName.first().text());
+            return authorName.first().text();
         }
-        page.putField("publishTime", new Date());
+        return null;
     }
+
+    @Override
+    public Date getPublishTime(Page page) {
+        return new Date();
+    }
+
+    private Site site = Site.me().setRetryTimes(1).setSleepTime(1000);
 
     @Override
     public Site getSite() {
