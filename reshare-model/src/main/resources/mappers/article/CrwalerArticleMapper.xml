@@ -10,4 +10,8 @@
     <select id="getUrlCount" resultType="java.lang.Integer">
       SELECT count(*) from crwaler_article WHERE url = #{url}
     </select>
+
+    <select id="load" resultType="com.xktime.model.article.pojos.CrawlerArticle">
+        SELECT * FROM crwaler_article
+    </select>
 </mapper>

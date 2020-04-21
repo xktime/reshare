@@ -20,8 +20,7 @@ public class ArticleHomeController implements ArticleHomeControllerApi {
     @Override
     @GetMapping("load")
     public ResponseResult load(ArticleHomeDto dto) {
-        ArticleHomeDto dto1 = new ArticleHomeDto();
-        return articleService.load(dto1, UserStatusEnum.LOGGED);
+        return articleService.load(dto, UserStatusEnum.LOGGED);
     }
 
 }

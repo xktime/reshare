@@ -1,9 +1,6 @@
 package com.xktime.article;
 
-import com.xktime.article.service.ArticleService;
 import com.xktime.article.service.CrawlerArticleService;
-import com.xktime.model.article.dtos.ArticleHomeDto;
-import com.xktime.model.common.enums.UserStatusEnum;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

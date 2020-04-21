@@ -37,8 +37,10 @@ port:
   article: 8991
   behavior: 8992
   crawler: 8993
+  admin: 8994
 
 servicename:
   article: article
   behavior: behavior
   crawler: crawler
+  admin: admin

@@ -5,15 +5,21 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false;
 
+//引入axios
 Vue.use(VueAxios, axios);
+
+//引入Element框架
+Vue.use(ElementUI);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })

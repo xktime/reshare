@@ -25,6 +25,11 @@ public class CrawlerArticleServiceImpl implements CrawlerArticleService {
     }
 
     @Override
+    public List<CrawlerArticle> load() {
+        return articleMapper.load();
+    }
+
+    @Override
     public void save(List<CrawlerArticle> articleList) {
         if (articleList == null || articleList.isEmpty()) {
             return;

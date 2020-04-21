@@ -4,14 +4,12 @@ import com.xktime.crawler.pipe.DatabasePipeline;
 import com.xktime.crawler.task.impl.CsdnCrawlerServiceImpl;
 import com.xktime.crawler.task.impl.SegmentfaultCrawlerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
-@EnableScheduling
 public class TaskMain {
 
     @Autowired

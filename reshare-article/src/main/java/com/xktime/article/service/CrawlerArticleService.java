@@ -12,4 +12,6 @@ public interface CrawlerArticleService {
     void save(CrawlerArticle articleList);
 
     int getUrlCount(@Param("url") String url);
+
+    List<CrawlerArticle> load();
 }
