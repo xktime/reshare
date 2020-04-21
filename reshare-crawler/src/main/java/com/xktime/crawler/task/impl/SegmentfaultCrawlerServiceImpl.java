@@ -1,9 +1,9 @@
 package com.xktime.crawler.task.impl;
 
-import com.xktime.crawler.pipe.DatabasePipeline;
-import com.xktime.crawler.task.CrawlerTask;
+import com.xktime.crawler.task.BaseCrawlerService;
 import com.xktime.crawler.util.FormatUtil;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -13,7 +13,8 @@ import us.codecraft.webmagic.selector.Selectable;
 import java.util.Date;
 import java.util.List;
 
-public class SegmentfaultTaskImpl extends CrawlerTask {
+@Service
+public class SegmentfaultCrawlerServiceImpl extends BaseCrawlerService {
 
     @Override
     public void run(Pipeline pipeline) {

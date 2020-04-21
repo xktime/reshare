@@ -27,7 +27,7 @@ public class DatabasePipeline implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.getRequest().getUrl();
-        if (this.articleService.getUrlCount(url) == 0) {//防止重复爬取
+        if (this.articleService.getUrlCount(url) == 0) {//防止重复写入
             synchronized (LOCK_ME) {
                 if (this.articleService.getUrlCount(url) == 0) {
                     this.articleService.save(trans(resultItems));

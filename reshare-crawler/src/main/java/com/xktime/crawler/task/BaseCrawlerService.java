@@ -8,7 +8,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import java.util.Date;
 import java.util.List;
 
-public abstract class CrawlerTask implements PageProcessor {
+public abstract class BaseCrawlerService implements PageProcessor {
 
     @Override
     public void process(Page page) {
