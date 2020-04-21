@@ -17,4 +17,5 @@ public class CrawlerArticle {
     private Date publishTime;
     private String url;
     private String origin;
+    private int status;
 }
