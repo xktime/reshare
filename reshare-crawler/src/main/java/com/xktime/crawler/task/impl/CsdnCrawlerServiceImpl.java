@@ -94,7 +94,7 @@ public class CsdnCrawlerServiceImpl extends BaseCrawlerService {
     public String getLables(Page page) {
         Elements elements = page.getHtml().getDocument().select(".tag-link");
         if (elements != null) {
-            Elements nextAll = elements.nextAll();
+            Elements nextAll = elements.next();
             if (nextAll != null) {
                 return nextAll.text();
             }
