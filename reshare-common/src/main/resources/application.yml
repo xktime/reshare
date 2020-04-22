@@ -6,6 +6,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
+    #解决Incorrect string value: '\xF0\x9F\x98\x81 \xE5...' for column问题
+    connectionInitSqls: set names utf8mb4;
+
     #druid 数据源配置
     initialSize: 5
     minIdle: 5
