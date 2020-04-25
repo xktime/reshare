@@ -14,11 +14,20 @@
     <name>reshare-article</name>
     <description>文章管理类</description>
 
+    <properties>
+        <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.xktime</groupId>
             <artifactId>reshare-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${reshare.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-apis</artifactId>
+            <version>${reshare.version}</version>
         </dependency>
     </dependencies>
 

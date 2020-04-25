@@ -1,4 +1,4 @@
-package com.xktime.article.Config;
+package com.xktime.article.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
