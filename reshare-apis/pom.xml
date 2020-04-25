@@ -14,6 +14,11 @@
     <description>公共接口项目</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
