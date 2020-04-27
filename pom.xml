@@ -16,10 +16,12 @@
         <module>reshare-model</module>
         <module>reshare-article</module>
         <module>reshare-crawler</module>
+        <module>reshare-eureka-registry</module>
     </modules>
 
     <properties>
-        <spring.boot.version>2.1.5.RELEASE</spring.boot.version>
+        <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
+        <spring.cloud.version>Greenwich.SR1</spring.cloud.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -31,9 +33,18 @@
         <mysql.version>5.1.46</mysql.version>
         <flyway.version>5.2.4</flyway.version>
         <junit.version>5.5.2</junit.version>
+        <eureka.version>2.1.4.RELEASE</eureka.version>
     </properties>
 
     <dependencies>
+        <!--spring cloud的依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring.cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
 
         <!--springboot的依赖-->
         <dependency>
@@ -116,6 +127,13 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
+        </dependency>
+
+        <!--eureka依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>${eureka.version}</version>
         </dependency>
     </dependencies>
 

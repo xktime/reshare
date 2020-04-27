@@ -35,12 +35,14 @@ spring:
 
 port:
   api: 80
+  eureka-registry: 8991
   article: 8992
   crawler: 8993
   admin: 8994
 
 servicename:
   api: api
+  eureka-registry: eureka-registry
   article: article
   crawler: crawler
   admin: admin
