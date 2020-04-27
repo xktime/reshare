@@ -1,4 +1,4 @@
-package com.xktime.apis.admin;
+package com.xktime.article.controller.admin;
 
 import com.xktime.article.service.CrawlerArticleService;
 import com.xktime.model.article.dtos.ArticleHomeDto;
@@ -8,21 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("admin")
-public class AdminController{
+public class AdminController {
 
     @Autowired
-    RestTemplate restTemplate;
-
-    private static final String REST_URL_PREFIX = "http://ARTICLE";
+    CrawlerArticleService crawlerArticleService;
 
     @GetMapping("crawlerArticle")
     public ResponseResult loadCrawlerArticle(ArticleHomeDto dto) {
-        return restTemplate.getForObject(REST_URL_PREFIX+ "/admin/crawlerArticle", ResponseResult.class);
+        ResponseResult<List<CrawlerArticle>> result = new ResponseResult<>();
+        result.ok(crawlerArticleService.load());
+        return result;
     }
 }

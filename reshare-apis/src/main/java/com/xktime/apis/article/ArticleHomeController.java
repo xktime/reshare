@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("home")
 public class ArticleHomeController{
 
-    @Autowired
-    ArticleService articleService;
-
-    @GetMapping("load")
-    public ResponseResult load(ArticleHomeDto dto) {
-        return articleService.load(dto, UserStatusEnum.LOGGED);
-    }
+//    @Autowired
+//    ArticleService articleService;
+//
+//    @GetMapping("load")
+//    public ResponseResult load(ArticleHomeDto dto) {
+//        return articleService.load(dto, UserStatusEnum.LOGGED);
+//    }
 
 }
