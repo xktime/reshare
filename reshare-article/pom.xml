@@ -26,11 +26,6 @@
         </dependency>
         <dependency>
             <groupId>com.xktime</groupId>
-            <artifactId>reshare-apis</artifactId>
-            <version>${reshare.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xktime</groupId>
             <artifactId>reshare-model</artifactId>
             <version>${reshare.version}</version>
         </dependency>

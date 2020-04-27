@@ -34,13 +34,13 @@ spring:
      enabled: false
 
 port:
-  article: 8991
-  behavior: 8992
+  api: 80
+  article: 8992
   crawler: 8993
   admin: 8994
 
 servicename:
+  api: api
   article: article
-  behavior: behavior
   crawler: crawler
   admin: admin

@@ -80,7 +80,7 @@
     methods: {
       loadCrawlerArticle: function () {
         const _this = this;
-        const api = 'http://localhost:8994/admin/crawlerArticle';
+        const api = 'http://localhost/admin/crawlerArticle';
         this.axios.get(api).then((response) => {
           _this.tableData = response.data.data;
         })

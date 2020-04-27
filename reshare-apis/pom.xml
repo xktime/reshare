@@ -24,6 +24,16 @@
             <artifactId>reshare-model</artifactId>
             <version>${reshare.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-article</artifactId>
+            <version>${reshare.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-common</artifactId>
+            <version>${reshare.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

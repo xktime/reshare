@@ -15,9 +15,7 @@
         <module>reshare-apis</module>
         <module>reshare-model</module>
         <module>reshare-article</module>
-        <module>reshare-behavior</module>
         <module>reshare-crawler</module>
-        <module>reshare-admin</module>
     </modules>
 
     <properties>
