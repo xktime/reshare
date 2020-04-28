@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("admin")
-public class AdminController{
+public class AdminController {
 
     @Autowired
     RestTemplate restTemplate;
@@ -19,6 +19,6 @@ public class AdminController{
 
     @GetMapping("crawlerArticle")
     public ResponseResult loadCrawlerArticle(ArticleHomeDto dto) {
-        return restTemplate.getForObject(REST_URL_PREFIX+ "/admin/crawlerArticle", ResponseResult.class);
+        return restTemplate.postForObject(REST_URL_PREFIX + "/admin/crawlerArticle", dto, ResponseResult.class);
     }
 }
