@@ -39,6 +39,7 @@ port:
   article: 8992
   crawler: 8993
   admin: 8994
+  gateway: 8995
 
 servicename:
   api: api
@@ -46,3 +47,4 @@ servicename:
   article: article
   crawler: crawler
   admin: admin
+  gateway: getway

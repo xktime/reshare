@@ -24,28 +24,11 @@
             <artifactId>reshare-common</artifactId>
             <version>${reshare.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.xktime</groupId>
             <artifactId>reshare-model</artifactId>
             <version>${reshare.version}</version>
-        </dependency>
-
-        <!--spring cloud的依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${spring.cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-        <!--alibaba cloud的依赖-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-            <version>${alibaba.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
         </dependency>
 
         <!--springboot的依赖-->
