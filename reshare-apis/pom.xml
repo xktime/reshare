@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>com.xktime</groupId>
-            <artifactId>reshare-config</artifactId>
+            <artifactId>reshare-common</artifactId>
             <version>${reshare.version}</version>
         </dependency>
 
