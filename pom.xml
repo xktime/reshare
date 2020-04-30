@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>reshare-common</module>
+        <module>reshare-config</module>
         <module>reshare-utils</module>
         <module>reshare-apis</module>
         <module>reshare-model</module>

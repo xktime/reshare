@@ -1,4 +1,4 @@
-package com.xktime.common.mysql.core;
+package com.xktime.config.mysql.core;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.aop.Advisor;

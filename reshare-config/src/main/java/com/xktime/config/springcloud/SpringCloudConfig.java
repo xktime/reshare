@@ -1,4 +1,4 @@
-package com.xktime.common.springcloud;
+package com.xktime.config.springcloud;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

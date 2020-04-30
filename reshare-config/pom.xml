@@ -9,9 +9,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>reshare-common</artifactId>
+    <artifactId>reshare-config</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>reshare-common</name>
+    <name>reshare-config</name>
     <description>通用配置</description>
 
     <dependencies>

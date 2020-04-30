@@ -1,4 +1,4 @@
-package com.xktime.common.mysql.core;
+package com.xktime.config.mysql.core;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
