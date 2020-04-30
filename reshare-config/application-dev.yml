@@ -7,8 +7,7 @@ spring:
       server:
         git:
           uri: https://github.com/xktime/reshare.git
-          search-paths:
-            -reshare-config
+          search-paths: /**
       label: master
   datasource:
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT

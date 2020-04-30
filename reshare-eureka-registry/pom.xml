@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xktime</groupId>
-            <artifactId>reshare-common</artifactId>
+            <artifactId>reshare-config</artifactId>
             <version>${reshare.version}</version>
         </dependency>
         <!--spring cloud的依赖-->
