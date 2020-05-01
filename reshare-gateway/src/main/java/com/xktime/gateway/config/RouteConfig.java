@@ -10,7 +10,7 @@ public class RouteConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder routeLocatorBuilder) {
         RouteLocatorBuilder.Builder routers = routeLocatorBuilder.routes();
-        routers.route("article", r -> r.path("/guonei").uri("http://baidu.com")).build();
+        routers.route("admin", r -> r.path("/**").uri("lb://API")).build();
         return routers.build();
     }
 }
