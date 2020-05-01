@@ -31,7 +31,7 @@
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
-                  <iframe v-bind:srcdoc="props.row.content"  width="1400" height="300" frameborder="0"></iframe>
+                  <iframe v-bind:srcdoc="props.row.content"  width="1000" height="300" frameborder="0"></iframe>
               </el-form>
             </template>
           </el-table-column>
@@ -88,7 +88,7 @@
       statusFormatter(row) {
         const status = row.status;
         switch (status) {
-          case 0:
+          case '0':
             return "未审核";
         }
       }

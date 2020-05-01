@@ -113,11 +113,10 @@ public class CsdnCrawlerServiceImpl extends BaseCrawlerService {
 
     @Override
     public Date getPublishTime(Page page) {
-        Element publishTime = page.getHtml().getDocument().select(".time").first();
+        Element publishTime = page.getHtml().getDocument().select(".bar-content").select(".time").first();
         if (publishTime != null) {
             String time = publishTime.text();
             StringBuilder builder = new StringBuilder(time);
-            builder.delete(0, 5);
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 Date date = format.parse(builder.toString());

@@ -5,10 +5,7 @@ import com.xktime.model.article.dtos.ArticleHomeDto;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import com.xktime.model.common.dtos.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,7 @@ public class AdminController{
     CrawlerArticleService crawlerArticleService;
 
     @PostMapping("crawlerArticle")
-    public ResponseResult loadCrawlerArticle(@RequestBody ArticleHomeDto dto) {
-        ResponseResult<List<CrawlerArticle>> result = new ResponseResult<>();
-        result.ok(crawlerArticleService.load());
-        return result;
+    public List<CrawlerArticle> loadCrawlerArticle(@RequestBody ArticleHomeDto dto) {
+        return crawlerArticleService.load();
     }
 }
