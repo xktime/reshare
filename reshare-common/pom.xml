@@ -34,12 +34,6 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!-- junit -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-        </dependency>
-
         <!--数据库依赖-->
         <dependency>
             <groupId>mysql</groupId>

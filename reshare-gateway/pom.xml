@@ -21,6 +21,17 @@
             <groupId>com.xktime</groupId>
             <artifactId>reshare-common</artifactId>
             <version>${reshare.version}</version>
+            <exclusions>
+                <!-- 解决网关依赖冲突问题-->
+                <exclusion>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-config-server</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

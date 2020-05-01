@@ -13,4 +13,5 @@ public class SpringCloudConfig {
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
+
 }
