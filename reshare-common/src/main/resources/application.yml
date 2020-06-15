@@ -11,9 +11,9 @@ spring:
 #            -reshare-config
 #      label: master
   datasource:
-    url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
