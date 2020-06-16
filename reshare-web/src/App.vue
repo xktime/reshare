@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <!--<div id="nav">-->
-      <!--<router-link to="/">Home</router-link>-->
-      <!--<router-link to="/hello">Hello</router-link>-->
+    <!--<router-link to="/">Home</router-link>-->
+    <!--<router-link to="/hello">Hello</router-link>-->
     <!--</div>-->
     <!--<img src="./assets/logo.png">-->
     <router-view/>
@@ -10,18 +10,18 @@
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+    export default {
+        name: 'App'
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>

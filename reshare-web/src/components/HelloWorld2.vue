@@ -5,20 +5,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-    data() {
-      return {
-        msg: 'HelloWorld!'
-      }
-    },
-    created: function () {
-      const api = 'http://localhost:8991/home/load';
-      this.axios.get(api).then((response) => {
-        console.log(response.data)
-      })
+    export default {
+        name: 'HelloWorld',
+        data() {
+            return {
+                msg: 'HelloWorld!'
+            }
+        },
+        created: function () {
+            const api = 'http://localhost:8991/home/load';
+            this.axios.get(api).then((response) => {
+                console.log(response.data)
+            })
+        }
     }
-  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
