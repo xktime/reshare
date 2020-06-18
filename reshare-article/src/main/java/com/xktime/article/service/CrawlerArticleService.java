@@ -14,4 +14,7 @@ public interface CrawlerArticleService {
     int getUrlCount(@Param("url") String url);
 
     List<CrawlerArticle> load();
+
+    void audit(@Param("id")int articleId, @Param("status")int status);
+
 }

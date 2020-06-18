@@ -1,7 +1,7 @@
 package com.xktime.article.controller.article;
 
 import com.xktime.article.service.ArticleService;
-import com.xktime.model.article.dtos.ArticleHomeDto;
+import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.UserStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ArticleHomeController {
     ArticleService articleService;
 
     @PostMapping("load")
-    public ResponseResult load(@RequestBody ArticleHomeDto dto) {
+    public ResponseResult load(@RequestBody LoadArticleDto dto) {
         return articleService.load(dto, UserStatusEnum.LOGGED);
     }
 

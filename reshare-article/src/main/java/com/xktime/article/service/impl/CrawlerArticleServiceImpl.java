@@ -30,6 +30,11 @@ public class CrawlerArticleServiceImpl implements CrawlerArticleService {
     }
 
     @Override
+    public void audit(int articleId, int status) {
+        articleMapper.audit(articleId, status);
+    }
+
+    @Override
     public void save(List<CrawlerArticle> articleList) {
         if (articleList == null || articleList.isEmpty()) {
             return;

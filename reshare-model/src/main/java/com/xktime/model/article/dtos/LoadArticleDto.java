@@ -1,10 +1,9 @@
 package com.xktime.model.article.dtos;
 
 import lombok.Data;
-import java.util.Date;
 
 @Data
-public class ArticleHomeDto {
+public class LoadArticleDto {
 
     // 分页size
     int size;

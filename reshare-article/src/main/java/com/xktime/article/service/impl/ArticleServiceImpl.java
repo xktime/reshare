@@ -1,7 +1,7 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.ArticleService;
-import com.xktime.model.article.dtos.ArticleHomeDto;
+import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.pojos.Article;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.UserStatusEnum;
@@ -23,8 +23,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private UserArticleListMapper userArticleListMapper;
 
+
     @Override
-    public ResponseResult load(ArticleHomeDto dto, UserStatusEnum status) {
+    public ResponseResult load(LoadArticleDto dto, UserStatusEnum status) {
         if (status == UserStatusEnum.LOGGED) {
             List<Article> articleList = articleMapper.loadArticleListByLocation(dto);
             return new ResponseResult().ok(articleList);
@@ -35,4 +36,5 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return null;
     }
+
 }

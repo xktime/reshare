@@ -45,12 +45,12 @@
             <template slot-scope="scope">
               <el-button
                 size="mini"
-                @click="handleEdit(scope.$index, scope.row)">通过
+                @click="audit(scope.row, 2)">通过
               </el-button>
               <el-button
                 size="mini"
                 type="danger"
-                @click="handleDelete(scope.$index, scope.row)">失败
+                @click="audit(scope.row, 1)">失败
               </el-button>
             </template>
           </el-table-column>
@@ -92,7 +92,16 @@
                 switch (status) {
                     case '0':
                         return "未审核";
+                    case '1':
+                        return "未通过";
+                    case '2':
+                        return "通过";
                 }
+            },
+            audit(row, status) {
+                const api = 'http://localhost/admin/audit?articleId=' + row.id + '&status=' + status;
+                this.axios.get(api);
+                // this.loadCrawlerArticle();
             }
         }
     }
