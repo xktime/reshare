@@ -5,10 +5,14 @@ import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import com.xktime.model.common.dtos.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,12 +24,15 @@ public class AdminController {
 
     private static final String REST_URL_PREFIX = "http://ARTICLE";
 
-    @GetMapping("crawlerArticle")
-    public ResponseResult loadCrawlerArticle(LoadArticleDto dto) {
-        ResponseResult responseResult = new ResponseResult();
-        List<CrawlerArticle> crawlerArticleList = restTemplate.postForObject(REST_URL_PREFIX + "/admin/crawlerArticle", dto, ArrayList.class);
-        responseResult.ok(crawlerArticleList);
-        return responseResult;
+    @GetMapping("loadArticle")
+    public ResponseResult loadArticle(LoadArticleDto dto) {
+        return restTemplate.exchange(
+                REST_URL_PREFIX + "/admin/loadArticle",
+                HttpMethod.POST,
+                new HttpEntity<>(dto),
+                new ParameterizedTypeReference<ResponseResult<List<CrawlerArticle>>>() {
+                }).getBody();
+//        return restTemplate.postForObject(REST_URL_PREFIX + "/admin/loadArticle", dto, ResponseResult.class);
     }
 
     @GetMapping("audit")

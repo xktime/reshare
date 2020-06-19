@@ -82,7 +82,7 @@
         methods: {
             loadCrawlerArticle: function () {
                 const _this = this;
-                const api = 'http://localhost/admin/crawlerArticle';
+                const api = 'http://localhost/admin/loadArticle';
                 this.axios.get(api).then((response) => {
                     _this.tableData = response.data.data;
                 })

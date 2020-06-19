@@ -1,6 +1,8 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.CrawlerArticleService;
+import com.xktime.model.article.dtos.AuditDto;
+import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +27,12 @@ public class CrawlerArticleServiceImpl implements CrawlerArticleService {
     }
 
     @Override
-    public List<CrawlerArticle> load() {
-        return articleMapper.load();
+    public List<CrawlerArticle> load(LoadArticleDto dto) {
+        return articleMapper.load(dto);
     }
-
     @Override
-    public void audit(int articleId, int status) {
-        articleMapper.audit(articleId, status);
+    public void audit(AuditDto dto) {
+        articleMapper.audit(dto);
     }
 
     @Override

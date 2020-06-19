@@ -9,6 +9,10 @@ public class LoadArticleDto {
     int size;
     //当前页码
     int page;
+    //该页第一条数据在数据库的下标
+    int pageStartIndex;
+    //加载类型
+    String loadArticleType;
     // 数据范围，比如频道ID
     String tag;
 

@@ -1,5 +1,7 @@
 package com.xktime.article.service;
 
+import com.xktime.model.article.dtos.AuditDto;
+import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,8 +15,8 @@ public interface CrawlerArticleService {
 
     int getUrlCount(@Param("url") String url);
 
-    List<CrawlerArticle> load();
+    List<CrawlerArticle> load(LoadArticleDto dto);
 
-    void audit(@Param("id")int articleId, @Param("status")int status);
+    void audit(AuditDto dto);
 
 }

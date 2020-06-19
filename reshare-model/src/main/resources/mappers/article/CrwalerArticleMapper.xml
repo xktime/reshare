@@ -13,9 +13,11 @@
 
     <select id="load" resultType="com.xktime.model.article.pojos.CrawlerArticle">
         SELECT * FROM crwaler_article
+        ORDER BY publish_time DESC
+        LIMIT #{size} OFFSET #{pageStartIndex}
     </select>
 
     <update id="audit">
-        UPDATE crwaler_article SET  status= #{status} WHERE id = #{id};
+        UPDATE crwaler_article SET  status= #{status} WHERE id = #{articleId};
     </update>
 </mapper>
