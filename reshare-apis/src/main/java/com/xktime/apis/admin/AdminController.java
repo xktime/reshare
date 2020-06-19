@@ -30,7 +30,6 @@ public class AdminController {
 
     @GetMapping("audit")
     public void audit(AuditDto dto) {
-//        restTemplate.postForObject(REST_URL_PREFIX + "/audit", dto, null);
         restTemplate.put(REST_URL_PREFIX + "/admin/audit", dto);
     }
 }

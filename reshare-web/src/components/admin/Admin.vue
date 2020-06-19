@@ -50,7 +50,7 @@
               <el-button
                 size="mini"
                 type="danger"
-                @click="audit(scope.row, 1)">失败
+                @click="audit(scope.row, 1)">不通过
               </el-button>
             </template>
           </el-table-column>
@@ -100,8 +100,9 @@
             },
             audit(row, status) {
                 const api = 'http://localhost/admin/audit?articleId=' + row.id + '&status=' + status;
-                this.axios.get(api);
-                // this.loadCrawlerArticle();
+                this.axios.get(api).then((response) => {
+                    this.loadCrawlerArticle();
+                });
             }
         }
     }
