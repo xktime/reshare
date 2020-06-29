@@ -90,11 +90,11 @@
             statusFormatter(row) {
                 const status = row.status;
                 switch (status) {
-                    case '0':
+                    case 0:
                         return "未审核";
-                    case '1':
+                    case 1:
                         return "未通过";
-                    case '2':
+                    case 2:
                         return "通过";
                 }
             },

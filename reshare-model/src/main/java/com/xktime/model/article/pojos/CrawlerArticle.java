@@ -20,5 +20,4 @@ public class CrawlerArticle implements Serializable {
     private String origin;
     private int status;
 
-    public CrawlerArticle(){}
 }
