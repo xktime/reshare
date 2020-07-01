@@ -7,13 +7,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: () => import("@/components/HelloWorld")
+      name: 'login',
+      component: () => import("@/components/admin/Login")
     },
     {
-      path: '/hello',
-      name: 'HelloWorld2',
-      component: () => import("@/components/HelloWorld2")
+      path: '/login',
+      name: 'login',
+      component: () => import("@/components/admin/Login")
     },
     {
       path: '/admin',
