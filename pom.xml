@@ -18,6 +18,7 @@
         <module>reshare-crawler</module>
         <module>reshare-eureka-registry</module>
         <module>reshare-gateway</module>
+        <module>reshare-user</module>
     </modules>
 
     <properties>

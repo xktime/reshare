@@ -51,6 +51,7 @@ port:
   crawler: 8993
   admin: 8994
   gateway: 8995
+  user: 8996
 
 servicename:
   api: api
@@ -59,6 +60,7 @@ servicename:
   crawler: crawler
   admin: admin
   gateway: getway
+  user: user
 
 eureka:
   client:
