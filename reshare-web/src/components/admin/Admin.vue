@@ -18,12 +18,10 @@
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item>注销</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
+        <span>{{user}}</span>
       </el-header>
           <el-main>
             <el-table
@@ -84,16 +82,18 @@
             return {
                 tableData: [],
                 count: 10,
+                user: sessionStorage.getItem("user"),
             }
         },
         methods: {
             load: function () {
-                this.count += 2;
+                console.log(sessionStorage.getItem("user"));
                 const _this = this;
                 const api = 'http://localhost/admin/loadArticle?size=' + this.count;
                 this.axios.get(api).then((response) => {
                     _this.tableData = response.data.data;
-                })
+                });
+                this.count += 2;
             },
             loadCrawlerArticle: function () {
                 const _this = this;
