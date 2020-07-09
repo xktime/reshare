@@ -83,24 +83,22 @@
                 tableData: [],
                 count: 10,
                 user: sessionStorage.getItem("user"),
+                articleType: "crawler",
             }
         },
         methods: {
             load: function () {
                 console.log(sessionStorage.getItem("user"));
                 const _this = this;
-                const api = 'http://localhost/admin/loadArticle?size=' + this.count;
+                const api = 'http://localhost/admin/loadArticle?size=' + this.count + '&loadArticleType=' + this.articleType;
                 this.axios.get(api).then((response) => {
                     _this.tableData = response.data.data;
                 });
                 this.count += 2;
             },
             loadCrawlerArticle: function () {
-                const _this = this;
-                const api = 'http://localhost/admin/loadArticle?size=' + this.count;
-                this.axios.get(api).then((response) => {
-                    _this.tableData = response.data.data;
-                })
+                this.articleType = "crawler";
+                this.load();
             },
             statusFormatter(row) {
                 const status = row.status;
@@ -116,7 +114,7 @@
             audit(row, status) {
                 const api = 'http://localhost/admin/audit?articleId=' + row.id + '&status=' + status;
                 this.axios.get(api).then((response) => {
-                    this.loadCrawlerArticle();
+                    this.load();
                 });
             }
         }
