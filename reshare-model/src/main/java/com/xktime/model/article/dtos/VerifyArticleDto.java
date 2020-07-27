@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class ArticleDto {
+public class VerifyArticleDto {
     private Integer id;
     private String title;
     private String content;

@@ -2,13 +2,9 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.ArticleService;
 import com.xktime.model.article.dtos.LoadArticleDto;
-import com.xktime.model.article.pojos.Article;
-import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.UserStatusEnum;
-import com.xktime.model.mappers.article.ArticleMapper;
-import com.xktime.model.mappers.article.UserArticleListMapper;
-import com.xktime.model.user.pojos.User;
-import com.xktime.model.user.pojos.UserArticleList;
+import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.pojos.CrawlerArticle;
+import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,23 +14,36 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
-    private ArticleMapper articleMapper;
-
-    @Autowired
-    private UserArticleListMapper userArticleListMapper;
+    CrawlerArticleMapper crawlerArticleMapper;
 
 
     @Override
-    public ResponseResult load(LoadArticleDto dto, UserStatusEnum status) {
-        if (status == UserStatusEnum.LOGGED) {
-            List<Article> articleList = articleMapper.loadArticleListByLocation(dto);
-            return new ResponseResult().ok(articleList);
-        } else if (status == UserStatusEnum.UNLOGIN) {
-            User user = new User();
-            List<UserArticleList> userArticleLists = userArticleListMapper.loadArticleIdListByUser(user, dto);
-            List<Article> articleList = articleMapper.loadArticleListByIdList(userArticleLists);
+    public void saveCrawlerArticleList(List<CrawlerArticle> articleList) {
+        if (articleList == null || articleList.isEmpty()) {
+            return;
         }
-        return null;
+        for (CrawlerArticle article : articleList) {
+            saveCrawlerArticle(article);
+        }
     }
 
+    @Override
+    public void saveCrawlerArticle(CrawlerArticle article) {
+        crawlerArticleMapper.saveArticle(article);
+    }
+
+    @Override
+    public int getCrawlerArticleUrlCount(String url) {
+        return crawlerArticleMapper.getUrlCount(url);
+    }
+
+    @Override
+    public List<CrawlerArticle> loadCrawlerArticleList(LoadArticleDto dto) {
+        return crawlerArticleMapper.load(dto);
+    }
+
+    @Override
+    public void verify(VerifyDto dto) {
+        crawlerArticleMapper.verify(dto);
+    }
 }

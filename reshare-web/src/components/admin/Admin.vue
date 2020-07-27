@@ -90,7 +90,7 @@
             load: function () {
                 console.log(sessionStorage.getItem("user"));
                 const _this = this;
-                const api = 'http://localhost/admin/loadArticle?size=' + this.count + '&loadArticleType=' + this.articleType;
+                const api = this.$apiUrl + 'admin/loadArticle?size=' + this.count + '&loadArticleType=' + this.articleType;
                 this.axios.get(api).then((response) => {
                     _this.tableData = response.data.data;
                 });
@@ -112,7 +112,7 @@
                 }
             },
             audit(row, status) {
-                const api = 'http://localhost/admin/audit?articleId=' + row.id + '&status=' + status;
+                const api = this.$apiUrl + 'admin/verify?articleId=' + row.id + '&status=' + status;
                 this.axios.get(api).then((response) => {
                     this.load();
                 });

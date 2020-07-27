@@ -37,18 +37,27 @@
             handleSubmit(event) {
                 this.$refs.ruleForm2.validate((valid) => {
                     if (valid) {
-                        this.logining = true;
-                        if (this.ruleForm2.username === 'admin' &&
-                            this.ruleForm2.password === '123456') {
-                            this.logining = false;
-                            sessionStorage.setItem('user', this.ruleForm2.username);
-                            this.$router.push({path: '/admin'});
-                        } else {
-                            this.logining = false;
-                            this.$alert('username or password wrong!', 'info', {
-                                confirmButtonText: 'ok'
-                            })
-                        }
+                        let data = new FormData();
+                        data.append("username", this.ruleForm2.username);
+                        data.append("password", this.ruleForm2.password);
+                        const api = this.$apiUrl +　'login';
+                        this.axios.post(api, data).then(
+                            (response) => {
+                                _this.tableData = response.data.data;
+                            }
+                        );
+                        // this.logining = true;
+                        // if (this.ruleForm2.username === 'admin' &&
+                        //     this.ruleForm2.password === '123456') {
+                        //     this.logining = false;
+                        //     sessionStorage.setItem('user', this.ruleForm2.username);
+                        //     this.$router.push({path: '/admin'});
+                        // } else {
+                        //     this.logining = false;
+                        //     this.$alert('username or password wrong!', 'info', {
+                        //         confirmButtonText: 'ok'
+                        //     })
+                        // }
                     } else {
                         console.log('error submit!');
                         return false;

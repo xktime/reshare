@@ -17,7 +17,7 @@
         LIMIT #{size} OFFSET #{pageStartIndex}
     </select>
 
-    <update id="audit">
+    <update id="verify">
         UPDATE crwaler_article SET  status= #{status} WHERE id = #{articleId};
     </update>
 </mapper>

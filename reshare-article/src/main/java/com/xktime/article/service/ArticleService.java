@@ -1,10 +1,21 @@
 package com.xktime.article.service;
 
+import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.dtos.LoadArticleDto;
-import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.UserStatusEnum;
+import com.xktime.model.article.pojos.CrawlerArticle;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ArticleService {
-    ResponseResult load(LoadArticleDto dto, UserStatusEnum status);
+    void saveCrawlerArticleList(List<CrawlerArticle> articleList);
+
+    void saveCrawlerArticle(CrawlerArticle article);
+
+    int getCrawlerArticleUrlCount(@Param("url") String url);
+
+    List<CrawlerArticle> loadCrawlerArticleList(LoadArticleDto dto);
+
+    void verify(VerifyDto dto);
 
 }

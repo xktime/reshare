@@ -11,6 +11,8 @@ import elTableInfiniteScroll from 'el-table-infinite-scroll';
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$apiUrl = "http://localhost/";
+
 //引入axios
 Vue.use(VueAxios, axios);
 

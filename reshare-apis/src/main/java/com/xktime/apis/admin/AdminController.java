@@ -1,8 +1,8 @@
 package com.xktime.apis.admin;
 
-import com.xktime.model.article.dtos.ArticleDto;
-import com.xktime.model.article.dtos.AuditDto;
+import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.dtos.LoadArticleDto;
+import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("admin")
@@ -26,19 +26,18 @@ public class AdminController {
 
     @GetMapping("loadArticle")
     public ResponseResult loadArticle(LoadArticleDto dto) {
-        ResponseResult result = new ResponseResult();
-        result.ok(restTemplate.exchange(
-                    REST_URL_PREFIX + "/admin/loadArticle",
-                    HttpMethod.POST,
-                    new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<ArrayList<ArticleDto>>() {
-                    }).getBody());
-        return result;
-//        return restTemplate.postForObject(REST_URL_PREFIX + "/admin/loadArticle", dto, ResponseResult.class);
+        ResponseResult responseResult = new ResponseResult();
+        responseResult.ok(restTemplate.exchange(
+                REST_URL_PREFIX + "/load/loadVerifyArticle",
+                HttpMethod.POST,
+                new HttpEntity<>(dto),
+                new ParameterizedTypeReference<List<VerifyArticleDto>>() {
+                }).getBody());
+        return responseResult;
     }
 
-    @GetMapping("audit")
-    public void audit(AuditDto dto) {
-        restTemplate.put(REST_URL_PREFIX + "/admin/audit", dto);
+    @GetMapping("verify")
+    public void verify(VerifyDto dto) {
+        restTemplate.put(REST_URL_PREFIX + "/admin/verify", dto);
     }
 }

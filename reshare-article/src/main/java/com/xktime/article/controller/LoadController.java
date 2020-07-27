@@ -1,10 +1,8 @@
-package com.xktime.article.controller.admin;
+package com.xktime.article.controller;
 
 import com.xktime.article.service.ArticleService;
-import com.xktime.article.service.CrawlerArticleService;
-import com.xktime.model.article.dtos.ArticleDto;
-import com.xktime.model.article.dtos.AuditDto;
 import com.xktime.model.article.dtos.LoadArticleDto;
+import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import org.apache.commons.lang.StringUtils;
@@ -19,17 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("admin")
-public class AdminController {
-
-    @Autowired
-    CrawlerArticleService crawlerArticleService;
+@RequestMapping("load")
+public class LoadController {
 
     @Autowired
     ArticleService articleService;
 
-    @PostMapping("loadArticle")
-    public List<ArticleDto> loadArticle(@RequestBody LoadArticleDto dto) {
+    @PostMapping("loadVerifyArticle")
+    public List<VerifyArticleDto> loadArticle(@RequestBody LoadArticleDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             dto.setLoadArticleType(ArticleTypeEnum.CRAWLER_ARTICLE.getDec());
         }
@@ -40,21 +35,16 @@ public class AdminController {
             dto.setPage(1);
         }
         dto.setPageStartIndex((dto.getPage() - 1) * dto.getSize());
+        List<VerifyArticleDto> verifyArticleList = new ArrayList<>();
         if (ArticleTypeEnum.CRAWLER_ARTICLE.getDec().equals(dto.getLoadArticleType())) {
-            List<ArticleDto> articles = new ArrayList<>();
-            List<CrawlerArticle> crawlerArticles = crawlerArticleService.load(dto);
+            List<CrawlerArticle> crawlerArticles = articleService.loadCrawlerArticleList(dto);
             for (CrawlerArticle crawlerArticle : crawlerArticles) {
-                ArticleDto article = new ArticleDto();
+                VerifyArticleDto article = new VerifyArticleDto();
                 BeanUtils.copyProperties(crawlerArticle, article);
-                articles.add(article);
+                verifyArticleList.add(article);
             }
-            return articles;
+            return verifyArticleList;
         }
-        return new ArrayList<>();
-    }
-
-    @RequestMapping("audit")
-    public void audit(@RequestBody AuditDto dto) {
-        crawlerArticleService.audit(dto);
+        return verifyArticleList;
     }
 }
