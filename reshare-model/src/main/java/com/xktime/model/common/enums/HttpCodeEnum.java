@@ -4,6 +4,7 @@ public enum HttpCodeEnum {
 
     // 成功段0
     SUCCESS(0,"操作成功"),
+    FAIL(1,"操作失败"),
     ;
 
     int code;

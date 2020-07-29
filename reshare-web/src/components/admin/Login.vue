@@ -40,7 +40,7 @@
                         let data = new FormData();
                         data.append("username", this.ruleForm2.username);
                         data.append("password", this.ruleForm2.password);
-                        const api = this.$apiUrl +　'admin/login';
+                        const api = this.$apiUrl + 'admin/login';
                         this.axios.post(api, data).then(
                             (response) => {
                                 _this.tableData = response.data.data;

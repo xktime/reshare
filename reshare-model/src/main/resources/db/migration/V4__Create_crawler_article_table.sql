@@ -1,5 +1,6 @@
+DROP TABLE IF EXISTS `crwaler_article`;
 CREATE TABLE `crwaler_article` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
 `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '标题',
 `content` longtext CHARSET utf8mb4 COMMENT '文章内容',
 `author_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者昵称',

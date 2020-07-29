@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class VerifyArticleDto {
-    private Integer id;
+    private Long id;
     private String title;
     private String content;
     private String authorName;

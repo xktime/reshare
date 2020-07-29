@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 public class CrawlerArticle implements Serializable {
-    private Integer id;
+    private Long id;
     private String title;
     private String content;
     private String authorName;

@@ -1,5 +1,6 @@
+DROP TABLE IF EXISTS `user_article_list`;
 CREATE TABLE `user_article_list` (
-  `id` int(11) unsigned NOT NULL COMMENT '主键',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `user_id` int(11) unsigned DEFAULT NULL COMMENT '用户ID',
   `channel_id` int(11) unsigned DEFAULT NULL COMMENT '频道ID',
   `article_id` int(11) unsigned DEFAULT NULL COMMENT '动态ID',

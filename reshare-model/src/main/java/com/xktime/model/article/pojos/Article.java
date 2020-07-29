@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 public class Article {
-    private Integer id;
+    private Long id;
     private String title;
     private Long authorId;
     private String authorName;
