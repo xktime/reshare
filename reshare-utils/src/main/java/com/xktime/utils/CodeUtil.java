@@ -21,29 +21,6 @@ public class CodeUtil {
 
 
     /**
-     * 用Base64对加密好的byte数组进行编码，返回字符串
-     *
-     * @param str  需要加密的字符串
-     * @param sKey 加密密钥
-     * @return 经过加密的字符串
-     */
-    public static String encryptBase64(String str, String sKey) {
-        // 声明加密后的结果字符串变量
-        String result = str;
-        if (str != null && str.length() > 0 && sKey != null && sKey.length() >= 8) {
-            try {
-                // 调用DES 加密数组的 encrypt方法，返回加密后的byte数组;
-                byte[] encodeByte = basedDes(str.getBytes(encoding), sKey, Cipher.ENCRYPT_MODE);
-                // 调用base64的编码方法，返回加密后的字符串;
-                result = base64.encodeToString(encodeByte).trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return result;
-    }
-
-    /**
      * 用Base64对字符串进行编码，返回byte数组
      *
      * @param str  需要解密的字符串
@@ -60,6 +37,29 @@ public class CodeUtil {
                 byte[] decoder = basedDes(encodeByte, sKey, Cipher.DECRYPT_MODE);
                 // 对解密后的数组转化成字符串
                 result = new String(decoder, encoding).trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 用Base64对加密好的byte数组进行编码，返回字符串
+     *
+     * @param str  需要加密的字符串
+     * @param sKey 加密密钥
+     * @return 经过加密的字符串
+     */
+    public static String encryptBase64(String str, String sKey) {
+        // 声明加密后的结果字符串变量
+        String result = str;
+        if (str != null && str.length() > 0 && sKey != null && sKey.length() >= 8) {
+            try {
+                // 调用DES 加密数组的 encrypt方法，返回加密后的byte数组;
+                byte[] encodeByte = basedDes(str.getBytes(encoding), sKey, Cipher.ENCRYPT_MODE);
+                // 调用base64的编码方法，返回加密后的字符串;
+                result = base64.encodeToString(encodeByte).trim();
             } catch (Exception e) {
                 e.printStackTrace();
             }

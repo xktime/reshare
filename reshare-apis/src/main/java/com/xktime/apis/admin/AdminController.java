@@ -62,12 +62,12 @@ public class AdminController {
     public ResponseResult login(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
-            responseResult.ok(restTemplate.exchange(
+            responseResult = restTemplate.exchange(
                     USER_REST_URL_PREFIX + "/login",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<List<VerifyArticleDto>>() {
-                    }).getBody());
+                    new ParameterizedTypeReference<ResponseResult>() {
+                    }).getBody();
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;

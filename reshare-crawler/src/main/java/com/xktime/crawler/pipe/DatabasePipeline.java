@@ -1,7 +1,7 @@
 package com.xktime.crawler.pipe;
 
 
-import com.xktime.article.service.CrawlerArticleService;
+import com.xktime.article.service.ArticleService;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class DatabasePipeline implements Pipeline {
 
     @Autowired
-    CrawlerArticleService articleService;
+    ArticleService articleService;
 
     private static final Object LOCK_ME = new Object();
 
@@ -27,10 +27,10 @@ public class DatabasePipeline implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.getRequest().getUrl();
-        if (this.articleService.getUrlCount(url) == 0) {//防止重复写入
+        if (this.articleService.getCrawlerArticleUrlCount(url) == 0) {//防止重复写入
             synchronized (LOCK_ME) {
-                if (this.articleService.getUrlCount(url) == 0) {
-                    this.articleService.save(trans(resultItems));
+                if (this.articleService.getCrawlerArticleUrlCount(url) == 0) {
+                    this.articleService.saveCrawlerArticle(trans(resultItems));
                 }
             }
         }

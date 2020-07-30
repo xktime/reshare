@@ -38,7 +38,7 @@
                 this.$refs.ruleForm2.validate((valid) => {
                     if (valid) {
                         let data = new FormData();
-                        data.append("username", this.ruleForm2.username);
+                        data.append("userName", this.ruleForm2.username);
                         data.append("password", this.ruleForm2.password);
                         const api = this.$apiUrl + 'admin/login';
                         this.axios.post(api, data).then(

@@ -10,5 +10,6 @@ CREATE TABLE `admin_user` (
   `remark` varchar(50) default NULL COMMENT '备注',
   `user_type` tinyint(1) unsigned default '1' COMMENT '人员类型(1:经办员;2:管理员;3:系统内置人员;)',
   `enable` tinyint(1) NOT NULL default '1' COMMENT '启用状态',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE `index_account`(`account`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理系统用户表';
