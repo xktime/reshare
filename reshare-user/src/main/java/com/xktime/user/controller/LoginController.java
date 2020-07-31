@@ -9,6 +9,7 @@ import com.xktime.user.service.UserService;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,7 +19,7 @@ public class LoginController {
     UserService userService;
 
     @PostMapping("login")
-    public ResponseResult login(LoginDto dto) {
+    public ResponseResult login(@RequestBody LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
         if (dto == null || dto.getUserName() == null || dto.getPassword() == null) {
             return responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
@@ -29,9 +30,10 @@ public class LoginController {
         }
         String password = adminUser.getPassword();
         String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_BASE64_KEY);
-        if (password.equals(encryptedPassWord)) {
-            return responseResult;
+        if (!password.equals(encryptedPassWord)) {
+            return responseResult.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
-        return responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+        return responseResult;
     }
+
 }

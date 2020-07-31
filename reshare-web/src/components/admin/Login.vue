@@ -1,13 +1,13 @@
 <template>
   <div class="login-container">
-    <el-form :model="ruleForm2" :rules="rules2" status-icon ref="ruleForm2" label-position="left" label-width="0px"
+    <el-form :model="form" :rules="rules" status-icon ref="ruleForm2" label-position="left" label-width="0px"
              class="demo-ruleForm login-page">
       <h3 class="title">系统登录</h3>
       <el-form-item prop="username">
-        <el-input type="text" v-model="ruleForm2.username" auto-complete="off" placeholder="用户名"></el-input>
+        <el-input type="text" v-model="form.username" auto-complete="off" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" v-model="ruleForm2.password" auto-complete="off" placeholder="密码"></el-input>
+        <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
       </el-form-item>
       <el-checkbox v-model="checked" class="rememberme">记住密码</el-checkbox>
       <el-form-item style="width:100%;">
@@ -22,11 +22,11 @@
         data() {
             return {
                 logining: false,
-                ruleForm2: {
-                    username: 'admin',
-                    password: '123456',
+                form: {
+                    username:'',
+                    password:'',
                 },
-                rules2: {
+                rules: {
                     username: [{required: true, message: 'please enter your account', trigger: 'blur'}],
                     password: [{required: true, message: 'enter your password', trigger: 'blur'}]
                 },
@@ -38,26 +38,21 @@
                 this.$refs.ruleForm2.validate((valid) => {
                     if (valid) {
                         let data = new FormData();
-                        data.append("userName", this.ruleForm2.username);
-                        data.append("password", this.ruleForm2.password);
+                        data.append("userName", this.form.username);
+                        data.append("password", this.form.password);
                         const api = this.$apiUrl + 'admin/login';
                         this.axios.post(api, data).then(
                             (response) => {
-                                _this.tableData = response.data.data;
+                                if (response.data.code != 200) {
+                                    this.logining = false;
+                                    this.$alert(response.data.errorMessage);
+                                    return;
+                                }
+                                this.logining = true;
+                                sessionStorage.setItem('user', this.form.username);
+                                this.$router.push({path: '/admin'});
                             }
                         );
-                        // this.logining = true;
-                        // if (this.ruleForm2.username === 'admin' &&
-                        //     this.ruleForm2.password === '123456') {
-                        //     this.logining = false;
-                        //     sessionStorage.setItem('user', this.ruleForm2.username);
-                        //     this.$router.push({path: '/admin'});
-                        // } else {
-                        //     this.logining = false;
-                        //     this.$alert('username or password wrong!', 'info', {
-                        //         confirmButtonText: 'ok'
-                        //     })
-                        // }
                     } else {
                         console.log('error submit!');
                         return false;
