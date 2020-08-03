@@ -82,13 +82,12 @@
             return {
                 tableData: [],
                 count: 10,
-                user: sessionStorage.getItem("user"),
+                user: this.$store.state.userName,
                 articleType: "crawler",
             }
         },
         methods: {
             load: function () {
-                console.log(sessionStorage.getItem("user"));
                 const _this = this;
                 const api = this.$apiUrl + 'admin/loadArticle?size=' + this.count + '&loadArticleType=' + this.articleType;
                 this.axios.get(api).then((response) => {

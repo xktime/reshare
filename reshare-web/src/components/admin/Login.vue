@@ -49,7 +49,7 @@
                                     return;
                                 }
                                 this.logining = true;
-                                sessionStorage.setItem('user', this.form.username);
+                                this.$store.commit('addUserName', this.form.username);
                                 this.$router.push({path: '/admin'});
                             }
                         );

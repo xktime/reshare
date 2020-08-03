@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import axios from 'axios'
@@ -15,16 +16,55 @@ Vue.prototype.$apiUrl = "http://localhost/";
 
 //引入axios
 Vue.use(VueAxios, axios);
-
-Vue.use(elTableInfiniteScroll);
-
+Vue.use(Vuex);
 //引入Element框架
 Vue.use(ElementUI);
+Vue.use(elTableInfiniteScroll);
+
+//注册状态全局管理器
+export const store = new Vuex.Store({
+  state: {
+    token: '',
+    userName: '',
+  },
+  mutations: {
+    addToken(state, token) {
+      sessionStorage.setItem("token", token);
+      state.token = token;
+    },
+    removeToken(state) {
+      sessionStorage.removeItem("token");
+      state.token = '';
+    },
+    addUserName(state, userName) {
+      sessionStorage.setItem('user', userName);
+      state.userName = userName;
+    }
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  store.state.token = sessionStorage.getItem('token');//获取本地存储的token
+  if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
+    if (store.state.token !== null && store.state.token !== '') {  // 通过vuex state获取当前的token是否存
+      next();
+    } else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
+  } else {
+    next();
+  }
+});
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: {App},
   template: '<App/>'
-})
+});

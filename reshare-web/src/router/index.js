@@ -7,8 +7,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: () => import("@/components/admin/Login")
+      name: 'Admin',
+      component: () => import("@/components/admin/Login"),
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/login',
@@ -18,7 +21,10 @@ export default new Router({
     {
       path: '/admin',
       name: 'Admin',
-      component: () => import("@/components/admin/Admin")
+      component: () => import("@/components/admin/Admin"),
+      meta: {
+        requireAuth: true
+      },
     }
   ]
 })
