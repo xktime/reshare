@@ -4,7 +4,7 @@
              class="demo-ruleForm login-page">
       <h3 class="title">系统登录</h3>
       <el-form-item prop="username">
-        <el-input type="text" v-model="form.username" auto-complete="off" placeholder="用户名"></el-input>
+        <el-input type="text" v-model="form.account" auto-complete="off" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
@@ -21,13 +21,12 @@
     export default {
         data() {
             return {
-                logining: false,
                 form: {
-                    username:'',
-                    password:'',
+                    account: '',
+                    password: '',
                 },
                 rules: {
-                    username: [{required: true, message: 'please enter your account', trigger: 'blur'}],
+                    account: [{required: true, message: 'please enter your account', trigger: 'blur'}],
                     password: [{required: true, message: 'enter your password', trigger: 'blur'}]
                 },
                 checked: false
@@ -38,7 +37,7 @@
                 this.$refs.ruleForm2.validate((valid) => {
                     if (valid) {
                         let data = new FormData();
-                        data.append("userName", this.form.username);
+                        data.append("account", this.form.account);
                         data.append("password", this.form.password);
                         const api = this.$apiUrl + 'admin/login';
                         this.axios.post(api, data).then(
@@ -48,9 +47,9 @@
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }
-                                this.logining = true;
-                                this.$store.commit('addUserName', this.form.username);
-                                this.$router.push({path: '/admin'});
+                                this.$store.commit('login', this.form.account);
+                                this.$store.commit('addToken', response.data.data);
+                                this.$router.push({path: this.$route.query.redirect || '/admin'});
                             }
                         );
                     } else {

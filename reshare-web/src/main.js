@@ -25,20 +25,22 @@ Vue.use(elTableInfiniteScroll);
 export const store = new Vuex.Store({
   state: {
     token: '',
-    userName: '',
+    account: '',
+    loging: false,
   },
   mutations: {
     addToken(state, token) {
       sessionStorage.setItem("token", token);
       state.token = token;
     },
-    removeToken(state) {
+    login(state, account) {
+      state.loging = true;
+      state.account = account;
+    },
+    logout(state) {
+      state.loging = false;
       sessionStorage.removeItem("token");
       state.token = '';
-    },
-    addUserName(state, userName) {
-      sessionStorage.setItem('user', userName);
-      state.userName = userName;
     }
   }
 });

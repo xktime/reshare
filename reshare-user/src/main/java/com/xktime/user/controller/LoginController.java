@@ -21,19 +21,19 @@ public class LoginController {
     @PostMapping("login")
     public ResponseResult login(@RequestBody LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
-        if (dto == null || dto.getUserName() == null || dto.getPassword() == null) {
+        if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
             return responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
         }
-        AdminUser adminUser = userService.queryAdminUserByAccount(dto.getUserName());
+        AdminUser adminUser = userService.queryAdminUserByAccount(dto.getAccount());
         if (adminUser == null) {
             return responseResult.error(HttpCodeEnum.LOGIN_FAIL_ACCOUNT.getCode(), HttpCodeEnum.LOGIN_FAIL_ACCOUNT.getErrorMessage());
         }
         String password = adminUser.getPassword();
-        String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_BASE64_KEY);
+        String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
             return responseResult.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
-        return responseResult;
+        return responseResult.ok(userService.getTokenByAccount(dto.getAccount()));
     }
 
 }
