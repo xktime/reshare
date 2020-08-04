@@ -88,7 +88,6 @@
         },
         methods: {
             load: function () {
-                console.log(this.$store.state.account);
                 const _this = this;
                 const api = this.$apiUrl + 'admin/loadArticle?size=' + this.count + '&loadArticleType=' + this.articleType;
                 this.axios.get(api).then((response) => {

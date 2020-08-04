@@ -30,7 +30,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     addToken(state, token) {
-      sessionStorage.setItem("token", token);
+      localStorage.setItem("token", token);
       state.token = token;
     },
     login(state, account) {
@@ -39,14 +39,14 @@ export const store = new Vuex.Store({
     },
     logout(state) {
       state.loging = false;
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("token");
       state.token = '';
     }
   }
 });
 
 router.beforeEach((to, from, next) => {
-  store.state.token = sessionStorage.getItem('token');//获取本地存储的token
+  store.state.token = localStorage.getItem('token');//获取本地存储的token
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
     if (store.state.token !== null && store.state.token !== '') {  // 通过vuex state获取当前的token是否存
       next();
