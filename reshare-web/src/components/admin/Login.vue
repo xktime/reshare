@@ -9,7 +9,7 @@
       <el-form-item prop="password">
         <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
       </el-form-item>
-      <el-checkbox v-model="checked" class="rememberme">记住密码</el-checkbox>
+      <!--      <el-checkbox v-model="checked" class="rememberme">记住密码</el-checkbox>-->
       <el-form-item style="width:100%;">
         <el-button type="primary" style="width:100%;" @click="handleSubmit">登录</el-button>
       </el-form-item>
@@ -29,7 +29,6 @@
                     account: [{required: true, message: 'please enter your account', trigger: 'blur'}],
                     password: [{required: true, message: 'enter your password', trigger: 'blur'}]
                 },
-                checked: false
             }
         },
         methods: {

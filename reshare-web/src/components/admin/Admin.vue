@@ -18,18 +18,13 @@
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>注销</el-dropdown-item>
+            <el-dropdown-item @click.native="logout">注销</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
         <span>{{user}}</span>
       </el-header>
       <el-main>
-        <el-table
-          border
-          height="490px"
-          v-el-table-infinite-scroll="load"
-          :data="tableData"
-        >
+        <el-table border height="490px" v-el-table-infinite-scroll="load" :data="tableData">
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
@@ -113,6 +108,10 @@
                     case 2:
                         return "通过";
                 }
+            },
+            logout(){
+                this.$store.commit('logout');
+                this.$router.push('/login');
             },
             audit(row, status) {
                 const api = this.$apiUrl + 'admin/verify?articleId=' + row.id + '&status=' + status;
