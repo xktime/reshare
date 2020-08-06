@@ -6,7 +6,7 @@ public enum HttpCodeEnum implements Serializable {
 
     // 成功段0
     SUCCESS(0,"操作成功"),
-    FAIL(1,"操作失败"),
+    FAIL(1,"请求异常"),
     LOGIN_FAIL_ACCOUNT(2, "用户不存在"),
     LOGIN_FAIL_PASSWORD(3, "密码错误"),
     ;

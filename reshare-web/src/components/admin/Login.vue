@@ -2,8 +2,8 @@
   <div class="login-container">
     <el-form :model="form" :rules="rules" status-icon ref="ruleForm2" label-position="left" label-width="0px"
              class="demo-ruleForm login-page">
-      <h3 class="title">系统登录</h3>
-      <el-form-item prop="username">
+      <h3 class="title">管理系统登录</h3>
+      <el-form-item prop="account">
         <el-input type="text" v-model="form.account" auto-complete="off" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
