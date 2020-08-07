@@ -31,7 +31,7 @@ public class AdminController {
 
     @GetMapping("loadArticle")
     public ResponseResult loadArticle(LoadArticleDto dto) {
-        ResponseResult responseResult = new ResponseResult();
+        ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
         try {
             responseResult.ok(restTemplate.exchange(
                     ARTICLE_REST_URL_PREFIX + "/load/loadVerifyArticle",
