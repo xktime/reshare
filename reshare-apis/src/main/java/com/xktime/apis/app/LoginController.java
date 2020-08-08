@@ -8,10 +8,12 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@RequestMapping("login")
 public class LoginController {
 
     @Autowired
@@ -19,8 +21,13 @@ public class LoginController {
 
     private static final String USER_REST_URL_PREFIX = "http://USER";
 
-    @PostMapping("login")
-    public ResponseResult login(LoginDto dto) {
+    /**
+     * 正常使用账号密码登录
+     * @param dto
+     * @return
+     */
+    @PostMapping("common")
+    public ResponseResult commonLogin(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
             responseResult = restTemplate.exchange(
