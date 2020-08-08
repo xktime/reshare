@@ -63,7 +63,7 @@ public class AdminController {
         ResponseResult responseResult = new ResponseResult();
         try {
             responseResult = restTemplate.exchange(
-                    USER_REST_URL_PREFIX + "/login",
+                    USER_REST_URL_PREFIX + "/login/admin",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
                     new ParameterizedTypeReference<ResponseResult>() {

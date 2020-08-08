@@ -2,7 +2,9 @@ package com.xktime.user.service.impl;
 
 import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.mappers.user.AdminUserMapper;
+import com.xktime.model.mappers.user.AppUserMapper;
 import com.xktime.model.user.pojos.AdminUser;
+import com.xktime.model.user.pojos.AppUser;
 import com.xktime.user.service.UserService;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     AdminUserMapper adminUserMapper;
 
+    @Autowired
+    AppUserMapper appUserMapper;
+
     public static final String TOKEN_BASE64_KEY = CodeConstants.LOGIN_TOKEN_BASE64_KEY;
 
 
@@ -23,8 +28,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveAppUser(AppUser user) {
+        appUserMapper.saveUser(user);
+    }
+
+    @Override
     public AdminUser queryAdminUserByAccount(String account) {
         return adminUserMapper.queryByAccount(account);
+    }
+
+    @Override
+    public AppUser queryAppUserByAccount(String account) {
+        return appUserMapper.queryByAccount(account);
     }
 
     @Override

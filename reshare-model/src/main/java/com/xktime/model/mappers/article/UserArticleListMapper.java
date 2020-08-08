@@ -1,7 +1,7 @@
 package com.xktime.model.mappers.article;
 
 import com.xktime.model.article.dtos.LoadArticleDto;
-import com.xktime.model.user.pojos.User;
+import com.xktime.model.user.pojos.AppUser;
 import com.xktime.model.user.pojos.UserArticleList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,5 +12,5 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserArticleListMapper {
-    List<UserArticleList> loadArticleIdListByUser(@Param("user") User user, @Param("dto") LoadArticleDto dto);
+    List<UserArticleList> loadArticleIdListByUser(@Param("user") AppUser appUser, @Param("dto") LoadArticleDto dto);
 }

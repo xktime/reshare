@@ -1,12 +1,15 @@
 package com.xktime.model.user.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-public class User {
+public class AppUser {
     private Long id;
-    private String salt;
-    private String name;
+    private String userName;
+    private String account;
     private String password;
     private String phone;
     private String image;
@@ -15,4 +18,6 @@ public class User {
     private Boolean isIdentityAuthentication;
     private Boolean status;
     private int flag;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 }
