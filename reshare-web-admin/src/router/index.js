@@ -10,21 +10,17 @@ export default new Router({
       name: 'Admin',
       component: () => import("@/components/admin/Admin"),
       meta: {
-        requireAuth: true
+        requireAuth: true,
+        title: "后台管理系统"
       },
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import("@/components/admin/Login")
-    },
-    {
-      path: '/admin',
-      name: 'Admin',
-      component: () => import("@/components/admin/Admin"),
+      component: () => import("@/components/admin/Login"),
       meta: {
-        requireAuth: true
+        title: "后台登录"
       },
-    }
+    },
   ]
 })

@@ -7,24 +7,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Admin',
-      component: () => import("@/components/admin/Admin"),
+      name: 'index',
+      component: () => import("@/components/Index"),
       meta: {
-        requireAuth: true
+        requireAuth: true,
+        title: "首页"
       },
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import("@/components/admin/Login")
-    },
-    {
-      path: '/admin',
-      name: 'Admin',
-      component: () => import("@/components/admin/Admin"),
+      component: () => import("@/components/Login"),
       meta: {
-        requireAuth: true
+        title: "reshare登录"
       },
-    }
+    },
   ]
 })

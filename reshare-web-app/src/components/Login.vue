@@ -38,7 +38,7 @@
                         let data = new FormData();
                         data.append("account", this.form.account);
                         data.append("password", this.form.password);
-                        const api = this.$apiUrl + 'admin/login';
+                        const api = this.$apiUrl + 'login/common';
                         this.axios.post(api, data).then(
                             (response) => {
                                 if (response.data.code != 200) {
@@ -47,7 +47,7 @@
                                 }
                                 this.$store.commit('login', this.form.account);
                                 this.$store.commit('addToken', response.data.data);
-                                this.$router.push({path: this.$route.query.redirect || '/admin'});
+                                this.$router.push({path: this.$route.query.redirect || '/index'});
                             }
                         );
                     } else {
