@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-form">
       <div class="login-header">
-        <img src="../assets/images/logo.svg" width="100" height="100" alt="">
+        <img src="../../assets/images/logo.svg" width="100" height="100" alt="">
         <p>reshare</p>
       </div>
       <el-input
