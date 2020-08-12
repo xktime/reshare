@@ -1,18 +1,40 @@
 <template>
-  <div class="login-container">
-    <el-form :model="form" :rules="rules" status-icon ref="ruleForm2" label-position="left" label-width="0px"
-             class="demo-ruleForm login-page">
-      <h3 class="title">reshare</h3>
-      <el-form-item prop="account">
-        <el-input type="text" v-model="form.account" auto-complete="off" placeholder="用户名"></el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
-      </el-form-item>
-      <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;" @click="handleSubmit">登录</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="login">
+    <div class="login-form">
+      <div class="login-header">
+        <img src="../assets/images/logo.svg" width="100" height="100" alt="">
+        <p>reshare</p>
+      </div>
+      <el-input
+        placeholder="请输入用户名"
+        suffix-icon="fa fa-user"
+        v-model="account"
+        style="margin-bottom: 18px"
+      >
+      </el-input>
+
+      <el-input
+        placeholder="请输入密码"
+        suffix-icon="fa fa-keyboard-o"
+        v-model="password"
+        type="password"
+        style="margin-bottom: 18px"
+        @keyup.native.enter="login"
+      >
+      </el-input>
+
+      <el-button
+        type="primary" :loading="loginLoading"
+        style="width: 100%;margin-bottom: 18px"
+        @click="login"
+      >登录
+      </el-button>
+      <div>
+        <el-checkbox v-model="remember"> Remenber</el-checkbox>
+        <a href="javascript:;" style="float: right;color: #3C8DBC;font-size: 14px">Register</a>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -20,64 +42,44 @@
     export default {
         data() {
             return {
-                form: {
-                    account: this.$store.state.account,
-                    password: '',
-                },
-                rules: {
-                    account: [{required: true, message: 'please enter your account', trigger: 'blur'}],
-                    password: [{required: true, message: 'enter your password', trigger: 'blur'}]
-                },
+                account: '',
+                password: '',
+                loginLoading: false,
+                remember: true,
             }
         },
         methods: {
-            handleSubmit(event) {
-                this.$refs.ruleForm2.validate((valid) => {
-                    if (valid) {
-                        let data = new FormData();
-                        data.append("account", this.form.account);
-                        data.append("password", this.form.password);
-                        const api = this.$apiUrl + 'login/common';
-                        this.axios.post(api, data).then(
-                            (response) => {
-                                if (response.data.code != 200) {
-                                    this.$alert(response.data.errorMessage);
-                                    return;
-                                }
-                                this.$store.commit('login', this.form.account);
-                                this.$store.commit('addToken', response.data.data);
-                                this.$router.push({path: this.$route.query.redirect || '/index'});
-                            }
-                        );
-                    } else {
-                        console.log('error submit!');
-                        return false;
+            login(event) {
+                this.loginLoading = true;
+                let data = new FormData();
+                data.append("account", this.account);
+                data.append("password", this.password);
+                const api = this.$apiUrl + 'login/common';
+                this.axios.post(api, data).then(
+                    (response) => {
+                        if (response.data.code != 200) {
+                            this.$alert(response.data.errorMessage);
+                            this.loginLoading = false;
+                            return;
+                        }
+                        setTimeout(() => {
+                            this.loginLoading = false;
+                            this.$store.commit('login', this.account);
+                            this.$store.commit('addToken', response.data.data);
+                            this.$notify({
+                                title: '登录成功',
+                                message: '欢迎登录reshare',
+                                type: 'success'
+                            });
+                            this.$router.push({path: this.$route.query.redirect || '/'});
+                        }, 1000);
                     }
-                })
+                );
             }
         }
     };
 </script>
 
-<style scoped>
-  .login-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .login-page {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin: 180px auto;
-    width: 350px;
-    padding: 35px 35px 15px;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #cac6c6;
-  }
-
-  label.el-checkbox.rememberme {
-    margin: 0px 0px 15px;
-    text-align: left;
-  }
+<style lang="less">
+  @import "Login.less";
 </style>

@@ -1,11 +1,7 @@
 <template>
   <div id="app">
-    <!--<div id="nav">-->
-    <!--<router-link to="/">Home</router-link>-->
-    <!--<router-link to="/hello">Hello</router-link>-->
-    <!--</div>-->
-    <!--<img src="./assets/logo.png">-->
-    <router-view/>
+    <router-view name="blank"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -15,13 +11,8 @@
     }
 </script>
 
-<style>
+<style lang="less">
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    background-color: #222d32;
   }
 </style>
