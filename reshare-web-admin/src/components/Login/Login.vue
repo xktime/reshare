@@ -30,7 +30,7 @@
       >登录
       </el-button>
       <div>
-        <el-checkbox v-model="remember"> Remenber</el-checkbox>
+        <el-checkbox v-model="remember"> remember</el-checkbox>
         <a href="javascript:;" style="float: right;color: #3C8DBC;font-size: 14px">Register</a>
       </div>
 
@@ -54,7 +54,7 @@
                 let data = new FormData();
                 data.append("account", this.account);
                 data.append("password", this.password);
-                const api = this.$apiUrl + 'login/common';
+                const api = this.$apiUrl + 'admin/login';
                 this.axios.post(api, data).then(
                     (response) => {
                         if (response.data.code != 200) {
