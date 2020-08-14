@@ -2,7 +2,7 @@
   <div class="main">
     <div class="header">
       <div class="logo">
-        <span class="big">{{ $Config.siteName }}</span>
+        <span class="big">首页</span>
         <span class="min">
           <img width="40" style="margin-top: 5px" src="../../assets/images/logo.svg" alt="">
         </span>
@@ -132,16 +132,17 @@
 
 <script>
   import Screenfull from 'screenfull'
-  import EuiFooter from '~/views/Layout/Footer.vue';
+  import EuiFooter from '@/components/Layout/Footer.vue';
   import NavBar from './NavBar.vue'
-  import Menu from '~/menu/index';
+  import Menu from '@/menu/index';
 
   export default {
     data() {
       return {
         fixedTabBar:false,
         switchTabBar: false,
-        siteName: this.$Config.siteName,
+        // todo siteName: this.$Config.siteName,
+        siteName: '首页',
         isCollapse: false,
         menu: Menu,
       };
@@ -184,7 +185,8 @@
         e.preventDefault();
         if (this.isCollapse) {
           document.body.classList.remove('sidebar-hidden')
-          this.siteName = this.$Config.siteName
+          // todo this.siteName = this.$Config.siteName
+            this.siteName = '首页';
           this.isCollapse = false;
         } else {
           document.body.classList.add('sidebar-hidden')
@@ -220,7 +222,8 @@
       if (!this.isCollapse) {
 
         document.body.classList.remove('sidebar-hidden')
-        this.siteName = this.$Config.siteName
+        // todo this.siteName = this.$Config.siteName
+        this.siteName = '首页'
       } else {
         document.body.classList.add('sidebar-hidden')
       }

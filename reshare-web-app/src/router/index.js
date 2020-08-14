@@ -8,16 +8,16 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import("@/components/Index"),
+      component: () => import("@/components/Layout/App"),
       meta: {
-        requireAuth: true,
+        // requireAuth: true,
         title: "首页"
       },
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import("@/components/Login"),
+      component: () => import("@/components/Login/Login"),
       meta: {
         title: "reshare登录"
       },
