@@ -9,6 +9,9 @@ import VueAxios from 'vue-axios'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import elTableInfiniteScroll from 'el-table-infinite-scroll';
+import './theme/index.css'
+import './assets/css/font-awesome.min.css'
+import './assets/css/style.css'
 
 Vue.config.productionTip = false;
 

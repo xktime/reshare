@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import("@/components/Layout/App"),
+      component: () => import("@/view/Layout/App"),
       meta: {
         // requireAuth: true,
         title: "首页"
@@ -17,7 +17,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import("@/components/Login/Login"),
+      component: () => import("@/view/Login/Login"),
       meta: {
         title: "reshare登录"
       },

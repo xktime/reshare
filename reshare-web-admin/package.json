@@ -1,7 +1,7 @@
 {
-  "name": "reshare-app",
+  "name": "reshare-admin",
   "version": "1.0.0",
-  "description": "前端页面",
+  "description": "管理系统模块",
   "author": "xktime <luoliwen0913@foxmail.com>",
   "private": true,
   "scripts": {
@@ -16,9 +16,9 @@
     "axios": "^0.19.2",
     "browserslist": "^4.12.0",
     "el-table-infinite-scroll": "^1.0.10",
-    "element-ui": "^2.13.1",
+    "element-ui": "^2.4.6",
     "less-loader": "^4.1.0",
-    "screenfull": "^5.0.2",
+    "screenfull": "^3.3.2",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.0.1",

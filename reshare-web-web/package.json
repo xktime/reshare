@@ -1,7 +1,7 @@
 {
-  "name": "reshare-web",
+  "name": "reshare-app",
   "version": "1.0.0",
-  "description": "前端页面",
+  "description": "App模块",
   "author": "xktime <luoliwen0913@foxmail.com>",
   "private": true,
   "scripts": {
