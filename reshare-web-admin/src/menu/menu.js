@@ -16,15 +16,15 @@ menu.home = {
  * @type {{name: string, icon: string, children: {}}}
  */
 menu.font_icon = {
-  name: '字体图标',
+  name: '审核',
   icon: 'fa fa-th',
   children: {}
 };
 let icon = menu.font_icon.children;
 
 icon.font_awesome = {
-  name: 'FontAwesome 4.7',
-  path: '/font_awesome',
+  name: '爬虫文章',
+  path: '/verify/crawler',
 
 };
 icon.element_icon = {

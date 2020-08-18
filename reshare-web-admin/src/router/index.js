@@ -13,6 +13,16 @@ export default new Router({
         // requireAuth: true,
         title: "首页"
       },
+      children: [
+        {
+          path: '/verify/crawler',
+          name: 'VerifyCrawlerArticle',
+          component: () => import("@/view/verify/CrawlerArticle"),
+          meta: {
+            title: "爬取文章审核"
+          },
+        },
+      ]
     },
     {
       path: '/login',
