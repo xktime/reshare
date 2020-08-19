@@ -1,22 +1,22 @@
 <template>
-  <el-container style="height: 800px; border: 1px solid #eee">
+  <el-container style="height:82vh; width:100%; border: 1px solid #eee">
       <el-main>
-        <el-table border height="100%" v-el-table-infinite-scroll="load" :data="tableData">
+        <el-table border height="100%" width="100%" v-el-table-infinite-scroll="load" :data="tableData">
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
-                <iframe v-bind:srcdoc="props.row.content" width="1000" height="500" frameborder="0"></iframe>
+                <iframe v-bind:srcdoc="props.row.content" width="100%" height="500" frameborder="0"></iframe>
               </el-form>
             </template>
           </el-table-column>
-          <el-table-column prop="title" label="标题" width="300" sortable></el-table-column>
-          <el-table-column prop="authorName" label="作者" width="120" sortable></el-table-column>
-          <el-table-column prop="url" label="文章地址" width="300" sortable></el-table-column>
-          <el-table-column prop="origin" label="来源" width="120" sortable></el-table-column>
-          <el-table-column prop="publishTime" label="发布时间" width="180" sortable></el-table-column>
-          <el-table-column prop="status" label="状态" width="100" :formatter="statusFormatter"
+          <el-table-column prop="title" label="标题" min-width="30%" sortable></el-table-column>
+          <el-table-column prop="authorName" label="作者" min-width="15%" sortable></el-table-column>
+          <el-table-column prop="url" label="文章地址" min-width="30%" sortable></el-table-column>
+          <el-table-column prop="origin" label="来源" min-width="10%" sortable></el-table-column>
+          <el-table-column prop="publishTime" label="发布时间" min-width="20%" sortable></el-table-column>
+          <el-table-column prop="status" label="状态" min-width="10%" :formatter="statusFormatter"
                            sortable></el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column  min-width="20%" label="操作">
             <template slot-scope="scope">
               <el-button
                 size="mini"

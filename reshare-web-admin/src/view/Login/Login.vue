@@ -3,7 +3,7 @@
     <div class="login-form">
       <div class="login-header">
         <img src="../../assets/images/logo.svg" width="100" height="100" alt="">
-        <p>reshare</p>
+        <p>reshare后台管理</p>
       </div>
       <el-input
         placeholder="请输入用户名"
@@ -29,10 +29,10 @@
         @click="login"
       >登录
       </el-button>
-      <div>
-        <el-checkbox v-model="remember"> remember</el-checkbox>
-        <a href="javascript:;" style="float: right;color: #3C8DBC;font-size: 14px">Register</a>
-      </div>
+<!--      <div>-->
+<!--        <el-checkbox v-model="remember"> remember</el-checkbox>-->
+<!--        <a href="javascript:;" style="float: right;color: #3C8DBC;font-size: 14px">Register</a>-->
+<!--      </div>-->
 
     </div>
   </div>
@@ -68,7 +68,7 @@
                             this.$store.commit('addToken', response.data.data);
                             this.$notify({
                                 title: '登录成功',
-                                message: '欢迎登录reshare',
+                                message: '欢迎登录reshare管理系统',
                                 type: 'success'
                             });
                             this.$router.push({path: this.$route.query.redirect || '/'});

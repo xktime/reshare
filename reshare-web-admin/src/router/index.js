@@ -10,8 +10,8 @@ export default new Router({
       name: 'index',
       component: () => import("@/view/Layout/App"),
       meta: {
-        // requireAuth: true,
-        title: "首页"
+        requireAuth: true,
+        title: "reshare后台管理系统"
       },
       children: [
         {
@@ -19,6 +19,7 @@ export default new Router({
           name: 'VerifyCrawlerArticle',
           component: () => import("@/view/verify/CrawlerArticle"),
           meta: {
+            requireAuth: true,
             title: "爬取文章审核"
           },
         },
@@ -29,7 +30,7 @@ export default new Router({
       name: 'login',
       component: () => import("@/view/Login/Login"),
       meta: {
-        title: "reshare登录"
+        title: "reshare后台登录"
       },
     },
   ]
