@@ -73,7 +73,7 @@
         </span>
         <el-dropdown>
           <span class="header-btn">
-              Admin<i class="el-icon-arrow-down el-icon--right"></i>
+              {{this.$store.state.account}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item @click.native="$router.push('/personal')"><i style="padding-right: 8px"
