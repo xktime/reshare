@@ -6,6 +6,15 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'index',
+      component: () => import("@/view/App"),
+      meta: {
+        requireAuth: true,
+        title: "reshare"
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import("@/view/Login"),
