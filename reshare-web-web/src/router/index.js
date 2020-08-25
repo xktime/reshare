@@ -10,7 +10,7 @@ export default new Router({
       name: 'index',
       component: () => import("@/view/App"),
       meta: {
-        requireAuth: true,
+        // requireAuth: true,
         title: "reshare"
       },
     },
