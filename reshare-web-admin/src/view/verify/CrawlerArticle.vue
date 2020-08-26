@@ -17,7 +17,11 @@
           </template>
         </el-table-column>
         <el-table-column prop="origin" label="来源" min-width="10%" sortable></el-table-column>
-        <el-table-column prop="publishTime" label="发布时间" min-width="20%" sortable></el-table-column>
+        <el-table-column prop="publishTime" label="发布时间" min-width="20%" sortable>
+          <template slot-scope="scope">
+            {{new Date(scope.row.publishTime).toLocaleString()}}
+          </template>
+        </el-table-column>
         <el-table-column prop="status" label="状态" min-width="10%" :formatter="statusFormatter"
                          sortable></el-table-column>
         <el-table-column min-width="20%" label="操作">
