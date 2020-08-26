@@ -9,9 +9,13 @@
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column prop="title" label="标题" min-width="30%" sortable></el-table-column>
-        <el-table-column prop="authorName" label="作者" min-width="15%" sortable></el-table-column>
-        <el-table-column prop="url" label="文章地址" min-width="30%" sortable></el-table-column>
+        <el-table-column prop="title" label="标题" min-width="25%" sortable></el-table-column>
+        <el-table-column prop="authorName" label="作者" min-width="13%" sortable></el-table-column>
+        <el-table-column prop="url" label="文章地址" min-width="30%" sortable>
+          <template slot-scope="scope">
+            <a :href="scope.row.url" target="_blank" class="buttonText">{{scope.row.url}}</a>
+          </template>
+        </el-table-column>
         <el-table-column prop="origin" label="来源" min-width="10%" sortable></el-table-column>
         <el-table-column prop="publishTime" label="发布时间" min-width="20%" sortable></el-table-column>
         <el-table-column prop="status" label="状态" min-width="10%" :formatter="statusFormatter"
