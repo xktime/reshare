@@ -1,40 +1,39 @@
 <template>
-  <el-container style="height:82vh; width:100%; border: 1px solid #eee">
-      <el-main>
-        <el-table border height="100%" width="100%" v-el-table-infinite-scroll="load" :data="tableData">
-          <el-table-column type="expand">
-            <template slot-scope="props">
-              <el-form label-position="left" inline class="demo-table-expand">
-                <iframe v-bind:srcdoc="props.row.content" width="100%" height="500" frameborder="0"></iframe>
-              </el-form>
-            </template>
-          </el-table-column>
-          <el-table-column prop="title" label="标题" min-width="30%" sortable></el-table-column>
-          <el-table-column prop="authorName" label="作者" min-width="15%" sortable></el-table-column>
-          <el-table-column prop="url" label="文章地址" min-width="30%" sortable></el-table-column>
-          <el-table-column prop="origin" label="来源" min-width="10%" sortable></el-table-column>
-          <el-table-column prop="publishTime" label="发布时间" min-width="20%" sortable></el-table-column>
-          <el-table-column prop="status" label="状态" min-width="10%" :formatter="statusFormatter"
-                           sortable></el-table-column>
-          <el-table-column  min-width="20%" label="操作">
-            <template slot-scope="scope">
-              <el-button
-                size="mini"
-                @click="audit(scope.row, 2)">通过
-              </el-button>
-              <el-button
-                size="mini"
-                type="danger"
-                @click="audit(scope.row, 1)">不通过
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-main>
+  <el-container>
+    <el-main>
+      <el-table border height="100%" width="100%" v-el-table-infinite-scroll="load" :data="tableData">
+        <el-table-column type="expand">
+          <template slot-scope="props">
+            <el-form label-position="left" inline class="demo-table-expand">
+              <iframe v-bind:srcdoc="props.row.content" width="100%" height="500" frameborder="0"></iframe>
+            </el-form>
+          </template>
+        </el-table-column>
+        <el-table-column prop="title" label="标题" min-width="30%" sortable></el-table-column>
+        <el-table-column prop="authorName" label="作者" min-width="15%" sortable></el-table-column>
+        <el-table-column prop="url" label="文章地址" min-width="30%" sortable></el-table-column>
+        <el-table-column prop="origin" label="来源" min-width="10%" sortable></el-table-column>
+        <el-table-column prop="publishTime" label="发布时间" min-width="20%" sortable></el-table-column>
+        <el-table-column prop="status" label="状态" min-width="10%" :formatter="statusFormatter"
+                         sortable></el-table-column>
+        <el-table-column min-width="20%" label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini" @click="audit(scope.row, 2)">通过</el-button>
+            <el-button size="mini" type="danger" @click="audit(scope.row, 1)">不通过</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-main>
   </el-container>
 </template>
 
 <style>
+  .el-container {
+    height: 82vh;
+    width: 100%;
+    border: 1px solid #eee;
+  }
+
   .el-header {
     background-color: #B3C0D1;
     color: #333;
