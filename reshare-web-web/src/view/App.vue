@@ -2,25 +2,30 @@
   <el-container style="background-color: #E2E2E2;">
     <el-header>Header</el-header>
     <el-container class="container">
-      <el-main>
-        <el-row v-for="data in tableData">
-          <!--头像-->
-          <el-col :span="5">
-            <el-avatar v-if="data.url != null" :size="85" fit="contain" :src="data.url"></el-avatar>
-            <el-avatar v-else :size="85" fit="contain" icon="el-icon-user-solid"></el-avatar>
-          </el-col>
-          <el-col :span="19">
-              <span class="item_title">
-                <el-link :href="data.url" target="_blank" :underline="false">{{data.title}}</el-link>
-              </span><br><br>
-            <span class="text-desc"><span>{{data.value}}</span> 个回复 •
-                <span>{{data.value}}</span> 次浏览 •
-                <span>{{new Date(data.date).toLocaleString()}}</span>
-              </span>
-            <el-divider></el-divider>
-          </el-col>
-        </el-row>
-      </el-main>
+      <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
+        <el-main style="overflow:auto; max-height: 88vh;"
+                 v-infinite-scroll="load"
+                 infinite-scroll-immediate="true"
+                 :infinite-scroll-disabled="scrollDisabled">
+          <el-row v-for="data in tableData">
+            <!--头像-->
+            <el-col :span="5">
+              <el-avatar v-if="data.url != null" :size="85" fit="contain" :src="data.url"></el-avatar>
+              <el-avatar v-else :size="85" fit="contain" icon="el-icon-user-solid"></el-avatar>
+            </el-col>
+            <el-col :span="19">
+                    <span class="item_title">
+                      <el-link :href="data.url" target="_blank" :underline="false">{{data.title}}</el-link>
+                    </span><br><br>
+              <span class="text-desc"><span>{{data.status}}</span> 个回复 •
+                      <span>{{data.status}}</span> 次浏览 •
+                      <span>{{new Date(data.publishTime).toLocaleString()}}</span>
+                    </span>
+              <el-divider></el-divider>
+            </el-col>
+          </el-row>
+        </el-main>
+      </el-scrollbar>
     </el-container>
   </el-container>
 </template>
@@ -29,6 +34,9 @@
     export default {
         data() {
             return {
+                // tableData: [],
+                count: 10,
+                scrollDisabled: false,
                 tableData: [{
                     url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
                     value: 1,
@@ -80,6 +88,23 @@
                     }],
             }
         },
+        methods: {
+            load: function () {
+                this.scrollDisabled = true;
+                const _this = this;
+                console.log("111111");
+                const api = this.$apiUrl + 'admin/loadArticle?size=' + this.count + '&loadArticleType=crawler';
+                this.axios.get(api).then((response) => {
+                    if (response.data.code != 200) {
+                        this.$alert(response.data.errorMessage);
+                        return;
+                    }
+                    _this.tableData = response.data.data;
+                });
+                this.count += 1;
+                this.scrollDisabled = false;
+            },
+        },
     }
 </script>
 
@@ -99,8 +124,8 @@
     margin: 15px 310px 0 20px;
     min-width: 80%;
     max-width: 80%;
-    /*min-height: 92%;*/
-    /*max-height: 92%;*/
+    min-height: 92%;
+    max-height: 92%;
   }
 
   .container {
