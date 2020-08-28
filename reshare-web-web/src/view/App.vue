@@ -1,13 +1,13 @@
 <template>
-  <el-container style="background-color: #E2E2E2;">
+  <el-container style="background-color: #E2E2E2;overflow:auto; max-height: 98vh;"
+                v-infinite-scroll="load"
+                infinite-scroll-immediate="true"
+                :infinite-scroll-disabled="scrollDisabled">
     <el-header>Header</el-header>
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
-        <el-main style="overflow:auto; max-height: 88vh;"
-                 v-infinite-scroll="load"
-                 infinite-scroll-immediate="true"
-                 :infinite-scroll-disabled="scrollDisabled">
-          <el-row v-for="data in tableData">
+        <el-main>
+          <el-row v-for="data in tableData" :key="tableData">
             <!--头像-->
             <el-col :span="5">
               <el-avatar v-if="data.url != null" :size="85" fit="contain" :src="data.url"></el-avatar>
@@ -34,58 +34,58 @@
     export default {
         data() {
             return {
-                tableData: [],
+                // tableData: [],
                 page: 1,
                 scrollDisabled: false,
-                // tableData: [{
-                //     url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //     value: 1,
-                //     title: "123",
-                //     date: 1598430915144
-                // },
-                //     {
-                //         url: null,
-                //         value: 2,
-                //         title: "123",
-                //         date: 1598430915144
-                //     },
-                //     {
-                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //         value: 3,
-                //         title: "123",
-                //         date: 1598430915144
-                //     },
-                //     {
-                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //         value: 4,
-                //         title: "123",
-                //         date: 1598430915144
-                //     },
-                //     {
-                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //         value: 4,
-                //         title: "123",
-                //         date: 1598430915144
-                //     },
-                //     {
-                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //         value: 4,
-                //         title: "123",
-                //         date: 1598430915144
-                //     },
-                //     {
-                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //         value: 4,
-                //         title: "123",
-                //         date: 1598430915144
-                //     }
-                //     ,
-                //     {
-                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                //         value: 4,
-                //         title: "123",
-                //         date: 1598430915144
-                //     }],
+                tableData: [{
+                    url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                    value: 1,
+                    title: "123",
+                    date: 1598430915144
+                },
+                    {
+                        url: null,
+                        value: 2,
+                        title: "123",
+                        date: 1598430915144
+                    },
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        value: 3,
+                        title: "123",
+                        date: 1598430915144
+                    },
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        value: 4,
+                        title: "123",
+                        date: 1598430915144
+                    },
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        value: 4,
+                        title: "123",
+                        date: 1598430915144
+                    },
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        value: 4,
+                        title: "123",
+                        date: 1598430915144
+                    },
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        value: 4,
+                        title: "123",
+                        date: 1598430915144
+                    }
+                    ,
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        value: 4,
+                        title: "123",
+                        date: 1598430915144
+                    }],
             }
         },
         methods: {
