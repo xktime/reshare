@@ -34,58 +34,58 @@
     export default {
         data() {
             return {
-                // tableData: [],
-                count: 10,
+                tableData: [],
+                page: 1,
                 scrollDisabled: false,
-                tableData: [{
-                    url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                    value: 1,
-                    title: "123",
-                    date: 1598430915144
-                },
-                    {
-                        url: null,
-                        value: 2,
-                        title: "123",
-                        date: 1598430915144
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 3,
-                        title: "123",
-                        date: 1598430915144
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
-                        title: "123",
-                        date: 1598430915144
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
-                        title: "123",
-                        date: 1598430915144
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
-                        title: "123",
-                        date: 1598430915144
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
-                        title: "123",
-                        date: 1598430915144
-                    }
-                    ,
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
-                        title: "123",
-                        date: 1598430915144
-                    }],
+                // tableData: [{
+                //     url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //     value: 1,
+                //     title: "123",
+                //     date: 1598430915144
+                // },
+                //     {
+                //         url: null,
+                //         value: 2,
+                //         title: "123",
+                //         date: 1598430915144
+                //     },
+                //     {
+                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //         value: 3,
+                //         title: "123",
+                //         date: 1598430915144
+                //     },
+                //     {
+                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //         value: 4,
+                //         title: "123",
+                //         date: 1598430915144
+                //     },
+                //     {
+                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //         value: 4,
+                //         title: "123",
+                //         date: 1598430915144
+                //     },
+                //     {
+                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //         value: 4,
+                //         title: "123",
+                //         date: 1598430915144
+                //     },
+                //     {
+                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //         value: 4,
+                //         title: "123",
+                //         date: 1598430915144
+                //     }
+                //     ,
+                //     {
+                //         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                //         value: 4,
+                //         title: "123",
+                //         date: 1598430915144
+                //     }],
             }
         },
         methods: {
@@ -93,15 +93,19 @@
                 this.scrollDisabled = true;
                 const _this = this;
                 console.log("111111");
-                const api = this.$apiUrl + 'admin/loadArticle?size=' + this.count + '&loadArticleType=crawler';
+                const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=crawler';
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
                         return;
                     }
-                    _this.tableData = response.data.data;
+                    console.log(response.data.data);
+                    if (response.data.data == null || response.data.data.length <= 0) {
+                        this.scrollDisabled = true;
+                    }
+                    _this.tableData = _this.tableData.concat(response.data.data);
                 });
-                this.count += 1;
+                this.page++;
                 this.scrollDisabled = false;
             },
         },
