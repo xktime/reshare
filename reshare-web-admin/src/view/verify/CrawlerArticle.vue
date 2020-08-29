@@ -76,7 +76,6 @@
                         this.$alert(response.data.errorMessage);
                         return;
                     }
-                    console.log(response.data.data);
                     if (response.data.data == null || response.data.data.length <= 0) {
                         this.scrollDisabled = true;
                     }

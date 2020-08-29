@@ -92,14 +92,12 @@
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
-                console.log("111111");
                 const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=crawler';
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
                         return;
                     }
-                    console.log(response.data.data);
                     if (response.data.data == null || response.data.data.length <= 0) {
                         this.scrollDisabled = true;
                     }
