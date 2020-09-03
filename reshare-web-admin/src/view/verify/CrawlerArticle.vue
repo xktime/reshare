@@ -72,6 +72,8 @@
                 const _this = this;
                 const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=crawler';
                 this.axios.get(api).then((response) => {
+                    this.scrollDisabled = false;
+                    this.page++;
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
                         return;
@@ -81,8 +83,6 @@
                     }
                     _this.tableData = _this.tableData.concat(response.data.data);
                 });
-                this.page++;
-                this.scrollDisabled = false;
             },
             statusFormatter(row) {
                 const status = row.status;
