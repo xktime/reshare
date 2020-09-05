@@ -3,11 +3,11 @@
                 v-infinite-scroll="load"
                 infinite-scroll-immediate="true"
                 :infinite-scroll-disabled="scrollDisabled">
-    <el-header>Header</el-header>
+    <el-header style="height: 45px">Header</el-header>
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
-          <el-row v-for="data in tableData" :key="tableData">
+          <el-row v-for="data in tableData" :key="data.id">
             <!--头像-->
             <el-col :span="5">
               <el-avatar v-if="data.url != null" :size="85" fit="contain" :src="data.url"></el-avatar>
@@ -37,54 +37,55 @@
                 // tableData: [],
                 page: 1,
                 scrollDisabled: false,
-                tableData: [{
-                    url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                    value: 1,
-                    title: "123",
-                    date: 1598430915144
-                },
+                tableData: [
+                    {
+                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        status: 1,
+                        title: "123",
+                        publishTime: 1598430915141
+                    },
                     {
                         url: null,
-                        value: 2,
+                        status: 2,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915142
                     },
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 3,
+                        status: 3,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915143
                     },
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
+                        status: 4,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915145
                     },
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
+                        status: 4,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915149
                     },
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
+                        status: 4,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915144
                     },
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
+                        status: 4,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915144
                     }
                     ,
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        value: 4,
+                        status: 4,
                         title: "123",
-                        date: 1598430915144
+                        publishTime: 1598430915144
                     }],
             }
         },
@@ -94,8 +95,6 @@
                 const _this = this;
                 const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=crawler';
                 this.axios.get(api).then((response) => {
-                    this.scrollDisabled = false;
-                    this.page++;
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
                         return;
@@ -104,7 +103,10 @@
                         this.scrollDisabled = true;
                     }
                     _this.tableData = _this.tableData.concat(response.data.data);
+                    this.page++;
                 });
+                console.log(this.page);
+                this.scrollDisabled = false;
             },
         },
     }
@@ -113,7 +115,7 @@
 <style scoped>
   .el-header, .el-footer {
     text-align: center;
-    background-color: #09dac6;
+    background-color: #E9EEF2;
     border-bottom: 1px solid rgba(0, 0, 0, .22);
     padding: 0 20px;
   }
