@@ -3,7 +3,41 @@
                 v-infinite-scroll="load"
                 infinite-scroll-immediate="true"
                 :infinite-scroll-disabled="scrollDisabled">
-    <el-header style="height: 45px">Header</el-header>
+    <el-header style="height: 45px">
+      <el-container>
+        <el-aside width="20%"></el-aside>
+        <el-container>
+          <el-input style="width: 350px;"
+                    placeholder="请输入内容"
+                    prefix-icon="el-icon-search"
+                    v-model="search"
+                    size="small">
+          </el-input>
+          <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
+          <el-aside width="25%"></el-aside>
+          <el-dropdown class="header-link" v-if="!this.$store.state.loging" trigger="click">
+            <span class="el-dropdown-link">
+              我的<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-link href="http://www.baidu.com" :underline="false">设置</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link href="http://www.baidu.com" :underline="false">时间轴</el-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-link href="http://www.baidu.com" :underline="false">退出</el-link>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <div v-else>
+            <el-link class="header-link" type="primary" :underline="false">登录</el-link>
+            <el-link class="header-link" type="primary" :underline="false">注册</el-link>
+          </div>
+        </el-container>
+      </el-container>
+    </el-header>
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
@@ -14,13 +48,13 @@
               <el-avatar v-else :size="85" fit="contain" icon="el-icon-user-solid"></el-avatar>
             </el-col>
             <el-col :span="19">
-                    <span class="item_title">
-                      <el-link :href="data.url" target="_blank" :underline="false">{{data.title}}</el-link>
-                    </span><br><br>
+              <span class="item_title">
+                <el-link :href="data.url" target="_blank" :underline="false">{{data.title}}</el-link>
+              </span><br><br>
               <span class="text-desc"><span>{{data.status}}</span> 个回复 •
-                      <span>{{data.status}}</span> 次浏览 •
-                      <span>{{new Date(data.publishTime).toLocaleString()}}</span>
-                    </span>
+                <span>{{data.status}}</span> 次浏览 •
+                <span>{{new Date(data.publishTime).toLocaleString()}}</span>
+              </span>
               <el-divider></el-divider>
             </el-col>
           </el-row>
@@ -35,6 +69,7 @@
         data() {
             return {
                 // tableData: [],
+                search: null,
                 page: 1,
                 scrollDisabled: false,
                 tableData: [
@@ -163,6 +198,20 @@
     text-shadow: 0 1px 0 #fff;
     word-break: break-word;
     hyphens: auto;
+  }
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+    font-size: 15px;
+  }
+  .el-icon-arrow-down {
+    font-size: 15px;
+  }
+
+  .header-link {
+    padding-top: 12px;
+    font-size: 15px;
   }
 
 </style>
