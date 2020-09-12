@@ -16,6 +16,9 @@
             </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
+              <el-link href="http://www.baidu.com" :underline="false">发布</el-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
               <el-link href="http://www.baidu.com" :underline="false">设置</el-link>
             </el-dropdown-item>
             <el-dropdown-item>
@@ -27,8 +30,8 @@
           </el-dropdown-menu>
         </el-dropdown>
         <div v-else>
-          <el-link class="header-link" type="primary" :underline="false">登录</el-link>
-          <el-link class="header-link" type="primary" :underline="false">注册</el-link>
+          <el-link class="header-link" type="primary" href="http://www.baidu.com" :underline="false">登录</el-link>
+          <el-link class="header-link" type="primary" href="http://www.baidu.com" :underline="false">注册</el-link>
         </div>
       </el-container>
     </el-container>
@@ -36,7 +39,11 @@
 
 <script>
     export default {
-        name: "Header",
+        data() {
+            return {
+                search: null,
+            }
+        }
     }
 </script>
 

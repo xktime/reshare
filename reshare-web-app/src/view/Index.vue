@@ -4,7 +4,7 @@
                 infinite-scroll-immediate="true"
                 :infinite-scroll-disabled="scrollDisabled">
     <el-header style="height: 45px">
-      <_header></_header>
+      <app_header></app_header>
     </el-header>
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
@@ -33,13 +33,12 @@
 </template>
 
 <script>
-    import _header from '@/components/Header.vue';
+    import app_header from '@/components/Header.vue';
 
     export default {
         data() {
             return {
                 // tableData: [],
-                search: null,
                 page: 1,
                 scrollDisabled: false,
                 tableData: [
@@ -115,7 +114,7 @@
             },
         },
         components:{
-            _header,
+            app_header,
         }
     }
 </script>
@@ -145,7 +144,7 @@
     color: #333;
     text-align: center;
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 40%;
     min-height: 93%;
     max-height: 93%;
   }
