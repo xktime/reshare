@@ -1,20 +1,18 @@
 <template>
-  <div class="login-container">
-    <el-form :model="form" :rules="rules" status-icon ref="ruleForm2" label-position="left" label-width="0px"
-             class="demo-ruleForm login-page">
-      <h3 class="title">reshare登录</h3>
-      <el-form-item prop="account">
-        <el-input type="text" v-model="form.account" auto-complete="off" placeholder="用户名"></el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
-      </el-form-item>
-      <!--      <el-checkbox v-model="checked" class="rememberme">记住密码</el-checkbox>-->
-      <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;" @click="login">登录</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <el-form :model="form" :rules="rules" status-icon ref="ruleForm2" label-position="left" label-width="0px"
+           class="demo-ruleForm login-page">
+    <h3 class="title">reshare登录</h3>
+    <el-form-item prop="account">
+      <el-input type="text" v-model="form.account" auto-complete="off" placeholder="用户名"></el-input>
+    </el-form-item>
+    <el-form-item prop="password">
+      <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
+    </el-form-item>
+    <!--      <el-checkbox v-model="checked" class="rememberme">记住密码</el-checkbox>-->
+    <el-form-item style="width:100%;">
+      <el-button type="primary" style="width:100%;" @click="login">登录</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>

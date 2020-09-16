@@ -1,5 +1,6 @@
 <template>
-    <el-container>
+
+  <el-container>
       <el-aside width="28%"></el-aside>
       <el-container>
         <el-input style="width: 350px;"
@@ -30,11 +31,11 @@
           </el-dropdown-menu>
         </el-dropdown>
         <div v-else>
-          <el-link class="header-link" type="primary" href="http://www.baidu.com" :underline="false">登录</el-link>
+          <el-link class="header-link" type="primary" href="/#/login" :underline="false">登录</el-link>
           <el-link class="header-link" type="primary" href="http://www.baidu.com" :underline="false">注册</el-link>
         </div>
       </el-container>
-    </el-container>
+  </el-container>
 </template>
 
 <script>
@@ -62,4 +63,5 @@
     padding-top: 12px;
     font-size: 15px;
   }
+
 </style>

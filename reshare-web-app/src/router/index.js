@@ -1,26 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: () => import("@/view/Index"),
+      name: 'loadIndex',//用来加载文章的主页模板
+      component: () => import("@/view/IndexOfLoad"),
       meta: {
         // requireAuth: true,
         title: "reshare"
       },
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import("@/view/Login"),
+      path: '/fuc',
+      name: 'fucIndex',//功能的主页模板
+      component: () => import("@/view/IndexOfFuc"),
       meta: {
-        title: "reshare登录"
+        requireAuth: true,
       },
+      children: [
+        {
+          path: '/login',
+          name: 'login',
+          component: () => import("@/components/Login"),
+          meta: {
+            title: "reshare登录"
+          },
+        },
+      ]
     },
   ]
 })

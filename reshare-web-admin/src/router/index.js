@@ -10,7 +10,7 @@ export default new Router({
       name: 'index',
       component: () => import("@/view/Layout/App"),
       meta: {
-        // requireAuth: true,
+        requireAuth: true,
         title: "reshare后台管理系统"
       },
       children: [
@@ -19,7 +19,7 @@ export default new Router({
           name: 'VerifyCrawlerArticle',
           component: () => import("@/view/verify/CrawlerArticle"),
           meta: {
-            // requireAuth: true,
+            requireAuth: true,
             title: "爬取文章审核"
           },
         },

@@ -49,9 +49,8 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  store.state.token = localStorage.getItem('token');//获取本地存储的token
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-    if (store.state.token !== null && store.state.token !== '') {  // 通过vuex state获取当前的token是否存
+    if (store.state.loging) {  // 通过vuex state获取当前的token是否存
       next();
     } else {
       next({

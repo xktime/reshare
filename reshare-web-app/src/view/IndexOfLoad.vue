@@ -1,5 +1,5 @@
 <template>
-  <el-container style="background-color: #E2E2E2;overflow:auto; max-height: 98vh;"
+  <el-container style="background-color: #E2E2E2;overflow:auto; max-height: 97vh;"
                 v-infinite-scroll="load"
                 infinite-scroll-immediate="true"
                 :infinite-scroll-disabled="scrollDisabled">
@@ -97,6 +97,7 @@
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
+                console.log("11111");
                 const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=crawler';
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
@@ -109,7 +110,6 @@
                     _this.tableData = _this.tableData.concat(response.data.data);
                     this.page++;
                 });
-                console.log(this.page);
                 this.scrollDisabled = false;
             },
         },
