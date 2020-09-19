@@ -1,5 +1,4 @@
 <template>
-
   <el-container>
     <el-aside width="25%"></el-aside>
     <el-link class="header-link" type="primary" href="/" :underline="false">Reshare</el-link>
@@ -34,7 +33,7 @@
       </el-dropdown>
       <div v-else>
         <el-link class="header-link" type="primary" href="/#/login" :underline="false">登录</el-link>
-        <el-link class="header-link" type="primary" href="http://www.baidu.com" :underline="false">注册</el-link>
+        <el-link class="header-link" type="primary" href="/#/publish" :underline="false">注册</el-link>
       </div>
     </el-container>
   </el-container>

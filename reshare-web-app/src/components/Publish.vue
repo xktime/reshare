@@ -1,16 +1,20 @@
 <template>
-  <el-form :model="form" :rules="rules" status-icon ref="ruleForm" label-position="left" label-width="0px"
-           class="demo-ruleForm login-page">
-    <h3 class="title">reshare登录</h3>
-    <el-form-item prop="account">
-      <el-input type="text" v-model="form.account" auto-complete="off" placeholder="用户名"></el-input>
+  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="publish-page demo-ruleForm">
+    <el-form-item label="主题标题" prop="title" required>
+      <el-input type="text"
+                placeholder="请输入主题标题"
+                v-model="ruleForm.title"
+                autocomplete="off" maxlength="20" show-word-limit></el-input>
     </el-form-item>
-    <el-form-item prop="password">
-      <el-input type="password" v-model="form.password" auto-complete="off" placeholder="密码"></el-input>
+    <el-form-item label="正文" prop="content" required>
+      <el-input type="textarea"
+                placeholder="请输入内容"
+                :autosize="{ minRows: 10, maxRows: 10}"
+                v-model="ruleForm.content"
+                autocomplete="off" maxlength="10000" show-word-limit></el-input>
     </el-form-item>
-    <!--      <el-checkbox v-model="checked" class="rememberme">记住密码</el-checkbox>-->
-    <el-form-item style="width:100%;">
-      <el-button type="primary" style="width:100%;" @click="login">登录</el-button>
+    <el-form-item>
+      <el-button type="primary" @click="publish()">发布</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -19,18 +23,18 @@
     export default {
         data() {
             return {
-                form: {
-                    account: '',
-                    password: '',
+                ruleForm: {
+                    title: '',
+                    content: '',
                 },
                 rules: {
-                    account: [{required: true, message: 'please enter your account', trigger: 'blur'}],
-                    password: [{required: true, message: 'enter your password', trigger: 'blur'}]
-                },
-            }
+                    title: [{required: true, message: '标题不能为空', trigger: 'blur'}],
+                    content: [{required: true, message: '文章内容不能为空', trigger: 'blur'}],
+                }
+            };
         },
         methods: {
-            login(event) {
+            publish() {
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         let data = new FormData();
@@ -55,28 +59,19 @@
                 })
             }
         }
-    };
+    }
 </script>
 
-<style scoped>
-  .login-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .login-page {
+<style>
+  .publish-page {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     margin: 180px auto;
-    width: 350px;
+    min-width: 45%;
+    max-width: 45%;
     padding: 35px 35px 15px;
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
-  }
-
-  label.el-checkbox.rememberme {
-    margin: 0px 0px 15px;
-    text-align: left;
   }
 </style>

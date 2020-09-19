@@ -30,6 +30,14 @@ export default new Router({
             title: "reshare登录"
           },
         },
+        {
+          path: '/publish',
+          name: 'publish',
+          component: () => import("@/components/Publish"),
+          meta: {
+            title: "创作"
+          },
+        },
       ]
     },
   ]
