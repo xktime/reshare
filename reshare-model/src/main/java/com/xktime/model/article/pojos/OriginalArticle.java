@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Article {
+public class OriginalArticle {
     private Long id;
     private String title;
     private Long authorId;
@@ -24,4 +24,5 @@ public class Article {
     private Date publishTime;
     private String origin;
     private String content;
+    private int status;
 }

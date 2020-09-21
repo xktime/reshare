@@ -1,6 +1,6 @@
 package com.xktime.user.controller;
 
-import com.xktime.model.article.dtos.LoginDto;
+import com.xktime.model.account.dtos.LoginDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.common.enums.HttpCodeEnum;

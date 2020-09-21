@@ -1,7 +1,7 @@
 package com.xktime.apis.admin;
 
 import com.xktime.model.article.dtos.LoadArticleDto;
-import com.xktime.model.article.dtos.LoginDto;
+import com.xktime.model.account.dtos.LoginDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.common.dtos.ResponseResult;

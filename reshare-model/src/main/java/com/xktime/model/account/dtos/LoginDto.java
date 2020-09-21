@@ -1,4 +1,4 @@
-package com.xktime.model.article.dtos;
+package com.xktime.model.account.dtos;
 
 import lombok.Data;
 

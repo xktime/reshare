@@ -38,18 +38,18 @@
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         let data = new FormData();
-                        data.append("account", this.form.account);
-                        data.append("password", this.form.password);
-                        const api = this.$apiUrl + 'login/common';
+                        data.append("account", this.form.title);
+                        data.append("password", this.form.content);
+                        const api = this.$apiUrl + 'account/publish';
                         this.axios.post(api, data).then(
                             (response) => {
                                 if (response.data.code != 200) {
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }
-                                this.$store.commit('login', this.form.account);
-                                this.$store.commit('addToken', response.data.data);
-                                this.$router.push({path: this.$route.query.redirect || '/admin'});
+                                this.$store.commit('title', this.form.title);
+                                this.$store.commit('content', this.form.content);
+                                this.$router.push({path: this.$route.query.redirect || '/'});
                             }
                         );
                     } else {
