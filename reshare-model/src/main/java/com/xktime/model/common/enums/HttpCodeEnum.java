@@ -5,9 +5,9 @@ import java.io.Serializable;
 public enum HttpCodeEnum implements Serializable {
 
     // 成功段0
-    SUCCESS(0,"操作成功"),
+    SUCCESS(200,"操作成功"),
     FAIL(1,"请求异常"),
-    LOGIN_FAIL_ACCOUNT(2, "用户不存在"),
+    NOT_FIND_ACCOUNT(2, "用户不存在"),
     LOGIN_FAIL_PASSWORD(3, "密码错误"),
     ;
 

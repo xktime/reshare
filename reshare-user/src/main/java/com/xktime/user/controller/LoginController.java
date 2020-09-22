@@ -23,38 +23,38 @@ public class LoginController {
 
     @PostMapping("admin")
     public ResponseResult adminLogin(@RequestBody LoginDto dto) {
-        ResponseResult responseResult = new ResponseResult();
+        ResponseResult result = new ResponseResult();
         if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
-            return responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            return result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
         }
         AdminUser adminUser = userService.queryAdminUserByAccount(dto.getAccount());
         if (adminUser == null) {
-            return responseResult.error(HttpCodeEnum.LOGIN_FAIL_ACCOUNT.getCode(), HttpCodeEnum.LOGIN_FAIL_ACCOUNT.getErrorMessage());
+            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
         String password = adminUser.getPassword();
         String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
-            return responseResult.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
+            return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
-        return responseResult.ok(userService.getTokenByAccount(dto.getAccount()));
+        return result.ok(userService.getTokenByAccount(dto.getAccount()));
     }
 
     @PostMapping("app")
     public ResponseResult appLogin(@RequestBody LoginDto dto) {
-        ResponseResult responseResult = new ResponseResult();
+        ResponseResult result = new ResponseResult();
         if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
-            return responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            return result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
         }
         AppUser user = userService.queryAppUserByAccount(dto.getAccount());
         if (user == null) {
-            return responseResult.error(HttpCodeEnum.LOGIN_FAIL_ACCOUNT.getCode(), HttpCodeEnum.LOGIN_FAIL_ACCOUNT.getErrorMessage());
+            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
         String password = user.getPassword();
         String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
-            return responseResult.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
+            return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
-        return responseResult.ok(userService.getTokenByAccount(dto.getAccount()));
+        return result.ok(userService.getTokenByAccount(dto.getAccount()));
     }
 
 }

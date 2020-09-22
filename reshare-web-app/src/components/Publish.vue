@@ -37,9 +37,14 @@
             publish() {
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
+                        // if (!this.$store.state.loging || this.$store.state.token==='') {
+                        //     this.$alert('发布文章，登录状态错误');
+                        //     return;
+                        // }
                         let data = new FormData();
-                        data.append("account", this.form.title);
-                        data.append("password", this.form.content);
+                        data.append("title", this.ruleForm.title);
+                        data.append("content", this.ruleForm.content);
+                        data.append("token", this.$store.state.token);
                         const api = this.$apiUrl + 'account/publish';
                         this.axios.post(api, data).then(
                             (response) => {
@@ -47,8 +52,6 @@
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }
-                                this.$store.commit('title', this.form.title);
-                                this.$store.commit('content', this.form.content);
                                 this.$router.push({path: this.$route.query.redirect || '/'});
                             }
                         );

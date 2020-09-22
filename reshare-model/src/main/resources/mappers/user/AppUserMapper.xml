@@ -3,8 +3,8 @@
 <mapper namespace="com.xktime.model.mappers.user.AppUserMapper">
 
     <insert id="saveUser" parameterType="com.xktime.model.user.pojos.AppUser">
-        INSERT INTO admin_user(id,user_name,account,password,phone,image,sex,is_certification,is_identity_authentication,status,flag,created_time)
-        VALUES (#{id},#{userName},#{account},#{password},#{phone},#{image},#{sex},#{isCertification},#{isIdentityAuthentication},#{status},#{flag},#{createTime})
+        INSERT INTO admin_user(id,user_id,user_name,account,password,phone,image,sex,is_certification,is_identity_authentication,status,flag,created_time)
+        VALUES (#{id},#{userId},#{userName},#{account},#{password},#{phone},#{image},#{sex},#{isCertification},#{isIdentityAuthentication},#{status},#{flag},#{createTime})
     </insert>
 
     <select id="queryByAccount" resultType="com.xktime.model.user.pojos.AppUser">

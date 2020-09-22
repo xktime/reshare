@@ -72,26 +72,26 @@ public class ResponseResult<T> implements Serializable {
         return okResult(enums.getCode(),errorMessage);
     }
 
-    public ResponseResult<?> error(Integer code, String msg) {
+    public ResponseResult<T> error(Integer code, String msg) {
         this.code = code;
         this.errorMessage = msg;
         return this;
     }
 
-    public ResponseResult<?> ok(Integer code, T data) {
+    public ResponseResult<T> ok(Integer code, T data) {
         this.code = code;
         this.data = data;
         return this;
     }
 
-    public ResponseResult<?> ok(Integer code, T data, String msg) {
+    public ResponseResult<T> ok(Integer code, T data, String msg) {
         this.code = code;
         this.data = data;
         this.errorMessage = msg;
         return this;
     }
 
-    public ResponseResult<?> ok(T data) {
+    public ResponseResult<T> ok(T data) {
         this.data = data;
         return this;
     }

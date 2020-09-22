@@ -6,7 +6,9 @@ import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.article.pojos.CrawlerArticle;
+import com.xktime.model.article.pojos.OriginalArticle;
 import com.xktime.model.mappers.article.CrawlerArticleMapper;
+import com.xktime.model.mappers.article.OriginalArticleMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     CrawlerArticleMapper crawlerArticleMapper;
+
+    @Autowired
+    OriginalArticleMapper originalArticleMapper;
 
 
     @Override
@@ -35,6 +40,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void saveCrawlerArticle(CrawlerArticle article) {
         crawlerArticleMapper.saveArticle(article);
+    }
+
+    @Override
+    public void saveOriginalArticle(OriginalArticle article) {
+        originalArticleMapper.saveArticle(article);
     }
 
     @Override
