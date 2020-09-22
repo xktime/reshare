@@ -65,7 +65,7 @@
     }
 </script>
 
-<style>
+<style scoped>
   .publish-page {
     -webkit-border-radius: 5px;
     border-radius: 5px;

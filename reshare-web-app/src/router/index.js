@@ -38,6 +38,14 @@ export default new Router({
             title: "创作"
           },
         },
+        {
+          path: '/register',
+          name: 'register',
+          component: () => import("@/components/Register"),
+          meta: {
+            title: "注册"
+          },
+        },
       ]
     },
   ]

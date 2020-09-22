@@ -10,7 +10,6 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.selector.Selectable;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

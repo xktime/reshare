@@ -2,6 +2,7 @@ package com.xktime.crawler.task.impl;
 
 import com.xktime.crawler.task.BaseCrawlerService;
 import com.xktime.crawler.util.FormatUtil;
+import com.xktime.crawler.webmagic.HttpClientDownloader;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import us.codecraft.webmagic.Page;
@@ -18,7 +19,7 @@ public class SegmentfaultCrawlerServiceImpl extends BaseCrawlerService {
 
     @Override
     public void run(Pipeline pipeline) {
-        Spider.create(this)
+        Spider.create(this).setDownloader(new HttpClientDownloader())//修复SSLExceptionBug
                 .addUrl("https://segmentfault.com/hottest")
                 .addUrl("https://segmentfault.com/newest")
                 .addUrl("https://segmentfault.com/")

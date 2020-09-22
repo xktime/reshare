@@ -1,6 +1,7 @@
 package com.xktime.apis.app;
 
 import com.xktime.model.account.dtos.PublishDto;
+import com.xktime.model.account.dtos.RegisterDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
@@ -36,7 +37,7 @@ public class AccountController {
         try {
             //根据token获取用户
             ResponseResult<AppUser> user = restTemplate.exchange(
-                    USER_REST_URL_PREFIX + "/getUserByToken",
+                    USER_REST_URL_PREFIX + "/api/getUserByToken",
                     HttpMethod.POST,
                     new HttpEntity<>(dto.getToken()),
                     new ParameterizedTypeReference<ResponseResult<AppUser>>() {
@@ -58,4 +59,17 @@ public class AccountController {
             return result;
         }
     }
+
+    /**
+     * 注册账户
+     *
+     * @param dto
+     * @return
+     */
+    @PostMapping("register")
+    public ResponseResult register(RegisterDto dto) {
+        ResponseResult result = new ResponseResult();
+        return result;
+    }
+
 }
