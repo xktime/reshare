@@ -27,7 +27,7 @@
             <el-link href="http://www.baidu.com" :underline="false">时间轴</el-link>
           </el-dropdown-item>
           <el-dropdown-item>
-            <el-link href="http://www.baidu.com" :underline="false">退出</el-link>
+            <el-link @click="logout" :underline="false">退出</el-link>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -44,6 +44,12 @@
         data() {
             return {
                 search: null,
+            }
+        },
+        methods: {
+            logout(event) {
+                this.$store.commit('logout');
+                this.$router.push({path: this.$route.query.redirect || '/#/'});
             }
         }
     }
