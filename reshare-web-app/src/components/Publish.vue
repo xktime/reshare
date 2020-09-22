@@ -37,10 +37,10 @@
             publish() {
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
-                        // if (!this.$store.state.loging || this.$store.state.token==='') {
-                        //     this.$alert('发布文章，登录状态错误');
-                        //     return;
-                        // }
+                        if (!this.$store.state.loging || this.$store.state.token==='') {
+                            this.$alert('发布文章，登录状态错误');
+                            return;
+                        }
                         let data = new FormData();
                         data.append("title", this.ruleForm.title);
                         data.append("content", this.ruleForm.content);

@@ -18,7 +18,7 @@
             </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
-            <el-link href="http://www.baidu.com" :underline="false">发布</el-link>
+            <el-link href="/#/publish" :underline="false">发布</el-link>
           </el-dropdown-item>
           <el-dropdown-item>
             <el-link href="http://www.baidu.com" :underline="false">设置</el-link>

@@ -45,7 +45,7 @@
                                 }
                                 this.$store.commit('login', this.form.account);
                                 this.$store.commit('addToken', response.data.data);
-                                this.$router.push({path: this.$route.query.redirect || '/'});
+                                this.$router.push({path: this.$route.query.redirect || '/#/'});
                             }
                         );
                     } else {

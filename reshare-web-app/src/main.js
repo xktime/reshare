@@ -24,9 +24,9 @@ Vue.use(elTableInfiniteScroll);
 //注册状态全局管理器
 export const store = new Vuex.Store({
   state: {
-    token: '',
-    account: '',
-    loging: false,
+    token: localStorage.getItem("token"),
+    account: localStorage.getItem("account"),
+    loging: localStorage.getItem("loging"),
   },
   mutations: {
     addToken(state, token) {
@@ -34,12 +34,15 @@ export const store = new Vuex.Store({
       state.token = token;
     },
     login(state, account) {
+      localStorage.setItem("loging", true);
+      localStorage.setItem("account", account);
       state.loging = true;
       state.account = account;
     },
     logout(state) {
-      state.loging = false;
+      localStorage.removeItem("loging");
       localStorage.removeItem("token");
+      state.loging = false;
       state.token = '';
     }
   }
