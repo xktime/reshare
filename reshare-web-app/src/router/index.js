@@ -35,7 +35,8 @@ export default new Router({
           name: 'publish',
           component: () => import("@/components/Publish"),
           meta: {
-            title: "创作"
+            title: "创作",
+            requireAuth: true,
           },
         },
         {
