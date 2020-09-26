@@ -9,6 +9,7 @@ public enum HttpCodeEnum implements Serializable {
     FAIL(1,"请求异常"),
     NOT_FIND_ACCOUNT(2, "用户不存在"),
     LOGIN_FAIL_PASSWORD(3, "密码错误"),
+    ACCOUNT_EXISTS(4, "用户已存在"),
     ;
 
     int code;

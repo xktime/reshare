@@ -12,6 +12,7 @@ CREATE TABLE `app_user` (
   `is_identity_authentication` tinyint(1) DEFAULT NULL COMMENT '是否身份认证',
   `status` tinyint(1) unsigned DEFAULT NULL COMMENT '0正常\r\n            1锁定',
   `flag` tinyint(1) unsigned DEFAULT NULL COMMENT '0 普通用户\r\n            1 自媒体人\r\n            2 大V',
+  `birthday` datetime DEFAULT NULL COMMENT '注册时间',
   `created_time` datetime DEFAULT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户信息表';

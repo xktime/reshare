@@ -20,5 +20,7 @@ public class AppUser {
     private Boolean status;
     private int flag;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date birthday;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 }

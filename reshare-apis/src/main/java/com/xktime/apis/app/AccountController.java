@@ -49,7 +49,7 @@ public class AccountController {
                 return result;
             }
             return restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/publish",
+                    ARTICLE_REST_URL_PREFIX + "/article/publish",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
                     new ParameterizedTypeReference<ResponseResult>() {
@@ -69,7 +69,17 @@ public class AccountController {
     @PostMapping("register")
     public ResponseResult register(RegisterDto dto) {
         ResponseResult result = new ResponseResult();
-        return result;
+        try {
+            return restTemplate.exchange(
+                    USER_REST_URL_PREFIX + "/user/register",
+                    HttpMethod.POST,
+                    new HttpEntity<>(dto),
+                    new ParameterizedTypeReference<ResponseResult>() {
+                    }).getBody();
+        } catch (Exception e) {
+            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            return result;
+        }
     }
 
 }

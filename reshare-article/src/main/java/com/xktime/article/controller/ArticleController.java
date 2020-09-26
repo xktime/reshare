@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
+@RequestMapping("article")
 public class ArticleController {
     @Autowired
     ArticleService articleService;
