@@ -26,8 +26,8 @@
         </el-form-item>
       </el-col>
     </el-form-item>
-    <el-form-item label="所在地区">
-      <el-cascader :options="options" :model="ruleForm.region"
+    <el-form-item label="所在地区" prop="region" required>
+      <el-cascader :options="options" v-model="ruleForm.region"
                    style="width: 100%;"></el-cascader>
     </el-form-item>
     <el-form-item>
@@ -86,6 +86,9 @@
                     checkPass: [
                         {validator: validatePass2, trigger: 'blur'}
                     ],
+                    region: [
+                        {required: true, message: '请选择地区', trigger: 'change'}
+                    ],
                     birthday: [
                         {type: 'date', required: true, message: '请选择日期', trigger: 'change'}
                     ],
@@ -100,12 +103,11 @@
                         data.append("account", this.ruleForm.account);
                         data.append("password", this.ruleForm.password);
                         data.append("birthday", this.ruleForm.birthday);
-                        data.append("phone", this.ruleForm.phoneNumber);
+                        data.append("phoneNumber", this.ruleForm.phoneNumber);
                         let tempSex = this.ruleForm.sex === '男' ? 0 :
-                                            (this.ruleForm.sex === null || this.ruleForm.sex === '' ? 2 : 1);
+                            (this.ruleForm.sex === null || this.ruleForm.sex === '' ? 2 : 1);
                         data.append("sex", tempSex);
                         data.append("region", this.ruleForm.region);
-                        console.log(this.ruleForm.phoneNumber)
                         const api = this.$apiUrl + 'account/register';
                         this.axios.post(api, data).then(
                             (response) => {
@@ -113,7 +115,7 @@
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }
-                                this.$store.commit('login', this.form.account);
+                                this.$store.commit('login', this.ruleForm.account);
                                 this.$store.commit('addToken', response.data.data);
                                 this.$router.push({path: this.$route.query.redirect || '/'});
                             }

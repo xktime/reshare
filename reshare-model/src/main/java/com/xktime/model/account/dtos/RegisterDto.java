@@ -10,7 +10,7 @@ public class RegisterDto {
     private String account;
     private String password;
     private int sex;
-    private String phone;
+    private String phoneNumber;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
     private String region;

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -24,15 +27,18 @@ public class UserController {
     public ResponseResult register(@RequestBody RegisterDto dto) {
         ResponseResult result = new ResponseResult();
         String account = dto.getAccount();
-        AppUser appUser = userService.queryAppUserByAccount(account);
-        if (appUser != null) {
+        if (userService.queryAppUserByAccount(account) != null) {
             result.error(HttpCodeEnum.ACCOUNT_EXISTS.getCode(), HttpCodeEnum.ACCOUNT_EXISTS.getErrorMessage());
             return result;
         }
         AppUser user = new AppUser();
-        BeanUtils.copyProperties(user, dto);
+        BeanUtils.copyProperties(dto, user);
         String password = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
         user.setPassword(password);
+        user.setCreateTime(new Date());
+        user.setUserName(dto.getAccount());
+        user.setUserId(UUID.randomUUID().toString());
+        user.setImage("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
         userService.saveAppUser(user);
         return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstants.LOGIN_TOKEN_BASE64_KEY));
     }

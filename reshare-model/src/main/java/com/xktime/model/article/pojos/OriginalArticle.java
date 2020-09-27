@@ -10,7 +10,7 @@ import java.util.Date;
 public class OriginalArticle {
     private Long id;
     private String title;
-    private Long authorId;
+    private String authorId;
     private String authorName;
     private Integer channelId;
     private String channelName;
