@@ -5,7 +5,7 @@ import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
-import com.xktime.user.service.UserService;
+import com.xktime.user.service.impl.AppUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    AppUserServiceImpl appUserService;
 
     @RequestMapping("register")
     public ResponseResult register(@RequestBody RegisterDto dto) {
         ResponseResult result = new ResponseResult();
         String account = dto.getAccount();
-        if (userService.queryAppUserByAccount(account) != null) {
+        if (appUserService.queryByAccount(account) != null) {
             result.error(HttpCodeEnum.ACCOUNT_EXISTS.getCode(), HttpCodeEnum.ACCOUNT_EXISTS.getErrorMessage());
             return result;
         }
@@ -39,7 +39,7 @@ public class UserController {
         user.setUserName(dto.getAccount());
         user.setUserId(UUID.randomUUID().toString());
         user.setImage("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
-        userService.saveAppUser(user);
+        appUserService.save(user);
         return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstants.LOGIN_TOKEN_BASE64_KEY));
     }
 }

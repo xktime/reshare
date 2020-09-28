@@ -1,19 +1,29 @@
 package com.xktime.user.service;
 
-import com.xktime.model.user.pojos.AdminUser;
-import com.xktime.model.user.pojos.AppUser;
+import com.xktime.model.common.enums.CodeConstants;
+import com.xktime.utils.CodeUtil;
 import org.apache.ibatis.annotations.Param;
 
-public interface UserService {
-    void saveAdminUser(AdminUser user);
 
-    void saveAppUser(AppUser user);
+public interface UserService<T> {
+//    void saveAdminUser(AdminUser user);
+//
+//    void saveAppUser(AppUser user);
+//
+//    AdminUser queryAdminUserByAccount(@Param("account")String account);
+//
+//    AppUser queryAppUserByAccount(@Param("account")String account);
 
-    AdminUser queryAdminUserByAccount(@Param("account")String account);
+    void save(T user);
 
-    AppUser queryAppUserByAccount(@Param("account")String account);
+    T queryByAccount(@Param("account") String account);
 
-    String getAccountByToken(@Param("token")String token);
 
-    String getTokenByAccount(@Param("account")String account);
+    default String getTokenByAccount(@Param("account") String account) {
+        return CodeUtil.encryptBase64(account, CodeConstants.LOGIN_TOKEN_BASE64_KEY);
+    }
+
+    default String getAccountByToken(@Param("token") String token) {
+        return CodeUtil.decryptBase64(token, CodeConstants.LOGIN_TOKEN_BASE64_KEY);
+    }
 }

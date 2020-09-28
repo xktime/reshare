@@ -6,7 +6,8 @@ import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AdminUser;
 import com.xktime.model.user.pojos.AppUser;
-import com.xktime.user.service.UserService;
+import com.xktime.user.service.impl.AdminUserServiceImpl;
+import com.xktime.user.service.impl.AppUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    UserService userService;
+    AdminUserServiceImpl adminUserService;
+
+    @Autowired
+    AppUserServiceImpl appUserService;
 
     @PostMapping("admin")
     public ResponseResult adminLogin(@RequestBody LoginDto dto) {
@@ -27,7 +31,7 @@ public class LoginController {
         if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
             return result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
         }
-        AdminUser adminUser = userService.queryAdminUserByAccount(dto.getAccount());
+        AdminUser adminUser = adminUserService.queryByAccount(dto.getAccount());
         if (adminUser == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
@@ -36,7 +40,7 @@ public class LoginController {
         if (!password.equals(encryptedPassWord)) {
             return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
-        return result.ok(userService.getTokenByAccount(dto.getAccount()));
+        return result.ok(adminUserService.getTokenByAccount(dto.getAccount()));
     }
 
     @PostMapping("app")
@@ -45,7 +49,7 @@ public class LoginController {
         if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
             return result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
         }
-        AppUser user = userService.queryAppUserByAccount(dto.getAccount());
+        AppUser user = appUserService.queryByAccount(dto.getAccount());
         if (user == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
@@ -54,7 +58,7 @@ public class LoginController {
         if (!password.equals(encryptedPassWord)) {
             return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
-        return result.ok(userService.getTokenByAccount(dto.getAccount()));
+        return result.ok(appUserService.getTokenByAccount(dto.getAccount()));
     }
 
 }
