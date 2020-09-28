@@ -1,6 +1,6 @@
 package com.xktime.article.controller;
 
-import com.xktime.article.service.ArticleService;
+import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.model.account.dtos.PublishDto;
 import com.xktime.model.article.pojos.OriginalArticle;
 import com.xktime.model.common.dtos.ResponseResult;
@@ -17,7 +17,7 @@ import java.util.Date;
 @RequestMapping("article")
 public class ArticleController {
     @Autowired
-    ArticleService articleService;
+    OriginalArticleServiceImpl articleService;
 
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {
@@ -32,7 +32,7 @@ public class ArticleController {
         article.setPublishTime(new Date());
         article.setAuthorId(author.getUserId());
         article.setAuthorName(author.getUserName());
-        articleService.saveOriginalArticle(article);
+        articleService.save(article);
         return result;
     }
 }
