@@ -20,8 +20,22 @@ public class LoadController {
     @Autowired
     ArticleService articleService;
 
-    @PostMapping("loadVerifyArticle")
-    public List<VerifyArticleDto> loadArticle(@RequestBody LoadArticleDto dto) {
+    @PostMapping("verifyArticle")
+    public List<VerifyArticleDto> verifyArticle(@RequestBody LoadArticleDto dto) {
+        if (StringUtils.isEmpty(dto.getLoadArticleType())) {
+            dto.setLoadArticleType(ArticleTypeEnum.CRAWLER_ARTICLE.getDec());
+        }
+        if (dto.getSize() <= 0) {
+            dto.setSize(10);
+        }
+        if (dto.getPage() == 0) {
+            dto.setPage(1);
+        }
+        return articleService.loadVerifyArticleDtoList(dto);
+    }
+
+    @PostMapping("index")
+    public List<VerifyArticleDto> index(@RequestBody LoadArticleDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             dto.setLoadArticleType(ArticleTypeEnum.CRAWLER_ARTICLE.getDec());
         }

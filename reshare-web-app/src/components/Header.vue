@@ -14,7 +14,7 @@
       <el-aside width="20%"></el-aside>
       <el-dropdown class="header-link" v-if="this.$store.state.loging" trigger="click">
             <span class="el-dropdown-link">
-              我的<i class="el-icon-arrow-down el-icon--right"></i>
+              {{this.$store.state.account}}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
