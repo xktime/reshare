@@ -6,13 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 
 public interface UserService<T> {
-//    void saveAdminUser(AdminUser user);
-//
-//    void saveAppUser(AppUser user);
-//
-//    AdminUser queryAdminUserByAccount(@Param("account")String account);
-//
-//    AppUser queryAppUserByAccount(@Param("account")String account);
 
     void save(T user);
 
