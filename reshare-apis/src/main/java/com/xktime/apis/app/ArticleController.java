@@ -29,7 +29,7 @@ public class ArticleController {
         ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
         try {
             responseResult.ok(restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/load/loadVerifyArticle",
+                    ARTICLE_REST_URL_PREFIX + "/load/default",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
                     new ParameterizedTypeReference<List<VerifyArticleDto>>() {

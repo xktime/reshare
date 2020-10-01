@@ -2,7 +2,6 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.ArticleService;
 import com.xktime.model.article.dtos.LoadArticleDto;
-import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.OriginalArticle;
 import com.xktime.model.mappers.article.OriginalArticleMapper;
@@ -36,11 +35,6 @@ public class OriginalArticleServiceImpl implements ArticleService<OriginalArticl
     @Override
     public List<OriginalArticle> loadArticles(LoadArticleDto dto) {
         return originalArticleMapper.load(dto);
-    }
-
-    @Override
-    public List<VerifyArticleDto> loadVerifyArticleDtoList(LoadArticleDto dto) {
-        throw new NoSuchMethodError();
     }
 
     @Override

@@ -34,7 +34,7 @@ public class LoadController {
         return crawlerArticleService.loadVerifyArticleDtoList(dto);
     }
 
-    @PostMapping("index")
+    @PostMapping("default")
     public List<VerifyArticleDto> index(@RequestBody LoadArticleDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             dto.setLoadArticleType(ArticleTypeEnum.CRAWLER_ARTICLE.getDec());

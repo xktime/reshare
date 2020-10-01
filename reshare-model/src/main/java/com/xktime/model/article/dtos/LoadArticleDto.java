@@ -13,6 +13,8 @@ public class LoadArticleDto {
     int pageStartIndex;
     //加载类型
     String loadArticleType;
+    //当前用户
+    String account;
     // 数据范围，比如频道ID
     String tag;
 
