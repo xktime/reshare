@@ -28,7 +28,7 @@ public class LoadController {
         if (dto.getSize() <= 0) {
             dto.setSize(10);
         }
-        if (dto.getPage() == 0) {
+        if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
         return crawlerArticleService.loadVerifyArticleDtoList(dto);
@@ -37,12 +37,12 @@ public class LoadController {
     @PostMapping("default")
     public List<VerifyArticleDto> index(@RequestBody LoadArticleDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
-            dto.setLoadArticleType(ArticleTypeEnum.CRAWLER_ARTICLE.getDec());
+            dto.setLoadArticleType(ArticleTypeEnum.ORIGINAL_ARTICLE.getDec());
         }
         if (dto.getSize() <= 0) {
             dto.setSize(10);
         }
-        if (dto.getPage() == 0) {
+        if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
         return crawlerArticleService.loadVerifyArticleDtoList(dto);
