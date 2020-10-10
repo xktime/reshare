@@ -1,6 +1,8 @@
 package com.xktime.article.controller;
 
+import com.xktime.article.service.ArticleService;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
+import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
@@ -18,7 +20,10 @@ import java.util.List;
 public class LoadController {
 
     @Autowired
-    CrawlerArticleServiceImpl crawlerArticleService;
+    ArticleService articleService;
+
+    @Autowired
+    OriginalArticleServiceImpl originalArticleService;
 
     @PostMapping("verifyArticle")
     public List<VerifyArticleDto> verifyArticle(@RequestBody LoadArticleDto dto) {
@@ -31,7 +36,7 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        return crawlerArticleService.loadVerifyArticleDtoList(dto);
+        return articleService.loadVerifyArticleDtoList(dto);
     }
 
     @PostMapping("default")
@@ -45,6 +50,6 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        return crawlerArticleService.loadVerifyArticleDtoList(dto);
+        return originalArticleService.;
     }
 }

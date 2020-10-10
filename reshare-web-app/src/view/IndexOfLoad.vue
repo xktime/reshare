@@ -97,7 +97,7 @@
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
-                const api = this.$apiUrl + 'article/loadArticle?page=' + this.page + '&loadArticleType=crawler';
+                const api = this.$apiUrl + 'reshare/loadArticle?page=' + this.page + '&loadArticleType=crawler';
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
