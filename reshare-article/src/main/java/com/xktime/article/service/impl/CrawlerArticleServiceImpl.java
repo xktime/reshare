@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+@Service("CrawlerArticle")
 public class CrawlerArticleServiceImpl implements ArticleService<CrawlerArticle> {
     @Autowired
     CrawlerArticleMapper crawlerArticleMapper;

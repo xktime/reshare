@@ -1,11 +1,8 @@
 package com.xktime.article.controller;
 
-import com.xktime.article.service.ArticleService;
-import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
-import com.xktime.article.service.impl.OriginalArticleServiceImpl;
+import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
-import com.xktime.model.article.enums.ArticleTypeEnum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,15 +17,12 @@ import java.util.List;
 public class LoadController {
 
     @Autowired
-    ArticleService articleService;
+    ArticleServiceFactory factory;
 
-    @Autowired
-    OriginalArticleServiceImpl originalArticleService;
-
-    @PostMapping("verifyArticle")
-    public List<VerifyArticleDto> verifyArticle(@RequestBody LoadArticleDto dto) {
+    @PostMapping("byType")
+    public List<VerifyArticleDto> byType(@RequestBody LoadArticleDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
-            dto.setLoadArticleType(ArticleTypeEnum.CRAWLER_ARTICLE.getDec());
+            throw new NullPointerException("LoadArticleType为空");
         }
         if (dto.getSize() <= 0) {
             dto.setSize(10);
@@ -36,13 +30,13 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        return articleService.loadVerifyArticleDtoList(dto);
+        return factory.getService(dto.getLoadArticleType()).loadVerifyArticleDtoList(dto);
     }
 
-    @PostMapping("default")
-    public List<VerifyArticleDto> index(@RequestBody LoadArticleDto dto) {
-        if (StringUtils.isEmpty(dto.getLoadArticleType())) {
-            dto.setLoadArticleType(ArticleTypeEnum.ORIGINAL_ARTICLE.getDec());
+    @PostMapping("byAccount")
+    public List<VerifyArticleDto> byAccount(@RequestBody LoadArticleDto dto) {
+        if (dto.getUser() == null) {
+            return byType(dto);
         }
         if (dto.getSize() <= 0) {
             dto.setSize(10);
@@ -50,6 +44,6 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        return originalArticleService.;
+        return factory.getService(dto.getLoadArticleType()).loadVerifyArticleDtoList(dto);
     }
 }

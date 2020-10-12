@@ -1,5 +1,6 @@
 package com.xktime.model.article.dtos;
 
+import com.xktime.model.user.pojos.AppUser;
 import lombok.Data;
 
 @Data
@@ -13,8 +14,10 @@ public class LoadArticleDto {
     int pageStartIndex;
     //加载类型
     String loadArticleType;
+    //当前用户token
+    String token;
     //当前用户
-    String account;
+    AppUser user;
     // 数据范围，比如频道ID
     String tag;
 

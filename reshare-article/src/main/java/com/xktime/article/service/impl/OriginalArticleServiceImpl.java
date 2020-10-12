@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+@Service("OriginalArticle")
 public class OriginalArticleServiceImpl implements ArticleService<OriginalArticle> {
 
     @Autowired
