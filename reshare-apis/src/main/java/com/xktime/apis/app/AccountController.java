@@ -36,14 +36,14 @@ public class AccountController {
         ResponseResult result = new ResponseResult();
         try {
             //根据token获取用户
-            ResponseResult<AppUser> user = restTemplate.exchange(
+            AppUser user = restTemplate.exchange(
                     USER_REST_URL_PREFIX + "/api/getUserByToken",
                     HttpMethod.POST,
                     new HttpEntity<>(dto.getToken()),
-                    new ParameterizedTypeReference<ResponseResult<AppUser>>() {
+                    new ParameterizedTypeReference<AppUser>() {
                     }).getBody();
-            if (user.getCode() == HttpCodeEnum.SUCCESS.getCode()) {
-                dto.setUser(user.getData());
+            if (user != null) {
+                dto.setUser(user);
             } else {
                 result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
                 return result;
