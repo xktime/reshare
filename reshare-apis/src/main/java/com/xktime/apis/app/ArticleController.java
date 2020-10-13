@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RestController
-@RequestMapping("reshare")
+@RequestMapping("article")
 public class ArticleController {
 
     @Autowired
@@ -28,11 +28,11 @@ public class ArticleController {
 
     private static final String USER_REST_URL_PREFIX = "http://USER";
 
-    @GetMapping("loadArticle")
+    @PostMapping("load")
     public ResponseResult loadArticle(LoadArticleDto dto) {
         ResponseResult<List<VerifyArticleDto>> result = new ResponseResult<>();
         try {
-            if (StringUtils.isEmpty(dto.getToken())) {
+            if (!StringUtils.isEmpty(dto.getToken())) {
                 AppUser user = restTemplate.exchange(
                         USER_REST_URL_PREFIX + "/api/getUserByToken",
                         HttpMethod.POST,

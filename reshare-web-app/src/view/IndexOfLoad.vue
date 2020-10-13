@@ -41,6 +41,7 @@
                 // tableData: [],
                 page: 1,
                 scrollDisabled: false,
+                articleType: 'original',
                 tableData: [
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
@@ -97,8 +98,14 @@
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
-                const api = this.$apiUrl + 'reshare/loadArticle?page=' + this.page + '&loadArticleType=crawler';
-                this.axios.get(api).then((response) => {
+                let data = new FormData();
+                data.append("page", this.page);
+                data.append("loadArticleType", this.articleType);
+                if (this.$store.state.loging) {
+                    data.append("token", this.$store.state.token);
+                }
+                const api = this.$apiUrl + 'article/load';
+                this.axios.post(api, data).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
                         return;
