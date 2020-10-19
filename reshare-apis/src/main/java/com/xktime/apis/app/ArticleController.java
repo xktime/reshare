@@ -2,6 +2,7 @@ package com.xktime.apis.app;
 
 import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
+import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
@@ -32,7 +33,8 @@ public class ArticleController {
     public ResponseResult loadArticle(LoadArticleDto dto) {
         ResponseResult<List<VerifyArticleDto>> result = new ResponseResult<>();
         try {
-            if (!StringUtils.isEmpty(dto.getToken())) {
+            if (ArticleTypeEnum.ORIGINAL_ARTICLE.getDec().equals(dto.getLoadArticleType())
+                    && !StringUtils.isEmpty(dto.getToken())) {
                 AppUser user = restTemplate.exchange(
                         USER_REST_URL_PREFIX + "/api/getUserByToken",
                         HttpMethod.POST,

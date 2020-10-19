@@ -7,6 +7,13 @@
       <app_header></app_header>
     </el-header>
     <el-container class="container">
+      <el-row>
+        <el-button type="primary" plain>推荐</el-button>
+        <el-button type="primary" plain>爬取文章</el-button>
+        <el-button type="primary" plain>原创文章</el-button>
+      </el-row>
+    </el-container>
+    <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
           <el-row v-for="data in tableData" :key="data.id">
@@ -118,8 +125,20 @@
                 });
                 this.scrollDisabled = false;
             },
+            loadOriginal: function() {
+                this.articleType = 'original';
+                this.load();
+            },
+            loadCrawler: function() {
+                this.articleType = 'crawler';
+                this.load();
+            },
+            loadCommend: function() {
+                this.articleType = 'commend';
+                this.load();
+            },
         },
-        components:{
+        components: {
             app_header,
         }
     }
