@@ -1,7 +1,7 @@
 package com.xktime.user.controller;
 
 import com.xktime.model.user.pojos.AppUser;
-import com.xktime.user.service.impl.AppUserServiceImpl;
+import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api")
 public class ApiController {
     @Autowired
-    AppUserServiceImpl userService;
+    AppBaseUserServiceImpl userService;
 
     @PostMapping("getUserByToken")
     public AppUser adminLogin(@RequestBody String token) {

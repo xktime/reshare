@@ -5,7 +5,7 @@ import com.xktime.utils.CodeUtil;
 import org.apache.ibatis.annotations.Param;
 
 
-public interface UserService<T> {
+public interface BaseUserService<T> {
 
     void save(T user);
 

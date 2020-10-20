@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public interface ArticleService<T> {
+public interface BaseArticleService<T> {
     void save(T article);
 
     void saveArticles(Collection<T> articles);

@@ -2,14 +2,14 @@ package com.xktime.user.service.impl;
 
 import com.xktime.model.mappers.user.AppUserMapper;
 import com.xktime.model.user.pojos.AppUser;
-import com.xktime.user.service.UserService;
+import com.xktime.user.service.BaseUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 @Qualifier("AppUserService")
-public class AppUserServiceImpl implements UserService<AppUser> {
+public class AppBaseUserServiceImpl implements BaseUserService<AppUser> {
 
     @Autowired
     AppUserMapper appUserMapper;

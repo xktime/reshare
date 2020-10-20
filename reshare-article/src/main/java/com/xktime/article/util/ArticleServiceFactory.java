@@ -1,6 +1,6 @@
 package com.xktime.article.util;
 
-import com.xktime.article.service.ArticleService;
+import com.xktime.article.service.BaseArticleService;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +12,20 @@ public class ArticleServiceFactory {
 
     @Autowired
     @Qualifier("OriginalArticle")
-    ArticleService originalArticleService;
+    BaseArticleService originalBaseArticleService;
 
     @Autowired
     @Qualifier("CrawlerArticle")
-    ArticleService crawlerArticleService;
+    BaseArticleService crawlerBaseArticleService;
 
-    public ArticleService<?> getService(String articleType) {
+    public BaseArticleService<?> getService(String articleType) {
         if (StringUtils.isEmpty(articleType)) {
             return null;
         }
         if (articleType.equals(ArticleTypeEnum.CRAWLER_ARTICLE.getDec())) {
-            return crawlerArticleService;
+            return crawlerBaseArticleService;
         } else if (articleType.equals(ArticleTypeEnum.ORIGINAL_ARTICLE.getDec())) {
-            return originalArticleService;
+            return originalBaseArticleService;
         }
         return null;
     }

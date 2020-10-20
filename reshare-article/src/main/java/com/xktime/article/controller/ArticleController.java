@@ -1,6 +1,6 @@
 package com.xktime.article.controller;
 
-import com.xktime.article.service.impl.OriginalArticleServiceImpl;
+import com.xktime.article.service.impl.OriginalBaseArticleServiceImpl;
 import com.xktime.model.account.dtos.PublishDto;
 import com.xktime.model.article.pojos.OriginalArticle;
 import com.xktime.model.common.dtos.ResponseResult;
@@ -17,7 +17,7 @@ import java.util.Date;
 @RequestMapping("article")
 public class ArticleController {
     @Autowired
-    OriginalArticleServiceImpl articleService;
+    OriginalBaseArticleServiceImpl articleService;
 
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {

@@ -1,6 +1,6 @@
 package com.xktime.article.service.impl;
 
-import com.xktime.article.service.ArticleService;
+import com.xktime.article.service.BaseArticleService;
 import com.xktime.model.article.dtos.LoadArticleDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.OriginalArticle;
@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service("OriginalArticle")
-public class OriginalArticleServiceImpl implements ArticleService<OriginalArticle> {
+public class OriginalBaseArticleServiceImpl implements BaseArticleService<OriginalArticle> {
 
     @Autowired
     OriginalArticleMapper originalArticleMapper;

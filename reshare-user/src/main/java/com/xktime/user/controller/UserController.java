@@ -5,7 +5,7 @@ import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
-import com.xktime.user.service.impl.AppUserServiceImpl;
+import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    AppUserServiceImpl appUserService;
+    AppBaseUserServiceImpl appUserService;
 
     @RequestMapping("register")
     public ResponseResult register(@RequestBody RegisterDto dto) {

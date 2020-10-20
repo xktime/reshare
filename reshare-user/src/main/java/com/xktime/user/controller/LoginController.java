@@ -6,8 +6,8 @@ import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AdminUser;
 import com.xktime.model.user.pojos.AppUser;
-import com.xktime.user.service.impl.AdminUserServiceImpl;
-import com.xktime.user.service.impl.AppUserServiceImpl;
+import com.xktime.user.service.impl.AdminBaseUserServiceImpl;
+import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    AdminUserServiceImpl adminUserService;
+    AdminBaseUserServiceImpl adminUserService;
 
     @Autowired
-    AppUserServiceImpl appUserService;
+    AppBaseUserServiceImpl appUserService;
 
     @PostMapping("admin")
     public ResponseResult adminLogin(@RequestBody LoginDto dto) {
