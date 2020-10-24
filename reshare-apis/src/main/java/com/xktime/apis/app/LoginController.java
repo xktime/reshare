@@ -4,6 +4,7 @@ import com.xktime.model.account.dtos.LoginDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -19,10 +20,15 @@ public class LoginController {
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String USER_REST_URL_PREFIX = "http://USER";
+    @Value("${restful.url.user}")
+    private String USER_REST_URL_PREFIX;
+
+    @Value("${restful.url.article}")
+    private String ARTICLE_REST_URL_PREFIX;
 
     /**
      * 正常使用账号密码登录
+     *
      * @param dto
      * @return
      */

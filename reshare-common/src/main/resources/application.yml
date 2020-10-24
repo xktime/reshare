@@ -1,15 +1,14 @@
-
 spring:
   application:
     name: config
-#  cloud:
-#    config:
-#      server:
-#        git:
-#          uri: https://github.com/xktime/reshare.git
-#          search-paths:
-#            -reshare-config
-#      label: master
+  #  cloud:
+  #    config:
+  #      server:
+  #        git:
+  #          uri: https://github.com/xktime/reshare.git
+  #          search-paths:
+  #            -reshare-config
+  #      label: master
   datasource:
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
@@ -42,7 +41,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
   flyway:
-     enabled: false
+    enabled: false
 
 port:
   api: 80
@@ -61,6 +60,11 @@ servicename:
   admin: admin
   gateway: getway
   user: user
+
+restful:
+  url:
+    user: http://USER
+    article: http://ARTICLE
 
 eureka:
   client:

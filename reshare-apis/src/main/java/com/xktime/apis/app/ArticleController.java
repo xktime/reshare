@@ -8,6 +8,7 @@ import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -25,9 +26,11 @@ public class ArticleController {
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String ARTICLE_REST_URL_PREFIX = "http://ARTICLE";
+    @Value("${restful.url.user}")
+    private String USER_REST_URL_PREFIX;
 
-    private static final String USER_REST_URL_PREFIX = "http://USER";
+    @Value("${restful.url.article}")
+    private String ARTICLE_REST_URL_PREFIX;
 
     @PostMapping("load")
     public ResponseResult loadArticle(LoadArticleDto dto) {
