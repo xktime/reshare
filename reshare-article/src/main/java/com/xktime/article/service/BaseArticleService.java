@@ -19,7 +19,7 @@ public interface BaseArticleService<T> {
 
     void verify(VerifyDto dto);
 
-    default List<VerifyArticleDto> loadVerifyArticleDtoList(LoadArticleDto dto) {
+    default List<VerifyArticleDto> loadVerifyArticleDtoListNotNull(LoadArticleDto dto) {
         List<VerifyArticleDto> verifyArticleList = new ArrayList<>();
         if (dto == null || dto.getSize() <= 0 || StringUtils.isEmpty(dto.getLoadArticleType())) {
             return verifyArticleList;

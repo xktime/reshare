@@ -7,22 +7,39 @@ import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 
 @RestController
 @RequestMapping("article")
 public class ArticleController {
+
+    @Autowired
+    RestTemplate restTemplate;
+
     @Autowired
     OriginalBaseArticleServiceImpl articleService;
+
+    @Value("${restful.url.user}")
+    private String USER_REST_URL_PREFIX;
 
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {
         ResponseResult result = new ResponseResult();
-        AppUser author = dto.getUser();
+        AppUser author = restTemplate.exchange(
+                USER_REST_URL_PREFIX + "/api/getUserByToken",
+                HttpMethod.POST,
+                new HttpEntity<>(dto.getToken()),
+                new ParameterizedTypeReference<AppUser>() {
+                }).getBody();
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }

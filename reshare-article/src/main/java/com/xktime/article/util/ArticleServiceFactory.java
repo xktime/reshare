@@ -18,7 +18,7 @@ public class ArticleServiceFactory {
     @Qualifier("CrawlerArticle")
     BaseArticleService crawlerBaseArticleService;
 
-    public BaseArticleService<?> getService(String articleType) {
+    public BaseArticleService getService(String articleType) {
         if (StringUtils.isEmpty(articleType)) {
             return null;
         }

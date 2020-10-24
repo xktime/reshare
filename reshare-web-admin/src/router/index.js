@@ -10,7 +10,7 @@ export default new Router({
       name: 'index',
       component: () => import("@/view/Layout/App"),
       meta: {
-        requireAuth: true,
+        // requireAuth: true,
         title: "reshare后台管理系统"
       },
       children: [
