@@ -1,6 +1,6 @@
 package com.xktime.apis.admin;
 
-import com.xktime.model.article.dtos.LoadArticleDto;
+import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.account.dtos.LoginDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.dtos.VerifyDto;
@@ -33,11 +33,11 @@ public class AdminController {
     private String ARTICLE_REST_URL_PREFIX;
 
     @GetMapping("loadArticle")
-    public ResponseResult loadArticle(LoadArticleDto dto) {
+    public ResponseResult loadArticle(LoadDto dto) {
         ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
         try {
             responseResult.ok(restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/load/article",
+                    ARTICLE_REST_URL_PREFIX + "/load/verifyArticle",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
                     new ParameterizedTypeReference<List<VerifyArticleDto>>() {

@@ -1,7 +1,7 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.article.dtos.LoadArticleDto;
+import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.OriginalArticle;
 import com.xktime.model.mappers.article.OriginalArticleMapper;
@@ -33,7 +33,7 @@ public class OriginalBaseArticleServiceImpl implements BaseArticleService<Origin
     }
 
     @Override
-    public List<OriginalArticle> loadArticles(LoadArticleDto dto) {
+    public List<OriginalArticle> loadArticles(LoadDto dto) {
         return originalArticleMapper.load(dto);
     }
 

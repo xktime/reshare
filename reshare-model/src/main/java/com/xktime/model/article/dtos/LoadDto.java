@@ -3,7 +3,7 @@ package com.xktime.model.article.dtos;
 import lombok.Data;
 
 @Data
-public class LoadArticleDto {
+public class LoadDto {
 
     // 分页size
     int size;

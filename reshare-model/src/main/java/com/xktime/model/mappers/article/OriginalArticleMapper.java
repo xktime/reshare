@@ -1,6 +1,6 @@
 package com.xktime.model.mappers.article;
 
-import com.xktime.model.article.dtos.LoadArticleDto;
+import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.pojos.OriginalArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -13,6 +13,6 @@ public interface OriginalArticleMapper {
 
     void saveArticle(OriginalArticle article);
 
-    List<OriginalArticle> load(LoadArticleDto dto);
+    List<OriginalArticle> load(LoadDto dto);
 
 }

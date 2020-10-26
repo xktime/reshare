@@ -1,7 +1,7 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.article.dtos.LoadArticleDto;
+import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import com.xktime.model.mappers.article.CrawlerArticleMapper;
@@ -32,7 +32,7 @@ public class CrawlerBaseArticleServiceImpl implements BaseArticleService<Crawler
     }
 
     @Override
-    public List<CrawlerArticle> loadArticles(LoadArticleDto dto) {
+    public List<CrawlerArticle> loadArticles(LoadDto dto) {
         return crawlerArticleMapper.load(dto);
     }
 

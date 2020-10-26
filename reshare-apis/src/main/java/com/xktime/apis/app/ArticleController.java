@@ -1,7 +1,7 @@
 package com.xktime.apis.app;
 
-import com.xktime.model.article.dtos.LoadArticleDto;
-import com.xktime.model.article.dtos.VerifyArticleDto;
+import com.xktime.model.article.dtos.LoadDto;
+import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +30,14 @@ public class ArticleController {
     private String ARTICLE_REST_URL_PREFIX;
 
     @PostMapping("load")
-    public ResponseResult loadArticle(LoadArticleDto dto) {
-        ResponseResult<List<VerifyArticleDto>> result = new ResponseResult<>();
+    public ResponseResult loadArticle(LoadDto dto) {
+        ResponseResult<List<LoadedArticleDto>> result = new ResponseResult<>();
         try {
             result.ok(restTemplate.exchange(
                     ARTICLE_REST_URL_PREFIX + "/load/article",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<List<VerifyArticleDto>>() {
+                    new ParameterizedTypeReference<List<LoadedArticleDto>>() {
                     }).getBody());
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());

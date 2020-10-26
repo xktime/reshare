@@ -6,13 +6,13 @@
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-    <el-container class="container">
-      <el-row>
-        <el-button type="primary" plain>推荐</el-button>
-        <el-button type="primary" plain>爬取文章</el-button>
-        <el-button type="primary" plain>原创文章</el-button>
-      </el-row>
-    </el-container>
+<!--    <el-container class="container">-->
+<!--      <el-row>-->
+<!--        <el-button type="primary" plain>推荐</el-button>-->
+<!--        <el-button type="primary" plain>爬取文章</el-button>-->
+<!--        <el-button type="primary" plain>原创文章</el-button>-->
+<!--      </el-row>-->
+<!--    </el-container>-->
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
@@ -63,9 +63,9 @@
                         publishTime: 1598430915142
                     },
                     {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+                        url: "/#/detail/2020202020",
                         status: 3,
-                        title: "123",
+                        title: "123666",
                         publishTime: 1598430915143
                     },
                     {
@@ -157,7 +157,7 @@
     background-color: #E9EEF2;
     color: #333;
     text-align: left;
-    margin: 15px 310px 0 20px;
+    margin: 35px 310px 0 20px;
     min-width: 80%;
     max-width: 80%;
     min-height: 92%;
