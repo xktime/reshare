@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `original_article`;
-CREATE TABLE `original_article` (
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '标题',
   `author_id` varchar(36) unsigned DEFAULT NULL COMMENT '文章作者的ID',

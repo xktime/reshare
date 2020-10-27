@@ -1,7 +1,8 @@
 package com.xktime.model.mappers.article;
 
 import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.pojos.OriginalArticle;
+import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.pojos.CrawlerArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,9 @@ import java.util.List;
 @Repository
 public interface OriginalArticleMapper {
 
-    void saveArticle(OriginalArticle article);
+    void saveArticle(CrawlerArticle article);
 
-    List<OriginalArticle> load(LoadDto dto);
+    List<CrawlerArticle> load(LoadDto dto);
 
+    void verify(VerifyDto dto);
 }

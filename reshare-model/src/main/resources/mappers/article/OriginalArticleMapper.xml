@@ -3,13 +3,18 @@
 <mapper namespace="com.xktime.model.mappers.article.OriginalArticleMapper">
 
     <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.OriginalArticle">
-        INSERT INTO original_article(title,content,author_id,author_name,channel_id,channel_name,images,labels,likes,collection,comment,views,publish_time,origin,status)
-        VALUES (#{title},#{content},#{authorId},#{authorName},#{channelId},#{channelName},#{images},#{labels},#{likes},#{collection},#{comment},#{views},#{publishTime},#{origin},#{status})
+        INSERT INTO original_article(title,content,author_name,author_id,channel_name,labels,publish_time,origin,url)
+        VALUES (#{title},#{content},#{authorName},#{authorId},#{channelName},#{labels},#{publishTime},#{origin},#{url})
     </insert>
+
 
     <select id="load" resultType="com.xktime.model.article.pojos.OriginalArticle">
         SELECT * FROM original_article
         ORDER BY publish_time DESC
         LIMIT #{size} OFFSET #{pageStartIndex}
     </select>
+
+    <update id="verify">
+        UPDATE original_article SET  status= #{status} WHERE id = #{articleId};
+    </update>
 </mapper>

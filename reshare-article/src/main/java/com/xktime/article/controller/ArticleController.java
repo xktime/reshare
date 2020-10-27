@@ -2,7 +2,7 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.impl.OriginalBaseArticleServiceImpl;
 import com.xktime.model.account.dtos.PublishDto;
-import com.xktime.model.article.pojos.OriginalArticle;
+import com.xktime.model.article.pojos.Article;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pojos.AppUser;
@@ -43,7 +43,7 @@ public class ArticleController {
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
-        OriginalArticle article = new OriginalArticle();
+        Article article = new Article();
         article.setContent(dto.getContent());
         article.setTitle(dto.getTitle());
         article.setPublishTime(new Date());
