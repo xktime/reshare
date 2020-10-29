@@ -3,7 +3,6 @@ package com.xktime.article.service;
 import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
-import com.xktime.model.article.dtos.VerifyDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 
@@ -17,8 +16,6 @@ public interface BaseArticleService<T> {
     void saveArticles(Collection<T> articles);
 
     List<T> loadArticles(LoadDto dto);
-
-    void verify(VerifyDto dto);
 
     default List<VerifyArticleDto> loadVerifyArticleDtoListNotNull(LoadDto dto) {
         List<VerifyArticleDto> verifyArticleList = new ArrayList<>();

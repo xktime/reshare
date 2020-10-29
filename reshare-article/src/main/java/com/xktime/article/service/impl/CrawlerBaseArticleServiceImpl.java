@@ -1,6 +1,7 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
+import com.xktime.article.service.BaseAuditable;
 import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.CrawlerArticle;
@@ -12,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service("CrawlerArticle")
-public class CrawlerBaseArticleServiceImpl implements BaseArticleService<CrawlerArticle> {
+public class CrawlerBaseArticleServiceImpl implements BaseArticleService<CrawlerArticle>,BaseAuditable {
     @Autowired
     CrawlerArticleMapper crawlerArticleMapper;
 
