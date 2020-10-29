@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `crwaler_article`;
+-- 爬取的文章
 CREATE TABLE `crwaler_article` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
 `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '标题',

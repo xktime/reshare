@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `app_user`;
+-- 平台用户
 CREATE TABLE `app_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `user_id` varchar(36) NOT NULL COMMENT '用户唯一id',

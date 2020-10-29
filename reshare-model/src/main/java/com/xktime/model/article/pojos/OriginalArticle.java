@@ -6,6 +6,10 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+
+/**
+ * 平台原创文章
+ */
 @Data
 public class OriginalArticle implements Serializable {
     private Long id;

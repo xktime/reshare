@@ -6,6 +6,9 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 爬虫爬取的文章
+ */
 @Data
 public class CrawlerArticle implements Serializable {
     private Long id;

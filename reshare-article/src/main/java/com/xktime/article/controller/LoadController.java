@@ -1,6 +1,7 @@
 package com.xktime.article.controller;
 
 import com.xktime.article.service.BaseArticleService;
+import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.LoadedArticleDto;
@@ -21,6 +22,9 @@ public class LoadController {
 
     @Autowired
     ArticleServiceFactory factory;
+
+    @Autowired
+    ArticleServiceImpl articleService;
 
     @PostMapping("verifyArticle")
     public List<VerifyArticleDto> verifyArticle(@RequestBody LoadDto dto) {
@@ -45,10 +49,6 @@ public class LoadController {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             throw new NullPointerException("LoadArticleType为空");
         }
-        BaseArticleService<?> service = factory.getService(dto.getLoadArticleType());
-        if (service == null) {
-            throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
-        }
         if (dto.getSize() <= 0) {
             dto.setSize(10);
         }
@@ -59,7 +59,7 @@ public class LoadController {
                 && dto.getLoadArticleType().equals(ArticleTypeEnum.COMMEND_ARTICLE.getDec())) {
             //todo 根据玩家推荐文章
         }
-        return service.loadArticleDtoListNotNull(dto);
+        return articleService.loadArticleDtoListNotNull(dto);
     }
 
 }

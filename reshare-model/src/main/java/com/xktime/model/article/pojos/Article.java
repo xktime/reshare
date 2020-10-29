@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 审核通过的文章
+ */
 @Data
 public class Article {
     private Long id;

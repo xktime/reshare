@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `admin_user`;
+-- 管理员用户
 CREATE TABLE `admin_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `user_name` varchar(20) NOT NULL COMMENT '用户名',
