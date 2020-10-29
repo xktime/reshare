@@ -15,9 +15,9 @@ export default new Router({
       },
       children: [
         {
-          path: '/verify/crawler',
+          path: '/verify/:type',
           name: 'VerifyCrawlerArticle',
-          component: () => import("@/view/verify/CrawlerArticle"),
+          component: () => import("@/view/verify/VerifyArticleTable"),
           meta: {
             // requireAuth: true,
             title: "爬取文章审核"

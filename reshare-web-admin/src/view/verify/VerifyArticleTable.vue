@@ -61,6 +61,7 @@
         data() {
             return {
                 tableData: [],
+                type:  this.$route.params.type,
                 page: 1,
                 scrollDisabled: false,
                 user: this.$store.state.account,
@@ -70,7 +71,7 @@
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
-                const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=crawler';
+                const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=' + this.type;
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);

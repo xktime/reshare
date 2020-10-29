@@ -6,7 +6,7 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/:type?',
       name: 'loadIndex',//用来加载文章的主页模板
       component: () => import("@/view/IndexOfLoad"),
       meta: {
