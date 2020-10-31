@@ -1,5 +1,6 @@
 package com.xktime.article.controller;
 
+import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalBaseArticleServiceImpl;
 import com.xktime.model.account.dtos.PublishDto;
 import com.xktime.model.article.pojos.OriginalArticle;
@@ -26,7 +27,10 @@ public class ArticleController {
     RestTemplate restTemplate;
 
     @Autowired
-    OriginalBaseArticleServiceImpl articleService;
+    OriginalBaseArticleServiceImpl originalBaseArticleService;
+
+    @Autowired
+    ArticleServiceImpl articleService;
 
     @Value("${restful.url.user}")
     private String USER_REST_URL_PREFIX;
@@ -49,7 +53,8 @@ public class ArticleController {
         article.setPublishTime(new Date());
         article.setAuthorId(author.getUserId());
         article.setAuthorName(author.getUserName());
-        articleService.save(article);
+        originalBaseArticleService.save(article);
+        //todo 符合某项规则直接 articleService.save(article)
         return result;
     }
 }

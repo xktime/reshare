@@ -40,6 +40,7 @@ public class CrawlerBaseArticleServiceImpl implements BaseArticleService<Crawler
     @Override
     public void verify(VerifyDto dto) {
         crawlerArticleMapper.verify(dto);
+        //todo 插入article数据库
     }
 
     public int getUrlCount(String url) {

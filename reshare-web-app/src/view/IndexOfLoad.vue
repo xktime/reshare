@@ -6,13 +6,13 @@
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-<!--    <el-container class="container">-->
-<!--      <el-row>-->
-<!--        <el-button type="primary" plain>推荐</el-button>-->
-<!--        <el-button type="primary" plain>爬取文章</el-button>-->
-<!--        <el-button type="primary" plain>原创文章</el-button>-->
-<!--      </el-row>-->
-<!--    </el-container>-->
+    <!--    <el-container class="container">-->
+    <!--      <el-row>-->
+    <!--        <el-button type="primary" plain>推荐</el-button>-->
+    <!--        <el-button type="primary" plain>爬取文章</el-button>-->
+    <!--        <el-button type="primary" plain>原创文章</el-button>-->
+    <!--      </el-row>-->
+    <!--    </el-container>-->
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
@@ -48,7 +48,7 @@
                 // tableData: [],
                 page: 1,
                 scrollDisabled: false,
-                articleType: 'original',
+                articleType: this.$route.params.type == null ? "original" : this.$route.params.type,
                 tableData: [
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
@@ -125,15 +125,15 @@
                 });
                 this.scrollDisabled = false;
             },
-            loadOriginal: function() {
+            loadOriginal: function () {
                 this.articleType = 'original';
                 this.load();
             },
-            loadCrawler: function() {
+            loadCrawler: function () {
                 this.articleType = 'crawler';
                 this.load();
             },
-            loadCommend: function() {
+            loadCommend: function () {
                 this.articleType = 'commend';
                 this.load();
             },

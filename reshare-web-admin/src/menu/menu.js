@@ -28,8 +28,8 @@ icon.font_awesome = {
 
 };
 icon.element_icon = {
-  name: 'ElementIcon',
-  path: '/element_icon',
+  name: '原创文章',
+  path: '/verify/original',
 };
 
 /**
