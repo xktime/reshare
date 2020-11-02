@@ -48,7 +48,7 @@
                 // tableData: [],
                 page: 1,
                 scrollDisabled: false,
-                articleType: this.$route.params.type == null ? "original" : this.$route.params.type,
+                type: '',
                 tableData: [
                     {
                         url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
@@ -105,9 +105,13 @@
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
+                const type = this.$route.params.type;
+                if (!(type === _this.type)) {
+                    this.page = 1;
+                }
                 let data = new FormData();
                 data.append("page", this.page);
-                data.append("loadArticleType", this.articleType);
+                data.append("loadArticleType", type);
                 if (this.$store.state.loging) {
                     data.append("token", this.$store.state.token);
                 }
@@ -117,6 +121,12 @@
                         this.$alert(response.data.errorMessage);
                         return;
                     }
+                    //如果切换加载类型，清空之前的数据
+                    if (!(type === _this.type)) {
+                        _this.tableData = [];
+                        _this.type = type;
+                    }
+                    //如果没有后续禁止滚动
                     if (response.data.data == null || response.data.data.length <= 0) {
                         this.scrollDisabled = true;
                     }

@@ -92,7 +92,7 @@
             router
             background-color="#222d32"
             text-color="#fff"
-            :default-active="$route.path" class="menu" @open="handleOpen" @close="handleClose"
+            :default-active="this.$route.path" class="menu" @open="handleOpen" @close="handleClose"
             :collapse="isCollapse">
             <template v-for="(menu_v,menu_k) in menu">
               <el-submenu v-if="menu_v.children" :index="menu_k">

@@ -61,22 +61,32 @@
         data() {
             return {
                 tableData: [],
-                type:  this.$route.params.type,
                 page: 1,
                 scrollDisabled: false,
                 user: this.$store.state.account,
+                type: '',
             }
         },
         methods: {
             load: function () {
                 this.scrollDisabled = true;
                 const _this = this;
-                const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=' + this.type;
+                const type = this.$route.params.type;
+                if (!(type === _this.type)) {
+                    this.page = 1;
+                }
+                const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=' + type;
                 this.axios.get(api).then((response) => {
-                    if (response.data.code != 200) {
+                    if (!(response.data.code === 200)) {
                         this.$alert(response.data.errorMessage);
                         return;
                     }
+                    //如果切换加载类型，清空之前的数据
+                    if (!(type === _this.type)) {
+                        _this.tableData = [];
+                        _this.type = type;
+                    }
+                    //如果没有后续禁止滚动
                     if (response.data.data == null || response.data.data.length <= 0) {
                         this.scrollDisabled = true;
                     }
