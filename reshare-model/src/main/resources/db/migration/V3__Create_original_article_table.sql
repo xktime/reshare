@@ -1,9 +1,8 @@
 DROP TABLE IF EXISTS `original_article`;
--- 原创文章
 CREATE TABLE `original_article` (
 `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
 `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '标题',
-`author_id` varchar(36) unsigned DEFAULT NULL COMMENT '文章作者的ID',
+`author_id` varchar(36) DEFAULT NULL COMMENT '文章作者的ID',
 `content` longtext CHARSET utf8mb4 COMMENT '文章内容',
 `author_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者昵称',
 `channel_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '频道名称',
