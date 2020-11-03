@@ -6,13 +6,13 @@
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-    <!--    <el-container class="container">-->
-    <!--      <el-row>-->
-    <!--        <el-button type="primary" plain>推荐</el-button>-->
-    <!--        <el-button type="primary" plain>爬取文章</el-button>-->
-    <!--        <el-button type="primary" plain>原创文章</el-button>-->
-    <!--      </el-row>-->
-    <!--    </el-container>-->
+        <el-container class="container">
+          <el-row>
+            <el-button type="primary" @click="loadCommend" plain>推荐</el-button>
+            <el-button type="primary" @click="loadCrawler" plain>爬取文章</el-button>
+            <el-button type="primary" @click="loadOriginal" plain>原创文章</el-button>
+          </el-row>
+        </el-container>
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
@@ -117,7 +117,7 @@
                 }
                 const api = this.$apiUrl + 'article/load';
                 this.axios.post(api, data).then((response) => {
-                    if (response.data.code != 200) {
+                    if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
                         return;
                     }
@@ -136,16 +136,13 @@
                 this.scrollDisabled = false;
             },
             loadOriginal: function () {
-                this.articleType = 'original';
-                this.load();
+                this.$router.push('/original');
             },
             loadCrawler: function () {
-                this.articleType = 'crawler';
-                this.load();
+                this.$router.push('/crawler');
             },
             loadCommend: function () {
-                this.articleType = 'commend';
-                this.load();
+                this.$router.push('/commend');
             },
         },
         components: {

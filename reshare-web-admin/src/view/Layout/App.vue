@@ -125,7 +125,7 @@
                 :style="fixedTabBar && switchTabBar?'position: fixed;top: 0;':''"></NavBar>
         <div v-else style="margin-top: 50px;"></div>
         <div id="mainContainer" :style="fixedTabBar && switchTabBar?'margin-top: 88px;':''" class="main-container">
-          <router-view></router-view>
+          <router-view :key="this.$route.fullPath"></router-view>
         </div>
         <EuiFooter></EuiFooter>
       </div>

@@ -3,7 +3,7 @@
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-    <router-view></router-view>
+    <router-view :key="this.$route.fullPath"></router-view>
   </el-container>
 </template>
 

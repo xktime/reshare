@@ -77,7 +77,7 @@
                 }
                 const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=' + type;
                 this.axios.get(api).then((response) => {
-                    if (!(response.data.code === 200)) {
+                    if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
                         return;
                     }
