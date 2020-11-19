@@ -107,7 +107,7 @@
                 }
             },
             audit(row, status) {
-                const api = this.$apiUrl + 'admin/verify?articleId=' + row.id + '&status=' + status;
+                const api = this.$apiUrl + 'admin/verify?articleId=' + row.id + '&status=' + status + '&type=' + this.$route.params.type;
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);

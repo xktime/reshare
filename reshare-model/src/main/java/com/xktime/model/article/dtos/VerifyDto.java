@@ -6,5 +6,5 @@ import lombok.Data;
 public class VerifyDto {
     int articleId;
     int status;
-    int type;
+    String type;
 }

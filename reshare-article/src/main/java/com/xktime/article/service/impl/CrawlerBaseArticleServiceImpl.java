@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service("CrawlerArticle")
-public class CrawlerBaseArticleServiceImpl implements BaseArticleService<CrawlerArticle>,BaseAuditable {
+public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements BaseArticleService<CrawlerArticle> {
     @Autowired
     CrawlerArticleMapper crawlerArticleMapper;
 
@@ -33,14 +33,18 @@ public class CrawlerBaseArticleServiceImpl implements BaseArticleService<Crawler
     }
 
     @Override
+    public CrawlerArticle findById(int id) {
+        return null;
+    }
+
+    @Override
     public List<CrawlerArticle> loadArticles(LoadDto dto) {
         return crawlerArticleMapper.load(dto);
     }
 
     @Override
-    public void verify(VerifyDto dto) {
-        crawlerArticleMapper.verify(dto);
-        //todo 插入article数据库
+    public void modifyState(VerifyDto dto) {
+        crawlerArticleMapper.modifyState(dto);
     }
 
     public int getUrlCount(String url) {

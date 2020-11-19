@@ -5,7 +5,6 @@ import com.xktime.article.service.BaseAuditable;
 import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.OriginalArticle;
-import com.xktime.model.mappers.article.ArticleMapper;
 import com.xktime.model.mappers.article.OriginalArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Service("OriginalArticle")
-public class OriginalBaseArticleServiceImpl implements BaseArticleService<OriginalArticle>, BaseAuditable {
+public class OriginalBaseArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalArticle> {
 
     @Autowired
     OriginalArticleMapper originalArticleMapper;
-
-    @Autowired
-    ArticleMapper articleMapper;
 
     @Override
     public void save(OriginalArticle article) {
@@ -38,13 +34,18 @@ public class OriginalBaseArticleServiceImpl implements BaseArticleService<Origin
     }
 
     @Override
+    public OriginalArticle findById(int id) {
+        return null;
+    }
+
+    @Override
     public List<OriginalArticle> loadArticles(LoadDto dto) {
         return originalArticleMapper.load(dto);
     }
 
+
     @Override
-    public void verify(VerifyDto dto) {
-        originalArticleMapper.verify(dto);
-        //todo 插入article数据库
+    public void modifyState(VerifyDto dto) {
+        originalArticleMapper.modifyState(dto);
     }
 }

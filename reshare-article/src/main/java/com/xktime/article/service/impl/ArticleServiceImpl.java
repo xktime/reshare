@@ -35,6 +35,11 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     }
 
     @Override
+    public Article findById(int id) {
+        return null;
+    }
+
+    @Override
     public List<Article> loadArticles(LoadDto dto) {
         return articleMapper.load(dto);
     }

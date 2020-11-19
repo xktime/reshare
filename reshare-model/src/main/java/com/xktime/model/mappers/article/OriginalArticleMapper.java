@@ -16,5 +16,5 @@ public interface OriginalArticleMapper {
 
     List<OriginalArticle> load(LoadDto dto);
 
-    void verify(VerifyDto dto);
+    void modifyState(VerifyDto dto);
 }

@@ -1,6 +1,9 @@
 package com.xktime.article.controller;
 
+import com.xktime.article.service.BaseArticleService;
+import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.CrawlerBaseArticleServiceImpl;
+import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.article.dtos.VerifyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,8 +16,15 @@ public class AdminController {
     @Autowired
     CrawlerBaseArticleServiceImpl articleService;
 
+    @Autowired
+    ArticleServiceFactory factory;
+
     @RequestMapping("verify")
     public void audit(@RequestBody VerifyDto dto) {
-        articleService.verify(dto);
+        BaseArticleService service = factory.getService(dto.getType());
+        if (!(service instanceof BaseAuditable)) {
+            throw new IllegalArgumentException("articleType错误:" + dto.getType());
+        }
+        ((BaseAuditable) service).verify(dto);
     }
 }

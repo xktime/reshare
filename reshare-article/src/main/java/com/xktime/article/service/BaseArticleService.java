@@ -15,6 +15,8 @@ public interface BaseArticleService<T> {
 
     void saveArticles(Collection<T> articles);
 
+    T findById(int id);
+
     List<T> loadArticles(LoadDto dto);
 
     default List<VerifyArticleDto> loadVerifyArticleDtoListNotNull(LoadDto dto) {
