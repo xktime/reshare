@@ -43,7 +43,7 @@ public class MysqlCoreConfig {
      * 这是Mybatis的Session
      *
      */
-    @Bean
+    @Bean()
     public SqlSessionFactoryBean mysqlCoreSqlSessionFactory(@Qualifier("mysqlCoreDataSource") DataSource mysqlCoreDataSource) throws IOException {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
