@@ -34,7 +34,7 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
 
     @Override
     public CrawlerArticle findById(int id) {
-        return null;
+        return crawlerArticleMapper.findById(id);
     }
 
     @Override

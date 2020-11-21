@@ -35,7 +35,7 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
 
     @Override
     public OriginalArticle findById(int id) {
-        return null;
+        return originalArticleMapper.findById(id);
     }
 
     @Override

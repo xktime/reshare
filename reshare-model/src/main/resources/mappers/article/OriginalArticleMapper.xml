@@ -29,4 +29,8 @@
     <update id="modifyState">
         UPDATE original_article SET  status= #{status} WHERE id = #{articleId};
     </update>
+
+    <select id="findById" resultType="com.xktime.model.article.pojos.OriginalArticle">
+        SELECT * FROM original_article WHERE id=#{id}
+    </select>
 </mapper>

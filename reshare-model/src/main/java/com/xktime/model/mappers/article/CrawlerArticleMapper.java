@@ -20,4 +20,6 @@ public interface CrawlerArticleMapper {
     List<CrawlerArticle> load(LoadDto dto);
 
     void modifyState(VerifyDto dto);
+
+    CrawlerArticle findById(@Param("id") int id);
 }

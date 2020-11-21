@@ -21,9 +21,20 @@ public abstract class BaseAuditable {
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
         }
-        Article article = new Article();
-        BeanUtils.copyProperties(article, service.findById(dto.getArticleId()));
-        articleService.save(article);
+        Object pending = service.findById(dto.getArticleId());
+        if (pending == null) {
+            throw new NullPointerException("文章为空");
+        }
+        if (dto.getStatus() == 2) {
+            //如果是通过审核插入数据库
+            Article article = new Article();
+            BeanUtils.copyProperties(article, pending);
+            articleService.save(article);
+        } else if (dto.getStatus() == 1) {
+            //如果是不通过从数据库删除
+            //todo article的id与审核文章的id不一定相同
+            articleService.deleteById(dto.getArticleId());
+        }
         ((BaseAuditable) service).modifyState(dto);
     }
 

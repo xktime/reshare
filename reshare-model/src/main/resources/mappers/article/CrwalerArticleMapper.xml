@@ -32,4 +32,8 @@
     <update id="modifyState">
         UPDATE crwaler_article SET  status= #{status} WHERE id = #{articleId};
     </update>
+
+    <select id="findById" resultType="com.xktime.model.article.pojos.CrawlerArticle">
+        SELECT * FROM crwaler_article WHERE id=#{id}
+    </select>
 </mapper>

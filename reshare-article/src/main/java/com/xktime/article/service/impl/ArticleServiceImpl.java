@@ -4,6 +4,7 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.pojos.Article;
 import com.xktime.model.mappers.article.ArticleMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +37,16 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 
     @Override
     public Article findById(int id) {
-        return null;
+        return articleMapper.findById(id);
     }
 
     @Override
     public List<Article> loadArticles(LoadDto dto) {
         return articleMapper.load(dto);
+    }
+
+    public void deleteById(@Param("id")int id) {
+        articleMapper.deleteById(id);
     }
 
 }
