@@ -7,7 +7,7 @@ CREATE TABLE `admin_user` (
   `sex` tinyint(1) unsigned NOT NULL default '0' COMMENT '性别(0:未知;1:男;2:女)',
   `dept_id` varchar(100) NOT NULL COMMENT '部门编号',
   `locked` tinyint(1) unsigned NOT NULL default '0' COMMENT '锁定标志(1:锁定;0:激活)',
-  `remark` varchar(50) default NULL COMMENT '备注',
+  `remark` varchar(50) default '0' COMMENT '备注',
   `user_type` tinyint(1) unsigned default '1' COMMENT '人员类型(1:经办员;2:管理员;3:系统内置人员;)',
   `enable` tinyint(1) NOT NULL default '1' COMMENT '启用状态',
   PRIMARY KEY (`id`) USING BTREE,

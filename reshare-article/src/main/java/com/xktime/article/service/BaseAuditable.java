@@ -28,7 +28,7 @@ public abstract class BaseAuditable {
         if (dto.getStatus() == 2) {
             //如果是通过审核插入数据库
             Article article = new Article();
-            BeanUtils.copyProperties(article, pending);
+            BeanUtils.copyProperties(pending, article);
             articleService.save(article);
         } else if (dto.getStatus() == 1) {
             //如果是不通过从数据库删除

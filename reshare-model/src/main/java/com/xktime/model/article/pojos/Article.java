@@ -27,5 +27,6 @@ public class Article {
     private Date publishTime;
     private String origin;
     private String content;
+    private String tag;
     private int status;
 }
