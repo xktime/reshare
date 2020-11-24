@@ -3,7 +3,6 @@ package com.xktime.model.article.pojos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -11,8 +10,8 @@ import java.util.Date;
  * 平台原创文章
  */
 @Data
-public class OriginalArticle implements Serializable {
-    private Long id;
+public class OriginalArticle extends BaseVerifyArticle {
+    private long id;
     private String title;
     private String content;
     private String authorName;

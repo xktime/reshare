@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface CrawlerArticleMapper {
 
-    void saveArticle(CrawlerArticle article);
+    long saveArticle(CrawlerArticle article);
 
     int getUrlCount(@Param("url") String url);
 
@@ -21,5 +21,7 @@ public interface CrawlerArticleMapper {
 
     void modifyState(VerifyDto dto);
 
-    CrawlerArticle findById(@Param("id") int id);
+    CrawlerArticle findById(@Param("id") long id);
+
+    long update(CrawlerArticle article);
 }

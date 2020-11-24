@@ -13,11 +13,13 @@ import java.util.List;
 @Repository
 public interface OriginalArticleMapper {
 
-    void saveArticle(OriginalArticle article);
+    long saveArticle(OriginalArticle article);
 
     List<OriginalArticle> load(LoadDto dto);
 
     void modifyState(VerifyDto dto);
 
-    OriginalArticle findById(@Param("id") int id);
+    OriginalArticle findById(@Param("id") long id);
+
+    long update(OriginalArticle article);
 }

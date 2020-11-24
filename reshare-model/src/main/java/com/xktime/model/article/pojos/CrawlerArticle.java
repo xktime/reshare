@@ -3,15 +3,14 @@ package com.xktime.model.article.pojos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 爬虫爬取的文章
  */
 @Data
-public class CrawlerArticle implements Serializable {
-    private Long id;
+public class CrawlerArticle extends BaseVerifyArticle {
+    private long id;
     private String title;
     private String content;
     private String authorName;

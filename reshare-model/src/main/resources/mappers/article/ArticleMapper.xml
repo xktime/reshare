@@ -18,7 +18,8 @@
     <!--        <result column="origin" property="origin"/>-->
     <!--        <result column="status" property="status"/>-->
     <!--    </resultMap>-->
-    <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.Article">
+    <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.Article"
+            useGeneratedKeys="true" keyProperty="id">
         INSERT INTO article(title,content,author_id,author_name,channel_id,channel_name,images,labels,likes,collection,comment,views,publish_time,origin,status)
         VALUES (#{title},#{content},#{authorId},#{authorName},#{channelId},#{channelName},#{images},#{labels},#{likes},#{collection},#{comment},#{views},#{publishTime},#{origin},#{status})
     </insert>
@@ -36,4 +37,9 @@
     <select id="removeById">
         DELETE FROM article WHERE id=#{id}
     </select>
+
+    <update id="update" parameterType="com.xktime.model.article.pojos.Article">
+        UPDATE user SET title = #{title}, content = #{content}, author_id = #{authorId}, channel_id = #{channelId}, channel_name = #{channelName}, images = #{images}, labels = #{labels}
+        WHERE id = #{id}
+    </update>
 </mapper>

@@ -11,11 +11,13 @@ import java.util.Collection;
 import java.util.List;
 
 public interface BaseArticleService<T> {
-    void save(T article);
+    long save(T article);
 
     void saveArticles(Collection<T> articles);
 
-    T findById(int id);
+    long update(T article);
+
+    T findById(long id);
 
     List<T> loadArticles(LoadDto dto);
 

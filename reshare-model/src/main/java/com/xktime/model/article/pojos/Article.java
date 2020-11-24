@@ -11,18 +11,18 @@ import java.util.Date;
  */
 @Data
 public class Article {
-    private Long id;
+    private long id;
     private String title;
     private String authorId;
     private String authorName;
-    private Integer channelId;
+    private int channelId;
     private String channelName;
     private String images;
     private String labels;
-    private Integer likes;
-    private Integer collection;
-    private Integer comment;
-    private Integer views;
+    private int likes;
+    private int collection;
+    private int comment;
+    private int views;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publishTime;
     private String origin;

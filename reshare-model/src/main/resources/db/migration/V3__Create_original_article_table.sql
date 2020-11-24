@@ -11,5 +11,6 @@ CREATE TABLE `original_article` (
 `url` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '文章url',
 `origin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '来源',
 `status` int(5) unsigned DEFAULT '0' COMMENT '文章状态',
+`bind_id` int(11) unsigned DEFAULT '0' COMMENT '在article表里的id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=19201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='文章信息表，存储已发布的文章';

@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class VerifyDto {
-    int articleId;
+    long articleId;
     int status;
+    long bindId;
     String type;
 }

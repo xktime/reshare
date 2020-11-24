@@ -12,11 +12,13 @@ import java.util.List;
 @Repository
 public interface ArticleMapper {
 
-    void saveArticle(Article article);
+    long saveArticle(Article article);
 
     List<Article> load(LoadDto dto);
 
-    Article findById(@Param("id")int id);
+    Article findById(@Param("id") long id);
 
-    void deleteById(@Param("id")int id);
+    void deleteById(@Param("id") long id);
+
+    long update(Article article);
 }
