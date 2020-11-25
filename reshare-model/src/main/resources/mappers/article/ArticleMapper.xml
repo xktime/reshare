@@ -18,10 +18,9 @@
     <!--        <result column="origin" property="origin"/>-->
     <!--        <result column="status" property="status"/>-->
     <!--    </resultMap>-->
-    <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.Article"
-            useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO article(title,content,author_id,author_name,channel_id,channel_name,images,labels,likes,collection,comment,views,publish_time,origin,status)
-        VALUES (#{title},#{content},#{authorId},#{authorName},#{channelId},#{channelName},#{images},#{labels},#{likes},#{collection},#{comment},#{views},#{publishTime},#{origin},#{status})
+    <insert id="saveArticle" parameterType="com.xktime.model.article.pojos.Article" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO article(title,content,author_id,author_name,channel_id,channel_name,images,labels,likes,collection,comment,views,publish_time,origin)
+        VALUES (#{title},#{content},#{authorId},#{authorName},#{channelId},#{channelName},#{images},#{labels},#{likes},#{collection},#{comment},#{views},#{publishTime},#{origin})
     </insert>
 
     <select id="load" resultType="com.xktime.model.article.pojos.Article">

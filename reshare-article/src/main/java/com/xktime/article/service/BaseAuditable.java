@@ -30,12 +30,12 @@ public abstract class BaseAuditable {
             //如果是通过审核插入数据库
             Article article = new Article();
             BeanUtils.copyProperties(verifyArticle, article);
-            long bindId = articleService.save(article);
-            dto.setBindId(bindId);
+            articleService.save(article);
+            dto.setBindId(article.getId());
         } else if (dto.getStatus() == 1) {
             //如果是不通过从数据库删除
             //todo article的id与审核文章的id不一定相同
-            articleService.deleteById(verifyArticle.getBindId());
+            articleService.removeById(verifyArticle.getBindId());
             dto.setBindId(0);
         }
         ((BaseAuditable) service).modifyState(dto);

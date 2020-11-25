@@ -23,9 +23,14 @@ public class TaskMain {
 
     @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void crawling() {
-        csdnService.run(this.databasePipeline);
-        segmentfaultService.run(this.databasePipeline);
-        System.out.println("当前时间" + new Date());
+        //todo 要记录上次爬取的时间,早于时间的文章就不爬取了，避免重复爬取
+        try {
+            csdnService.run(this.databasePipeline);
+            segmentfaultService.run(this.databasePipeline);
+            System.out.println("当前时间" + new Date());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

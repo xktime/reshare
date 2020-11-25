@@ -21,8 +21,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     ArticleMapper articleMapper;
 
     @Override
-    public long save(Article article) {
-        return articleMapper.saveArticle(article);
+    public void save(Article article) {
+        articleMapper.saveArticle(article);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     }
 
     @Override
-    public long update(Article article) {
-        return 0;
+    public void update(Article article) {
+
     }
 
     @Override
@@ -50,8 +50,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
         return articleMapper.load(dto);
     }
 
-    public void deleteById(@Param("id") long id) {
-        articleMapper.deleteById(id);
+    public void removeById(@Param("id") long id) {
+        articleMapper.removeById(id);
     }
 
 }

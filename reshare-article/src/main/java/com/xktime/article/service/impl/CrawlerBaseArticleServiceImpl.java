@@ -18,8 +18,8 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
     CrawlerArticleMapper crawlerArticleMapper;
 
     @Override
-    public long save(CrawlerArticle article) {
-        return crawlerArticleMapper.saveArticle(article);
+    public void save(CrawlerArticle article) {
+        crawlerArticleMapper.saveArticle(article);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
     }
 
     @Override
-    public long update(CrawlerArticle article) {
-        return crawlerArticleMapper.update(article);
+    public void update(CrawlerArticle article) {
+        crawlerArticleMapper.update(article);
     }
 
     @Override

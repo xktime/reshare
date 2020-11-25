@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface OriginalArticleMapper {
 
-    long saveArticle(OriginalArticle article);
+    void saveArticle(OriginalArticle article);
 
     List<OriginalArticle> load(LoadDto dto);
 
@@ -21,5 +21,5 @@ public interface OriginalArticleMapper {
 
     OriginalArticle findById(@Param("id") long id);
 
-    long update(OriginalArticle article);
+    void update(OriginalArticle article);
 }

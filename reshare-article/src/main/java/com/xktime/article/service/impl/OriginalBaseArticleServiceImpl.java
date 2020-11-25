@@ -19,8 +19,8 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     OriginalArticleMapper originalArticleMapper;
 
     @Override
-    public long save(OriginalArticle article) {
-        return originalArticleMapper.saveArticle(article);
+    public void save(OriginalArticle article) {
+        originalArticleMapper.saveArticle(article);
     }
 
     @Override
@@ -34,8 +34,7 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     }
 
     @Override
-    public long update(OriginalArticle article) {
-        return 0;
+    public void update(OriginalArticle article) {
     }
 
     @Override
