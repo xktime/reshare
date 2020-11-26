@@ -16,7 +16,7 @@ public abstract class BaseAuditable {
     @Autowired
     ArticleServiceFactory factory;
 
-    //todo 插入article数据库
+    //todo 添加事务支持
     public void verify(VerifyDto dto) {
         BaseArticleService service = factory.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
@@ -34,7 +34,6 @@ public abstract class BaseAuditable {
             dto.setBindId(article.getId());
         } else if (dto.getStatus() == 1) {
             //如果是不通过从数据库删除
-            //todo article的id与审核文章的id不一定相同
             articleService.removeById(verifyArticle.getBindId());
             dto.setBindId(0);
         }
