@@ -6,13 +6,13 @@
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-        <el-container class="container">
-          <el-row>
-            <el-button type="primary" @click="loadCommend" plain>推荐</el-button>
-            <el-button type="primary" @click="loadCrawler" plain>爬取文章</el-button>
-            <el-button type="primary" @click="loadOriginal" plain>原创文章</el-button>
-          </el-row>
-        </el-container>
+    <el-container class="container">
+      <el-row>
+        <el-button type="primary" @click="loadCommend" plain>推荐</el-button>
+        <el-button type="primary" @click="loadCrawler" plain>爬取文章</el-button>
+        <el-button type="primary" @click="loadOriginal" plain>原创文章</el-button>
+      </el-row>
+    </el-container>
     <el-container class="container">
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
@@ -136,17 +136,17 @@
                 this.scrollDisabled = false;
             },
             loadOriginal: function () {
-                this.$router.push('/original');
+                this.$router.push('/' + this.$originalArticleType);
                 this.page = 1;
                 this.load();
             },
             loadCrawler: function () {
-                this.$router.push('/crawler');
+                this.$router.push('/' + this.$crawlerArticleType);
                 this.page = 1;
                 this.load();
             },
             loadCommend: function () {
-                this.$router.push('/commend');
+                this.$router.push('/' + this.$recommendArticleType);
                 this.page = 1;
                 this.load();
             },

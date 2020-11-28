@@ -3,7 +3,7 @@ package com.xktime.model.article.enums;
 public enum ArticleTypeEnum {
     CRAWLER_ARTICLE("crawler"),
     ORIGINAL_ARTICLE("original"),
-    COMMEND_ARTICLE("commend"),
+    RECOMMEND_ARTICLE("recommend"),
     ;
 
     private String dec;

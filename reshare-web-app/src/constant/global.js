@@ -7,5 +7,9 @@ export default {
     Vue.prototype.$loginUrl = Vue.prototype.$apiUrl + 'login/common';
     Vue.prototype.$publishUrl = Vue.prototype.$apiUrl + 'account/publish';
     Vue.prototype.$registerUrl = Vue.prototype.$apiUrl + 'account/register';
+
+    Vue.prototype.$originalArticleType='original';
+    Vue.prototype.$crawlerArticleType='crawler';
+    Vue.prototype.$recommendArticleType='recommend';
   }
 }

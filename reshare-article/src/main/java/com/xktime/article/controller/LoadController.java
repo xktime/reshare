@@ -7,6 +7,7 @@ import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
+import com.xktime.model.common.constant.GlobalConstant;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ public class LoadController {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
         if (dto.getSize() <= 0) {
-            dto.setSize(10);
+            dto.setSize(GlobalConstant.DEFAULT_LOAD_ARTICLE_SIZE);
         }
         if (dto.getPage() <= 0) {
             dto.setPage(1);
@@ -50,16 +51,18 @@ public class LoadController {
             throw new NullPointerException("LoadArticleType为空");
         }
         if (dto.getSize() <= 0) {
-            dto.setSize(10);
+            dto.setSize(GlobalConstant.DEFAULT_LOAD_ARTICLE_SIZE);
         }
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
         if (StringUtils.isEmpty(dto.getToken())
-                && dto.getLoadArticleType().equals(ArticleTypeEnum.COMMEND_ARTICLE.getDec())) {
+                && dto.getLoadArticleType().equals(ArticleTypeEnum.RECOMMEND_ARTICLE.getDec())) {
             //todo 根据玩家推荐文章
+            return null;
+        } else {
+            return articleService.loadArticleDtoListNotNull(dto);
         }
-        return articleService.loadArticleDtoListNotNull(dto);
     }
 
 }
