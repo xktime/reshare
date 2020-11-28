@@ -9,10 +9,9 @@ import VueAxios from 'vue-axios'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import elTableInfiniteScroll from 'el-table-infinite-scroll';
+import global from './constant/global.js'
 
 Vue.config.productionTip = false;
-
-Vue.prototype.$apiUrl = "http://localhost/";
 
 //引入axios
 Vue.use(VueAxios, axios);
@@ -20,6 +19,8 @@ Vue.use(Vuex);
 //引入Element框架
 Vue.use(ElementUI);
 Vue.use(elTableInfiniteScroll);
+//引入全局常量
+Vue.use(global);
 
 //注册状态全局管理器
 export const store = new Vuex.Store({

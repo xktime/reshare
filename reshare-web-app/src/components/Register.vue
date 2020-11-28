@@ -108,7 +108,7 @@
                             (this.ruleForm.sex === null || this.ruleForm.sex === '' ? 2 : 1);
                         data.append("sex", tempSex);
                         data.append("region", this.ruleForm.region);
-                        const api = this.$apiUrl + 'account/register';
+                        const api = this.$registerUrl;
                         this.axios.post(api, data).then(
                             (response) => {
                                 if (response.data.code != 200) {

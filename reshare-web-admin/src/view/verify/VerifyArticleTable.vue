@@ -75,7 +75,8 @@
                 if (!(type === _this.type)) {
                     this.page = 1;
                 }
-                const api = this.$apiUrl + 'admin/loadArticle?page=' + this.page + '&loadArticleType=' + type;
+                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + type;
+                console.log(api);
                 this.axios.get(api).then((response) => {
                     if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
@@ -107,7 +108,7 @@
                 }
             },
             audit(row, status) {
-                const api = this.$apiUrl + 'admin/verify?articleId=' + row.id + '&status=' + status + '&type=' + this.$route.params.type;
+                const api = this.$verifyUrl + '?articleId=' + row.id + '&status=' + status + '&type=' + this.$route.params.type;
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);

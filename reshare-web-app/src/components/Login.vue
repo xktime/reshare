@@ -36,7 +36,7 @@
                         let data = new FormData();
                         data.append("account", this.form.account);
                         data.append("password", this.form.password);
-                        const api = this.$apiUrl + 'login/common';
+                        const api = this.$loginUrl;
                         this.axios.post(api, data).then(
                             (response) => {
                                 if (response.data.code != 200) {

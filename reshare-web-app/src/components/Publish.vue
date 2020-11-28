@@ -45,7 +45,7 @@
                         data.append("title", this.ruleForm.title);
                         data.append("content", this.ruleForm.content);
                         data.append("token", this.$store.state.token);
-                        const api = this.$apiUrl + 'account/publish';
+                        const api = this.$publishUrl;
                         this.axios.post(api, data).then(
                             (response) => {
                                 if (response.data.code != 200) {

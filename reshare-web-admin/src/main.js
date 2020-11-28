@@ -12,6 +12,7 @@ import elTableInfiniteScroll from 'el-table-infinite-scroll';
 import './theme/index.css'
 import './assets/css/font-awesome.min.css'
 import './assets/css/style.css'
+import global from './constant/global.js'
 
 Vue.config.productionTip = false;
 
@@ -23,6 +24,8 @@ Vue.use(Vuex);
 //引入Element框架
 Vue.use(ElementUI);
 Vue.use(elTableInfiniteScroll);
+//引入全局常量
+Vue.use(global);
 
 //注册状态全局管理器
 export const store = new Vuex.Store({

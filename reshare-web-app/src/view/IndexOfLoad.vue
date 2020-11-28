@@ -115,7 +115,7 @@
                 if (this.$store.state.loging) {
                     data.append("token", this.$store.state.token);
                 }
-                const api = this.$apiUrl + 'article/load';
+                const api = this.$loadArticleUrl;
                 this.axios.post(api, data).then((response) => {
                     if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
@@ -137,12 +137,18 @@
             },
             loadOriginal: function () {
                 this.$router.push('/original');
+                this.page = 1;
+                this.load();
             },
             loadCrawler: function () {
                 this.$router.push('/crawler');
+                this.page = 1;
+                this.load();
             },
             loadCommend: function () {
                 this.$router.push('/commend');
+                this.page = 1;
+                this.load();
             },
         },
         components: {
