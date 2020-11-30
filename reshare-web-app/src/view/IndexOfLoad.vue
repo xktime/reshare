@@ -8,9 +8,9 @@
     </el-header>
     <el-container class="container">
       <el-row>
-        <el-button type="primary" @click="loadCommend" plain>推荐</el-button>
-        <el-button type="primary" @click="loadCrawler" plain>爬取文章</el-button>
-        <el-button type="primary" @click="loadOriginal" plain>原创文章</el-button>
+        <el-button type="primary" @click="loadArticle(recommend)" plain>推荐</el-button>
+        <el-button type="primary" @click="loadArticle(crawler)" plain>爬取文章</el-button>
+        <el-button type="primary" @click="loadArticle(original)" plain>原创文章</el-button>
       </el-row>
     </el-container>
     <el-container class="container">
@@ -104,27 +104,27 @@
         methods: {
             load: function () {
                 this.scrollDisabled = true;
-                const _this = this;
                 const type = this.$route.params.type;
-                if (!(type === _this.type)) {
+                //是否切换加载类型
+                const isReload = !(type === this.type);
+                if (isReload) {
+                    this.type = type;
                     this.page = 1;
+                    //如果切换加载类型，清空之前的数据
+                    this.tableData = [];
                 }
                 let data = new FormData();
                 data.append("page", this.page);
-                data.append("loadArticleType", type);
+                data.append("loadArticleType", this.type);
                 if (this.$store.state.loging) {
                     data.append("token", this.$store.state.token);
                 }
+                const _this = this;
                 const api = this.$loadArticleUrl;
                 this.axios.post(api, data).then((response) => {
                     if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
                         return;
-                    }
-                    //如果切换加载类型，清空之前的数据
-                    if (!(type === _this.type)) {
-                        _this.tableData = [];
-                        _this.type = type;
                     }
                     //如果没有后续禁止滚动
                     if (response.data.data == null || response.data.data.length <= 0) {
@@ -135,24 +135,26 @@
                 });
                 this.scrollDisabled = false;
             },
-            loadOriginal: function () {
-                this.$router.push('/' + this.$originalArticleType);
+            loadArticle: function (type) {
+                this.tableData = [];
                 this.page = 1;
-                this.load();
-            },
-            loadCrawler: function () {
-                this.$router.push('/' + this.$crawlerArticleType);
-                this.page = 1;
-                this.load();
-            },
-            loadCommend: function () {
-                this.$router.push('/' + this.$recommendArticleType);
-                this.page = 1;
+                this.$router.push('/' + type);
                 this.load();
             },
         },
         components: {
             app_header,
+        },
+        computed: {
+            original() {
+                return this.$originalArticleType;
+            },
+            crawler() {
+                return this.$crawlerArticleType;
+            },
+            recommend() {
+                return this.$recommendArticleType;
+            },
         }
     }
 </script>

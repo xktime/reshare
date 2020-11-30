@@ -56,7 +56,7 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        if (StringUtils.isEmpty(dto.getToken())
+        if (!StringUtils.isEmpty(dto.getToken())
                 && dto.getLoadArticleType().equals(ArticleTypeEnum.RECOMMEND_ARTICLE.getDec())) {
             //todo 根据玩家推荐文章
             return null;

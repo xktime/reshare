@@ -70,22 +70,21 @@
         methods: {
             load: function () {
                 this.scrollDisabled = true;
-                const _this = this;
                 const type = this.$route.params.type;
-                if (!(type === _this.type)) {
+                //是否切换加载类型
+                const isReload = !(type === this.type);
+                if (isReload) {
+                    this.type = type;
                     this.page = 1;
+                    //如果切换加载类型，清空之前的数据
+                    this.tableData = [];
                 }
                 const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + type;
-                console.log(api);
+                const _this = this;
                 this.axios.get(api).then((response) => {
                     if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
                         return;
-                    }
-                    //如果切换加载类型，清空之前的数据
-                    if (!(type === _this.type)) {
-                        _this.tableData = [];
-                        _this.type = type;
                     }
                     //如果没有后续禁止滚动
                     if (response.data.data == null || response.data.data.length <= 0) {
