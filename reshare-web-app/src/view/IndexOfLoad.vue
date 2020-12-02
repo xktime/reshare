@@ -7,13 +7,17 @@
       <app_header></app_header>
     </el-header>
     <el-container class="container">
-      <el-row>
-        <el-button type="primary" @click="loadArticle(recommend)" plain>推荐</el-button>
-        <el-button type="primary" @click="loadArticle(crawler)" plain>爬取文章</el-button>
-        <el-button type="primary" @click="loadArticle(original)" plain>原创文章</el-button>
-      </el-row>
-    </el-container>
-    <el-container class="container">
+      <el-aside class="tag">
+          <el-row>
+            <el-button class="tag-button" type="primary" @click="loadArticle(recommend)" plain>推荐</el-button>
+          </el-row>
+          <el-row>
+            <el-button class="tag-button" type="primary" @click="loadArticle(crawler)" plain>爬取文章</el-button>
+          </el-row>
+          <el-row>
+            <el-button class="tag-button" type="primary" @click="loadArticle(original)" plain>原创文章</el-button>
+          </el-row>
+      </el-aside>
       <el-scrollbar style="height: 100%" wrap-class="scrollbar-wrapper">
         <el-main>
           <el-row v-for="data in tableData" :key="data.id">
@@ -177,6 +181,16 @@
     max-width: 80%;
     min-height: 92%;
     max-height: 92%;
+  }
+
+  .tag {
+    max-width: 15%;
+    margin: 50px 0 0 10px;
+  }
+
+  .tag-button {
+    width:100%;
+    margin-bottom:15px;
   }
 
   .container {
