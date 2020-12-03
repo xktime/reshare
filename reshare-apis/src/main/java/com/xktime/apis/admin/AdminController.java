@@ -1,11 +1,13 @@
 package com.xktime.apis.admin;
 
-import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.account.dtos.LoginDto;
+import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@Api(tags = "后台管理系统相关接口")
 @RestController
 @RequestMapping("admin")
 public class AdminController {
@@ -32,6 +35,7 @@ public class AdminController {
     @Value("${restful.url.article}")
     private String ARTICLE_REST_URL_PREFIX;
 
+    @ApiOperation("加载文章")
     @GetMapping("loadArticle")
     public ResponseResult loadArticle(LoadDto dto) {
         ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
@@ -49,6 +53,7 @@ public class AdminController {
         return responseResult;
     }
 
+    @ApiOperation("审核文章")
     @GetMapping("verify")
     public ResponseResult verify(VerifyDto dto) {
         ResponseResult responseResult = new ResponseResult();
@@ -61,6 +66,7 @@ public class AdminController {
         return responseResult;
     }
 
+    @ApiOperation("登录")
     @PostMapping("login")
     public ResponseResult login(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
