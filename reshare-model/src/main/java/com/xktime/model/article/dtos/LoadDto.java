@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel
+@ApiModel(description = "请求加载dto")
 public class LoadDto {
 
     @ApiModelProperty("分页size")

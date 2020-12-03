@@ -27,19 +27,19 @@ public abstract class BaseAuditable {
         if (verifyArticle == null) {
             throw new NullPointerException("文章为空");
         }
+        VerifyDo verifyDo = new VerifyDo();
+        BeanUtils.copyProperties(dto, verifyDo);
         if (dto.getStatus() == 2) {
             //如果是通过审核插入数据库
             Article article = new Article();
             BeanUtils.copyProperties(verifyArticle, article);
             articleService.save(article);
-            dto.setBindId(article.getId());
+            verifyDo.setBindId(article.getId());
         } else if (dto.getStatus() == 1) {
             //如果是不通过从数据库删除
             articleService.removeById(verifyArticle.getBindId());
-            dto.setBindId(0);
+            verifyDo.setBindId(0);
         }
-        VerifyDo verifyDo = new VerifyDo();
-        BeanUtils.copyProperties(dto, verifyDo);
         ((BaseAuditable) service).modifyState(verifyDo);
     }
 
