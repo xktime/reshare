@@ -3,12 +3,14 @@ package com.xktime.article.controller;
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
+import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.common.constant.GlobalConstant;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +44,9 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        return service.loadVerifyArticleDtoListNotNull(dto);
+        LoadDo loadDo = new LoadDo();
+        BeanUtils.copyProperties(dto, loadDo);
+        return service.loadVerifyArticleDtoListNotNull(loadDo);
     }
 
     @PostMapping("article")
@@ -56,12 +60,14 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
+        LoadDo loadDo = new LoadDo();
+        BeanUtils.copyProperties(dto, loadDo);
         if (!StringUtils.isEmpty(dto.getToken())
                 && dto.getLoadArticleType().equals(ArticleTypeEnum.RECOMMEND_ARTICLE.getDec())) {
             //todo 根据玩家推荐文章
             return null;
         } else {
-            return articleService.loadArticleDtoListNotNull(dto);
+            return articleService.loadArticleDtoListNotNull(loadDo);
         }
     }
 

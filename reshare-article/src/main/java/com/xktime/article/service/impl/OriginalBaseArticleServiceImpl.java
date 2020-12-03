@@ -2,8 +2,8 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dos.LoadDo;
+import com.xktime.model.article.dos.VerifyDo;
 import com.xktime.model.article.pojos.OriginalArticle;
 import com.xktime.model.mappers.article.OriginalArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +43,13 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     }
 
     @Override
-    public List<OriginalArticle> loadArticles(LoadDto dto) {
-        return originalArticleMapper.load(dto);
+    public List<OriginalArticle> loadArticles(LoadDo loadDo) {
+        return originalArticleMapper.load(loadDo);
     }
 
 
     @Override
-    public void modifyState(VerifyDto dto) {
-        originalArticleMapper.modifyState(dto);
+    public void modifyState(VerifyDo verifyDo) {
+        originalArticleMapper.modifyState(verifyDo);
     }
 }

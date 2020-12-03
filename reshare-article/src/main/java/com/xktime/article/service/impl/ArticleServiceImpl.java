@@ -1,7 +1,7 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.article.dtos.LoadDto;
+import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.pojos.Article;
 import com.xktime.model.mappers.article.ArticleMapper;
 import org.apache.ibatis.annotations.Param;
@@ -46,8 +46,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     }
 
     @Override
-    public List<Article> loadArticles(LoadDto dto) {
-        return articleMapper.load(dto);
+    public List<Article> loadArticles(LoadDo loadDo) {
+        return articleMapper.load(loadDo);
     }
 
     public void removeById(@Param("id") long id) {

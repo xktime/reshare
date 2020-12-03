@@ -2,8 +2,8 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dos.LoadDo;
+import com.xktime.model.article.dos.VerifyDo;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +43,13 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
     }
 
     @Override
-    public List<CrawlerArticle> loadArticles(LoadDto dto) {
-        return crawlerArticleMapper.load(dto);
+    public List<CrawlerArticle> loadArticles(LoadDo loadDo) {
+        return crawlerArticleMapper.load(loadDo);
     }
 
     @Override
-    public void modifyState(VerifyDto dto) {
-        crawlerArticleMapper.modifyState(dto);
+    public void modifyState(VerifyDo verifyDo) {
+        crawlerArticleMapper.modifyState(verifyDo);
     }
 
     public int getUrlCount(String url) {

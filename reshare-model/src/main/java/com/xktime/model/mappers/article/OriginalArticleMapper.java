@@ -1,7 +1,7 @@
 package com.xktime.model.mappers.article;
 
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dos.LoadDo;
+import com.xktime.model.article.dos.VerifyDo;
 import com.xktime.model.article.pojos.OriginalArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,9 +15,9 @@ public interface OriginalArticleMapper {
 
     void saveArticle(OriginalArticle article);
 
-    List<OriginalArticle> load(LoadDto dto);
+    List<OriginalArticle> load(LoadDo loadDo);
 
-    void modifyState(VerifyDto dto);
+    void modifyState(VerifyDo verifyDo);
 
     OriginalArticle findById(@Param("id") long id);
 

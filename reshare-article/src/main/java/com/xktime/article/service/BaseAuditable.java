@@ -2,6 +2,7 @@ package com.xktime.article.service;
 
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
+import com.xktime.model.article.dos.VerifyDo;
 import com.xktime.model.article.dtos.VerifyDto;
 import com.xktime.model.article.pojos.Article;
 import com.xktime.model.article.pojos.BaseVerifyArticle;
@@ -37,8 +38,10 @@ public abstract class BaseAuditable {
             articleService.removeById(verifyArticle.getBindId());
             dto.setBindId(0);
         }
-        ((BaseAuditable) service).modifyState(dto);
+        VerifyDo verifyDo = new VerifyDo();
+        BeanUtils.copyProperties(dto, verifyDo);
+        ((BaseAuditable) service).modifyState(verifyDo);
     }
 
-    public abstract void modifyState(VerifyDto dto);
+    public abstract void modifyState(VerifyDo verifyDo);
 }

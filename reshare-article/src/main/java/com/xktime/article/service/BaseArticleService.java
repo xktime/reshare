@@ -1,6 +1,6 @@
 package com.xktime.article.service;
 
-import com.xktime.model.article.dtos.LoadDto;
+import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import org.apache.commons.lang.StringUtils;
@@ -19,14 +19,14 @@ public interface BaseArticleService<T> {
 
     T findById(long id);
 
-    List<T> loadArticles(LoadDto dto);
+    List<T> loadArticles(LoadDo loadDo);
 
-    default List<VerifyArticleDto> loadVerifyArticleDtoListNotNull(LoadDto dto) {
+    default List<VerifyArticleDto> loadVerifyArticleDtoListNotNull(LoadDo loadDo) {
         List<VerifyArticleDto> verifyArticleList = new ArrayList<>();
-        if (dto == null || dto.getSize() <= 0 || StringUtils.isEmpty(dto.getLoadArticleType())) {
+        if (loadDo == null || loadDo.getSize() <= 0 || StringUtils.isEmpty(loadDo.getLoadArticleType())) {
             return verifyArticleList;
         }
-        List articles = loadArticles(dto);
+        List articles = loadArticles(loadDo);
         //格式转换
         if (articles != null && !articles.isEmpty()) {
             for (Object article : articles) {
@@ -43,12 +43,12 @@ public interface BaseArticleService<T> {
         return verifyArticleList;
     }
 
-    default List<LoadedArticleDto> loadArticleDtoListNotNull(LoadDto dto) {
+    default List<LoadedArticleDto> loadArticleDtoListNotNull(LoadDo loadDo) {
         List<LoadedArticleDto> loadedArticleList = new ArrayList<>();
-        if (dto == null || dto.getSize() <= 0 || StringUtils.isEmpty(dto.getLoadArticleType())) {
+        if (loadDo == null || loadDo.getSize() <= 0 || StringUtils.isEmpty(loadDo.getLoadArticleType())) {
             return loadedArticleList;
         }
-        List articles = loadArticles(dto);
+        List articles = loadArticles(loadDo);
         //格式转换
         if (articles != null && !articles.isEmpty()) {
             for (Object article : articles) {

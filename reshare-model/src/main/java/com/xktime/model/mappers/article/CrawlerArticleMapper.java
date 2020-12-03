@@ -1,7 +1,7 @@
 package com.xktime.model.mappers.article;
 
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dos.LoadDo;
+import com.xktime.model.article.dos.VerifyDo;
 import com.xktime.model.article.pojos.CrawlerArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,9 +17,9 @@ public interface CrawlerArticleMapper {
 
     int getUrlCount(@Param("url") String url);
 
-    List<CrawlerArticle> load(LoadDto dto);
+    List<CrawlerArticle> load(LoadDo loadDo);
 
-    void modifyState(VerifyDto dto);
+    void modifyState(VerifyDo verifyDo);
 
     CrawlerArticle findById(@Param("id") long id);
 
