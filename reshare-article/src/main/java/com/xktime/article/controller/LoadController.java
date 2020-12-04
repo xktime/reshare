@@ -9,8 +9,8 @@ import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.article.dtos.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.common.constant.GlobalConstant;
+import com.xktime.model.util.TransferUtils;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,8 +44,7 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        LoadDo loadDo = new LoadDo();
-        BeanUtils.copyProperties(dto, loadDo);
+        LoadDo loadDo = TransferUtils.toDO(dto);
         return service.loadVerifyArticleDtoListNotNull(loadDo);
     }
 
@@ -60,8 +59,7 @@ public class LoadController {
         if (dto.getPage() <= 0) {
             dto.setPage(1);
         }
-        LoadDo loadDo = new LoadDo();
-        BeanUtils.copyProperties(dto, loadDo);
+        LoadDo loadDo = TransferUtils.toDO(dto);
         if (!StringUtils.isEmpty(dto.getToken())
                 && dto.getLoadArticleType().equals(ArticleTypeEnum.RECOMMEND_ARTICLE.getDec())) {
             //todo 根据玩家推荐文章

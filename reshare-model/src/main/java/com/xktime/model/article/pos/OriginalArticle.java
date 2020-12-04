@@ -1,19 +1,21 @@
-package com.xktime.model.article.pojos;
+package com.xktime.model.article.pos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
 
+
 /**
- * 爬虫爬取的文章
+ * 平台原创文章
  */
 @Data
-public class CrawlerArticle extends BaseVerifyArticle {
+public class OriginalArticle extends BaseVerifyArticle {
     private long id;
     private String title;
     private String content;
     private String authorName;
+    private String authorId;
     private String channelName;
     private String labels;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

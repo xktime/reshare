@@ -2,7 +2,7 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.pojos.Article;
+import com.xktime.model.article.pos.Article;
 import com.xktime.model.mappers.article.ArticleMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;

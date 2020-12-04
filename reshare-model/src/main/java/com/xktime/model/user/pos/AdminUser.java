@@ -1,4 +1,4 @@
-package com.xktime.model.user.pojos;
+package com.xktime.model.user.pos;
 
 import lombok.Data;
 

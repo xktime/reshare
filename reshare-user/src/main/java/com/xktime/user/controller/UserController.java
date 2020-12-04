@@ -4,7 +4,7 @@ import com.xktime.model.account.dtos.RegisterDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.CodeConstants;
 import com.xktime.model.common.enums.HttpCodeEnum;
-import com.xktime.model.user.pojos.AppUser;
+import com.xktime.model.user.pos.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import org.springframework.beans.BeanUtils;

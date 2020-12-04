@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xktime.model.mappers.user.AppUserMapper">
 
-<!--    <resultMap id="appUser" type="com.xktime.model.user.pojos.AppUser">-->
+<!--    <resultMap id="appUser" type="com.xktime.model.user.pos.AppUser">-->
 <!--        <result column="user_id" property="userId"/>-->
 <!--        <result column="user_name" property="userName"/>-->
 <!--        <result column="account" property="account"/>-->
@@ -19,12 +19,12 @@
 <!--        <result column="created_time" property="createTime"/>-->
 <!--    </resultMap>-->
 
-    <insert id="saveUser" parameterType="com.xktime.model.user.pojos.AppUser">
+    <insert id="saveUser" parameterType="com.xktime.model.user.pos.AppUser">
         INSERT INTO app_user(id,user_id,user_name,account,password,phone_number,image,sex,is_certification,is_identity_authentication,status,flag,region,birthday,created_time)
         VALUES (#{id},#{userId},#{userName},#{account},#{password},#{phoneNumber},#{image},#{sex},#{isCertification},#{isIdentityAuthentication},#{status},#{flag},#{birthday},#{region},#{createTime})
     </insert>
 
-    <select id="queryByAccount" resultType="com.xktime.model.user.pojos.AppUser">
+    <select id="queryByAccount" resultType="com.xktime.model.user.pos.AppUser">
         SELECT * from app_user WHERE account = #{account}
     </select>
 </mapper>

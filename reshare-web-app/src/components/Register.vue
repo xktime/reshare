@@ -104,9 +104,7 @@
                         data.append("password", this.ruleForm.password);
                         data.append("birthday", this.ruleForm.birthday);
                         data.append("phoneNumber", this.ruleForm.phoneNumber);
-                        let tempSex = this.ruleForm.sex === '男' ? 0 :
-                            (this.ruleForm.sex === null || this.ruleForm.sex === '' ? 2 : 1);
-                        data.append("sex", tempSex);
+                        data.append("sex", this.ruleForm.sex ? (this.ruleForm.sex === '男' ? 1 : 2) : 0);
                         data.append("region", this.ruleForm.region);
                         const api = this.$registerUrl;
                         this.axios.post(api, data).then(

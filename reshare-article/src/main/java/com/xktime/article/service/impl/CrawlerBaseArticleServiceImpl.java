@@ -4,7 +4,7 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
 import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.pojos.CrawlerArticle;
+import com.xktime.model.article.pos.CrawlerArticle;
 import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

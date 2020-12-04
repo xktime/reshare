@@ -2,7 +2,7 @@ package com.xktime.model.mappers.article;
 
 import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.pojos.OriginalArticle;
+import com.xktime.model.article.pos.OriginalArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

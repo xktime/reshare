@@ -1,8 +1,8 @@
 package com.xktime.model.mappers.article;
 
 import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.user.pojos.AppUser;
-import com.xktime.model.user.pojos.UserArticleList;
+import com.xktime.model.user.pos.AppUser;
+import com.xktime.model.user.pos.UserArticleList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
