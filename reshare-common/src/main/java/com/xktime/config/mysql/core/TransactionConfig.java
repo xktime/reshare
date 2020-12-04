@@ -69,7 +69,7 @@ public class TransactionConfig {
     @Bean
     public Advisor txAdviceAdvisor(@Qualifier("mysqlCoreDataSourceTxAdvice") TransactionInterceptor mysqlCoreDataSourceTxAdvice) {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("execution (* com.xktime..service.*.*(..))");
+        pointcut.setExpression("execution (* com.xktime.*.service..*.*(..))");
         return new DefaultPointcutAdvisor(pointcut, mysqlCoreDataSourceTxAdvice);
     }
 

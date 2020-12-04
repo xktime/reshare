@@ -144,7 +144,6 @@
             return {
                 fixedTabBar: false,
                 switchTabBar: false,
-                // todo siteName: this.$Config.siteName,
                 siteName: '首页',
                 isCollapse: false,
                 menu: Menu,
@@ -194,7 +193,6 @@
                 e.preventDefault();
                 if (this.isCollapse) {
                     document.body.classList.remove('sidebar-hidden')
-                    // todo this.siteName = this.$Config.siteName
                     this.siteName = '首页';
                     this.isCollapse = false;
                 } else {
@@ -230,7 +228,6 @@
             if (!this.isCollapse) {
 
                 document.body.classList.remove('sidebar-hidden')
-                // todo this.siteName = this.$Config.siteName
                 this.siteName = '首页'
             } else {
                 document.body.classList.add('sidebar-hidden')

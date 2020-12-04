@@ -9,7 +9,9 @@ import com.xktime.model.article.pos.BaseVerifyArticle;
 import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional//todo 改用AOP事务支持
 public abstract class BaseAuditable {
 
     @Autowired
@@ -18,7 +20,6 @@ public abstract class BaseAuditable {
     @Autowired
     ArticleServiceFactory factory;
 
-    //todo 添加事务支持
     public void verify(VerifyDto dto) {
         BaseArticleService service = factory.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
