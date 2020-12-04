@@ -4,6 +4,8 @@ import com.xktime.model.account.dtos.PublishDto;
 import com.xktime.model.account.dtos.RegisterDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+@Api(tags = "app用户相关接口")
 @RestController
 @RequestMapping("account")
 public class AccountController {
@@ -33,6 +36,7 @@ public class AccountController {
      * @param dto
      * @return
      */
+    @ApiOperation("发布")
     @PostMapping("publish")
     public ResponseResult publish(PublishDto dto) {
         ResponseResult result = new ResponseResult();
@@ -55,6 +59,7 @@ public class AccountController {
      * @param dto
      * @return
      */
+    @ApiOperation("注册")
     @PostMapping("register")
     public ResponseResult register(RegisterDto dto) {
         ResponseResult result = new ResponseResult();

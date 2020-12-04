@@ -3,6 +3,8 @@ package com.xktime.apis.app;
 import com.xktime.model.account.dtos.LoginDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+@Api(tags = "app用户登录相关接口")
 @RestController
 @RequestMapping("login")
 public class LoginController {
@@ -32,6 +35,7 @@ public class LoginController {
      * @param dto
      * @return
      */
+    @ApiOperation("使用账号密码登录")
     @PostMapping("common")
     public ResponseResult commonLogin(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
@@ -48,5 +52,7 @@ public class LoginController {
         }
         return responseResult;
     }
+
+    //todo qq号以及github等平台认证登录
 
 }

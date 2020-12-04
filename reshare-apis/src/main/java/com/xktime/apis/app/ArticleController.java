@@ -4,6 +4,8 @@ import com.xktime.model.article.dtos.LoadDto;
 import com.xktime.model.article.dtos.LoadedArticleDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -16,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@Api(tags = "app文章相关接口")
 @RestController
 @RequestMapping("article")
 public class ArticleController {
@@ -29,6 +32,7 @@ public class ArticleController {
     @Value("${restful.url.article}")
     private String ARTICLE_REST_URL_PREFIX;
 
+    @ApiOperation("加载文章")
     @PostMapping("load")
     public ResponseResult loadArticle(LoadDto dto) {
         ResponseResult<List<LoadedArticleDto>> result = new ResponseResult<>();

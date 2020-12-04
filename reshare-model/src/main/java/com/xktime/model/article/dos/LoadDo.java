@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class LoadDo {
-    //todo dto转do格式转换需要重构
     int size;//分页size
 
     int page;//当前页码
@@ -12,8 +11,6 @@ public class LoadDo {
     String loadArticleType;//加载类型
 
     String token;//当前用户token
-
-    String tag;//数据范围，比如频道ID
 
     int pageStartIndex;//该页第一条数据在数据库的下标
 
