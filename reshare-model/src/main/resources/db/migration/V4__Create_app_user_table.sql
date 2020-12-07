@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `app_user`;
 CREATE TABLE `app_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `user_id` varchar(36) NOT NULL COMMENT '用户唯一id',
+  `user_id` BINARY(16) NOT NULL COMMENT '用户唯一id',
   `user_name` varchar(20) NOT NULL COMMENT '用户昵称',
   `account` varchar(30) NOT NULL COMMENT '登陆帐户',
   `password` varchar(50) NOT NULL COMMENT '密码 BASE64加密',

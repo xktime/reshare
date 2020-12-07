@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class AppUser {
     private Long id;
-    private String userId;
+    private byte[] userId;
     private String userName;
     private String account;
     private String password;

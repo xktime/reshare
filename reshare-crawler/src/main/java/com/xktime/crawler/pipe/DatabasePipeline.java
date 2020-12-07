@@ -23,6 +23,8 @@ public class DatabasePipeline implements Pipeline {
 
     private static final Object LOCK_ME = new Object();
 
+    private static long last_crawl_time = 0;
+
 
     @Override
     public void process(ResultItems resultItems, Task task) {

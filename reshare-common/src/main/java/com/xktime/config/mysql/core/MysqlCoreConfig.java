@@ -49,7 +49,7 @@ public class MysqlCoreConfig {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(mysqlCoreDataSource);
         sessionFactory.setMapperLocations(resolver.getResources("classpath*:mappers/**/*.xml"));
-        sessionFactory.setTypeAliasesPackage("com.xktime.model.**.pojos");
+        sessionFactory.setTypeAliasesPackage("com.xktime.model.**.pos");
         org.apache.ibatis.session.Configuration mybatisConf = new org.apache.ibatis.session.Configuration();
         mybatisConf.setMapUnderscoreToCamelCase(true);
         sessionFactory.setConfiguration(mybatisConf);

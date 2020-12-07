@@ -5,6 +5,7 @@ import com.xktime.model.mappers.user.AdminUserMapper;
 import com.xktime.model.user.pos.AdminUser;
 import com.xktime.user.service.BaseUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service

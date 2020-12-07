@@ -13,7 +13,7 @@ import java.util.Date;
 public class Article {
     private long id;
     private String title;
-    private String authorId;
+    private byte[] authorId;
     private String authorName;
     private int channelId;
     private String channelName;
