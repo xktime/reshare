@@ -63,8 +63,8 @@ servicename:
 
 restful:
   url:
-    user: http://USER
-    article: http://ARTICLE
+    user: http://${servicename.user}
+    article: http://${servicename.article}
 
 eureka:
   client:
