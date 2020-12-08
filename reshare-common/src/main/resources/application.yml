@@ -71,5 +71,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:${port.eureka-registry}/eureka
 
+code:
+  snow-flake-id:
+    workerId: 0
+    dataCenterId: 0
+
 server:
   port: 8990

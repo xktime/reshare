@@ -7,6 +7,7 @@ import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pos.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
+import com.xktime.utils.SnowflakeIdUtil;
 import com.xktime.utils.UUIDUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     AppBaseUserServiceImpl appUserService;
+
+    @Autowired
+    SnowflakeIdUtil snowflakeId;
 
     @RequestMapping("register")
     public ResponseResult register(@RequestBody RegisterDto dto) {
