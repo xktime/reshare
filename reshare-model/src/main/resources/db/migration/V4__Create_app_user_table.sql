@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `app_user`;
 CREATE TABLE `app_user` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `user_id` BINARY(16) NOT NULL COMMENT '用户唯一id',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` bigint NOT NULL COMMENT '用户唯一id',
   `user_name` varchar(20) NOT NULL COMMENT '用户昵称',
   `account` varchar(30) NOT NULL COMMENT '登陆帐户',
   `password` varchar(50) NOT NULL COMMENT '密码 BASE64加密',
@@ -15,5 +15,6 @@ CREATE TABLE `app_user` (
   `region` varchar(30) NOT NULL COMMENT '所在地区',
   `birthday` datetime DEFAULT NULL COMMENT '生日',
   `created_time` datetime DEFAULT NULL COMMENT '注册时间',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `user_id`(`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户信息表';

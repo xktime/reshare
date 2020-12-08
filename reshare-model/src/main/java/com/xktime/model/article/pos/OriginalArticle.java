@@ -15,7 +15,7 @@ public class OriginalArticle extends BaseVerifyArticle {
     private String title;
     private String content;
     private String authorName;
-    private byte[] authorId;
+    private long authorId;
     private String channelName;
     private String labels;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
