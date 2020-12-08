@@ -32,8 +32,8 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div v-else>
-        <el-link class="header-link" type="primary" href="/#/login" :underline="false">登录</el-link>
-        <el-link class="header-link" type="primary" href="/#/register" :underline="false">注册</el-link>
+        <el-link class="header-link" type="primary" href="/#/fuc/login" :underline="false">登录</el-link>
+        <el-link class="header-link" type="primary" href="/#/fuc/register" :underline="false">注册</el-link>
       </div>
     </el-container>
   </el-container>

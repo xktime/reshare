@@ -23,7 +23,7 @@ export default new Router({
       },
       children: [
         {
-          path: '/login',
+          path: '/fuc/login',
           name: 'login',
           component: () => import("@/components/Login"),
           meta: {
@@ -31,7 +31,7 @@ export default new Router({
           },
         },
         {
-          path: '/publish',
+          path: '/fuc/publish',
           name: 'publish',
           component: () => import("@/components/Publish"),
           meta: {
@@ -40,7 +40,7 @@ export default new Router({
           },
         },
         {
-          path: '/register',
+          path: '/fuc/register',
           name: 'register',
           component: () => import("@/components/Register"),
           meta: {
