@@ -9,5 +9,5 @@ CREATE TABLE `user_article_list` (
   `is_read` tinyint(1) unsigned DEFAULT '0' COMMENT '是否阅读',
   `strategy_id` int(5) unsigned DEFAULT '0' COMMENT '推荐算法',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `user_id`(`user_id`) USING BTREE
+  INDEX `user_id`(`user_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户文章列表';

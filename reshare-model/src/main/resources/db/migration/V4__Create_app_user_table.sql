@@ -16,5 +16,5 @@ CREATE TABLE `app_user` (
   `birthday` datetime DEFAULT NULL COMMENT '生日',
   `created_time` datetime DEFAULT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `user_id`(`user_id`) USING BTREE
+  INDEX `user_id`(`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户信息表';

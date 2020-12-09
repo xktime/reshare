@@ -12,5 +12,5 @@ CREATE TABLE `crwaler_article` (
 `status` tinyint(1) unsigned DEFAULT '0' COMMENT '文章状态',
 `bind_id` bigint unsigned DEFAULT '0' COMMENT '在article表里的id',
 PRIMARY KEY (`id`) USING BTREE,
-UNIQUE INDEX `bind_id`(`bind_id`) USING BTREE
+INDEX `bind_id`(`bind_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=19201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='存储爬虫爬取的文章';

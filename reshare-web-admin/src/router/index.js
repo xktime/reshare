@@ -19,7 +19,7 @@ export default new Router({
           name: 'VerifyCrawlerArticle',
           component: () => import("@/view/verify/VerifyArticleTable"),
           meta: {
-            requireAuth: true,
+            // requireAuth: true,
             title: "文章审核"
           },
         },

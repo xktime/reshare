@@ -13,7 +13,7 @@ spring:
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
     #解决Incorrect string value: '\xF0\x9F\x98\x81 \xE5...' for column问题
