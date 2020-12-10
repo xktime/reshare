@@ -140,8 +140,6 @@
                 this.scrollDisabled = false;
             },
             loadArticle: function (type) {
-                this.tableData = [];
-                this.page = 1;
                 this.$router.push('/' + type);
                 this.load();
             },

@@ -50,6 +50,9 @@ export const store = new Vuex.Store({
 });
 
 router.beforeEach((to, from, next) => {
+  //修改body的user agent stylesheet
+  document.body.setAttribute('style', 'margin:0');
+  //获取标题
   if (to.meta.title) {
     document.title = to.meta.title
   }
