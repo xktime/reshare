@@ -33,8 +33,9 @@ public interface BaseArticleService<T> {
                 VerifyArticleDto verifyArticle = new VerifyArticleDto();
                 BeanUtils.copyProperties(article, verifyArticle);
                 //url为空表示不是爬取的文章
+                //todo 修改转换成地址url
                 if (StringUtils.isEmpty(verifyArticle.getUrl())) {
-                    String url = "/#/" + verifyArticle.getId();
+                    String url = "/" + verifyArticle.getId();
                     verifyArticle.setUrl(url);
                 }
                 verifyArticleList.add(verifyArticle);
@@ -56,7 +57,7 @@ public interface BaseArticleService<T> {
                 BeanUtils.copyProperties(article, verifyArticle);
                 //url为空表示不是爬取的文章
                 if (StringUtils.isEmpty(verifyArticle.getUrl())) {
-                    String url = "/#/" + verifyArticle.getId();
+                    String url = "/" + verifyArticle.getId();
                     verifyArticle.setUrl(url);
                 }
                 loadedArticleList.add(verifyArticle);

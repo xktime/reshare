@@ -18,7 +18,7 @@
             </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
-            <el-link href="/#/publish" :underline="false">发布</el-link>
+            <el-link href="/publish" :underline="false">发布</el-link>
           </el-dropdown-item>
           <el-dropdown-item>
             <el-link href="http://www.baidu.com" :underline="false">设置</el-link>
@@ -32,8 +32,8 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div v-else>
-        <el-link class="header-link" type="primary" href="/#/fuc/login" :underline="false">登录</el-link>
-        <el-link class="header-link" type="primary" href="/#/fuc/register" :underline="false">注册</el-link>
+        <el-link class="header-link" type="primary" href="/fuc/login" :underline="false">登录</el-link>
+        <el-link class="header-link" type="primary" href="/fuc/register" :underline="false">注册</el-link>
       </div>
     </el-container>
   </el-container>
@@ -49,7 +49,7 @@
         methods: {
             logout(event) {
                 this.$store.commit('logout');
-                this.$router.push({path: this.$route.query.redirect || '/#/'});
+                this.$router.push({path: this.$route.query.redirect || '/'});
             }
         }
     }
