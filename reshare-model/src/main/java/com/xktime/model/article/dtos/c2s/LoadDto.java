@@ -20,6 +20,12 @@ public class LoadDto {
     @ApiModelProperty("当前用户token")
     String token;
 
+    @ApiModelProperty("文章id")
+    long articleId;
+
+    @ApiModelProperty("作者id")
+    long authorId;
+
 }
 
 

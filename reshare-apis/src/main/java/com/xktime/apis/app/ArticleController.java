@@ -1,7 +1,8 @@
 package com.xktime.apis.app;
 
 import com.xktime.model.article.dtos.c2s.LoadDto;
-import com.xktime.model.article.dtos.s2c.ArticleDto;
+import com.xktime.model.article.dtos.s2c.ArticleDetailsDto;
+import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import io.swagger.annotations.Api;
@@ -35,13 +36,31 @@ public class ArticleController {
     @ApiOperation("加载文章")
     @PostMapping("load")
     public ResponseResult loadArticle(LoadDto dto) {
-        ResponseResult<List<ArticleDto>> result = new ResponseResult<>();
+        ResponseResult<List<SimpleArticleDto>> result = new ResponseResult<>();
         try {
             result.ok(restTemplate.exchange(
                     ARTICLE_REST_URL_PREFIX + "/load/article",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<List<ArticleDto>>() {
+                    new ParameterizedTypeReference<List<SimpleArticleDto>>() {
+                    }).getBody());
+        } catch (Exception e) {
+            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            return result;
+        }
+        return result;
+    }
+
+    @ApiOperation("加载文章详情")
+    @PostMapping("loadDetails")
+    public ResponseResult loadArticleDetails(long articleId) {
+        ResponseResult<ArticleDetailsDto> result = new ResponseResult<>();
+        try {
+            result.ok(restTemplate.exchange(
+                    ARTICLE_REST_URL_PREFIX + "/load/articleDetails",
+                    HttpMethod.POST,
+                    new HttpEntity<>(articleId),
+                    new ParameterizedTypeReference<ArticleDetailsDto>() {
                     }).getBody());
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());

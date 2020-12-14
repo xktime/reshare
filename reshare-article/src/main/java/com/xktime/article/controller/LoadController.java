@@ -5,12 +5,15 @@ import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dtos.c2s.LoadDto;
-import com.xktime.model.article.dtos.s2c.ArticleDto;
+import com.xktime.model.article.dtos.s2c.ArticleDetailsDto;
+import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
 import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
+import com.xktime.model.article.pos.Article;
 import com.xktime.model.common.constant.GlobalConstant;
 import com.xktime.model.util.TransferUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,7 +52,7 @@ public class LoadController {
     }
 
     @PostMapping("article")
-    public List<ArticleDto> article(@RequestBody LoadDto dto) {
+    public List<SimpleArticleDto> article(@RequestBody LoadDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             throw new NullPointerException("LoadArticleType为空");
         }
@@ -67,6 +70,16 @@ public class LoadController {
         } else {
             return articleService.loadArticleDtoListNotNull(loadDo);
         }
+    }
+
+    @PostMapping("articleDetails")
+    public ArticleDetailsDto articleDetails(long articleId) {
+        ArticleDetailsDto detail = new ArticleDetailsDto();
+        Article article = articleService.findById(articleId);
+        BeanUtils.copyProperties(article, detail);
+        //todo 插入detail评论
+        //todo 评论分页
+        return detail;
     }
 
 }
