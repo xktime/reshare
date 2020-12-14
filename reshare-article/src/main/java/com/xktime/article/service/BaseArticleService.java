@@ -1,8 +1,8 @@
 package com.xktime.article.service;
 
 import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dtos.LoadedArticleDto;
-import com.xktime.model.article.dtos.VerifyArticleDto;
+import com.xktime.model.article.dtos.s2c.ArticleDto;
+import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 
@@ -44,26 +44,26 @@ public interface BaseArticleService<T> {
         return verifyArticleList;
     }
 
-    default List<LoadedArticleDto> loadArticleDtoListNotNull(LoadDo loadDo) {
-        List<LoadedArticleDto> loadedArticleList = new ArrayList<>();
+    default List<ArticleDto> loadArticleDtoListNotNull(LoadDo loadDo) {
+        List<ArticleDto> articleList = new ArrayList<>();
         if (loadDo == null || loadDo.getSize() <= 0 || StringUtils.isEmpty(loadDo.getLoadArticleType())) {
-            return loadedArticleList;
+            return articleList;
         }
         List articles = loadArticles(loadDo);
         //格式转换
         if (articles != null && !articles.isEmpty()) {
             for (Object article : articles) {
-                LoadedArticleDto verifyArticle = new LoadedArticleDto();
+                ArticleDto verifyArticle = new ArticleDto();
                 BeanUtils.copyProperties(article, verifyArticle);
                 //url为空表示不是爬取的文章
                 if (StringUtils.isEmpty(verifyArticle.getUrl())) {
                     String url = "/" + verifyArticle.getId();
                     verifyArticle.setUrl(url);
                 }
-                loadedArticleList.add(verifyArticle);
+                articleList.add(verifyArticle);
             }
         }
-        return loadedArticleList;
+        return articleList;
     }
 
 }

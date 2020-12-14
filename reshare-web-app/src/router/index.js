@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/:type?',
       name: 'loadIndex',//用来加载文章的主页模板
-      component: () => import("@/view/IndexOfLoad"),
+      component: () => import("@/view/index/IndexOfLoad"),
       meta: {
         // requireAuth: true,
         title: "reshare"
@@ -18,7 +18,7 @@ export default new Router({
     {
       path: '/fuc',
       name: 'fucIndex',//功能的主页模板
-      component: () => import("@/view/IndexOfFuc"),
+      component: () => import("@/view/index/IndexOfFuc"),
       meta: {
         requireAuth: true,
       },
@@ -46,6 +46,24 @@ export default new Router({
           component: () => import("@/components/Register"),
           meta: {
             title: "注册"
+          },
+        },
+      ]
+    },
+    {
+      path: '/article',
+      name: 'article',//文章功能模块
+      component: () => import("@/view/index/IndexOfFuc"),
+      meta: {
+        requireAuth: true,
+      },
+      children: [
+        {
+          path: '/article/:articleId',
+          name: 'articleDetail',
+          component: () => import("@/components/Article"),
+          meta: {
+            title: "文章详情"
           },
         },
       ]

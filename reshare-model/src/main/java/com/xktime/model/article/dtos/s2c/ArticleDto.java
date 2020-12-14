@@ -1,11 +1,13 @@
-package com.xktime.model.article.dtos;
+package com.xktime.model.article.dtos.s2c;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class LoadedArticleDto {
+@ApiModel(description = "审核通过的文章")
+public class ArticleDto {
     private long id;
     private String title;
     private String content;

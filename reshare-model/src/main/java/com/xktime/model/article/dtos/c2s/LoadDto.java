@@ -1,4 +1,4 @@
-package com.xktime.model.article.dtos;
+package com.xktime.model.article.dtos.c2s;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

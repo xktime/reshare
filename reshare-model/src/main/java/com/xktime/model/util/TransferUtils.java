@@ -2,8 +2,8 @@ package com.xktime.model.util;
 
 import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dtos.c2s.LoadDto;
+import com.xktime.model.article.dtos.c2s.VerifyDto;
 import org.springframework.beans.BeanUtils;
 
 public class TransferUtils {

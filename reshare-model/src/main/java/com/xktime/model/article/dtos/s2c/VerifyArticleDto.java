@@ -1,10 +1,12 @@
-package com.xktime.model.article.dtos;
+package com.xktime.model.article.dtos.s2c;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
+@ApiModel(description = "被审核的文章")
 public class VerifyArticleDto {
     private long id;
     private String title;

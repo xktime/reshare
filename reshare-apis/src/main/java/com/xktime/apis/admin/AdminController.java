@@ -1,9 +1,9 @@
 package com.xktime.apis.admin;
 
 import com.xktime.model.account.dtos.LoginDto;
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.VerifyArticleDto;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dtos.c2s.LoadDto;
+import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
+import com.xktime.model.article.dtos.c2s.VerifyDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import io.swagger.annotations.Api;

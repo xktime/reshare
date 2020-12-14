@@ -3,7 +3,7 @@ package com.xktime.article.service;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.dtos.VerifyDto;
+import com.xktime.model.article.dtos.c2s.VerifyDto;
 import com.xktime.model.article.pos.Article;
 import com.xktime.model.article.pos.BaseVerifyArticle;
 import com.xktime.model.util.TransferUtils;

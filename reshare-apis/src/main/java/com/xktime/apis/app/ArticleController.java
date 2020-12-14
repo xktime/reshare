@@ -1,7 +1,7 @@
 package com.xktime.apis.app;
 
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.LoadedArticleDto;
+import com.xktime.model.article.dtos.c2s.LoadDto;
+import com.xktime.model.article.dtos.s2c.ArticleDto;
 import com.xktime.model.common.dtos.ResponseResult;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import io.swagger.annotations.Api;
@@ -35,13 +35,13 @@ public class ArticleController {
     @ApiOperation("加载文章")
     @PostMapping("load")
     public ResponseResult loadArticle(LoadDto dto) {
-        ResponseResult<List<LoadedArticleDto>> result = new ResponseResult<>();
+        ResponseResult<List<ArticleDto>> result = new ResponseResult<>();
         try {
             result.ok(restTemplate.exchange(
                     ARTICLE_REST_URL_PREFIX + "/load/article",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<List<LoadedArticleDto>>() {
+                    new ParameterizedTypeReference<List<ArticleDto>>() {
                     }).getBody());
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());

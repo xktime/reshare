@@ -1,6 +1,6 @@
 package com.xktime.model.mappers.article;
 
-import com.xktime.model.article.dtos.LoadDto;
+import com.xktime.model.article.dtos.c2s.LoadDto;
 import com.xktime.model.user.pos.AppUser;
 import com.xktime.model.user.pos.UserArticleList;
 import org.apache.ibatis.annotations.Mapper;

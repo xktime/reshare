@@ -4,9 +4,9 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dtos.LoadDto;
-import com.xktime.model.article.dtos.LoadedArticleDto;
-import com.xktime.model.article.dtos.VerifyArticleDto;
+import com.xktime.model.article.dtos.c2s.LoadDto;
+import com.xktime.model.article.dtos.s2c.ArticleDto;
+import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.common.constant.GlobalConstant;
 import com.xktime.model.util.TransferUtils;
@@ -49,7 +49,7 @@ public class LoadController {
     }
 
     @PostMapping("article")
-    public List<LoadedArticleDto> article(@RequestBody LoadDto dto) {
+    public List<ArticleDto> article(@RequestBody LoadDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             throw new NullPointerException("LoadArticleType为空");
         }
