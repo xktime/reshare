@@ -51,8 +51,9 @@ port:
   admin: 8994
   gateway: 8995
   user: 8996
+  comment: 8997
 
-servicename:
+service-name:
   api: api
   eureka-registry: eureka-registry
   article: article
@@ -60,11 +61,13 @@ servicename:
   admin: admin
   gateway: getway
   user: user
+  comment: comment
 
 restful:
   url:
-    user: http://${servicename.user}
-    article: http://${servicename.article}
+    user: http://${service-name.user}
+    article: http://${service-name.article}
+    comment: http://${service-name.comment}
 
 eureka:
   client:

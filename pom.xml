@@ -19,6 +19,7 @@
         <module>reshare-eureka-registry</module>
         <module>reshare-gateway</module>
         <module>reshare-user</module>
+        <module>reshare-comment</module>
     </modules>
 
     <properties>
