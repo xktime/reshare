@@ -20,6 +20,6 @@ public class CrawlerArticle extends BaseVerifyArticle {
     private Date publishTime;
     private String url;
     private String origin;
-    private int status;
+    private byte status;
 
 }

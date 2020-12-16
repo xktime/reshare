@@ -10,6 +10,6 @@ public class BaseVerifyArticle implements Serializable {
     private String title;
     private String content;
     private String authorName;
-    private int status;
+    private byte status;
     private long bindId;
 }

@@ -9,8 +9,9 @@ import java.util.Date;
 public class Comment {
     private long id;
     private long authorId;
-    private long articleId;
+    private long bindId;
+    private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publishTime;
-    private String content;
+    private byte type;
 }

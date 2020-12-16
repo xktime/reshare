@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xktime.model.mappers.comment.CommentMapper">
     <insert id="Comment" parameterType="com.xktime.model.comment.pos.Comment" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO comment(content,author_id,article_id,publish_time)
-        VALUES (#{content},#{authorId},#{articleId},#{publishTime})
+        INSERT INTO comment(content,author_id,bind_id,publish_time)
+        VALUES (#{content},#{authorId},#{bindId},#{publishTime})
     </insert>
 </mapper>
