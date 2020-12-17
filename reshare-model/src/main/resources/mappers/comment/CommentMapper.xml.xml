@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xktime.model.mappers.comment.CommentMapper">
-    <insert id="Comment" parameterType="com.xktime.model.comment.pos.Comment" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveComment" parameterType="com.xktime.model.comment.pos.Comment" useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO comment(content,author_id,bind_id,publish_time)
         VALUES (#{content},#{authorId},#{bindId},#{publishTime})
     </insert>
+
+    <select id="load" resultType="com.xktime.model.comment.pos.Comment">
+        SELECT * FROM comment
+        <where>
+            <if test="bindId != null">
+                bind_id = #{bindId}
+            </if>
+            <if test="type != null">
+                AND `type` = #{loadCommentType}
+            </if>
+        </where>
+        ORDER BY publish_time DESC
+        LIMIT #{size} OFFSET #{pageStartIndex}
+    </select>
 </mapper>

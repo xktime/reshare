@@ -1,11 +1,11 @@
-package com.xktime.model.article.dtos.c2s;
+package com.xktime.model.comment.dtos.c2s;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(description = "请求加载文章dto")
+@ApiModel(description = "请求加载评论dto")
 public class LoadDto {
 
     @ApiModelProperty("分页size")
@@ -14,18 +14,13 @@ public class LoadDto {
     @ApiModelProperty("当前页码")
     int page;
 
-    @ApiModelProperty("加载类型 爬取文章:crawler 原创文章:original 用户推荐文章:recommend")
-    String loadArticleType;
-
-    @ApiModelProperty("当前用户token")
-    String token;
+    @ApiModelProperty("评论类型")
+    String loadCommentType;
 
     @ApiModelProperty("文章id")
-    long articleId;
+    long bindId;
 
     @ApiModelProperty("作者id")
     long authorId;
 
 }
-
-
