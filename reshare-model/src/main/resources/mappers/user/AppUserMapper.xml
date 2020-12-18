@@ -20,8 +20,8 @@
     <!--    </resultMap>-->
 
     <insert id="saveUser" parameterType="com.xktime.model.user.pos.AppUser">
-        INSERT INTO app_user(id,user_id,user_name,account,password,phone_number,image,sex,is_certification,is_identity_authentication,status,flag,region,birthday,created_time)
-        VALUES (#{id},#{userId},#{userName},#{account},#{password},#{phoneNumber},#{image},#{sex},#{isCertification},#{isIdentityAuthentication},#{status},#{flag},#{region},#{birthday},#{createTime})
+        INSERT INTO app_user(id,user_id,user_name,account,password,phone_number,profile,sex,is_certification,is_identity_authentication,status,flag,region,birthday,created_time)
+        VALUES (#{id},#{userId},#{userName},#{account},#{password},#{phoneNumber},#{profile},#{sex},#{isCertification},#{isIdentityAuthentication},#{status},#{flag},#{region},#{birthday},#{createTime})
     </insert>
 
     <select id="queryByAccount" resultType="com.xktime.model.user.pos.AppUser">

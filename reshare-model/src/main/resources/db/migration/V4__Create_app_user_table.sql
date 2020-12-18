@@ -6,7 +6,7 @@ CREATE TABLE `app_user` (
   `account` varchar(30) NOT NULL COMMENT '登陆帐户',
   `password` varchar(50) NOT NULL COMMENT '密码 BASE64加密',
   `phone_number` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '手机号',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '头像',
+  `profile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '头像',
   `sex` tinyint(1) unsigned DEFAULT '0' COMMENT '0 男\r\n            1 女\r\n            2 未知',
   `is_certification` tinyint(1) unsigned DEFAULT '0' COMMENT '0 未\r\n            1 是',
   `is_identity_authentication` tinyint(1) DEFAULT '0' COMMENT '是否身份认证',

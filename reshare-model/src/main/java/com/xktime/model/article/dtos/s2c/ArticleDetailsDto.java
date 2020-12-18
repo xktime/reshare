@@ -1,8 +1,10 @@
 package com.xktime.model.article.dtos.s2c;
 
+import com.xktime.model.comment.dtos.s2c.CommentDto;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class ArticleDetailsDto {
@@ -22,4 +24,5 @@ public class ArticleDetailsDto {
     private String origin;
     private String content;
     private String tag;
+    private List<CommentDto> comments;
 }

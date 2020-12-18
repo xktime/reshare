@@ -17,7 +17,7 @@
                 AND `type` = #{loadCommentType}
             </if>
         </where>
-        ORDER BY publish_time DESC
+        ORDER BY publish_time ASC
         LIMIT #{size} OFFSET #{pageStartIndex}
     </select>
 </mapper>

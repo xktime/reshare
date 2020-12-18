@@ -13,7 +13,7 @@ public class AppUser {
     private String account;
     private String password;
     private String phoneNumber;
-    private String image;
+    private String profile;
     private String region;
     private int sex;
     private int isCertification;

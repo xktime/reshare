@@ -41,7 +41,7 @@ public class UserController {
         user.setCreateTime(new Date());
         user.setUserName(dto.getAccount());
         user.setUserId(snowflakeId.nextId());
-        user.setImage("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+        user.setProfile("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
         appUserService.save(user);
         return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstants.LOGIN_TOKEN_BASE64_KEY));
     }
