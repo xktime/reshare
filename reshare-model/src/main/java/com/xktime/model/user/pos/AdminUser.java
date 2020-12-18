@@ -13,6 +13,6 @@ public class AdminUser {
     private String deptId;
     private int locked;
     private String remark;
-    private byte userType;
-    private byte enable;
+    private int userType;
+    private int enable;
 }

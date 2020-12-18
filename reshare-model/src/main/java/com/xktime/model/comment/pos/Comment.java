@@ -13,5 +13,5 @@ public class Comment {
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publishTime;
-    private byte type;
+    private int type;
 }

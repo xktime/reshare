@@ -28,5 +28,5 @@ public class Article {
     private String origin;
     private String content;
     private String tag;
-    private byte status;
+    private int status;
 }

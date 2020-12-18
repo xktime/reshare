@@ -13,7 +13,7 @@
             <if test="bindId != null">
                 bind_id = #{bindId}
             </if>
-            <if test="type != null">
+            <if test="loadCommentType != null">
                 AND `type` = #{loadCommentType}
             </if>
         </where>

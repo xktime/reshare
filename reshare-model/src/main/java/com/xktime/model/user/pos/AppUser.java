@@ -15,10 +15,10 @@ public class AppUser {
     private String phoneNumber;
     private String image;
     private String region;
-    private byte sex;
-    private byte isCertification;
-    private byte isIdentityAuthentication;
-    private byte status;
+    private int sex;
+    private int isCertification;
+    private int isIdentityAuthentication;
+    private int status;
     private int flag;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
