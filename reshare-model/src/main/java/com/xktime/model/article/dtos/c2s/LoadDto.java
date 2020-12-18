@@ -25,7 +25,6 @@ public class LoadDto {
 
     @ApiModelProperty("作者id")
     long authorId;
-
 }
 
 

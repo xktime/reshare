@@ -10,7 +10,6 @@ import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
 import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
 import com.xktime.model.article.enums.ArticleTypeEnum;
 import com.xktime.model.article.pos.Article;
-import com.xktime.model.common.constant.GlobalConstant;
 import com.xktime.model.util.TransferUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -41,12 +40,6 @@ public class LoadController {
         if (service == null) {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
-        if (dto.getSize() <= 0) {
-            dto.setSize(GlobalConstant.DEFAULT_LOAD_ARTICLE_SIZE);
-        }
-        if (dto.getPage() <= 0) {
-            dto.setPage(1);
-        }
         LoadDo loadDo = TransferUtils.toDO(dto);
         return service.loadVerifyArticleDtoListNotNull(loadDo);
     }
@@ -55,12 +48,6 @@ public class LoadController {
     public List<SimpleArticleDto> article(@RequestBody LoadDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             throw new NullPointerException("LoadArticleType为空");
-        }
-        if (dto.getSize() <= 0) {
-            dto.setSize(GlobalConstant.DEFAULT_LOAD_ARTICLE_SIZE);
-        }
-        if (dto.getPage() <= 0) {
-            dto.setPage(1);
         }
         LoadDo loadDo = TransferUtils.toDO(dto);
         if (!StringUtils.isEmpty(dto.getToken())

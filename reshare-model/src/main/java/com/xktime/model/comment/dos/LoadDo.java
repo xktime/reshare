@@ -1,5 +1,6 @@
 package com.xktime.model.comment.dos;
 
+import com.xktime.model.common.constant.GlobalConstant;
 import lombok.Data;
 
 @Data
@@ -12,9 +13,17 @@ public class LoadDo {
 
     int pageStartIndex;//该页第一条数据在数据库的下标
 
-    long authorId;
+    long authorId;//作者id
 
-    long bindId;
+    long bindId;//所绑定的id
+
+    public int getSize() {
+        return size == 0 ? GlobalConstant.DEFAULT_LOAD_COMMENT_SIZE : size;
+    }
+
+    public int getPage() {
+        return page == 0 ? 1 : page;
+    }
 
     public int getPageStartIndex() {
         return Math.max((this.getPage() - 1) * this.getSize(), 0);
