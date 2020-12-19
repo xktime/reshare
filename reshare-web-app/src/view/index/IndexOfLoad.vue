@@ -23,15 +23,15 @@
           <el-row v-for="data in tableData" :key="data.id">
             <!--头像-->
             <el-col :span="5">
-              <el-avatar v-if="data.url != null" :size="85" fit="contain" :src="data.url"></el-avatar>
+              <el-avatar v-if="data.authorProfile != null" :size="85" fit="contain" :src="data.authorProfile"></el-avatar>
               <el-avatar v-else :size="85" fit="contain" icon="el-icon-user-solid"></el-avatar>
             </el-col>
             <el-col :span="19">
               <span class="item_title">
                 <el-link :href="data.url" target="_blank" :underline="false">{{data.title}}</el-link>
               </span><br><br>
-              <span class="text-desc"><span>{{data.status}}</span> 个回复 •
-                <span>{{data.status}}</span> 次浏览 •
+              <span class="text-desc"><span>{{data.comment}}</span> 个回复 •
+                <span>{{data.views}}</span> 次浏览 •
                 <span>{{new Date(data.publishTime).toLocaleString()}}</span>
               </span>
               <el-divider></el-divider>
@@ -49,60 +49,10 @@
     export default {
         data() {
             return {
-                // tableData: [],
+                tableData: [],
                 page: 1,
                 scrollDisabled: false,
                 type: '',
-                tableData: [
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        status: 1,
-                        title: "123",
-                        publishTime: 1598430915141
-                    },
-                    {
-                        url: null,
-                        status: 2,
-                        title: "123",
-                        publishTime: 1598430915142
-                    },
-                    {
-                        url: "/#/detail/2020202020",
-                        status: 3,
-                        title: "123666",
-                        publishTime: 1598430915143
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        status: 4,
-                        title: "123",
-                        publishTime: 1598430915145
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        status: 4,
-                        title: "123",
-                        publishTime: 1598430915149
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        status: 4,
-                        title: "123",
-                        publishTime: 1598430915144
-                    },
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        status: 4,
-                        title: "123",
-                        publishTime: 1598430915144
-                    }
-                    ,
-                    {
-                        url: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-                        status: 4,
-                        title: "123",
-                        publishTime: 1598430915144
-                    }],
             }
         },
         methods: {

@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 public class AppUser {
-    private Long id;
+    private long id;
     private long userId;
     private String userName;
     private String account;

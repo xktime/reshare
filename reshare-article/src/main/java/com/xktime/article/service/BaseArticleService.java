@@ -53,14 +53,9 @@ public interface BaseArticleService<T> {
         //格式转换
         if (articles != null && !articles.isEmpty()) {
             for (Object article : articles) {
-                SimpleArticleDto verifyArticle = new SimpleArticleDto();
-                BeanUtils.copyProperties(article, verifyArticle);
-                //url为空表示不是爬取的文章
-                if (StringUtils.isEmpty(verifyArticle.getUrl())) {
-                    String url = "/" + verifyArticle.getId();
-                    verifyArticle.setUrl(url);
-                }
-                articleList.add(verifyArticle);
+                SimpleArticleDto simpleArticle = new SimpleArticleDto();
+                BeanUtils.copyProperties(article, simpleArticle);
+                articleList.add(simpleArticle);
             }
         }
         return articleList;

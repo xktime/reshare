@@ -1,5 +1,6 @@
 package com.xktime.model.article.dtos.s2c;
 
+import com.xktime.model.user.dtos.s2c.SimpleUserDto;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
@@ -10,11 +11,9 @@ import java.util.Date;
 public class SimpleArticleDto {
     private long id;
     private String title;
-    private String authorName;
-    private long authorId;
+    private SimpleUserDto author;
     private String channelName;
-    private String labels;
     private Date publishTime;
-    private String url;
-    private String origin;
+    private int comment;
+    private int views;
 }
