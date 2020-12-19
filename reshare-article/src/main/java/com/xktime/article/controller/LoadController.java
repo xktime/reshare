@@ -31,8 +31,8 @@ public class LoadController {
     @Autowired
     ArticleServiceImpl articleService;
 
-    @PostMapping("verifyArticle")
-    public List<VerifyArticleDto> verifyArticle(@RequestBody LoadDto dto) {
+    @PostMapping("verifyArticles")
+    public List<VerifyArticleDto> verifyArticles(@RequestBody LoadDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             throw new NullPointerException("LoadArticleType为空");
         }
@@ -41,11 +41,11 @@ public class LoadController {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
         LoadDo loadDo = TransferUtils.toDO(dto);
-        return service.loadVerifyArticleDtoListNotNull(loadDo);
+        return service.loadVerifyArticles(loadDo);
     }
 
-    @PostMapping("article")
-    public List<SimpleArticleDto> article(@RequestBody LoadDto dto) {
+    @PostMapping("simpleArticles")
+    public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
         if (StringUtils.isEmpty(dto.getLoadArticleType())) {
             throw new NullPointerException("LoadArticleType为空");
         }
@@ -55,7 +55,7 @@ public class LoadController {
             //todo 根据玩家推荐文章
             return null;
         } else {
-            return articleService.loadArticleDtoListNotNull(loadDo);
+            return articleService.loadSimpleArticles(loadDo);
         }
     }
 

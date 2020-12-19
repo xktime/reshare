@@ -39,7 +39,7 @@ public class ArticleController {
         ResponseResult<List<SimpleArticleDto>> result = new ResponseResult<>();
         try {
             result.ok(restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/load/article",
+                    ARTICLE_REST_URL_PREFIX + "/load/simpleArticles",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
                     new ParameterizedTypeReference<List<SimpleArticleDto>>() {

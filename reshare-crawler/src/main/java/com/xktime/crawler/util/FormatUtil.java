@@ -9,7 +9,7 @@ import java.util.Iterator;
 public class FormatUtil {
 
     public static Elements contentFormat(Elements elements) {
-        if (elements != null) {
+        if (elements != null && elements.first() != null) {
             Elements contents = elements.first().children();
             Iterator<Element> itr = contents.iterator();
             while (itr.hasNext()) {

@@ -3,10 +3,7 @@ package com.xktime.article.service;
 import com.xktime.model.article.dos.LoadDo;
 import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
 import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,44 +18,8 @@ public interface BaseArticleService<T> {
 
     List<T> loadArticles(LoadDo loadDo);
 
-    default List<VerifyArticleDto> loadVerifyArticleDtoListNotNull(LoadDo loadDo) {
-        List<VerifyArticleDto> verifyArticleList = new ArrayList<>();
-        if (loadDo == null || loadDo.getSize() <= 0 || StringUtils.isEmpty(loadDo.getLoadArticleType())) {
-            return verifyArticleList;
-        }
-        List articles = loadArticles(loadDo);
-        //格式转换
-        if (articles != null && !articles.isEmpty()) {
-            for (Object article : articles) {
-                VerifyArticleDto verifyArticle = new VerifyArticleDto();
-                BeanUtils.copyProperties(article, verifyArticle);
-                //url为空表示不是爬取的文章
-                //todo 修改转换成地址url
-                if (StringUtils.isEmpty(verifyArticle.getUrl())) {
-                    String url = "/" + verifyArticle.getId();
-                    verifyArticle.setUrl(url);
-                }
-                verifyArticleList.add(verifyArticle);
-            }
-        }
-        return verifyArticleList;
-    }
+    List<VerifyArticleDto> loadVerifyArticles(LoadDo loadDo);
 
-    default List<SimpleArticleDto> loadArticleDtoListNotNull(LoadDo loadDo) {
-        List<SimpleArticleDto> articleList = new ArrayList<>();
-        if (loadDo == null || loadDo.getSize() <= 0 || StringUtils.isEmpty(loadDo.getLoadArticleType())) {
-            return articleList;
-        }
-        List articles = loadArticles(loadDo);
-        //格式转换
-        if (articles != null && !articles.isEmpty()) {
-            for (Object article : articles) {
-                SimpleArticleDto simpleArticle = new SimpleArticleDto();
-                BeanUtils.copyProperties(article, simpleArticle);
-                articleList.add(simpleArticle);
-            }
-        }
-        return articleList;
-    }
+    List<SimpleArticleDto> loadSimpleArticles(LoadDo loadDo);
 
 }

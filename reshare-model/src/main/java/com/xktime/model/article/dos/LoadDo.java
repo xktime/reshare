@@ -9,8 +9,6 @@ public class LoadDo {
 
     int page;//当前页码
 
-    String loadArticleType;//加载类型
-
     String token;//当前用户token
 
     int pageStartIndex;//该页第一条数据在数据库的下标

@@ -54,6 +54,7 @@ public class ArticleController {
         article.setAuthorId(author.getUserId());
         article.setAuthorName(author.getUserName());
         originalBaseArticleService.save(article);
+        //todo 插入VerifyArticle时设置文章url
         //todo 符合某项规则直接 articleService.save(article)
         return result;
     }

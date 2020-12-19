@@ -41,7 +41,7 @@ public class AdminController {
         ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
         try {
             responseResult.ok(restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/load/verifyArticle",
+                    ARTICLE_REST_URL_PREFIX + "/load/verifyArticles",
                     HttpMethod.POST,
                     new HttpEntity<>(dto),
                     new ParameterizedTypeReference<List<VerifyArticleDto>>() {
