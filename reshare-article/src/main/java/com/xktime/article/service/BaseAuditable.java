@@ -6,6 +6,7 @@ import com.xktime.model.article.dos.VerifyDo;
 import com.xktime.model.article.dtos.c2s.VerifyDto;
 import com.xktime.model.article.pos.Article;
 import com.xktime.model.article.pos.BaseVerifyArticle;
+import com.xktime.model.common.enums.ArticleStatusEnum;
 import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,13 @@ public abstract class BaseAuditable {
             throw new NullPointerException("文章为空");
         }
         VerifyDo verifyDo = TransferUtils.toDO(dto);
-        if (dto.getStatus() == 2) {
+        if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
             //如果是通过审核插入数据库
             Article article = new Article();
             BeanUtils.copyProperties(verifyArticle, article);
             articleService.save(article);
             verifyDo.setBindId(article.getId());
-        } else if (dto.getStatus() == 1) {
+        } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {
             //如果是不通过从数据库删除
             articleService.removeById(verifyArticle.getBindId());
             verifyDo.setBindId(0);

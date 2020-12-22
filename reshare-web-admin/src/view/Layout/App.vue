@@ -357,7 +357,7 @@
 
     .main-container {
       /*margin-top: 50px;*/
-      padding: 6px;
+      /*padding: 6px;*/
       min-height: calc(~'100vh - 101px');
     }
   }

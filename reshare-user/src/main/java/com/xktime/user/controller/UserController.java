@@ -2,7 +2,7 @@ package com.xktime.user.controller;
 
 import com.xktime.model.account.dtos.RegisterDto;
 import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.CodeConstants;
+import com.xktime.model.common.constant.CodeConstant;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pos.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
@@ -36,13 +36,13 @@ public class UserController {
         }
         AppUser user = new AppUser();
         BeanUtils.copyProperties(dto, user);
-        String password = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
+        String password = CodeUtil.encryptBase64(dto.getPassword(), CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
         user.setPassword(password);
         user.setCreateTime(new Date());
         user.setUserName(dto.getAccount());
         user.setUserId(snowflakeId.nextId());
         user.setProfile("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
         appUserService.save(user);
-        return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstants.LOGIN_TOKEN_BASE64_KEY));
+        return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstant.LOGIN_TOKEN_BASE64_KEY));
     }
 }

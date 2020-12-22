@@ -2,7 +2,7 @@ package com.xktime.user.controller;
 
 import com.xktime.model.account.dtos.LoginDto;
 import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.CodeConstants;
+import com.xktime.model.common.constant.CodeConstant;
 import com.xktime.model.common.enums.HttpCodeEnum;
 import com.xktime.model.user.pos.AdminUser;
 import com.xktime.model.user.pos.AppUser;
@@ -36,7 +36,7 @@ public class LoginController {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
         String password = adminUser.getPassword();
-        String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
+        String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
             return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }
@@ -54,7 +54,7 @@ public class LoginController {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
         String password = user.getPassword();
-        String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstants.LOGIN_PASSWORD_BASE64_KEY);
+        String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
             return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
         }

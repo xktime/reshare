@@ -40,7 +40,7 @@
 
 <style>
   .el-container {
-    height: 82vh;
+    height: 88vh;
     width: 100%;
     border: 1px solid #eee;
   }
