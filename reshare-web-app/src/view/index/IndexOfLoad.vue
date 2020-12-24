@@ -1,12 +1,12 @@
 <template>
-  <el-container style="background-color: #E2E2E2;overflow:auto; max-height: 97vh;"
+  <el-container class="main-container"
                 v-infinite-scroll="load"
                 infinite-scroll-immediate="true"
                 :infinite-scroll-disabled="scrollDisabled">
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-    <el-container class="container">
+    <el-container class="load-container">
       <el-aside class="tag">
           <el-row>
             <el-button class="tag-button" type="primary" @click="loadArticle(recommend)" plain>推荐</el-button>
@@ -153,12 +153,20 @@
     margin-bottom:15px;
   }
 
-  .container {
+  .main-container {
+    background-color: #E2E2E2;
+    overflow:auto;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+
+  .load-container {
     background-color: #E2E2E2;
     color: #333;
     text-align: center;
     margin: 0 auto;
-    max-width: 40%;
+    min-width: 45%;
+    max-width: 45%;
     min-height: 93%;
     max-height: 93%;
   }
