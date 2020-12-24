@@ -79,7 +79,7 @@
                     //如果切换加载类型，清空之前的数据
                     this.tableData = [];
                 }
-                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + type;
+                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type);
                 const _this = this;
                 this.axios.get(api).then((response) => {
                     if (response.data.code !== 200) {
@@ -107,7 +107,7 @@
                 }
             },
             audit(row, status) {
-                const api = this.$verifyUrl + '?articleId=' + row.id + '&status=' + status + '&type=' + this.$route.params.type;
+                const api = this.$verifyUrl + '?articleId=' + row.id + '&status=' + status + '&type=' + this.getType(this.$route.params.type);
                 this.axios.get(api).then((response) => {
                     if (response.data.code != 200) {
                         this.$alert(response.data.errorMessage);
@@ -115,7 +115,17 @@
                     }
                     row.status = status;
                 });
-            }
+            },
+            getType(type) {
+                switch (type) {
+                    case 'crawler':
+                        return 1;
+                    case 'original':
+                        return 2;
+                    default:
+                        return 0;
+                }
+            },
         }
     }
     ;

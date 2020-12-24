@@ -7,8 +7,8 @@ export default {
     Vue.prototype.$loginUrl = Vue.prototype.$apiUrl + '/admin/login';
     Vue.prototype.$verifyUrl = Vue.prototype.$apiUrl + '/admin/verify';
 
-    Vue.prototype.$originalArticleType='original';
-    Vue.prototype.$crawlerArticleType='crawler';
-    Vue.prototype.$recommendArticleType='recommend';
+    Vue.prototype.$crawlerArticleType = 1;
+    Vue.prototype.$originalArticleType = 2;
+    Vue.prototype.$recommendArticleType = 3;
   }
 }

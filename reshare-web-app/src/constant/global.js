@@ -8,8 +8,8 @@ export default {
     Vue.prototype.$publishUrl = Vue.prototype.$apiUrl + '/account/publish';
     Vue.prototype.$registerUrl = Vue.prototype.$apiUrl + '/account/register';
 
-    Vue.prototype.$originalArticleType='original';
-    Vue.prototype.$crawlerArticleType='crawler';
-    Vue.prototype.$recommendArticleType='recommend';
+    Vue.prototype.$crawlerArticleType = 1;
+    Vue.prototype.$originalArticleType = 2;
+    Vue.prototype.$recommendArticleType = 3;
   }
 }
