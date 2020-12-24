@@ -69,7 +69,7 @@
                 }
                 let data = new FormData();
                 data.append("page", this.page);
-                data.append("loadArticleType", this.type);
+                data.append("loadArticleType", this.getType(this.type));
                 if (this.$store.state.loging) {
                     data.append("token", this.$store.state.token);
                 }
@@ -93,19 +93,31 @@
                 this.$router.push('/' + type);
                 this.load();
             },
+            getType(type) {
+                switch (type) {
+                    case this.$crawlerArticleType.dec:
+                        return this.$crawlerArticleType.type;
+                    case this.$originalArticleType.dec:
+                        return this.$originalArticleType.type;
+                    case this.$recommendArticleType.dec:
+                        return this.$recommendArticleType.type;
+                    default:
+                        return 0;
+                }
+            },
         },
         components: {
             app_header,
         },
         computed: {
             original() {
-                return this.$originalArticleType;
+                return this.$originalArticleType.dec;
             },
             crawler() {
-                return this.$crawlerArticleType;
+                return this.$crawlerArticleType.dec;
             },
             recommend() {
-                return this.$recommendArticleType;
+                return this.$recommendArticleType.dec;
             },
         }
     }

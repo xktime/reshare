@@ -118,10 +118,10 @@
             },
             getType(type) {
                 switch (type) {
-                    case 'crawler':
-                        return 1;
-                    case 'original':
-                        return 2;
+                    case this.$crawlerArticleType.dec:
+                        return this.$crawlerArticleType.type;
+                    case this.$originalArticleType.dec:
+                        return this.$originalArticleType.type;
                     default:
                         return 0;
                 }

@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 let menu = {};
 
 /**
@@ -24,12 +26,12 @@ let icon = menu.font_icon.children;
 
 icon.font_awesome = {
   name: '爬虫文章',
-  path: '/verify/crawler',
+  path: '/verify/' + Vue.prototype.$crawlerArticleType.dec,
 
 };
 icon.element_icon = {
   name: '原创文章',
-  path: '/verify/original',
+  path: '/verify/' + Vue.prototype.$originalArticleType.dec,
 };
 
 /**
@@ -81,7 +83,6 @@ CategoryManage.category = {
   name: '分类列表',
   path: '/category_manage',
 };
-
 
 
 menu.permission_manage = {
