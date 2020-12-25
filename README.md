@@ -4,43 +4,43 @@
    
 ## 模块介绍  
 
-##### reshare-web-admin
-    后台管理前端页面
-    基于https://github.com/imxiaoer/ElementUIAdmin项目修改
+##### reshare-web-admin:
+   - 后台管理前端页面
+   - 基于https://github.com/imxiaoer/ElementUIAdmin项目修改
     
-##### reshare-web-app
-    应用前端页面
+##### reshare-web-app:
+   - 应用前端页面
 
-##### reshare-common
-    公共配置
-    模块端口以及数据源配置都在该模块
+##### reshare-common:
+   - 公共配置
+   - 模块端口以及数据源配置都在该模块
 
-##### reshare-model
-    实体类模块
+##### reshare-model:
+   - 实体类模块
     
-##### reshare-apis
-    公共接口模块
-    启动模块后访问 [swagger接口文档](http://localhost/swagger-ui.html)
+##### reshare-apis:
+   - 公共接口模块
+   - 启动模块后访问 [swagger接口文档](http://localhost/swagger-ui.html)
     
-##### reshare-utils
-    公共工具模块
+##### reshare-utils:
+   - 公共工具模块
     
-##### reshare-eureka-registry
-    Eureka注册中心
+##### reshare-eureka-registry:
+   - Eureka注册中心
     
-##### reshare-crawler
-    爬虫模块
-    技术栈：WebMagic
-    对一些技术论坛文章进行爬取
+##### reshare-crawler:
+   - 爬虫模块
+   - 技术栈：WebMagic
+   - 对一些技术论坛文章进行爬取
     
-##### reshare-article
-    文章管理模块
+##### reshare-article:
+   - 文章管理模块
     
-##### reshare-comment
-    评论管理模块
+##### reshare-comment:
+   - 评论管理模块
     
-##### reshare-user
-    用户管理模块
+##### reshare-user:
+   - 用户管理模块
     
 ## 快速启动
 
