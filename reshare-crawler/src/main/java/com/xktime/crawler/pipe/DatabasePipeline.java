@@ -2,7 +2,7 @@ package com.xktime.crawler.pipe;
 
 
 import com.xktime.article.service.impl.CrawlerBaseArticleServiceImpl;
-import com.xktime.model.article.po.CrawlerArticle;
+import com.xktime.model.pojo.article.entity.CrawlerArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
