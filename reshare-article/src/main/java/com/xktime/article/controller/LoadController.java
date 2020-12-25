@@ -3,13 +3,13 @@ package com.xktime.article.controller;
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dtos.c2s.LoadDto;
-import com.xktime.model.article.dtos.s2c.ArticleDetailsDto;
-import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import com.xktime.model.article.enums.ArticleTypeEnum;
-import com.xktime.model.article.pos.Article;
+import com.xktime.model.pojo.article.dto.c2s.LoadDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.article.entity.Article;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.type.ArticleTypeEnum;
 import com.xktime.model.util.TransferUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -37,19 +37,19 @@ public class LoadController {
         if (service == null) {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
-        LoadDo loadDo = TransferUtils.toDO(dto);
-        return service.loadVerifyArticles(loadDo);
+        LoadQuery loadQuery = TransferUtils.toQuery(dto);
+        return service.loadVerifyArticles(loadQuery);
     }
 
     @PostMapping("simpleArticles")
     public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
-        LoadDo loadDo = TransferUtils.toDO(dto);
+        LoadQuery loadQuery = TransferUtils.toQuery(dto);
         if (!StringUtils.isEmpty(dto.getToken())
                 && dto.getLoadArticleType() == ArticleTypeEnum.RECOMMEND_ARTICLE.getType()) {
             //todo 根据玩家推荐文章
             return null;
         } else {
-            return articleService.loadSimpleArticles(loadDo);
+            return articleService.loadSimpleArticles(loadQuery);
         }
     }
 

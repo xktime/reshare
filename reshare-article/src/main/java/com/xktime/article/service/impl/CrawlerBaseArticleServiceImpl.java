@@ -2,11 +2,11 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import com.xktime.model.article.pos.CrawlerArticle;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.article.entity.CrawlerArticle;
 import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,14 +47,14 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
     }
 
     @Override
-    public List<CrawlerArticle> loadArticles(LoadDo loadDo) {
-        return crawlerArticleMapper.load(loadDo);
+    public List<CrawlerArticle> loadArticles(LoadQuery loadQuery) {
+        return crawlerArticleMapper.load(loadQuery);
     }
 
     @Override
-    public List<VerifyArticleDto> loadVerifyArticles(LoadDo loadDo) {
+    public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
         List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-        List<CrawlerArticle> articles = loadArticles(loadDo);
+        List<CrawlerArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (CrawlerArticle article : articles) {
                 VerifyArticleDto verifyArticle = TransferUtils.toVerifyArticleDto(article);
@@ -65,9 +65,9 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
     }
 
     @Override
-    public List<SimpleArticleDto> loadSimpleArticles(LoadDo loadDo) {
+    public List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery) {
         List<SimpleArticleDto> SimpleArticles = new ArrayList<>();
-        List<CrawlerArticle> articles = loadArticles(loadDo);
+        List<CrawlerArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (CrawlerArticle article : articles) {
                 SimpleArticleDto simpleArticle = TransferUtils.toSimpleArticleDto(article);
@@ -78,8 +78,8 @@ public class CrawlerBaseArticleServiceImpl extends BaseAuditable implements Base
     }
 
     @Override
-    public void modifyState(VerifyDo verifyDo) {
-        crawlerArticleMapper.modifyState(verifyDo);
+    public void modifyState(VerifyQuery verifyQuery) {
+        crawlerArticleMapper.modifyState(verifyQuery);
     }
 
     public int getUrlCount(String url) {

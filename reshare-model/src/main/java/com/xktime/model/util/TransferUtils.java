@@ -1,32 +1,34 @@
 package com.xktime.model.util;
 
-import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.dtos.c2s.VerifyDto;
-import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import com.xktime.model.article.pos.Article;
-import com.xktime.model.article.pos.CrawlerArticle;
-import com.xktime.model.article.pos.OriginalArticle;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.article.entity.Article;
+import com.xktime.model.pojo.article.entity.CrawlerArticle;
+import com.xktime.model.pojo.article.entity.OriginalArticle;
+import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
 import org.springframework.beans.BeanUtils;
 
 public class TransferUtils {
 
-    public static com.xktime.model.article.dos.LoadDo toDO(com.xktime.model.article.dtos.c2s.LoadDto dto) {
-        com.xktime.model.article.dos.LoadDo loadDo = new com.xktime.model.article.dos.LoadDo();
-        BeanUtils.copyProperties(dto, loadDo);
-        return loadDo;
+    public static LoadQuery toQuery(com.xktime.model.pojo.article.dto.c2s.LoadDto dto) {
+        LoadQuery loadQuery = new LoadQuery();
+        BeanUtils.copyProperties(dto, loadQuery);
+        return loadQuery;
     }
 
-    public static com.xktime.model.comment.dos.LoadDo toDO(com.xktime.model.comment.dtos.c2s.LoadDto dto) {
-        com.xktime.model.comment.dos.LoadDo loadDo = new com.xktime.model.comment.dos.LoadDo();
-        BeanUtils.copyProperties(dto, loadDo);
-        return loadDo;
+    public static com.xktime.model.pojo.comment.query.LoadQuery toQuery(LoadDto dto) {
+        com.xktime.model.pojo.comment.query.LoadQuery loadQuery = new com.xktime.model.pojo.comment.query.LoadQuery();
+        BeanUtils.copyProperties(dto, loadQuery);
+        return loadQuery;
     }
 
-    public static VerifyDo toDO(VerifyDto dto) {
-        VerifyDo verifyDo = new VerifyDo();
-        BeanUtils.copyProperties(dto, verifyDo);
-        return verifyDo;
+    public static VerifyQuery toQuery(VerifyDto dto) {
+        VerifyQuery verifyQuery = new VerifyQuery();
+        BeanUtils.copyProperties(dto, verifyQuery);
+        return verifyQuery;
     }
 
     public static VerifyArticleDto toVerifyArticleDto(Article article) {

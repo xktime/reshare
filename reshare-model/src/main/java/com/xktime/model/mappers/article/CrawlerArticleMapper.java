@@ -1,8 +1,8 @@
 package com.xktime.model.mappers.article;
 
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.pos.CrawlerArticle;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.pojo.article.entity.CrawlerArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -17,9 +17,9 @@ public interface CrawlerArticleMapper {
 
     int getUrlCount(@Param("url") String url);
 
-    List<CrawlerArticle> load(LoadDo loadDo);
+    List<CrawlerArticle> load(LoadQuery loadQuery);
 
-    void modifyState(VerifyDo verifyDo);
+    void modifyState(VerifyQuery verifyQuery);
 
     CrawlerArticle findById(@Param("id") long id);
 

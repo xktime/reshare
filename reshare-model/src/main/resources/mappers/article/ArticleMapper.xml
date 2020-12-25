@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xktime.model.mappers.article.ArticleMapper">
-    <!--    <resultMap id="article" type="com.xktime.model.article.pos.Article">-->
+    <!--    <resultMap id="article" type="com.xktime.model.article.po.Article">-->
     <!--        <result column="title" property="title"/>-->
     <!--        <result column="content" property="content"/>-->
     <!--        <result column="author_id" property="authorId"/>-->
@@ -18,18 +18,18 @@
     <!--        <result column="origin" property="origin"/>-->
     <!--        <result column="status" property="status"/>-->
     <!--    </resultMap>-->
-    <insert id="saveArticle" parameterType="com.xktime.model.article.pos.Article" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveArticle" parameterType="com.xktime.model.pojo.article.entity.Article" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO article(title,content,author_id,author_name,channel_id,channel_name,images,labels,likes,collection,comment,views,publish_time,origin)
         VALUES (#{title},#{content},#{authorId},#{authorName},#{channelId},#{channelName},#{images},#{labels},#{likes},#{collection},#{comment},#{views},#{publishTime},#{origin})
     </insert>
 
-    <select id="load" resultType="com.xktime.model.article.pos.Article">
+    <select id="load" resultType="com.xktime.model.pojo.article.entity.Article">
         SELECT * FROM article
         ORDER BY publish_time DESC
         LIMIT #{size} OFFSET #{pageStartIndex}
     </select>
 
-    <select id="findById" resultType="com.xktime.model.article.pos.Article">
+    <select id="findById" resultType="com.xktime.model.pojo.article.entity.Article">
         SELECT * FROM article WHERE id=#{id}
     </select>
 
@@ -37,7 +37,7 @@
         DELETE FROM article WHERE id=#{id}
     </select>
 
-    <update id="update" parameterType="com.xktime.model.article.pos.Article">
+    <update id="update" parameterType="com.xktime.model.pojo.article.entity.Article">
         UPDATE user SET title = #{title}, content = #{content}, author_id = #{authorId}, channel_id = #{channelId}, channel_name = #{channelName}, images = #{images}, labels = #{labels}
         WHERE id = #{id}
     </update>

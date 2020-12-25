@@ -2,11 +2,11 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalBaseArticleServiceImpl;
-import com.xktime.model.account.dtos.PublishDto;
-import com.xktime.model.article.pos.OriginalArticle;
-import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.HttpCodeEnum;
-import com.xktime.model.user.pos.AppUser;
+import com.xktime.model.pojo.account.dto.PublishDto;
+import com.xktime.model.pojo.article.entity.OriginalArticle;
+import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.common.type.HttpCodeEnum;
+import com.xktime.model.pojo.user.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;

@@ -1,6 +1,6 @@
 package com.xktime.user.service;
 
-import com.xktime.model.common.constant.CodeConstant;
+import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.utils.CodeUtil;
 import org.apache.ibatis.annotations.Param;
 

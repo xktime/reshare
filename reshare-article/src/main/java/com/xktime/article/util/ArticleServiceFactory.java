@@ -1,7 +1,7 @@
 package com.xktime.article.util;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.article.enums.ArticleTypeEnum;
+import com.xktime.model.pojo.article.type.ArticleTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,11 @@
 package com.xktime.apis.admin;
 
-import com.xktime.model.account.dtos.LoginDto;
-import com.xktime.model.article.dtos.c2s.LoadDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import com.xktime.model.article.dtos.c2s.VerifyDto;
-import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.HttpCodeEnum;
+import com.xktime.model.pojo.account.dto.LoginDto;
+import com.xktime.model.pojo.article.dto.c2s.LoadDto;
+import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.common.type.HttpCodeEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

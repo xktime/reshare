@@ -1,7 +1,7 @@
 package com.xktime.user.service.impl;
 
 import com.xktime.model.mappers.user.AppUserMapper;
-import com.xktime.model.user.pos.AppUser;
+import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.BaseUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
 package com.xktime.apis.app;
 
-import com.xktime.model.account.dtos.PublishDto;
-import com.xktime.model.account.dtos.RegisterDto;
-import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.enums.HttpCodeEnum;
+import com.xktime.model.pojo.account.dto.PublishDto;
+import com.xktime.model.pojo.account.dto.RegisterDto;
+import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.common.type.HttpCodeEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

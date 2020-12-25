@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xktime.model.mappers.article.OriginalArticleMapper">
 
-    <!--    <resultMap id="originalArticle" type="com.xktime.model.article.pos.OriginalArticle">-->
+    <!--    <resultMap id="originalArticle" type="com.xktime.model.pojo.article.entity.OriginalArticle">-->
     <!--        <result column="title" property="title"/>-->
     <!--        <result column="content" property="content"/>-->
     <!--        <result column="author_name" property="authorName"/>-->
@@ -14,14 +14,14 @@
     <!--        <result column="status" property="status"/>-->
     <!--    </resultMap>-->
 
-    <insert id="saveArticle" parameterType="com.xktime.model.article.pos.OriginalArticle"
+    <insert id="saveArticle" parameterType="com.xktime.model.pojo.article.entity.OriginalArticle"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO original_article(title,content,author_name,author_id,channel_name,labels,publish_time,origin,url)
         VALUES (#{title},#{content},#{authorName},#{authorId},#{channelName},#{labels},#{publishTime},#{origin},#{url})
     </insert>
 
 
-    <select id="load" resultType="com.xktime.model.article.pos.OriginalArticle">
+    <select id="load" resultType="com.xktime.model.pojo.article.entity.OriginalArticle">
         SELECT * FROM original_article
         ORDER BY publish_time DESC
         LIMIT #{size} OFFSET #{pageStartIndex}
@@ -31,7 +31,7 @@
         UPDATE original_article SET  status= #{status}, bind_id=#{bindId} WHERE id = #{articleId};
     </update>
 
-    <select id="findById" resultType="com.xktime.model.article.pos.OriginalArticle">
+    <select id="findById" resultType="com.xktime.model.pojo.article.entity.OriginalArticle">
         SELECT * FROM original_article WHERE id=#{id}
     </select>
 </mapper>

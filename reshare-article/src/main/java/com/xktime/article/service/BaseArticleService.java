@@ -1,8 +1,8 @@
 package com.xktime.article.service;
 
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,10 +16,10 @@ public interface BaseArticleService<T> {
 
     T findById(long id);
 
-    List<T> loadArticles(LoadDo loadDo);
+    List<T> loadArticles(LoadQuery loadQuery);
 
-    List<VerifyArticleDto> loadVerifyArticles(LoadDo loadDo);
+    List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery);
 
-    List<SimpleArticleDto> loadSimpleArticles(LoadDo loadDo);
+    List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery);
 
 }

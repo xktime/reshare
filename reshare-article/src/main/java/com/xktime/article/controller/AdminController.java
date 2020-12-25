@@ -4,7 +4,7 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.CrawlerBaseArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
-import com.xktime.model.article.dtos.c2s.VerifyDto;
+import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

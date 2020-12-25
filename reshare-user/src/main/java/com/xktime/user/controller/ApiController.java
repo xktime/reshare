@@ -1,6 +1,6 @@
 package com.xktime.user.controller;
 
-import com.xktime.model.user.pos.AppUser;
+import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

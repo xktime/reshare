@@ -1,11 +1,11 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import com.xktime.model.article.pos.Article;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.mappers.article.ArticleMapper;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.util.TransferUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +50,14 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     }
 
     @Override
-    public List<Article> loadArticles(LoadDo loadDo) {
-        return articleMapper.load(loadDo);
+    public List<Article> loadArticles(LoadQuery loadQuery) {
+        return articleMapper.load(loadQuery);
     }
 
     @Override
-    public List<VerifyArticleDto> loadVerifyArticles(LoadDo loadDo) {
+    public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
         List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-        List<Article> articles = loadArticles(loadDo);
+        List<Article> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (Article article : articles) {
                 VerifyArticleDto verifyArticle = TransferUtils.toVerifyArticleDto(article);
@@ -68,9 +68,9 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     }
 
     @Override
-    public List<SimpleArticleDto> loadSimpleArticles(LoadDo loadDo) {
+    public List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery) {
         List<SimpleArticleDto> SimpleArticles = new ArrayList<>();
-        List<Article> articles = loadArticles(loadDo);
+        List<Article> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (Article article : articles) {
                 SimpleArticleDto simpleArticle = TransferUtils.toSimpleArticleDto(article);

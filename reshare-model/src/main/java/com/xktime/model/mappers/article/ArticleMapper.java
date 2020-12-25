@@ -1,7 +1,7 @@
 package com.xktime.model.mappers.article;
 
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.pos.Article;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ public interface ArticleMapper {
 
     void saveArticle(Article article);
 
-    List<Article> load(LoadDo loadDo);
+    List<Article> load(LoadQuery loadQuery);
 
     Article findById(@Param("id") long id);
 

@@ -1,10 +1,10 @@
 package com.xktime.user.controller;
 
-import com.xktime.model.account.dtos.RegisterDto;
-import com.xktime.model.common.dtos.ResponseResult;
-import com.xktime.model.common.constant.CodeConstant;
-import com.xktime.model.common.enums.HttpCodeEnum;
-import com.xktime.model.user.pos.AppUser;
+import com.xktime.model.pojo.account.dto.RegisterDto;
+import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.common.constant.CodeConstant;
+import com.xktime.model.common.enum.HttpCodeEnum;
+import com.xktime.model.user.po.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import com.xktime.utils.SnowflakeIdUtil;

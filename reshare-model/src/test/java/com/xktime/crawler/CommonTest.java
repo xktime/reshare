@@ -1,7 +1,7 @@
 package com.xktime.crawler;
 
 import com.xktime.model.ReshareModelApplication;
-import com.xktime.model.comment.dos.LoadDo;
+import com.xktime.model.pojo.comment.query.LoadQuery;
 import com.xktime.model.mappers.comment.CommentMapper;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ public class CommonTest {
 
     @org.junit.Test
     public void test() {
-        LoadDo loadDo = new LoadDo();
-        loadDo.setPage(1);
-        loadDo.setPageStartIndex(1);
-        loadDo.setSize(1);
-        commentMapper.load(loadDo);
+        LoadQuery loadQuery = new LoadQuery();
+        loadQuery.setPage(1);
+        loadQuery.setPageStartIndex(1);
+        loadQuery.setSize(1);
+        commentMapper.load(loadQuery);
     }
 }

@@ -2,12 +2,12 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.article.dos.LoadDo;
-import com.xktime.model.article.dos.VerifyDo;
-import com.xktime.model.article.dtos.s2c.SimpleArticleDto;
-import com.xktime.model.article.dtos.s2c.VerifyArticleDto;
-import com.xktime.model.article.pos.OriginalArticle;
 import com.xktime.model.mappers.article.OriginalArticleMapper;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.article.entity.OriginalArticle;
 import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,14 +48,14 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     }
 
     @Override
-    public List<OriginalArticle> loadArticles(LoadDo loadDo) {
-        return originalArticleMapper.load(loadDo);
+    public List<OriginalArticle> loadArticles(LoadQuery loadQuery) {
+        return originalArticleMapper.load(loadQuery);
     }
 
     @Override
-    public List<VerifyArticleDto> loadVerifyArticles(LoadDo loadDo) {
+    public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
         List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-        List<OriginalArticle> articles = loadArticles(loadDo);
+        List<OriginalArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (OriginalArticle article : articles) {
                 VerifyArticleDto verifyArticle = TransferUtils.toVerifyArticleDto(article);
@@ -66,9 +66,9 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     }
 
     @Override
-    public List<SimpleArticleDto> loadSimpleArticles(LoadDo loadDo) {
+    public List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery) {
         List<SimpleArticleDto> SimpleArticles = new ArrayList<>();
-        List<OriginalArticle> articles = loadArticles(loadDo);
+        List<OriginalArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (OriginalArticle article : articles) {
                 SimpleArticleDto simpleArticle = TransferUtils.toSimpleArticleDto(article);
@@ -79,7 +79,7 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     }
 
     @Override
-    public void modifyState(VerifyDo verifyDo) {
-        originalArticleMapper.modifyState(verifyDo);
+    public void modifyState(VerifyQuery verifyQuery) {
+        originalArticleMapper.modifyState(verifyQuery);
     }
 }

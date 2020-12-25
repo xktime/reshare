@@ -1,6 +1,6 @@
 package com.xktime.model.mappers.user;
 
-import com.xktime.model.user.pos.AppUser;
+import com.xktime.model.pojo.user.entity.AppUser;
 import org.apache.ibatis.annotations.Param;
 
 public interface AppUserMapper {
