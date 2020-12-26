@@ -16,8 +16,8 @@
         <module>reshare-model</module>
         <module>reshare-article</module>
         <module>reshare-crawler</module>
-        <module>reshare-eureka-registry</module>
-        <module>reshare-gateway</module>
+        <module>reshare-euraka-registry</module>
+        <module>reshare-getway</module>
         <module>reshare-user</module>
         <module>reshare-comment</module>
     </modules>

@@ -1,11 +1,11 @@
 package com.xktime.user.controller;
 
 import com.xktime.model.pojo.account.dto.LoginDto;
-import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.constant.CodeConstant;
-import com.xktime.model.common.enum.HttpCodeEnum;
-import com.xktime.model.user.po.AdminUser;
-import com.xktime.model.user.po.AppUser;
+import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.common.type.HttpCodeEnum;
+import com.xktime.model.pojo.user.entity.AdminUser;
+import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.impl.AdminBaseUserServiceImpl;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;

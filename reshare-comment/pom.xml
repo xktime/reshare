@@ -11,7 +11,7 @@
 
     <artifactId>reshare-comment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>reshare-article</name>
+    <name>reshare-comment</name>
     <description>评论管理模块</description>
 
     <properties>

@@ -6,7 +6,7 @@
 
 ##### reshare-web-admin:
    - 后台管理前端页面
-   - 基于https://github.com/imxiaoer/ElementUIAdmin项目修改
+   - 基于[ElementUIAdmin](https://github.com/imxiaoer/ElementUIAdmin)项目修改
     
 ##### reshare-web-app:
    - 应用前端页面
