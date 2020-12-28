@@ -28,7 +28,7 @@
             </el-col>
             <el-col :span="19">
               <span class="item_title">
-                <el-link :href="data.url" target="_blank" :underline="false">{{data.title}}</el-link>
+                <el-link :href="'/article/' + data.id" target="_blank" :underline="false">{{data.title}}</el-link>
               </span><br><br>
               <span class="text-desc"><span>{{data.comment}}</span> 个回复 •
                 <span>{{data.views}}</span> 次浏览 •
@@ -49,7 +49,15 @@
     export default {
         data() {
             return {
-                tableData: [],
+                tableData: [
+                    {
+                        id: 2,
+                        authorProfile: 1,
+                        views: 2,
+                        title: 'hahaha',
+                        comment: 0
+                    }
+                ],
                 page: 1,
                 scrollDisabled: false,
                 type: '',
@@ -60,13 +68,13 @@
                 this.scrollDisabled = true;
                 const type = this.$route.params.type;
                 //是否切换加载类型
-                const isReload = !(type === this.type);
-                if (isReload) {
-                    this.type = type;
-                    this.page = 1;
-                    //如果切换加载类型，清空之前的数据
-                    this.tableData = [];
-                }
+                // const isReload = !(type === this.type);
+                // if (isReload) {
+                //     this.type = type;
+                //     this.page = 1;
+                //     //如果切换加载类型，清空之前的数据
+                //     this.tableData = [];
+                // }
                 let data = new FormData();
                 data.append("page", this.page);
                 data.append("loadArticleType", this.getType(this.type));
@@ -74,7 +82,7 @@
                     data.append("token", this.$store.state.token);
                 }
                 const _this = this;
-                const api = this.$loadArticleUrl;
+                const api = this.$loadSimpleArticleUrl;
                 this.axios.post(api, data).then((response) => {
                     if (response.data.code !== 200) {
                         this.$alert(response.data.errorMessage);
