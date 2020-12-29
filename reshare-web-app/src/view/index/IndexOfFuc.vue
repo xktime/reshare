@@ -1,9 +1,11 @@
 <template>
-  <el-container style="background-color: #E2E2E2;overflow:auto; max-height: 98vh;">
+  <el-container class="main-container">
     <el-header style="height: 45px">
       <app_header></app_header>
     </el-header>
-    <router-view :key="this.$route.fullPath"></router-view>
+    <el-main>
+      <router-view :key="this.$route.fullPath"></router-view>
+    </el-main>
   </el-container>
 </template>
 
@@ -29,6 +31,13 @@
     background-color: #E9EEF2;
     border-bottom: 1px solid rgba(0, 0, 0, .22);
     padding: 0 20px;
+  }
+
+  .main-container {
+    background-color: #E2E2E2;
+    overflow:auto;
+    min-height: 100vh;
+    max-height: 100vh;
   }
 
 </style>

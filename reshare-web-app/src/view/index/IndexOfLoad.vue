@@ -68,13 +68,13 @@
                 this.scrollDisabled = true;
                 const type = this.$route.params.type;
                 //是否切换加载类型
-                // const isReload = !(type === this.type);
-                // if (isReload) {
-                //     this.type = type;
-                //     this.page = 1;
-                //     //如果切换加载类型，清空之前的数据
-                //     this.tableData = [];
-                // }
+                const isReload = !(type === this.type);
+                if (isReload) {
+                    this.type = type;
+                    this.page = 1;
+                    //如果切换加载类型，清空之前的数据
+                    this.tableData = [];
+                }
                 let data = new FormData();
                 data.append("page", this.page);
                 data.append("loadArticleType", this.getType(this.type));
