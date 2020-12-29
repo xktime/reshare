@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -34,8 +32,8 @@ public class ArticleController {
     private String ARTICLE_REST_URL_PREFIX;
 
     @ApiOperation("加载文章")
-    @PostMapping("load")
-    public ResponseResult loadArticle(LoadDto dto) {
+    @PostMapping("loadSimple")
+    public ResponseResult loadSimpleArticle(LoadDto dto) {
         ResponseResult<List<SimpleArticleDto>> result = new ResponseResult<>();
         try {
             result.ok(restTemplate.exchange(
@@ -52,8 +50,8 @@ public class ArticleController {
     }
 
     @ApiOperation("加载文章详情")
-    @PostMapping("loadDetails")
-    public ResponseResult loadArticleDetails(long articleId) {
+    @GetMapping("loadDetails")
+    public ResponseResult loadArticleDetails(String articleId) {
         ResponseResult<ArticleDetailsDto> result = new ResponseResult<>();
         try {
             result.ok(restTemplate.exchange(

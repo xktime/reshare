@@ -4,14 +4,15 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
+import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
-import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
-import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.type.ArticleTypeEnum;
 import com.xktime.model.util.TransferUtils;
-import org.apache.commons.lang.StringUtils;
+import com.xktime.utils.FormatUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +45,7 @@ public class LoadController {
     @PostMapping("simpleArticles")
     public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
         LoadQuery loadQuery = TransferUtils.toQuery(dto);
-        if (!StringUtils.isEmpty(dto.getToken())
+        if (!StringUtils.isBlank(dto.getToken())
                 && dto.getLoadArticleType() == ArticleTypeEnum.RECOMMEND_ARTICLE.getType()) {
             //todo 根据玩家推荐文章
             return null;
@@ -54,9 +55,13 @@ public class LoadController {
     }
 
     @PostMapping("articleDetails")
-    public ArticleDetailsDto articleDetails(long articleId) {
+    public ArticleDetailsDto articleDetails(@RequestBody String articleId) {
+        if (!FormatUtil.isNumber(articleId)) {
+            return null;
+        }
+        long id = Long.parseLong(articleId);
         ArticleDetailsDto detail = new ArticleDetailsDto();
-        Article article = articleService.findById(articleId);
+        Article article = articleService.findById(id);
         BeanUtils.copyProperties(article, detail);
         //todo 插入detail评论
         //todo 评论分页

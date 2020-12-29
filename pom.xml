@@ -42,6 +42,7 @@
         <jackson.version>2.10.0</jackson.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger-models.version>1.6.0</swagger-models.version>
+        <commons.lang.version>3.7</commons.lang.version>
     </properties>
 
     <dependencyManagement>
@@ -166,6 +167,12 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang.version}</version>
             </dependency>
 
             <!--Swagger-->
