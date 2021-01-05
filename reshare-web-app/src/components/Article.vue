@@ -2,12 +2,27 @@
   <el-container>
     <el-main class="Article-page">
       <el-row>
-        <!--todo 文章页面完善-->
-        <el-col :span="5">
-          <el-avatar :size="85" fit="contain" :src="article.images"></el-avatar>
+        <el-col :span="4">
+          <el-avatar :size="120" fit="contain" :src="article.images"></el-avatar>
         </el-col>
-        <el-col :span="19">
-          <p v-html="article.title"></p>
+        <el-col :span="20">
+          <el-row>
+            <h1>{{article.title}}</h1>
+          </el-row>
+          <el-row class="visited" type="flex" justify="center">
+            <el-col :span="3">
+              <p>{{article.authorName}}</p>
+            </el-col>
+            <el-col :span="7">
+              <p>{{new Date(article.publishTime).toLocaleString()}}</p>
+            </el-col>
+            <el-col :span="3">
+              <p>{{article.views}}次浏览</p>
+            </el-col>
+            <el-col :span="3">
+              <p>{{article.collection}}次收藏</p>
+            </el-col>
+          </el-row>
         </el-col>
       </el-row>
       <el-divider></el-divider>
@@ -16,7 +31,7 @@
       </el-row>
     </el-main>
     <el-footer>
-        <!--todo 评论模块-->
+      <!--todo 评论模块-->
     </el-footer>
   </el-container>
 </template>
@@ -33,7 +48,7 @@
                     collection: 0,
                     comment: 0,
                     comments: null,
-                    content: "<p>前言需求</p>↵<hr>↵<p>本篇算法介绍的十大常用算法的：分治算法，那么在前面的一些算法",
+                    content: "<p>前言需求</p><hr><p>本篇算法介绍的十大常用算法的：分治算法，那么在前面的一些算法",
                     id: 8,
                     images: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
                     labels: "后端,算法,程序员",
@@ -56,7 +71,6 @@
                     return;
                 }
                 _this.article = response.data.data;
-                console.log(_this.article);
                 document.title = _this.article.title;
             });
         },
@@ -76,5 +90,12 @@
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
+  }
+
+  .visited {
+    color: #778087;
+    text-decoration: none;
+    word-break: break-word;
+    font-size: 10px;
   }
 </style>
