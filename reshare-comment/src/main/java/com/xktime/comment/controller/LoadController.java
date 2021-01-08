@@ -1,30 +1,26 @@
 package com.xktime.comment.controller;
 
+import com.xktime.comment.service.CommentService;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
-import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.comment.entity.Comment;
+import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("load")
 public class LoadController {
 
-
     @Autowired
-    RestTemplate restTemplate;
+    CommentService commentService;
 
-    @Value("${restful.url.comment}")
-    private String COMMENT_REST_URL_PREFIX;
-
-    @RequestMapping("load")
-    public ResponseResult load(@RequestBody LoadDto dto) {
-        ResponseResult result = new ResponseResult();
-
-        return result;
+    @RequestMapping("article")
+    public List<Comment> articleComment(@RequestBody LoadDto dto) {
+        return commentService.load(TransferUtils.toQuery(dto));
     }
 
 }

@@ -38,6 +38,7 @@ public class ArticleController {
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {
         ResponseResult result = new ResponseResult();
+        //todo 重构 封装restful请求
         AppUser author = restTemplate.exchange(
                 USER_REST_URL_PREFIX + "/api/getUserByToken",
                 HttpMethod.POST,
