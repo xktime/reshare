@@ -6,13 +6,10 @@ import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
+import com.xktime.model.templet.RestfulTemplet;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,23 +26,15 @@ public class AdminController {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${restful.url.user}")
-    private String USER_REST_URL_PREFIX;
-
-    @Value("${restful.url.article}")
-    private String ARTICLE_REST_URL_PREFIX;
+    @Autowired
+    RestfulTemplet restfulTemplet;
 
     @ApiOperation("加载文章")
     @GetMapping("loadArticle")
     public ResponseResult loadArticle(LoadDto dto) {
         ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
         try {
-            responseResult.ok(restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/load/verifyArticles",
-                    HttpMethod.POST,
-                    new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<List<VerifyArticleDto>>() {
-                    }).getBody());
+            responseResult.ok(restfulTemplet.loadArticle(restTemplate, dto));
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;
@@ -58,7 +47,7 @@ public class AdminController {
     public ResponseResult verify(VerifyDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
-            restTemplate.put(ARTICLE_REST_URL_PREFIX + "/admin/verify", dto);
+            restfulTemplet.verifyArticle(restTemplate, dto);
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;
@@ -71,12 +60,7 @@ public class AdminController {
     public ResponseResult login(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
-            responseResult = restTemplate.exchange(
-                    USER_REST_URL_PREFIX + "/login/admin",
-                    HttpMethod.POST,
-                    new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<ResponseResult>() {
-                    }).getBody();
+            responseResult = restfulTemplet.loginAdmin(restTemplate, dto);
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;

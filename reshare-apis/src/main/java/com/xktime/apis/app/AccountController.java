@@ -4,13 +4,10 @@ import com.xktime.model.pojo.account.dto.PublishDto;
 import com.xktime.model.pojo.account.dto.RegisterDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
+import com.xktime.model.templet.RestfulTemplet;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,11 +21,8 @@ public class AccountController {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${restful.url.user}")
-    private String USER_REST_URL_PREFIX;
-
-    @Value("${restful.url.article}")
-    private String ARTICLE_REST_URL_PREFIX;
+    @Autowired
+    RestfulTemplet restfulTemplet;
 
     /**
      * 发布文章
@@ -41,12 +35,7 @@ public class AccountController {
     public ResponseResult publish(PublishDto dto) {
         ResponseResult result = new ResponseResult();
         try {
-            return restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/article/publish",
-                    HttpMethod.POST,
-                    new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<ResponseResult>() {
-                    }).getBody();
+            return restfulTemplet.publishArticle(restTemplate, dto);
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;
@@ -64,12 +53,7 @@ public class AccountController {
     public ResponseResult register(RegisterDto dto) {
         ResponseResult result = new ResponseResult();
         try {
-            return restTemplate.exchange(
-                    USER_REST_URL_PREFIX + "/user/register",
-                    HttpMethod.POST,
-                    new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<ResponseResult>() {
-                    }).getBody();
+            return restfulTemplet.registerApp(restTemplate, dto);
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;

@@ -15,7 +15,7 @@ public class ApiController {
     AppBaseUserServiceImpl userService;
 
     @PostMapping("getUserByToken")
-    public AppUser adminLogin(@RequestBody String token) {
+    public AppUser getUserByToken(@RequestBody String token) {
         String account = userService.getAccountByToken(token);
         AppUser appUser = userService.queryByAccount(account);
         return appUser;

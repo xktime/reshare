@@ -14,6 +14,10 @@
     <name>reshare-utils</name>
     <description>公共工具模块</description>
 
+    <properties>
+        <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>commons-codec</groupId>
