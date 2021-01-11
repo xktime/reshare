@@ -2,13 +2,12 @@ package com.xktime.article.service;
 
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.util.ArticleServiceFactory;
-import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.entity.BaseVerifyArticle;
-import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
+import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.article.type.ArticleStatusEnum;
 import com.xktime.model.util.TransferUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,8 +33,7 @@ public abstract class BaseAuditable {
         //todo 可以将操作整合到Transfer内
         if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
             //如果是通过审核插入数据库
-            Article article = new Article();
-            BeanUtils.copyProperties(verifyArticle, article);
+            Article article = TransferUtils.toArticle(verifyArticle);
             articleService.save(article);
             verifyQuery.setBindId(article.getId());
         } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {

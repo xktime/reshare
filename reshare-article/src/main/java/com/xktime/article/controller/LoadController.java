@@ -13,7 +13,6 @@ import com.xktime.model.pojo.article.type.ArticleTypeEnum;
 import com.xktime.model.util.TransferUtils;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,9 +59,8 @@ public class LoadController {
             return null;
         }
         long id = Long.parseLong(articleId);
-        ArticleDetailsDto detail = new ArticleDetailsDto();
         Article article = articleService.findById(id);
-        BeanUtils.copyProperties(article, detail);
+        ArticleDetailsDto detail = TransferUtils.toArticleDetailsDto(article);
         //todo 插入detail评论
         //todo 评论分页
         return detail;
