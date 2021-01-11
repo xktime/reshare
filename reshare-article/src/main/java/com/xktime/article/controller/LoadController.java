@@ -2,14 +2,13 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
-import com.xktime.article.util.ArticleServiceFactory;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
-import com.xktime.model.pojo.article.type.ArticleTypeEnum;
+import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.util.TransferUtils;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -26,14 +25,11 @@ import java.util.List;
 public class LoadController {
 
     @Autowired
-    ArticleServiceFactory factory;
-
-    @Autowired
     ArticleServiceImpl articleService;
 
     @PostMapping("verifyArticles")
     public List<VerifyArticleDto> verifyArticles(@RequestBody LoadDto dto) {
-        BaseArticleService<?> service = factory.getService(dto.getLoadArticleType());
+        BaseArticleService<?> service = ArticleTypeEnum.getService(dto.getLoadArticleType());
         if (service == null) {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }

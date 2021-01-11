@@ -1,7 +1,7 @@
 package com.xktime.article.service;
 
 import com.xktime.article.service.impl.ArticleServiceImpl;
-import com.xktime.article.util.ArticleServiceFactory;
+import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.entity.BaseVerifyArticle;
@@ -17,11 +17,8 @@ public abstract class BaseAuditable {
     @Autowired
     ArticleServiceImpl articleService;
 
-    @Autowired
-    ArticleServiceFactory factory;
-
     public void verify(VerifyDto dto) {
-        BaseArticleService service = factory.getService(dto.getType());
+        BaseArticleService service = ArticleTypeEnum.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
         }
@@ -32,12 +29,12 @@ public abstract class BaseAuditable {
         VerifyQuery verifyQuery = TransferUtils.toQuery(dto);
         //todo 可以将操作整合到Transfer内
         if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
-            //如果是通过审核插入数据库
+            //如果是通过审核,插入数据库
             Article article = TransferUtils.toArticle(verifyArticle);
             articleService.save(article);
             verifyQuery.setBindId(article.getId());
         } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {
-            //如果是不通过从数据库删除
+            //如果是不通过,从数据库删除
             articleService.removeById(verifyArticle.getBindId());
             verifyQuery.setBindId(0);
         }
