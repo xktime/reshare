@@ -11,11 +11,11 @@ public class ArticleServiceFactory {
 
     @Autowired
     @Qualifier("OriginalArticle")
-    BaseArticleService originalBaseArticleService;
+    BaseArticleService originalArticleService;
 
     @Autowired
     @Qualifier("CrawlerArticle")
-    BaseArticleService crawlerBaseArticleService;
+    BaseArticleService crawlerArticleService;
 
     public BaseArticleService getService(int articleType) {
         ArticleTypeEnum typeEnum = ArticleTypeEnum.getEnum(articleType);
@@ -24,9 +24,9 @@ public class ArticleServiceFactory {
         }
         switch (typeEnum) {
             case CRAWLER_ARTICLE:
-                return crawlerBaseArticleService;
+                return crawlerArticleService;
             case ORIGINAL_ARTICLE:
-                return originalBaseArticleService;
+                return originalArticleService;
             default:
                 return null;
         }

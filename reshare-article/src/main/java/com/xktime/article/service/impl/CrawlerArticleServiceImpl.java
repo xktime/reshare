@@ -2,12 +2,12 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.mappers.article.OriginalArticleMapper;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
-import com.xktime.model.pojo.article.entity.OriginalArticle;
+import com.xktime.model.pojo.article.entity.CrawlerArticle;
+import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,48 +16,47 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Service("OriginalArticle")
-public class OriginalBaseArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalArticle> {
-
+@Service("CrawlerArticle")
+public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArticleService<CrawlerArticle> {
     @Autowired
-    OriginalArticleMapper originalArticleMapper;
+    CrawlerArticleMapper crawlerArticleMapper;
 
     @Override
-    public void save(OriginalArticle article) {
-        originalArticleMapper.saveArticle(article);
+    public void save(CrawlerArticle article) {
+        crawlerArticleMapper.saveArticle(article);
     }
 
     @Override
-    public void saveArticles(Collection<OriginalArticle> articles) {
+    public void saveArticles(Collection<CrawlerArticle> articles) {
         if (articles == null || articles.isEmpty()) {
             return;
         }
-        for (OriginalArticle article : articles) {
+        for (CrawlerArticle article : articles) {
             save(article);
         }
     }
 
     @Override
-    public void update(OriginalArticle article) {
-        //todo 实现
+    public void update(CrawlerArticle article) {
+        crawlerArticleMapper.update(article);
     }
 
     @Override
-    public OriginalArticle findById(long id) {
-        return originalArticleMapper.findById(id);
+    public CrawlerArticle findById(long id) {
+        return crawlerArticleMapper.findById(id);
     }
 
     @Override
-    public List<OriginalArticle> loadArticles(LoadQuery loadQuery) {
-        return originalArticleMapper.load(loadQuery);
+    public List<CrawlerArticle> loadArticles(LoadQuery loadQuery) {
+        return crawlerArticleMapper.load(loadQuery);
     }
 
     @Override
     public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
         List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-        List<OriginalArticle> articles = loadArticles(loadQuery);
+        List<CrawlerArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
-            for (OriginalArticle article : articles) {
+            for (CrawlerArticle article : articles) {
                 VerifyArticleDto verifyArticle = TransferUtils.toVerifyArticleDto(article);
                 verifyArticles.add(verifyArticle);
             }
@@ -68,9 +67,9 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
     @Override
     public List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery) {
         List<SimpleArticleDto> SimpleArticles = new ArrayList<>();
-        List<OriginalArticle> articles = loadArticles(loadQuery);
+        List<CrawlerArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
-            for (OriginalArticle article : articles) {
+            for (CrawlerArticle article : articles) {
                 SimpleArticleDto simpleArticle = TransferUtils.toSimpleArticleDto(article);
                 SimpleArticles.add(simpleArticle);
             }
@@ -80,6 +79,10 @@ public class OriginalBaseArticleServiceImpl extends BaseAuditable implements Bas
 
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
-        originalArticleMapper.modifyState(verifyQuery);
+        crawlerArticleMapper.modifyState(verifyQuery);
+    }
+
+    public int getUrlCount(String url) {
+        return crawlerArticleMapper.getUrlCount(url);
     }
 }

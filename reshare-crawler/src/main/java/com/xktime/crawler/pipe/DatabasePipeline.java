@@ -1,7 +1,7 @@
 package com.xktime.crawler.pipe;
 
 
-import com.xktime.article.service.impl.CrawlerBaseArticleServiceImpl;
+import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.model.pojo.article.entity.CrawlerArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class DatabasePipeline implements Pipeline {
 
     @Autowired
-    CrawlerBaseArticleServiceImpl articleService;
+    CrawlerArticleServiceImpl articleService;
 
     private static final Object LOCK_ME = new Object();
 

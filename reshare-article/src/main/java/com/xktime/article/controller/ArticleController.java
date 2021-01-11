@@ -1,7 +1,7 @@
 package com.xktime.article.controller;
 
 import com.xktime.article.service.impl.ArticleServiceImpl;
-import com.xktime.article.service.impl.OriginalBaseArticleServiceImpl;
+import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.model.pojo.account.dto.PublishDto;
 import com.xktime.model.pojo.article.entity.OriginalArticle;
 import com.xktime.model.pojo.common.dto.ResponseResult;
@@ -27,7 +27,7 @@ public class ArticleController {
     RestfulTemplet restfulTemplet;
 
     @Autowired
-    OriginalBaseArticleServiceImpl originalBaseArticleService;
+    OriginalArticleServiceImpl originalBaseArticleService;
 
     @Autowired
     ArticleServiceImpl articleService;
@@ -36,13 +36,6 @@ public class ArticleController {
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {
         ResponseResult result = new ResponseResult();
-        //todo 重构 封装restful请求
-//        AppUser author = restTemplate.exchange(
-//                USER_REST_URL_PREFIX + "/api/getUserByToken",
-//                HttpMethod.POST,
-//                new HttpEntity<>(dto.getToken()),
-//                new ParameterizedTypeReference<AppUser>() {
-//                }).getBody();
         AppUser author = restfulTemplet.getUserByToken(restTemplate, dto.getToken());
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
