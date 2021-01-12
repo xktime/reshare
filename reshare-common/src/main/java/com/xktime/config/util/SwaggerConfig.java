@@ -1,4 +1,4 @@
-package com.xktime.config.swagger;
+package com.xktime.config.util;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

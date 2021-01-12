@@ -1,4 +1,4 @@
-package com.xktime.config.cross;
+package com.xktime.config.webmvc;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

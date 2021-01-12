@@ -24,21 +24,22 @@ public class AnnotationHandler {
 
     private void enumTypeServiceInjector() {
         Set<Class<?>> clazzs = ClassUtil.getClassListByAnnotation(EnumTypeServiceInjector.class);
-        if (clazzs != null) {
-            for (Class clazz : clazzs) {
-                if (!clazz.isEnum()) {
-                    continue;
+        if (clazzs == null) {
+            return;
+        }
+        for (Class clazz : clazzs) {
+            if (!clazz.isEnum()) {
+                continue;
+            }
+            try {
+                Method setService = clazz.getDeclaredMethod("setService", ApplicationContext.class);
+                setService.setAccessible(true);
+                Enum[] values = (Enum[]) clazz.getEnumConstants();
+                for (Enum e : values) {
+                    setService.invoke(e, bean);
                 }
-                try {
-                    Method setService = clazz.getDeclaredMethod("setService", ApplicationContext.class);
-                    setService.setAccessible(true);
-                    Enum[] values = (Enum[]) clazz.getEnumConstants();
-                    for (Enum e : values) {
-                        setService.invoke(e, bean);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

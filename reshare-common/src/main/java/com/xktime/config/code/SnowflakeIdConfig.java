@@ -1,4 +1,4 @@
-package com.xktime.config.snowflakeid;
+package com.xktime.config.code;
 
 import com.xktime.utils.SnowflakeIdUtil;
 import org.springframework.beans.factory.annotation.Value;

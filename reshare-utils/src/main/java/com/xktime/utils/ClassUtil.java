@@ -7,9 +7,11 @@ import java.util.Set;
 
 public class ClassUtil {
 
+    private final static String ROOT_PACKAGE_NAME = "com.xktime";
+
     public static Set<Class<?>> getClassListByAnnotation(Class<? extends Annotation> annotationClass) {
         try {
-            return getClassListByAnnotation("com.xktime", annotationClass);
+            return getClassListByAnnotation(ROOT_PACKAGE_NAME, annotationClass);
         } catch (Exception e) {
             e.printStackTrace();
         }
