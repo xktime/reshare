@@ -4,12 +4,10 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xktime.config.annotation.EnumTypeServiceInjector;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
+@EnumTypeServiceInjector
 public enum ArticleTypeEnum {
     CRAWLER_ARTICLE(1, "crawler", CrawlerArticleServiceImpl.class),
     ORIGINAL_ARTICLE(2, "original", OriginalArticleServiceImpl.class),
@@ -20,26 +18,6 @@ public enum ArticleTypeEnum {
     private int type;
     private Class<? extends BaseArticleService> serviceClass;
     private BaseArticleService service;
-
-    /**
-     * 注入service
-     */
-    //todo 需要给该类移动到通用模块
-    @Component
-    public static class EnumTypeServiceInjector {
-        @Autowired
-        private ApplicationContext bean;
-
-        /**
-         * 在@Autowired执行之后会走这个方法
-         */
-        @PostConstruct
-        public void postConstruct() {
-            for (ArticleTypeEnum type : ArticleTypeEnum.values()) {
-                type.setBean(bean);
-            }
-        }
-    }
 
     ArticleTypeEnum(int type, String dec, Class<? extends BaseArticleService> serviceClass) {
         this.type = type;
@@ -73,11 +51,7 @@ public enum ArticleTypeEnum {
         return service;
     }
 
-    private void setBean(ApplicationContext bean) {
-        this.setService(bean.getBean(serviceClass));
-    }
-
-    private void setService(BaseArticleService service) {
-        this.service = service;
+    private void setService(ApplicationContext bean) {
+        this.service = bean.getBean(serviceClass);
     }
 }
