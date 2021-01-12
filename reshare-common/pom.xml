@@ -14,7 +14,17 @@
     <name>reshare-common</name>
     <description>通用配置</description>
 
+    <properties>
+        <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+    </properties>
+
     <dependencies>
+
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-utils</artifactId>
+            <version>${reshare.version}</version>
+        </dependency>
 
         <!--springboot的依赖-->
         <dependency>
@@ -90,12 +100,6 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

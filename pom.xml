@@ -43,6 +43,8 @@
         <swagger.version>2.9.2</swagger.version>
         <swagger-models.version>1.6.0</swagger-models.version>
         <commons.lang.version>3.7</commons.lang.version>
+        <commons.codec.version>1.13</commons.codec.version>
+        <org.reflections.version>0.9.11</org.reflections.version>
     </properties>
 
     <dependencyManagement>
@@ -196,6 +198,17 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons.codec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${org.reflections.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
