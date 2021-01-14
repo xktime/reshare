@@ -40,6 +40,7 @@ public class ArticleController {
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
+        //todo 移动到TransferUtil
         OriginalArticle article = new OriginalArticle();
         article.setContent(dto.getContent());
         article.setTitle(dto.getTitle());
