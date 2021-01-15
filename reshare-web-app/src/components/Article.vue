@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-main class="Article-page">
+    <el-main class="article-page">
       <el-row>
         <el-col :span="4">
           <el-avatar :size="120" fit="contain" :src="article.images"></el-avatar>
@@ -31,7 +31,31 @@
       </el-row>
     </el-main>
     <el-footer>
+      <el-divider></el-divider>
       <!--todo 评论模块-->
+      <div>
+        <div class="comment-page" v-for="comment in article.comments" :key="comment.id">
+          <el-row>
+            <el-col :span="4">
+              <el-avatar :size="120" fit="contain" :src="article.images"></el-avatar>
+            </el-col>
+            <el-col :span="20">
+              <el-row>
+                <h1>{{comment.content}}</h1>
+              </el-row>
+              <el-row class="visited" type="flex" justify="center">
+                <el-col :span="3">
+                  <p>{{comment.authorName}}</p>
+                </el-col>
+                <el-col :span="7">
+                  <p>{{new Date(article.publishTime).toLocaleString()}}</p>
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+          <el-divider></el-divider>
+        </div>
+      </div>
       <!--todo 回复模块-->
     </el-footer>
   </el-container>
@@ -48,7 +72,44 @@
                     channelName: "SegmentFault 思否",
                     collection: 0,
                     comment: 0,
-                    comments: null,
+                    comments: [
+                        {
+                            id: 4,
+                            authorName: "123",
+                            content: "xixi",
+                            publishTime: "2020-12-19T10:39:02.000+0000"
+                        },
+                        {
+                            id: 2,
+                            authorName: "1234",
+                            content: "xixixi",
+                            publishTime: "2020-12-19T10:39:02.000+0000"
+                        },
+                        {
+                            id: 2,
+                            authorName: "12345",
+                            content: "xixixixi",
+                            publishTime: "2020-12-19T10:39:02.000+0000"
+                        },
+                        {
+                            id: 2,
+                            authorName: "12345",
+                            content: "xixixixi",
+                            publishTime: "2020-12-19T10:39:02.000+0000"
+                        },
+                        {
+                            id: 2,
+                            authorName: "12345",
+                            content: "xixixixi",
+                            publishTime: "2020-12-19T10:39:02.000+0000"
+                        },
+                        {
+                            id: 2,
+                            authorName: "12345",
+                            content: "xixixixi",
+                            publishTime: "2020-12-19T10:39:02.000+0000"
+                        },
+                    ],
                     content: "<p>前言需求</p><hr><p>本篇算法介绍的十大常用算法的：分治算法，那么在前面的一些算法",
                     id: 8,
                     images: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
@@ -79,7 +140,7 @@
 </script>
 
 <style>
-  .Article-page {
+  .article-page {
     border-radius: 50px;
     padding: 35px 35px 15px;
     text-align: center;
@@ -91,6 +152,20 @@
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
+  }
+
+  .comment-page {
+    /*border-radius: 50px;*/
+    padding: 35px 35px 15px;
+    text-align: center;
+    margin: 0 auto;
+    min-width: 45%;
+    max-width: 45%;
+    min-height: 50%;
+    max-height: 50%;
+    background: #fff;
+    /*border: 1px solid #eaeaea;*/
+    /*box-shadow: 0 0 25px #cac6c6;*/
   }
 
   .visited {
