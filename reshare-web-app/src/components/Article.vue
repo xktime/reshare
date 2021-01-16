@@ -30,30 +30,32 @@
         <p v-html="article.content"></p>
       </el-row>
     </el-main>
+    <p></p>
     <el-footer>
-      <el-divider></el-divider>
       <!--todo 评论模块-->
-      <div>
-        <div class="comment-page" v-for="comment in article.comments" :key="comment.id">
+      <div class="comment-page">
+        <div class="comment-cell" v-for="comment in article.comments" :key="comment.id">
           <el-row>
             <el-col :span="4">
-              <el-avatar :size="120" fit="contain" :src="article.images"></el-avatar>
+              <el-row>
+                <el-avatar :size="130" shape="square" fit="contain" :src="article.images"></el-avatar>
+              </el-row>
+              <el-row>
+                <p style="text-align:center;font-size:8px">{{comment.authorName}}</p>
+              </el-row>
             </el-col>
             <el-col :span="20">
               <el-row>
                 <h1>{{comment.content}}</h1>
               </el-row>
               <el-row class="visited" type="flex" justify="center">
-                <el-col :span="3">
-                  <p>{{comment.authorName}}</p>
-                </el-col>
-                <el-col :span="7">
+                <el-col></el-col>
+                <el-col :span="16">
                   <p>{{new Date(article.publishTime).toLocaleString()}}</p>
                 </el-col>
               </el-row>
             </el-col>
           </el-row>
-          <el-divider></el-divider>
         </div>
       </div>
       <!--todo 回复模块-->
@@ -155,17 +157,20 @@
   }
 
   .comment-page {
-    /*border-radius: 50px;*/
-    padding: 35px 35px 15px;
-    text-align: center;
+    border-radius: 50px;
+    box-shadow: 0 0 25px #cac6c6;
     margin: 0 auto;
     min-width: 45%;
     max-width: 45%;
-    min-height: 50%;
-    max-height: 50%;
+  }
+
+  .comment-cell {
+    min-width: 100%;
+    max-width: 100%;
     background: #fff;
-    /*border: 1px solid #eaeaea;*/
-    /*box-shadow: 0 0 25px #cac6c6;*/
+    padding: 10px;
+    line-height: 100%;
+    border-bottom: 1px solid #eaeaea;
   }
 
   .visited {
