@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="publish-page demo-ruleForm">
+  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="publish-page">
     <el-form-item label="主题标题" prop="title" required>
       <el-input type="text"
                 placeholder="请输入主题标题"

@@ -30,9 +30,7 @@
         <p v-html="article.content"></p>
       </el-row>
     </el-main>
-    <p></p>
     <el-footer>
-      <!--todo 评论模块-->
       <div class="comment-page">
         <div class="comment-cell" v-for="comment in article.comments" :key="comment.id">
           <el-row>
@@ -46,11 +44,10 @@
             </el-col>
             <el-col :span="20">
               <el-row>
-                <h1>{{comment.content}}</h1>
+                <p>{{comment.content}}</p>
               </el-row>
-              <el-row class="visited" type="flex" justify="center">
-                <el-col></el-col>
-                <el-col :span="16">
+              <el-row class="visited" type="flex">
+                <el-col push="18">
                   <p>{{new Date(article.publishTime).toLocaleString()}}</p>
                 </el-col>
               </el-row>
@@ -58,7 +55,19 @@
           </el-row>
         </div>
       </div>
-      <!--todo 回复模块-->
+      <!--todo 发布回复完善-->
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="reply-page">
+        <el-form-item label="正文" prop="content" required>
+          <el-input type="textarea"
+                    placeholder="请输入内容"
+                    :autosize="{ minRows: 10, maxRows: 10}"
+                    v-model="ruleForm.content"
+                    autocomplete="off" maxlength="10000" show-word-limit></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="publish()">发布</el-button>
+        </el-form-item>
+      </el-form>
     </el-footer>
   </el-container>
 </template>
@@ -67,6 +76,12 @@
     export default {
         data() {
             return {
+                ruleForm: {
+                    content: '',
+                },
+                rules: {
+                    content: [{required: true, message: '文章内容不能为空', trigger: 'blur'}],
+                },
                 article: {
                     authorId: 0,
                     authorName: "28640",
@@ -90,7 +105,7 @@
                         {
                             id: 2,
                             authorName: "12345",
-                            content: "xixixixi",
+                            content: "我所知道的十大常用算法之分治算法（解决汉诺塔问题）_我所知道系列：数据结构与算法，那么在前面的一些算法",
                             publishTime: "2020-12-19T10:39:02.000+0000"
                         },
                         {
@@ -120,7 +135,7 @@
                     origin: "SegmentFault 思否",
                     publishTime: "2020-12-19T10:39:02.000+0000",
                     tag: null,
-                    title: "我所知道的十大常用算法之分治算法（解决汉诺塔问题）_我所知道系列：数据结构与算法",
+                    title: "我所知道的十大常用算法之分治算法（解决汉诺塔问题）_我所知道系列：数据结构与算法，那么在前面的一些算法",
                     views: 0,
                 },
             }
@@ -159,7 +174,7 @@
   .comment-page {
     border-radius: 50px;
     box-shadow: 0 0 25px #cac6c6;
-    margin: 0 auto;
+    margin: 35px auto;
     min-width: 45%;
     max-width: 45%;
   }
@@ -168,7 +183,7 @@
     min-width: 100%;
     max-width: 100%;
     background: #fff;
-    padding: 10px;
+    padding: 5px;
     line-height: 100%;
     border-bottom: 1px solid #eaeaea;
   }
@@ -178,5 +193,16 @@
     text-decoration: none;
     word-break: break-word;
     font-size: 10px;
+    padding: 40px 35px 20px;
+  }
+
+  .reply-page {
+    border-radius: 5px;
+    margin: 20px auto;
+    min-width: 43%;
+    max-width: 43%;
+    padding: 35px 35px 15px;
+    background: #fff;
+    border: 1px solid #eaeaea;
   }
 </style>
