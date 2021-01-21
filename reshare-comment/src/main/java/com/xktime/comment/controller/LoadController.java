@@ -18,8 +18,8 @@ public class LoadController {
     @Autowired
     CommentService commentService;
 
-    @RequestMapping("article")
-    public List<Comment> articleComment(@RequestBody LoadDto dto) {
+    @RequestMapping("comment")
+    public List<Comment> loadComment(@RequestBody LoadDto dto) {
         return commentService.load(TransferUtils.toQuery(dto));
     }
 

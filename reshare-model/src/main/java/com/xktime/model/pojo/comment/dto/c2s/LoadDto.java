@@ -15,7 +15,7 @@ public class LoadDto {
     int page;
 
     @ApiModelProperty("评论类型")
-    String loadCommentType;
+    int loadCommentType;
 
     @ApiModelProperty("文章id")
     long bindId;

@@ -42,12 +42,12 @@
                 <p style="text-align:center;font-size:8px">{{comment.authorName}}</p>
               </el-row>
             </el-col>
-            <el-col :span="20">
+            <el-col :span="18">
               <el-row>
                 <p>{{comment.content}}</p>
               </el-row>
               <el-row class="visited" type="flex">
-                <el-col push="18">
+                <el-col push="20">
                   <p>{{new Date(article.publishTime).toLocaleString()}}</p>
                 </el-col>
               </el-row>

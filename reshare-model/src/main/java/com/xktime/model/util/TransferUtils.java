@@ -12,6 +12,7 @@ import com.xktime.model.pojo.article.entity.OriginalArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
+import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.utils.CodeUtil;
@@ -19,6 +20,7 @@ import com.xktime.utils.SnowflakeIdUtil;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
+import java.util.List;
 
 //todo 优雅实现复合结构的类型转换
 public class TransferUtils {
@@ -82,12 +84,14 @@ public class TransferUtils {
         return dto;
     }
 
-    public static ArticleDetailsDto toArticleDetailsDto(Article article) {
+    public static ArticleDetailsDto toArticleDetailsDto(Article article, List<Comment> comments) {
         //todo 插入detail评论整合到TransferUtils
         ArticleDetailsDto dto = new ArticleDetailsDto();
         BeanUtils.copyProperties(article, dto);
+        //todo 转换comments
         return dto;
     }
+
 
     public static AppUser toUser(RegisterDto dto, SnowflakeIdUtil snowflakeId) {
         AppUser user = new AppUser();

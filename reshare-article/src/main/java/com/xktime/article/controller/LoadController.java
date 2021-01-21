@@ -2,13 +2,15 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
+import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
-import com.xktime.article.type.ArticleTypeEnum;
+import com.xktime.model.pojo.comment.type.CommentTypeEnum;
+import com.xktime.model.templet.RestfulTemplet;
 import com.xktime.model.util.TransferUtils;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -26,6 +29,12 @@ public class LoadController {
 
     @Autowired
     ArticleServiceImpl articleService;
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Autowired
+    RestfulTemplet restfulTemplet;
 
     @PostMapping("verifyArticles")
     public List<VerifyArticleDto> verifyArticles(@RequestBody LoadDto dto) {
@@ -56,10 +65,13 @@ public class LoadController {
         }
         long id = Long.parseLong(articleId);
         Article article = articleService.findById(id);
-        ArticleDetailsDto detail = TransferUtils.toArticleDetailsDto(article);
+        //todo 加载评论重构
+        com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto = new com.xktime.model.pojo.comment.dto.c2s.LoadDto();
+        loadDto.setBindId(id);
+        loadDto.setLoadCommentType(CommentTypeEnum.ARTICLE.getType());
         //todo 插入detail评论
         //todo 评论分页
-        return detail;
+        return TransferUtils.toArticleDetailsDto(article, restfulTemplet.getComments(restTemplate, loadDto));
     }
 
 }

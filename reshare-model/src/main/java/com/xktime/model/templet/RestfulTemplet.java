@@ -7,6 +7,7 @@ import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
+import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.user.entity.AppUser;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +38,15 @@ public class RestfulTemplet {
                 HttpMethod.POST,
                 new HttpEntity<>(token),
                 new ParameterizedTypeReference<AppUser>() {
+                }).getBody();
+    }
+
+    public List<Comment> getComments(RestTemplate restTemplate, com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto) {
+        return restTemplate.exchange(
+                COMMENT_REST_URL_PREFIX + "/load/comment",
+                HttpMethod.POST,
+                new HttpEntity<>(loadDto),
+                new ParameterizedTypeReference<List<Comment>>() {
                 }).getBody();
     }
 
