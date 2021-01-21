@@ -1,6 +1,7 @@
 package com.xktime.apis.app;
 
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
+import com.xktime.model.pojo.article.dto.c2s.PublishDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
@@ -27,6 +28,24 @@ public class ArticleController {
 
     @Autowired
     RestfulTemplet restfulTemplet;
+
+    /**
+     * 发布文章
+     *
+     * @param dto
+     * @return
+     */
+    @ApiOperation("发布")
+    @PostMapping("publish")
+    public ResponseResult publish(PublishDto dto) {
+        ResponseResult result = new ResponseResult();
+        try {
+            return restfulTemplet.publishArticle(restTemplate, dto);
+        } catch (Exception e) {
+            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            return result;
+        }
+    }
 
     @ApiOperation("加载文章")
     @PostMapping("loadSimple")

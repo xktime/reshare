@@ -1,6 +1,5 @@
 package com.xktime.apis.app;
 
-import com.xktime.model.pojo.account.dto.PublishDto;
 import com.xktime.model.pojo.account.dto.RegisterDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
@@ -23,24 +22,6 @@ public class AccountController {
 
     @Autowired
     RestfulTemplet restfulTemplet;
-
-    /**
-     * 发布文章
-     *
-     * @param dto
-     * @return
-     */
-    @ApiOperation("发布")
-    @PostMapping("publish")
-    public ResponseResult publish(PublishDto dto) {
-        ResponseResult result = new ResponseResult();
-        try {
-            return restfulTemplet.publishArticle(restTemplate, dto);
-        } catch (Exception e) {
-            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
-            return result;
-        }
-    }
 
     /**
      * 注册账户
