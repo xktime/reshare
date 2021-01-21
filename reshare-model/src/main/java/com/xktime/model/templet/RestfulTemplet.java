@@ -1,7 +1,6 @@
 package com.xktime.model.templet;
 
 import com.xktime.model.pojo.account.dto.LoginDto;
-import com.xktime.model.pojo.account.dto.PublishDto;
 import com.xktime.model.pojo.account.dto.RegisterDto;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
@@ -27,6 +26,9 @@ public class RestfulTemplet {
 
     @Value("${restful.url.article}")
     private String ARTICLE_REST_URL_PREFIX;
+
+    @Value("${restful.url.comment}")
+    private String COMMENT_REST_URL_PREFIX;
 
 
     public AppUser getUserByToken(RestTemplate restTemplate, String token) {
@@ -60,9 +62,18 @@ public class RestfulTemplet {
                 }).getBody();
     }
 
-    public ResponseResult publishArticle(RestTemplate restTemplate, PublishDto dto) {
+    public ResponseResult publishArticle(RestTemplate restTemplate, com.xktime.model.pojo.article.dto.c2s.PublishDto dto) {
         return restTemplate.exchange(
                 ARTICLE_REST_URL_PREFIX + "/article/publish",
+                HttpMethod.POST,
+                new HttpEntity<>(dto),
+                new ParameterizedTypeReference<ResponseResult>() {
+                }).getBody();
+    }
+
+    public ResponseResult publishComment(RestTemplate restTemplate, com.xktime.model.pojo.comment.dto.c2s.PublishDto dto) {
+        return restTemplate.exchange(
+                COMMENT_REST_URL_PREFIX + "/article/publish",
                 HttpMethod.POST,
                 new HttpEntity<>(dto),
                 new ParameterizedTypeReference<ResponseResult>() {

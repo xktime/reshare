@@ -57,7 +57,7 @@
       </div>
       <!--todo 发布回复完善-->
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="reply-page">
-        <el-form-item label="正文" prop="content" required>
+        <el-form-item prop="content" required>
           <el-input type="textarea"
                     placeholder="请输入内容"
                     :autosize="{ minRows: 10, maxRows: 10}"
@@ -65,7 +65,7 @@
                     autocomplete="off" maxlength="10000" show-word-limit></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="publish()">发布</el-button>
+          <el-button type="primary" @click="publish()">回复</el-button>
         </el-form-item>
       </el-form>
     </el-footer>
@@ -140,7 +140,37 @@
                 },
             }
         },
-        methods: {},
+        methods: {
+            publish() {
+                //todo 未登陆提示
+                this.$refs.ruleForm.validate((valid) => {
+                    if (valid) {
+                        if (!this.$store.state.loging || this.$store.state.token==='') {
+                            this.$alert('发布文章，登录状态错误');
+                            return;
+                        }
+                        let data = new FormData();
+                        data.append("content", this.ruleForm.content);
+                        data.append("token", this.$store.state.token);
+                        data.append("bindId", this.$route.params.articleId);
+                        data.append("type", 1);//todo commentType
+                        const api = this.$publishCommentUrl;
+                        this.axios.post(api, data).then(
+                            (response) => {
+                                if (response.data.code != 200) {
+                                    this.$alert(response.data.errorMessage);
+                                    return;
+                                }
+                                this.$router.push({path: this.$route.query.redirect || '/'});
+                            }
+                        );
+                    } else {
+                        console.log('error submit!');
+                        return false;
+                    }
+                })
+            }
+        },
         mounted() {
             const api = this.$loadArticleDetailUrl + '?articleId=' + this.$route.params.articleId;
             const _this = this;
