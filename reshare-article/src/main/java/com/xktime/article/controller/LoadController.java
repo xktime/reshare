@@ -65,7 +65,7 @@ public class LoadController {
         }
         long id = Long.parseLong(articleId);
         Article article = articleService.findById(id);
-        //todo 加载评论重构
+        //todo Transfer 加载评论重构
         com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto = new com.xktime.model.pojo.comment.dto.c2s.LoadDto();
         loadDto.setBindId(id);
         loadDto.setLoadCommentType(CommentTypeEnum.ARTICLE.getType());

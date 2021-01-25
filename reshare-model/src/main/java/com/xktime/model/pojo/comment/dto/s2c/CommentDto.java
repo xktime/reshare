@@ -10,6 +10,8 @@ public class CommentDto {
     private long id;
     //todo author信息完善
     private long authorId;
+    private String authorName;
+    private String profile;
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publishTime;

@@ -12,6 +12,7 @@ import com.xktime.model.pojo.article.entity.OriginalArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
+import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.model.pojo.user.entity.AppUser;
@@ -88,7 +89,8 @@ public class TransferUtils {
         //todo 插入detail评论整合到TransferUtils
         ArticleDetailsDto dto = new ArticleDetailsDto();
         BeanUtils.copyProperties(article, dto);
-        //todo 转换comments
+        //todo 转换commentDto
+        new CommentDto();
         return dto;
     }
 

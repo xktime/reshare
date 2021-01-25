@@ -55,7 +55,6 @@
           </el-row>
         </div>
       </div>
-      <!--todo 发布回复完善-->
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="reply-page">
         <el-form-item prop="content" required>
           <el-input type="textarea"
