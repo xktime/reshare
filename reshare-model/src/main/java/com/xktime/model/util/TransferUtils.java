@@ -23,7 +23,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.Date;
 import java.util.List;
 
-//todo 优雅实现复合结构的类型转换
+//todo 重构整个工具类
 public class TransferUtils {
 
     public static LoadQuery toQuery(com.xktime.model.pojo.article.dto.c2s.LoadDto dto) {

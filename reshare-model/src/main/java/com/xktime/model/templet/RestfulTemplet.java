@@ -19,6 +19,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+//todo 模块关系整体重构，枚举type分类问题
+//todo 模板放在model内不太合适,和TransferUtils一起重构
 @Service
 public class RestfulTemplet {
 
