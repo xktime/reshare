@@ -23,7 +23,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.Date;
 import java.util.List;
 
-//todo 重构整个工具类
+//todo 重构整个工具类(方案:1.重构为对象自身调用转换)
 public class TransferUtils {
 
     public static LoadQuery toQuery(com.xktime.model.pojo.article.dto.c2s.LoadDto dto) {
