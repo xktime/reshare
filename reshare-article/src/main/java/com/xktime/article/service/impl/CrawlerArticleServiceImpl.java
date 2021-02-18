@@ -2,13 +2,12 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.pojo.article.query.LoadQuery;
-import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.mappers.article.CrawlerArticleMapper;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.CrawlerArticle;
-import com.xktime.model.mappers.article.CrawlerArticleMapper;
-import com.xktime.model.util.TransferUtils;
+import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.pojo.article.query.VerifyQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +56,7 @@ public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArti
         List<CrawlerArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (CrawlerArticle article : articles) {
-                VerifyArticleDto verifyArticle = TransferUtils.toVerifyArticleDto(article);
+                VerifyArticleDto verifyArticle = article.toVerifyArticleDto();
                 verifyArticles.add(verifyArticle);
             }
         }
@@ -70,7 +69,7 @@ public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArti
         List<CrawlerArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (CrawlerArticle article : articles) {
-                SimpleArticleDto simpleArticle = TransferUtils.toSimpleArticleDto(article);
+                SimpleArticleDto simpleArticle = article.toSimpleArticleDto();
                 SimpleArticles.add(simpleArticle);
             }
         }

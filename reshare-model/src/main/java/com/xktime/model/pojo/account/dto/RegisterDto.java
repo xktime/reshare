@@ -1,6 +1,10 @@
 package com.xktime.model.pojo.account.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xktime.model.pojo.common.constant.CodeConstant;
+import com.xktime.model.pojo.user.entity.AppUser;
+import com.xktime.utils.CodeUtil;
+import com.xktime.utils.SnowflakeIdUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,4 +27,19 @@ public class RegisterDto {
     private Date birthday;
     @ApiModelProperty("用户地区")
     private String region;
+
+    public AppUser toUser(SnowflakeIdUtil snowflakeId) {
+        AppUser user = new AppUser();
+        user.setBirthday(birthday);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegion(region);
+        user.setSex(sex);
+        String encryptedPassword = CodeUtil.encryptBase64(password, CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
+        user.setPassword(encryptedPassword);
+        user.setCreateTime(new Date());
+        user.setUserName(account);
+        user.setUserId(snowflakeId.nextId());
+        user.setProfile("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+        return user;
+    }
 }

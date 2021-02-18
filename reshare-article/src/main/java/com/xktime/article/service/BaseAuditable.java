@@ -7,7 +7,6 @@ import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.entity.BaseVerifyArticle;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.article.type.ArticleStatusEnum;
-import com.xktime.model.util.TransferUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,11 +25,11 @@ public abstract class BaseAuditable {
         if (verifyArticle == null) {
             throw new NullPointerException("文章为空");
         }
-        VerifyQuery verifyQuery = TransferUtils.toQuery(dto);
+        VerifyQuery verifyQuery = dto.toQuery();
         //todo 可以将操作整合到Transfer内
         if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
             //如果是通过审核,插入数据库
-            Article article = TransferUtils.toArticle(verifyArticle);
+            Article article = verifyArticle.toArticle();
             articleService.save(article);
             verifyQuery.setBindId(article.getId());
         } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {

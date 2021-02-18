@@ -11,7 +11,6 @@ import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import com.xktime.model.templet.RestfulTemplet;
-import com.xktime.model.util.TransferUtils;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +41,13 @@ public class LoadController {
         if (service == null) {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
-        LoadQuery loadQuery = TransferUtils.toQuery(dto);
+        LoadQuery loadQuery = dto.toQuery();
         return service.loadVerifyArticles(loadQuery);
     }
 
     @PostMapping("simpleArticles")
     public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
-        LoadQuery loadQuery = TransferUtils.toQuery(dto);
+        LoadQuery loadQuery = dto.toQuery();
         if (!StringUtils.isBlank(dto.getToken())
                 && dto.getLoadArticleType() == ArticleTypeEnum.RECOMMEND_ARTICLE.getType()) {
             //todo 根据玩家推荐文章
@@ -71,7 +70,7 @@ public class LoadController {
         loadDto.setLoadCommentType(CommentTypeEnum.ARTICLE.getType());
         //todo 插入detail评论
         //todo 评论分页
-        return TransferUtils.toArticleDetailsDto(article, restfulTemplet.getComments(restTemplate, loadDto));
+        return article.toArticleDetailsDto(restfulTemplet.getComments(restTemplate, loadDto));
     }
 
 }

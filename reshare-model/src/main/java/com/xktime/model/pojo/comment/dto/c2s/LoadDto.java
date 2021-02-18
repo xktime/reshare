@@ -1,5 +1,6 @@
 package com.xktime.model.pojo.comment.dto.c2s;
 
+import com.xktime.model.pojo.comment.query.LoadQuery;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,5 +23,15 @@ public class LoadDto {
 
     @ApiModelProperty("作者id")
     long authorId;
+
+    public LoadQuery toQuery() {
+        LoadQuery loadQuery = new LoadQuery();
+        loadQuery.setAuthorId(authorId);
+        loadQuery.setBindId(bindId);
+        loadQuery.setLoadCommentType(String.valueOf(loadCommentType));
+        loadQuery.setPage(page);
+        loadQuery.setSize(size);
+        return loadQuery;
+    }
 
 }

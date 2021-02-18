@@ -1,5 +1,6 @@
 package com.xktime.model.pojo.article.dto.c2s;
 
+import com.xktime.model.pojo.article.query.VerifyQuery;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,4 +14,12 @@ public class VerifyDto {
     int status;
     @ApiModelProperty("加载文章的类型")
     int type;
+
+    public VerifyQuery toQuery() {
+        VerifyQuery verifyQuery = new VerifyQuery();
+        verifyQuery.setArticleId(articleId);
+        verifyQuery.setStatus(status);
+        verifyQuery.setType(String.valueOf(type));
+        return verifyQuery;
+    }
 }

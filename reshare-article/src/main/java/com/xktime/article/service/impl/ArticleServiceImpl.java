@@ -1,12 +1,11 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.mappers.article.ArticleMapper;
-import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
-import com.xktime.model.util.TransferUtils;
+import com.xktime.model.pojo.article.query.LoadQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,7 +59,7 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
         List<Article> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (Article article : articles) {
-                VerifyArticleDto verifyArticle = TransferUtils.toVerifyArticleDto(article);
+                VerifyArticleDto verifyArticle = article.toVerifyArticleDto();
                 verifyArticles.add(verifyArticle);
             }
         }
@@ -73,7 +72,7 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
         List<Article> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
             for (Article article : articles) {
-                SimpleArticleDto simpleArticle = TransferUtils.toSimpleArticleDto(article);
+                SimpleArticleDto simpleArticle = article.toSimpleArticleDto();
                 SimpleArticles.add(simpleArticle);
             }
         }
