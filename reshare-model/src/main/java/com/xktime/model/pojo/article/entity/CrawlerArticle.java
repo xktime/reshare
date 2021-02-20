@@ -2,7 +2,6 @@ package com.xktime.model.pojo.article.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
-import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
 
 import java.util.Date;
@@ -23,19 +22,6 @@ public class CrawlerArticle extends BaseVerifyArticle {
     private String url;
     private String origin;
     private int status;
-
-    public VerifyArticleDto toVerifyArticleDto() {
-        VerifyArticleDto dto = new VerifyArticleDto();
-        dto.setChannelName(channelName);
-        dto.setId(id);
-        dto.setPublishTime(publishTime);
-        dto.setTitle(title);
-        dto.setContent(content);
-        dto.setAuthorName(authorName);
-        dto.setStatus(status);
-        dto.setLabels(labels);
-        return dto;
-    }
 
     public SimpleArticleDto toSimpleArticleDto() {
         SimpleArticleDto dto = new SimpleArticleDto();

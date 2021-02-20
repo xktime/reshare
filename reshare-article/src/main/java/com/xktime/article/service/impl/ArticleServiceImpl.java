@@ -55,14 +55,15 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 
     @Override
     public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
+        //todo article是否不需要实现该方法
         List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-        List<Article> articles = loadArticles(loadQuery);
-        if (articles != null && !articles.isEmpty()) {
-            for (Article article : articles) {
-                VerifyArticleDto verifyArticle = article.toVerifyArticleDto();
-                verifyArticles.add(verifyArticle);
-            }
-        }
+//        List<Article> articles = loadArticles(loadQuery);
+//        if (articles != null && !articles.isEmpty()) {
+//            for (Article article : articles) {
+//                VerifyArticleDto verifyArticle = article.toVerifyArticleDto();
+//                verifyArticles.add(verifyArticle);
+//            }
+//        }
         return verifyArticles;
     }
 
