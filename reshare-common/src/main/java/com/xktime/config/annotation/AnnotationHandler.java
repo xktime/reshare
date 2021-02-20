@@ -39,7 +39,6 @@ public class AnnotationHandler {
                     setService.invoke(e, bean);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }

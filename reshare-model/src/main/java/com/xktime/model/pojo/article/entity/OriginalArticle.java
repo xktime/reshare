@@ -19,4 +19,5 @@ public class OriginalArticle extends BaseVerifyArticle {
         dto.setTitle(title);
         return dto;
     }
+
 }

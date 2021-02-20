@@ -32,6 +32,8 @@ public class BaseVerifyArticle implements Serializable {
         dto.setAuthorName(authorName);
         dto.setStatus(status);
         dto.setLabels(labels);
+        dto.setUrl(url);
+        dto.setOrigin(origin);
         return dto;
     }
 
