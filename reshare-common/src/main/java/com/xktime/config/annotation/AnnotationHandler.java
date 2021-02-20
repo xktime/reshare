@@ -22,6 +22,9 @@ public class AnnotationHandler {
         enumTypeServiceInjector();
     }
 
+    /**
+     * 给枚举注入Service实例
+     */
     private void enumTypeServiceInjector() {
         Set<Class<?>> clazzs = ClassUtil.getClassListByAnnotation(EnumTypeServiceInjector.class);
         if (clazzs == null) {

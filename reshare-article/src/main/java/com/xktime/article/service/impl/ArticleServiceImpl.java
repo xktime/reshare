@@ -55,8 +55,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 
     @Override
     public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
-        //todo article是否不需要实现该方法
-        List<VerifyArticleDto> verifyArticles = new ArrayList<>();
+        //todo article是否不需要实现该方法，如果是把方法实现整理到父类去
+//        List<VerifyArticleDto> verifyArticles = new ArrayList<>();
 //        List<Article> articles = loadArticles(loadQuery);
 //        if (articles != null && !articles.isEmpty()) {
 //            for (Article article : articles) {
@@ -64,7 +64,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 //                verifyArticles.add(verifyArticle);
 //            }
 //        }
-        return verifyArticles;
+//        return verifyArticles;
+        throw new UnsupportedOperationException();
     }
 
     @Override
