@@ -1,6 +1,7 @@
 package com.xktime.article.controller;
 
 import com.xktime.article.service.BaseArticleService;
+import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
@@ -41,8 +42,11 @@ public class LoadController {
         if (service == null) {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
+        if (!(service instanceof BaseAuditable)) {
+            throw new IllegalArgumentException("articleType错误:" + dto.getLoadArticleType());
+        }
         LoadQuery loadQuery = dto.toQuery();
-        return service.loadVerifyArticles(loadQuery);
+        return ((BaseAuditable) service).loadVerifyArticles(loadQuery);
     }
 
     @PostMapping("simpleArticles")

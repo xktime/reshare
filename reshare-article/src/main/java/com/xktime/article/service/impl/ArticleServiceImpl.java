@@ -3,7 +3,6 @@ package com.xktime.article.service.impl;
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.model.mappers.article.ArticleMapper;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
-import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import org.apache.ibatis.annotations.Param;
@@ -51,21 +50,6 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
     @Override
     public List<Article> loadArticles(LoadQuery loadQuery) {
         return articleMapper.load(loadQuery);
-    }
-
-    @Override
-    public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
-        //todo article是否不需要实现该方法，如果是把方法实现整理到父类去
-//        List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-//        List<Article> articles = loadArticles(loadQuery);
-//        if (articles != null && !articles.isEmpty()) {
-//            for (Article article : articles) {
-//                VerifyArticleDto verifyArticle = article.toVerifyArticleDto();
-//                verifyArticles.add(verifyArticle);
-//            }
-//        }
-//        return verifyArticles;
-        throw new UnsupportedOperationException();
     }
 
     @Override
