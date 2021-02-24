@@ -47,7 +47,6 @@ public class Article {
     }
 
     public ArticleDetailsDto toArticleDetailsDto(List<Comment> comments) {
-        //todo 插入detail评论整合到TransferUtils
         ArticleDetailsDto dto = new ArticleDetailsDto();
         dto.setAuthorId(authorId);
         dto.setAuthorName(authorName);

@@ -1,5 +1,7 @@
 package com.xktime.model.pojo.comment.dto.c2s;
 
+import com.xktime.model.pojo.comment.entity.Comment;
+import com.xktime.model.pojo.user.entity.AppUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,4 +17,14 @@ public class PublishDto {
     private String content;
     @ApiModelProperty("当前账户token")
     private String token;
+
+    //todo 把toComment放在PublishDto似乎不太合适
+    public Comment toComment(AppUser author) {
+        Comment comment = new Comment();
+        comment.setAuthorId(author.getId());
+        comment.setBindId(bindId);
+        comment.setType(type);
+        comment.setContent(content);
+        return comment;
+    }
 }

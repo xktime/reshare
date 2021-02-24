@@ -2,7 +2,6 @@ package com.xktime.comment.controller;
 
 import com.xktime.comment.service.CommentService;
 import com.xktime.model.pojo.comment.dto.c2s.PublishDto;
-import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
 import com.xktime.model.pojo.user.entity.AppUser;
@@ -33,13 +32,7 @@ public class CommentController {
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
-        //todo 移动到TransferUtil
-        Comment comment = new Comment();
-        comment.setAuthorId(author.getId());
-        comment.setBindId(dto.getBindId());
-        comment.setType(dto.getType());
-        comment.setContent(dto.getContent());
-        commentService.saveComment(comment);
+        commentService.saveComment(dto.toComment(author));
         return result;
     }
 }
