@@ -38,7 +38,7 @@ public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArt
 
     @Override
     public void update(OriginalArticle article) {
-        //todo 实现
+        throw new UnsupportedOperationException();
     }
 
     @Override

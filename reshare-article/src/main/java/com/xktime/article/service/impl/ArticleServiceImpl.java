@@ -39,7 +39,7 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 
     @Override
     public void update(Article article) {
-        //todo 实现
+        throw new UnsupportedOperationException();
     }
 
     @Override
