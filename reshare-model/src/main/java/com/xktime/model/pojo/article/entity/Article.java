@@ -4,10 +4,13 @@ package com.xktime.model.pojo.article.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.comment.entity.Comment;
+import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,8 +67,17 @@ public class Article {
         dto.setContent(content);
         dto.setId(id);
         dto.setImages(images);
-        //todo 转换commentDto
-        new CommentDto();
+
+        List<CommentDto> commentDtoList = new ArrayList<>();
+        comments.forEach(comment -> commentDtoList.add(comment.toCommentDto()));
+        dto.setComments(commentDtoList);
         return dto;
+    }
+
+    public LoadDto getCommentLoadDto() {
+        LoadDto loadDto = new LoadDto();
+        loadDto.setBindId(id);
+        loadDto.setLoadCommentType(CommentTypeEnum.ARTICLE.getType());
+        return loadDto;
     }
 }

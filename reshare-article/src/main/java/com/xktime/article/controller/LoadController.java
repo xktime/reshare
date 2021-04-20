@@ -10,7 +10,6 @@ import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
-import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import com.xktime.model.templet.RestfulTemplet;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -64,13 +63,7 @@ public class LoadController {
         }
         long id = Long.parseLong(articleId);
         Article article = articleService.findById(id);
-        //todo Transfer 加载评论重构
-        com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto = new com.xktime.model.pojo.comment.dto.c2s.LoadDto();
-        loadDto.setBindId(id);
-        loadDto.setLoadCommentType(CommentTypeEnum.ARTICLE.getType());
-        //todo 插入detail评论
-        //todo 评论分页
-        return article.toArticleDetailsDto(restfulTemplet.getComments(loadDto));
+        return article.toArticleDetailsDto(restfulTemplet.getComments(article.getCommentLoadDto()));
     }
 
 }
