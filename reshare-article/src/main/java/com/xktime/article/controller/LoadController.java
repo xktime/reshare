@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -29,9 +28,6 @@ public class LoadController {
 
     @Autowired
     ArticleServiceImpl articleService;
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     RestfulTemplet restfulTemplet;
@@ -74,7 +70,7 @@ public class LoadController {
         loadDto.setLoadCommentType(CommentTypeEnum.ARTICLE.getType());
         //todo 插入detail评论
         //todo 评论分页
-        return article.toArticleDetailsDto(restfulTemplet.getComments(restTemplate, loadDto));
+        return article.toArticleDetailsDto(restfulTemplet.getComments(loadDto));
     }
 
 }

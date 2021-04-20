@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @Api(tags = "app评论相关接口")
 @RestController
 @RequestMapping("comment")
 public class CommentController {
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     RestfulTemplet restfulTemplet;
@@ -34,7 +30,7 @@ public class CommentController {
     public ResponseResult publish(PublishDto dto) {
         ResponseResult result = new ResponseResult();
         try {
-            return restfulTemplet.publishComment(restTemplate, dto);
+            return restfulTemplet.publishComment(dto);
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;

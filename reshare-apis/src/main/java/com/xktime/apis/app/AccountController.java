@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @Api(tags = "app用户相关接口")
 @RestController
 @RequestMapping("account")
 public class AccountController {
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     RestfulTemplet restfulTemplet;
@@ -34,7 +30,7 @@ public class AccountController {
     public ResponseResult register(RegisterDto dto) {
         ResponseResult result = new ResponseResult();
         try {
-            return restfulTemplet.registerApp(restTemplate, dto);
+            return restfulTemplet.registerApp(dto);
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;

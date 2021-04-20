@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -22,9 +21,6 @@ import java.util.List;
 @RestController
 @RequestMapping("article")
 public class ArticleController {
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     RestfulTemplet restfulTemplet;
@@ -40,7 +36,7 @@ public class ArticleController {
     public ResponseResult publish(PublishDto dto) {
         ResponseResult result = new ResponseResult();
         try {
-            return restfulTemplet.publishArticle(restTemplate, dto);
+            return restfulTemplet.publishArticle(dto);
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;
@@ -52,7 +48,7 @@ public class ArticleController {
     public ResponseResult loadSimpleArticle(LoadDto dto) {
         ResponseResult<List<SimpleArticleDto>> result = new ResponseResult<>();
         try {
-            result.ok(restfulTemplet.loadSimpleArticle(restTemplate, dto));
+            result.ok(restfulTemplet.loadSimpleArticle(dto));
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;
@@ -65,7 +61,7 @@ public class ArticleController {
     public ResponseResult loadArticleDetails(String articleId) {
         ResponseResult<ArticleDetailsDto> result = new ResponseResult<>();
         try {
-            result.ok(restfulTemplet.loadArticleDetails(restTemplate, articleId));
+            result.ok(restfulTemplet.loadArticleDetails(articleId));
         } catch (Exception e) {
             result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return result;

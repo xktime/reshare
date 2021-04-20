@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @Api(tags = "app用户登录相关接口")
 @RestController
 @RequestMapping("login")
 public class LoginController {
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     RestfulTemplet restfulTemplet;
@@ -34,7 +30,7 @@ public class LoginController {
     public ResponseResult commonLogin(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
-            responseResult = restfulTemplet.commonLoginApp(restTemplate, dto);
+            responseResult = restfulTemplet.commonLoginApp(dto);
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;

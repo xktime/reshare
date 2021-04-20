@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -24,9 +23,6 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    RestTemplate restTemplate;
-
-    @Autowired
     RestfulTemplet restfulTemplet;
 
     @ApiOperation("加载文章")
@@ -34,7 +30,7 @@ public class AdminController {
     public ResponseResult loadArticle(LoadDto dto) {
         ResponseResult<List<VerifyArticleDto>> responseResult = new ResponseResult<>();
         try {
-            responseResult.ok(restfulTemplet.loadArticle(restTemplate, dto));
+            responseResult.ok(restfulTemplet.loadArticle(dto));
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;
@@ -47,7 +43,7 @@ public class AdminController {
     public ResponseResult verify(VerifyDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
-            restfulTemplet.verifyArticle(restTemplate, dto);
+            restfulTemplet.verifyArticle(dto);
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;
@@ -60,7 +56,7 @@ public class AdminController {
     public ResponseResult login(LoginDto dto) {
         ResponseResult responseResult = new ResponseResult();
         try {
-            responseResult = restfulTemplet.loginAdmin(restTemplate, dto);
+            responseResult = restfulTemplet.loginAdmin(dto);
         } catch (Exception e) {
             responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
             return responseResult;
