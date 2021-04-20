@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xktime.model.mappers.article.CrawlerArticleMapper">
 
-    <!--    <resultMap id="crawlerArticle" type="com.xktime.model.article.po.CrawlerArticle">-->
+    <!--    <resultMap id="crawlerArticle" type="com.xktime.model.article.po.CrawlerVerifyArticle">-->
     <!--        <result column="title" property="title"/>-->
     <!--        <result column="content" property="content"/>-->
     <!--        <result column="author_name" property="authorName"/>-->
@@ -14,7 +14,7 @@
     <!--        <result column="status" property="status"/>-->
     <!--    </resultMap>-->
 
-    <insert id="saveArticle" parameterType="com.xktime.model.pojo.article.entity.CrawlerArticle"
+    <insert id="saveArticle" parameterType="com.xktime.model.pojo.article.entity.CrawlerVerifyArticle"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO crwaler_article(title,content,author_name,channel_name,labels,publish_time,origin,url)
         VALUES (#{title},#{content},#{authorName},#{channelName},#{labels},#{publishTime},#{origin},#{url})
@@ -24,7 +24,7 @@
       SELECT count(*) from crwaler_article WHERE url = #{url}
     </select>
 
-    <select id="load" resultType="com.xktime.model.pojo.article.entity.CrawlerArticle">
+    <select id="load" resultType="com.xktime.model.pojo.article.entity.CrawlerVerifyArticle">
         SELECT * FROM crwaler_article
         ORDER BY publish_time DESC
         LIMIT #{size} OFFSET #{pageStartIndex}
@@ -34,7 +34,7 @@
         UPDATE crwaler_article SET status= #{status}, bind_id=#{bindId} WHERE id = #{articleId};
     </update>
 
-    <select id="findById" resultType="com.xktime.model.pojo.article.entity.CrawlerArticle">
+    <select id="findById" resultType="com.xktime.model.pojo.article.entity.CrawlerVerifyArticle">
         SELECT * FROM crwaler_article WHERE id=#{id}
     </select>
 

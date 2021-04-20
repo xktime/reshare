@@ -1,6 +1,7 @@
 package com.xktime.model.pojo.article.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
 
@@ -47,5 +48,13 @@ public class BaseVerifyArticle implements Serializable {
         return article;
     }
 
-    //todo 子类继承toSimpleArticleDto和toVerifyArticleDto
+    public SimpleArticleDto toSimpleArticleDto() {
+        SimpleArticleDto dto = new SimpleArticleDto();
+        dto.setChannelName(channelName);
+        dto.setId(id);
+        dto.setPublishTime(publishTime);
+        dto.setTitle(title);
+        //OriginalArticle获取author需要单独处理
+        return dto;
+    }
 }

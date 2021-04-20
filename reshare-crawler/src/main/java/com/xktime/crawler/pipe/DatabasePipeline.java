@@ -2,7 +2,7 @@ package com.xktime.crawler.pipe;
 
 
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
-import com.xktime.model.pojo.article.entity.CrawlerArticle;
+import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
@@ -39,8 +39,8 @@ public class DatabasePipeline implements Pipeline {
 
     }
 
-    private CrawlerArticle trans(ResultItems resultItems) {
-        CrawlerArticle article = new CrawlerArticle();
+    private CrawlerVerifyArticle trans(ResultItems resultItems) {
+        CrawlerVerifyArticle article = new CrawlerVerifyArticle();
         String url = resultItems.getRequest().getUrl();
         Map<String, Object> all = resultItems.getAll();
         Object title = all.get("title");

@@ -33,8 +33,8 @@ public class ArticleController {
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
         }
-        //todo 符合某项规则直接 articleService.save(article)
         originalBaseArticleService.save(dto.toOriginalArticle(author));
+        //todo 符合某项规则直接 articleService.save(article)
         return result;
     }
 }

@@ -1,6 +1,6 @@
 package com.xktime.model.pojo.article.dto.c2s;
 
-import com.xktime.model.pojo.article.entity.OriginalArticle;
+import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
 import com.xktime.model.pojo.user.entity.AppUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,8 +19,8 @@ public class PublishDto {
     String token;
 
     //todo 把toOriginalArticle放在PublishDto似乎不太合适
-    public OriginalArticle toOriginalArticle(AppUser author) {
-        OriginalArticle article = new OriginalArticle();
+    public OriginalVerifyArticle toOriginalArticle(AppUser author) {
+        OriginalVerifyArticle article = new OriginalVerifyArticle();
         article.setContent(content);
         article.setTitle(title);
         article.setPublishTime(new Date());

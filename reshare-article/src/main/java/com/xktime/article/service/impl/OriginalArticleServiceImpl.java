@@ -5,7 +5,7 @@ import com.xktime.article.service.BaseAuditable;
 import com.xktime.model.mappers.article.OriginalArticleMapper;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
-import com.xktime.model.pojo.article.entity.OriginalArticle;
+import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,47 +16,47 @@ import java.util.Collection;
 import java.util.List;
 
 @Service("OriginalArticle")
-public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalArticle> {
+public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalVerifyArticle> {
 
     @Autowired
     OriginalArticleMapper originalArticleMapper;
 
     @Override
-    public void save(OriginalArticle article) {
+    public void save(OriginalVerifyArticle article) {
         originalArticleMapper.saveArticle(article);
     }
 
     @Override
-    public void saveArticles(Collection<OriginalArticle> articles) {
+    public void saveArticles(Collection<OriginalVerifyArticle> articles) {
         if (articles == null || articles.isEmpty()) {
             return;
         }
-        for (OriginalArticle article : articles) {
+        for (OriginalVerifyArticle article : articles) {
             save(article);
         }
     }
 
     @Override
-    public void update(OriginalArticle article) {
+    public void update(OriginalVerifyArticle article) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public OriginalArticle findById(long id) {
+    public OriginalVerifyArticle findById(long id) {
         return originalArticleMapper.findById(id);
     }
 
     @Override
-    public List<OriginalArticle> loadArticles(LoadQuery loadQuery) {
+    public List<OriginalVerifyArticle> loadArticles(LoadQuery loadQuery) {
         return originalArticleMapper.load(loadQuery);
     }
 
     @Override
     public List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery) {
         List<VerifyArticleDto> verifyArticles = new ArrayList<>();
-        List<OriginalArticle> articles = loadArticles(loadQuery);
+        List<OriginalVerifyArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
-            for (OriginalArticle article : articles) {
+            for (OriginalVerifyArticle article : articles) {
                 VerifyArticleDto verifyArticle = article.toVerifyArticleDto();
                 verifyArticles.add(verifyArticle);
             }
@@ -67,9 +67,9 @@ public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArt
     @Override
     public List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery) {
         List<SimpleArticleDto> SimpleArticles = new ArrayList<>();
-        List<OriginalArticle> articles = loadArticles(loadQuery);
+        List<OriginalVerifyArticle> articles = loadArticles(loadQuery);
         if (articles != null && !articles.isEmpty()) {
-            for (OriginalArticle article : articles) {
+            for (OriginalVerifyArticle article : articles) {
                 SimpleArticleDto simpleArticle = article.toSimpleArticleDto();
                 SimpleArticles.add(simpleArticle);
             }

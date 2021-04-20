@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional//todo 改用AOP事务支持
+@Transactional
 public abstract class BaseAuditable {
 
     @Autowired
@@ -30,7 +30,6 @@ public abstract class BaseAuditable {
             throw new NullPointerException("文章为空");
         }
         VerifyQuery verifyQuery = dto.toQuery();
-        //todo 可以将操作整合到Transfer内
         if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
             //如果是通过审核,插入数据库
             Article article = verifyArticle.toArticle();
