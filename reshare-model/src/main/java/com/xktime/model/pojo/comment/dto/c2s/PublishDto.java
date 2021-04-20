@@ -17,8 +17,7 @@ public class PublishDto {
     private String content;
     @ApiModelProperty("当前账户token")
     private String token;
-
-    //todo 把toComment放在PublishDto似乎不太合适
+    
     public Comment toComment(AppUser author) {
         Comment comment = new Comment();
         comment.setAuthorId(author.getId());

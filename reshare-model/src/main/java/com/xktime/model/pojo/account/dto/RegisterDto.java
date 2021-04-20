@@ -28,7 +28,7 @@ public class RegisterDto {
     @ApiModelProperty("用户地区")
     private String region;
 
-    public AppUser toUser(SnowflakeIdUtil snowflakeId) {
+    public AppUser toUser(SnowflakeIdUtil snowflakeIdUtil) {
         AppUser user = new AppUser();
         user.setBirthday(birthday);
         user.setPhoneNumber(phoneNumber);
@@ -38,7 +38,7 @@ public class RegisterDto {
         user.setPassword(encryptedPassword);
         user.setCreateTime(new Date());
         user.setUserName(account);
-        user.setUserId(snowflakeId.nextId());
+        user.setUserId(snowflakeIdUtil.nextId());
         user.setProfile("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
         return user;
     }

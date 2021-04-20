@@ -18,7 +18,6 @@ public class PublishDto {
     @ApiModelProperty("当前账户token")
     String token;
 
-    //todo 把toOriginalArticle放在PublishDto似乎不太合适
     public OriginalVerifyArticle toOriginalArticle(AppUser author) {
         OriginalVerifyArticle article = new OriginalVerifyArticle();
         article.setContent(content);

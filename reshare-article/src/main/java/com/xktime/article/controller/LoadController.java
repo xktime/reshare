@@ -9,7 +9,6 @@ import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
-import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.templet.RestfulTemplet;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -37,14 +36,12 @@ public class LoadController {
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getLoadArticleType());
         }
-        LoadQuery loadQuery = dto.toQuery();
-        return ((BaseAuditable) service).loadVerifyArticles(loadQuery);
+        return ((BaseAuditable) service).loadVerifyArticles(dto.toQuery());
     }
 
     @PostMapping("simpleArticles")
     public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
-        LoadQuery loadQuery = dto.toQuery();
-        BaseArticleService service = ArticleTypeEnum.getService(dto.getLoadArticleType());
+        BaseArticleService<?> service = ArticleTypeEnum.getService(dto.getLoadArticleType());
         if (service == null) {
             throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
         }
@@ -53,7 +50,7 @@ public class LoadController {
             //todo 根据玩家推荐文章
             return null;
         } else {
-            return service.loadSimpleArticles(loadQuery);
+            return service.loadSimpleArticles(dto.toQuery());
         }
     }
 

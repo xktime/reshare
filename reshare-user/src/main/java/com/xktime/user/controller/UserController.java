@@ -21,7 +21,7 @@ public class UserController {
     AppBaseUserServiceImpl appUserService;
 
     @Autowired
-    SnowflakeIdUtil snowflakeId;
+    SnowflakeIdUtil snowflakeIdUtil;
 
     @RequestMapping("register")
     public ResponseResult register(@RequestBody RegisterDto dto) {
@@ -31,7 +31,7 @@ public class UserController {
             result.error(HttpCodeEnum.ACCOUNT_EXISTS.getCode(), HttpCodeEnum.ACCOUNT_EXISTS.getErrorMessage());
             return result;
         }
-        AppUser user = dto.toUser(snowflakeId);
+        AppUser user = dto.toUser(snowflakeIdUtil);
         appUserService.save(user);
         return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstant.LOGIN_TOKEN_BASE64_KEY));
     }
