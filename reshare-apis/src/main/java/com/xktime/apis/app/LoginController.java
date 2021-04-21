@@ -32,7 +32,7 @@ public class LoginController {
         try {
             responseResult = restfulTemplet.commonLoginApp(dto);
         } catch (Exception e) {
-            responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            responseResult.error(HttpCodeEnum.FAIL);
             return responseResult;
         }
         return responseResult;

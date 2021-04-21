@@ -31,7 +31,7 @@ public class ArticleController {
         ResponseResult result = new ResponseResult();
         AppUser author = restfulTemplet.getUserByToken(dto.getToken());
         if (author == null) {
-            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
+            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT);
         }
         originalBaseArticleService.save(dto.toOriginalArticle(author));
         //todo 符合某项规则直接 articleService.save(article)

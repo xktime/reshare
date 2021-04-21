@@ -32,7 +32,7 @@ public class CommentController {
         try {
             return restfulTemplet.publishComment(dto);
         } catch (Exception e) {
-            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            result.error(HttpCodeEnum.FAIL);
             return result;
         }
     }

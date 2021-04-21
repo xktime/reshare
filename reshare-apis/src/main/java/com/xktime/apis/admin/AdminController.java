@@ -32,7 +32,7 @@ public class AdminController {
         try {
             responseResult.ok(restfulTemplet.loadArticle(dto));
         } catch (Exception e) {
-            responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            responseResult.error(HttpCodeEnum.FAIL);
             return responseResult;
         }
         return responseResult;
@@ -45,7 +45,7 @@ public class AdminController {
         try {
             restfulTemplet.verifyArticle(dto);
         } catch (Exception e) {
-            responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            responseResult.error(HttpCodeEnum.FAIL);
             return responseResult;
         }
         return responseResult;
@@ -58,7 +58,7 @@ public class AdminController {
         try {
             responseResult = restfulTemplet.loginAdmin(dto);
         } catch (Exception e) {
-            responseResult.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            responseResult.error(HttpCodeEnum.FAIL);
             return responseResult;
         }
         return responseResult;

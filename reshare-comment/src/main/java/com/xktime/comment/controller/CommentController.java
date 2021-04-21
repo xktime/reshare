@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("comment")
@@ -20,17 +19,14 @@ public class CommentController {
     CommentService commentService;
 
     @Autowired
-    RestTemplate restTemplate;
-
-    @Autowired
     RestfulTemplet restfulTemplet;
 
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {
         ResponseResult result = new ResponseResult();
-        AppUser author = restfulTemplet.getUserByToken(restTemplate, dto.getToken());
+        AppUser author = restfulTemplet.getUserByToken(dto.getToken());
         if (author == null) {
-            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
+            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT);
         }
         commentService.saveComment(dto.toComment(author));
         return result;

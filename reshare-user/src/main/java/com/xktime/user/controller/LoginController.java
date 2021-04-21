@@ -29,16 +29,16 @@ public class LoginController {
     public ResponseResult adminLogin(@RequestBody LoginDto dto) {
         ResponseResult result = new ResponseResult();
         if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
-            return result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            return result.error(HttpCodeEnum.FAIL);
         }
         AdminUser adminUser = adminUserService.queryByAccount(dto.getAccount());
         if (adminUser == null) {
-            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
+            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT);
         }
         String password = adminUser.getPassword();
         String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
-            return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
+            return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD);
         }
         return result.ok(adminUserService.getTokenByAccount(dto.getAccount()));
     }
@@ -51,12 +51,12 @@ public class LoginController {
         }
         AppUser user = appUserService.queryByAccount(dto.getAccount());
         if (user == null) {
-            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT.getCode(), HttpCodeEnum.NOT_FIND_ACCOUNT.getErrorMessage());
+            return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT);
         }
         String password = user.getPassword();
         String encryptedPassWord = CodeUtil.encryptBase64(dto.getPassword(), CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
         if (!password.equals(encryptedPassWord)) {
-            return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD.getCode(), HttpCodeEnum.LOGIN_FAIL_PASSWORD.getErrorMessage());
+            return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD);
         }
         return result.ok(appUserService.getTokenByAccount(dto.getAccount()));
     }

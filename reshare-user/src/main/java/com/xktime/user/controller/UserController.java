@@ -28,7 +28,7 @@ public class UserController {
         ResponseResult result = new ResponseResult();
         String account = dto.getAccount();
         if (appUserService.queryByAccount(account) != null) {
-            result.error(HttpCodeEnum.ACCOUNT_EXISTS.getCode(), HttpCodeEnum.ACCOUNT_EXISTS.getErrorMessage());
+            result.error(HttpCodeEnum.ACCOUNT_EXISTS);
             return result;
         }
         AppUser user = dto.toUser(snowflakeIdUtil);

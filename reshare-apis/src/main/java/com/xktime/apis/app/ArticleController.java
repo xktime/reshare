@@ -38,7 +38,7 @@ public class ArticleController {
         try {
             return restfulTemplet.publishArticle(dto);
         } catch (Exception e) {
-            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            result.error(HttpCodeEnum.FAIL);
             return result;
         }
     }
@@ -50,7 +50,7 @@ public class ArticleController {
         try {
             result.ok(restfulTemplet.loadSimpleArticle(dto));
         } catch (Exception e) {
-            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            result.error(HttpCodeEnum.FAIL);
             return result;
         }
         return result;
@@ -63,7 +63,7 @@ public class ArticleController {
         try {
             result.ok(restfulTemplet.loadArticleDetails(articleId));
         } catch (Exception e) {
-            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            result.error(HttpCodeEnum.FAIL);
             return result;
         }
         return result;

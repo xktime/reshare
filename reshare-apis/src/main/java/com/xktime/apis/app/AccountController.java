@@ -32,7 +32,7 @@ public class AccountController {
         try {
             return restfulTemplet.registerApp(dto);
         } catch (Exception e) {
-            result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
+            result.error(HttpCodeEnum.FAIL);
             return result;
         }
     }
