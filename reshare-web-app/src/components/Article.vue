@@ -73,6 +73,7 @@
 
 <script>
     export default {
+        inject: ['reload'],
         data() {
             return {
                 ruleForm: {
@@ -141,7 +142,6 @@
         },
         methods: {
             publish() {
-                //todo 未登陆提示
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         if (!this.$store.state.loging || this.$store.state.token==='') {
@@ -160,8 +160,7 @@
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }
-                                //todo 发布评论之后页面跳转问题
-                                this.$router.push({path: this.$route.query.redirect || '/'});
+                                this.$router.go(0);
                             }
                         );
                     } else {
