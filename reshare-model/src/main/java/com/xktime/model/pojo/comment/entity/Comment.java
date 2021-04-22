@@ -16,9 +16,13 @@ public class Comment {
     private Date publishTime;
     private int type;
 
-    //todo 实现toCommentDto
     public CommentDto toCommentDto() {
-        return null;
+        CommentDto dto = new CommentDto();
+        dto.setContent(content);
+        dto.setPublishTime(publishTime);
+        dto.setId(id);
+        //todo 设置Author
+        return dto;
     }
 
 }

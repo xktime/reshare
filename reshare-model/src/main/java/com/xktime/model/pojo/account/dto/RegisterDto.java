@@ -30,6 +30,7 @@ public class RegisterDto {
 
     public AppUser toUser(SnowflakeIdUtil snowflakeIdUtil) {
         AppUser user = new AppUser();
+        user.setAccount(account);
         user.setBirthday(birthday);
         user.setPhoneNumber(phoneNumber);
         user.setRegion(region);

@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @ApiModel(description = "请求发布评论dto")
 public class PublishDto {
@@ -17,13 +19,14 @@ public class PublishDto {
     private String content;
     @ApiModelProperty("当前账户token")
     private String token;
-    
+
     public Comment toComment(AppUser author) {
         Comment comment = new Comment();
         comment.setAuthorId(author.getId());
         comment.setBindId(bindId);
         comment.setType(type);
         comment.setContent(content);
+        comment.setPublishTime(new Date());
         return comment;
     }
 }

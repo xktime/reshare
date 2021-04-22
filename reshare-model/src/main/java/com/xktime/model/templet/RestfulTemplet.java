@@ -89,7 +89,7 @@ public class RestfulTemplet {
 
     public ResponseResult publishComment(com.xktime.model.pojo.comment.dto.c2s.PublishDto dto) {
         return restTemplate.exchange(
-                COMMENT_REST_URL_PREFIX + "/article/publish",
+                COMMENT_REST_URL_PREFIX + "/comment/publish",
                 HttpMethod.POST,
                 new HttpEntity<>(dto),
                 new ParameterizedTypeReference<ResponseResult>() {

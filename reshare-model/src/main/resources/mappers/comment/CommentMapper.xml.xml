@@ -3,8 +3,8 @@
 <mapper namespace="com.xktime.model.mappers.comment.CommentMapper">
     <insert id="saveComment" parameterType="com.xktime.model.pojo.comment.entity.Comment" useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO comment(content,author_id,bind_id,publish_time)
-        VALUES (#{content},#{authorId},#{bindId},#{publishTime})
+        INSERT INTO comment(content,author_id,`type`,bind_id,publish_time)
+        VALUES (#{content},#{authorId},#{type},#{bindId},#{publishTime})
     </insert>
 
     <select id="load" resultType="com.xktime.model.pojo.comment.entity.Comment">

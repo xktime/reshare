@@ -41,16 +41,12 @@ public class LoadController {
 
     @PostMapping("simpleArticles")
     public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
-        BaseArticleService<?> service = ArticleTypeEnum.getService(dto.getLoadArticleType());
-        if (service == null) {
-            throw new IllegalArgumentException("LoadArticleType参数错误：" + dto.getLoadArticleType());
-        }
         if (!StringUtils.isBlank(dto.getToken())
                 && dto.getLoadArticleType() == ArticleTypeEnum.RECOMMEND_ARTICLE.getType()) {
             //todo 根据玩家推荐文章
             return null;
         } else {
-            return service.loadSimpleArticles(dto.toQuery());
+            return articleService.loadSimpleArticles(dto.toQuery());
         }
     }
 

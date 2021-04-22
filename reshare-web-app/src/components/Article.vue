@@ -152,7 +152,7 @@
                         data.append("content", this.ruleForm.content);
                         data.append("token", this.$store.state.token);
                         data.append("bindId", this.$route.params.articleId);
-                        data.append("type", 1);//todo commentType
+                        data.append("type", "1");//todo commentType
                         const api = this.$publishCommentUrl;
                         this.axios.post(api, data).then(
                             (response) => {
@@ -160,6 +160,7 @@
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }
+                                //todo 发布评论之后页面跳转问题
                                 this.$router.push({path: this.$route.query.redirect || '/'});
                             }
                         );
