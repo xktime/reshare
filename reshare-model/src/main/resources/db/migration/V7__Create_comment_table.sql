@@ -4,7 +4,7 @@ CREATE TABLE `comment` (
   `author_id` bigint unsigned NOT NULL COMMENT '评论作者的ID',
   `bind_id` bigint unsigned NOT NULL COMMENT '绑定ID(文章为article_id)',
   `content` longtext COLLATE utf8mb4_unicode_ci COMMENT '评论内容',
-  `publish_time` datetime DEFAULT NULL COMMENT '发布时间',
+  `publish_time` timestamp COMMENT '发布时间',
   `type` tinyint(1) unsigned DEFAULT '0' COMMENT '评论类型',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `author_id`(`author_id`) USING BTREE,

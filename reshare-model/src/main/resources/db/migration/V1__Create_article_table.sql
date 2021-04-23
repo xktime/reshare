@@ -12,7 +12,7 @@ CREATE TABLE `article` (
   `collection` int unsigned DEFAULT '0' COMMENT '收藏数量',
   `comment` int unsigned DEFAULT '0' COMMENT '评论数量',
   `views` int unsigned DEFAULT '0' COMMENT '阅读数量',
-  `publish_time` datetime DEFAULT NULL COMMENT '发布时间',
+  `publish_time` timestamp COMMENT '发布时间',
   `origin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '来源',
   `content` longtext COLLATE utf8mb4_unicode_ci COMMENT '文章内容',
   `status` tinyint(1) unsigned DEFAULT '0' COMMENT '文章状态',

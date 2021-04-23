@@ -79,9 +79,10 @@
                     //如果切换加载类型，清空之前的数据
                     this.tableData = [];
                 }
-                let lastTime = 0;
+                let lastTime = new Date().toLocaleDateString();
                 if (this.tableData[this.tableData.length - 1]) {
-                    lastTime = this.tableData[this.tableData.length - 1].publishTime;
+                    const publishTime = this.tableData[this.tableData.length - 1].publishTime;
+                    lastTime = new Date(publishTime).toLocaleDateString();
                 }
                 const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type) + '&lastTime=' + lastTime;
                 const _this = this;

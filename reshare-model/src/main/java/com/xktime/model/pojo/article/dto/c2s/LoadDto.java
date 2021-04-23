@@ -39,7 +39,7 @@ public class LoadDto {
         loadQuery.setPage(page);
         loadQuery.setSize(size);
         loadQuery.setToken(token);
-        loadQuery.setLastTime(lastTime);
+        loadQuery.setLastTime(lastTime.getTime());
         return loadQuery;
     }
 }

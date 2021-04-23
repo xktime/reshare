@@ -5,7 +5,7 @@ CREATE TABLE `user_article_list` (
   `channel_id` int(11) unsigned DEFAULT '0' COMMENT '频道ID',
   `article_id` int(11) unsigned DEFAULT '0' COMMENT '动态ID',
   `is_show` tinyint(1) unsigned DEFAULT '0' COMMENT '是否展示',
-  `recommend_time` datetime DEFAULT NULL COMMENT '推荐时间',
+  `recommend_time` timestamp COMMENT '推荐时间',
   `is_read` tinyint(1) unsigned DEFAULT '0' COMMENT '是否阅读',
   `strategy_id` int(5) unsigned DEFAULT '0' COMMENT '推荐算法',
   PRIMARY KEY (`id`) USING BTREE,

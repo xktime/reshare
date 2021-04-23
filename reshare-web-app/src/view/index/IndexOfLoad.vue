@@ -79,9 +79,10 @@
                 data.append("page", this.page);
                 data.append("loadArticleType", this.getType(this.type));
 
-                let lastTime = 0;
+                let lastTime = new Date().toLocaleDateString();
                 if (this.tableData[this.tableData.length - 1]) {
-                    lastTime = this.tableData[this.tableData.length - 1].publishTime;
+                    const publishTime = this.tableData[this.tableData.length - 1].publishTime;
+                    lastTime = new Date(publishTime).toLocaleDateString();
                 }
                 data.append("lastTime", lastTime);
 

@@ -7,7 +7,7 @@ CREATE TABLE `original_article` (
 `author_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '作者昵称',
 `channel_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '频道名称',
 `labels` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '文章标签最多3个 逗号分隔',
-`publish_time` datetime DEFAULT NULL COMMENT '发布时间',
+`publish_time` timestamp COMMENT '发布时间',
 `url` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '文章url',
 `origin` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '来源',
 `status` tinyint(1) unsigned DEFAULT '0' COMMENT '文章状态',

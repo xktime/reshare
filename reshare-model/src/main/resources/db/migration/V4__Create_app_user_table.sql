@@ -13,8 +13,8 @@ CREATE TABLE `app_user` (
   `status` tinyint(1) unsigned DEFAULT '0' COMMENT '0正常\r\n            1锁定',
   `flag` tinyint(1) unsigned DEFAULT '0' COMMENT '0 普通用户\r\n            1 自媒体人\r\n            2 大V',
   `region` varchar(30) NOT NULL COMMENT '所在地区',
-  `birthday` datetime DEFAULT NULL COMMENT '生日',
-  `created_time` datetime DEFAULT NULL COMMENT '注册时间',
+  `birthday` timestamp COMMENT '生日',
+  `created_time` timestamp COMMENT '注册时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户信息表';
