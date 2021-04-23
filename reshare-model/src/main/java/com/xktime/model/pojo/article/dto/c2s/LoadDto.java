@@ -1,9 +1,12 @@
 package com.xktime.model.pojo.article.dto.c2s;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 @ApiModel(description = "请求加载文章dto")
@@ -27,11 +30,16 @@ public class LoadDto {
     @ApiModelProperty("作者id")
     long authorId;
 
+    @ApiModelProperty("上次加载时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastTime;//todo 给数据库时间重构为timestamp
+
     public LoadQuery toQuery() {
         LoadQuery loadQuery = new LoadQuery();
         loadQuery.setPage(page);
         loadQuery.setSize(size);
         loadQuery.setToken(token);
+        loadQuery.setLastTime(lastTime);
         return loadQuery;
     }
 }

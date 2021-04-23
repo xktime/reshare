@@ -64,7 +64,6 @@
             }
         },
         methods: {
-            //todo 分页导致部分数据重复加载问题
             load: function () {
                 this.scrollDisabled = true;
                 const type = this.$route.params.type;
@@ -79,6 +78,13 @@
                 let data = new FormData();
                 data.append("page", this.page);
                 data.append("loadArticleType", this.getType(this.type));
+
+                let lastTime = 0;
+                if (this.tableData[this.tableData.length - 1]) {
+                    lastTime = this.tableData[this.tableData.length - 1].publishTime;
+                }
+                data.append("lastTime", lastTime);
+
                 if (this.$store.state.loging) {
                     data.append("token", this.$store.state.token);
                 }

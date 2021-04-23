@@ -26,6 +26,7 @@
 
     <select id="load" resultType="com.xktime.model.pojo.article.entity.CrawlerVerifyArticle">
         SELECT * FROM crwaler_article
+        WHERE #{lastTime} > publish_time
         ORDER BY publish_time DESC
         LIMIT #{size} OFFSET #{pageStartIndex}
     </select>

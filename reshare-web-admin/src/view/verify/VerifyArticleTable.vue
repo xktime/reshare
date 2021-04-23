@@ -68,7 +68,6 @@
             }
         },
         methods: {
-            //todo 分页导致部分数据重复加载问题(可使用id解决)
             load: function () {
                 this.scrollDisabled = true;
                 const type = this.$route.params.type;
@@ -80,7 +79,11 @@
                     //如果切换加载类型，清空之前的数据
                     this.tableData = [];
                 }
-                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type);
+                let lastTime = 0;
+                if (this.tableData[this.tableData.length - 1]) {
+                    lastTime = this.tableData[this.tableData.length - 1].publishTime;
+                }
+                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type) + '&lastTime=' + lastTime;
                 const _this = this;
                 this.axios.get(api).then((response) => {
                     if (response.data.code !== 200) {
