@@ -68,7 +68,7 @@
             }
         },
         methods: {
-            //todo 分页导致部分数据重复加载问题
+            //todo 分页导致部分数据重复加载问题(可使用id解决)
             load: function () {
                 this.scrollDisabled = true;
                 const type = this.$route.params.type;

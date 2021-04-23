@@ -73,7 +73,6 @@
 
 <script>
     export default {
-        inject: ['reload'],
         data() {
             return {
                 ruleForm: {
