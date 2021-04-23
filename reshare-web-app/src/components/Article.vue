@@ -151,7 +151,7 @@
                         data.append("content", this.ruleForm.content);
                         data.append("token", this.$store.state.token);
                         data.append("bindId", this.$route.params.articleId);
-                        data.append("type", "1");//todo commentType
+                        data.append("type", this.$articleCommentType);
                         const api = this.$publishCommentUrl;
                         this.axios.post(api, data).then(
                             (response) => {

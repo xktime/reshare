@@ -13,5 +13,7 @@ export default {
     Vue.prototype.$crawlerArticleType = {type: 1, dec: 'crawler'};
     Vue.prototype.$originalArticleType = {type: 2, dec: 'original'};
     Vue.prototype.$recommendArticleType = {type: 3, dec: 'recommend'};
+
+    Vue.prototype.$articleCommentType = {type: 1, dec: 'article'};
   }
 }
