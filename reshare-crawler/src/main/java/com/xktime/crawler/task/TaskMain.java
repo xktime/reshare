@@ -23,7 +23,6 @@ public class TaskMain {
 
     @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void crawling() {
-        //todo 要记录上次爬取的时间,早于时间的文章就不爬取了，避免重复爬取
         try {
             csdnService.run(this.databasePipeline);
             segmentfaultService.run(this.databasePipeline);
