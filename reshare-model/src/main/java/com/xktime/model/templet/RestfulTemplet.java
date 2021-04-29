@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-//todo 模块关系整体重构，枚举type分类问题
+//todo url分类？
 //todo 模板放在model内好像不太合适
 @Service
 public class RestfulTemplet {

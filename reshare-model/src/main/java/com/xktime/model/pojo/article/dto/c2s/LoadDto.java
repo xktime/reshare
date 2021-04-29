@@ -32,7 +32,7 @@ public class LoadDto {
 
     @ApiModelProperty("上次加载时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastTime;//todo 给数据库时间重构为timestamp
+    private Date lastTime;
 
     public LoadQuery toQuery() {
         LoadQuery loadQuery = new LoadQuery();
