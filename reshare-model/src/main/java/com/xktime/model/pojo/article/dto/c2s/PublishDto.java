@@ -25,7 +25,7 @@ public class PublishDto {
         article.setPublishTime(new Date());
         article.setAuthorId(author.getUserId());
         article.setAuthorName(author.getUserName());
-        //todo 需要设置文章url
+        article.setUrl("/");
         return article;
     }
 }
