@@ -7,4 +7,6 @@ public interface AppUserMapper {
     void saveUser(AppUser user);
 
     AppUser queryByAccount(@Param("account") String account);
+
+    AppUser queryByUserId(@Param("userId") long userId);
 }

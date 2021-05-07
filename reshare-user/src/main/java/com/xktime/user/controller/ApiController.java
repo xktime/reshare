@@ -17,7 +17,16 @@ public class ApiController {
     @PostMapping("getUserByToken")
     public AppUser getUserByToken(@RequestBody String token) {
         String account = userService.getAccountByToken(token);
-        AppUser appUser = userService.queryByAccount(account);
-        return appUser;
+        return getUserByAccount(account);
+    }
+
+    @PostMapping("getUserByAccount")
+    public AppUser getUserByAccount(@RequestBody String account) {
+        return userService.queryByAccount(account);
+    }
+
+    @PostMapping("getUserByUserId")
+    public AppUser getUserByUserId(@RequestBody long userId) {
+        return userService.queryByUserId(userId);
     }
 }

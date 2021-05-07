@@ -10,6 +10,8 @@ import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.comment.entity.Comment;
+import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
+import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.templet.RestfulTemplet;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -58,13 +60,22 @@ public class LoadController {
         }
         long id = Long.parseLong(articleId);
         Article article = articleService.findById(id);
+
         List<Comment> comments = null;
         try{
             comments = restfulTemplet.getComments(article.getCommentLoadDto());
         } catch (Exception e) {
-            //打印报错日志
+            //todo 打印报错日志
         }
-        return article.toArticleDetailsDto(comments);
+
+        SimpleUserDto author = null;
+        try{
+            AppUser user = restfulTemplet.getUserByUserId(article.getAuthorId());
+            author = user.toSimpleUserDto();
+        } catch (Exception e) {
+            //todo 打印报错日志
+        }
+        return article.toArticleDetailsDto(comments, author);
     }
 
 }

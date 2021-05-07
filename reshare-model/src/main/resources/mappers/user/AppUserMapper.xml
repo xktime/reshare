@@ -27,4 +27,8 @@
     <select id="queryByAccount" resultType="com.xktime.model.pojo.user.entity.AppUser">
         SELECT * from app_user WHERE account = #{account}
     </select>
+
+    <select id="queryByUserId" resultType="com.xktime.model.pojo.user.entity.AppUser">
+        SELECT * from app_user WHERE user_id = #{userId}
+    </select>
 </mapper>

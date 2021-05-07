@@ -47,6 +47,24 @@ public class RestfulTemplet {
                 }).getBody();
     }
 
+    public AppUser getUserByAccount(String account) {
+        return restTemplate.exchange(
+                USER_REST_URL_PREFIX + "/api/getUserByToken",
+                HttpMethod.POST,
+                new HttpEntity<>(account),
+                new ParameterizedTypeReference<AppUser>() {
+                }).getBody();
+    }
+
+    public AppUser getUserByUserId(long userId) {
+        return restTemplate.exchange(
+                USER_REST_URL_PREFIX + "/api/getUserByUserId",
+                HttpMethod.POST,
+                new HttpEntity<>(userId),
+                new ParameterizedTypeReference<AppUser>() {
+                }).getBody();
+    }
+
     public List<Comment> getComments(com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto) {
         return restTemplate.exchange(
                 COMMENT_REST_URL_PREFIX + "/load/comment",

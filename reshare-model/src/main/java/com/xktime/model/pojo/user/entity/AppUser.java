@@ -1,6 +1,7 @@
 package com.xktime.model.pojo.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
 import java.util.Date;
@@ -24,4 +25,12 @@ public class AppUser {
     private Date birthday;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    public SimpleUserDto toSimpleUserDto() {
+        SimpleUserDto user = new SimpleUserDto();
+        user.setName(userName);
+        user.setProfile(profile);
+        user.setUserId(userId);
+        return user;
+    }
 }

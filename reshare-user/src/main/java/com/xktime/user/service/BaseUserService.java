@@ -11,6 +11,7 @@ public interface BaseUserService<T> {
 
     T queryByAccount(@Param("account") String account);
 
+    T queryByUserId(long userId);
 
     default String getTokenByAccount(@Param("account") String account) {
         return CodeUtil.encryptBase64(account, CodeConstant.LOGIN_TOKEN_BASE64_KEY);

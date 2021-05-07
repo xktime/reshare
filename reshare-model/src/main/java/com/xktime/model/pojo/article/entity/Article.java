@@ -8,6 +8,7 @@ import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.comment.type.CommentTypeEnum;
+import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -49,10 +50,9 @@ public class Article {
         return dto;
     }
 
-    public ArticleDetailsDto toArticleDetailsDto(List<Comment> comments) {
+    public ArticleDetailsDto toArticleDetailsDto(List<Comment> comments, SimpleUserDto author) {
         ArticleDetailsDto dto = new ArticleDetailsDto();
-        dto.setAuthorId(authorId);
-        dto.setAuthorName(authorName);
+        dto.setAuthor(author);
         dto.setChannelId(channelId);
         dto.setChannelName(channelName);
         dto.setCollection(collection);

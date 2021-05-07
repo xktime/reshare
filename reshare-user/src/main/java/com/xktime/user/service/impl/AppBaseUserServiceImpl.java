@@ -21,4 +21,9 @@ public class AppBaseUserServiceImpl implements BaseUserService<AppUser> {
     public AppUser queryByAccount(String account) {
         return appUserMapper.queryByAccount(account);
     }
+
+    @Override
+    public AppUser queryByUserId(long userId) {
+        return appUserMapper.queryByUserId(userId);
+    }
 }
