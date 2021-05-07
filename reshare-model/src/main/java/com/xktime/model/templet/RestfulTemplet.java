@@ -7,7 +7,7 @@ import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
-import com.xktime.model.pojo.comment.entity.Comment;
+import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.user.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +38,7 @@ public class RestfulTemplet {
     RestTemplate restTemplate;
 
 
+    //todo 最好不要直接返回实体
     public AppUser getUserByToken(String token) {
         return restTemplate.exchange(
                 USER_REST_URL_PREFIX + "/api/getUserByToken",
@@ -65,12 +66,12 @@ public class RestfulTemplet {
                 }).getBody();
     }
 
-    public List<Comment> getComments(com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto) {
+    public List<CommentDto> getComments(com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto) {
         return restTemplate.exchange(
                 COMMENT_REST_URL_PREFIX + "/load/comment",
                 HttpMethod.POST,
                 new HttpEntity<>(loadDto),
-                new ParameterizedTypeReference<List<Comment>>() {
+                new ParameterizedTypeReference<List<CommentDto>>() {
                 }).getBody();
     }
 

@@ -2,6 +2,7 @@ package com.xktime.model.pojo.comment.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
+import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,12 +17,12 @@ public class Comment {
     private Date publishTime;
     private int type;
 
-    public CommentDto toCommentDto() {
+    public CommentDto toCommentDto(SimpleUserDto author) {
         CommentDto dto = new CommentDto();
         dto.setContent(content);
         dto.setPublishTime(publishTime);
         dto.setId(id);
-        //todo 设置Author
+        dto.setAuthor(author);
         return dto;
     }
 

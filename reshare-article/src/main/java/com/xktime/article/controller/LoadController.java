@@ -9,7 +9,7 @@ import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
-import com.xktime.model.pojo.comment.entity.Comment;
+import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.templet.RestfulTemplet;
@@ -61,13 +61,15 @@ public class LoadController {
         long id = Long.parseLong(articleId);
         Article article = articleService.findById(id);
 
-        List<Comment> comments = null;
+        //获取评论详情
+        List<CommentDto> comments = null;
         try{
             comments = restfulTemplet.getComments(article.getCommentLoadDto());
         } catch (Exception e) {
             //todo 打印报错日志
         }
 
+        //获取文章作者信息
         SimpleUserDto author = null;
         try{
             AppUser user = restfulTemplet.getUserByUserId(article.getAuthorId());

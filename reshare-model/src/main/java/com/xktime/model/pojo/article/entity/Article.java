@@ -6,12 +6,10 @@ import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
-import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,9 +48,10 @@ public class Article {
         return dto;
     }
 
-    public ArticleDetailsDto toArticleDetailsDto(List<Comment> comments, SimpleUserDto author) {
+    public ArticleDetailsDto toArticleDetailsDto(List<CommentDto> comments, SimpleUserDto author) {
         ArticleDetailsDto dto = new ArticleDetailsDto();
         dto.setAuthor(author);
+        dto.setComments(comments);
         dto.setChannelId(channelId);
         dto.setChannelName(channelName);
         dto.setCollection(collection);
@@ -67,12 +66,6 @@ public class Article {
         dto.setContent(content);
         dto.setId(id);
         dto.setImages(images);
-
-        if (comments != null) {
-            List<CommentDto> commentDtoList = new ArrayList<>();
-            comments.forEach(comment -> commentDtoList.add(comment.toCommentDto()));
-            dto.setComments(commentDtoList);
-        }
         return dto;
     }
 
