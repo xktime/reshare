@@ -68,9 +68,11 @@ public class Article {
         dto.setId(id);
         dto.setImages(images);
 
-        List<CommentDto> commentDtoList = new ArrayList<>();
-        comments.forEach(comment -> commentDtoList.add(comment.toCommentDto()));
-        dto.setComments(commentDtoList);
+        if (comments != null) {
+            List<CommentDto> commentDtoList = new ArrayList<>();
+            comments.forEach(comment -> commentDtoList.add(comment.toCommentDto()));
+            dto.setComments(commentDtoList);
+        }
         return dto;
     }
 
