@@ -64,6 +64,7 @@
             }
         },
         methods: {
+            //todo 下拉加载
             load: function () {
                 this.scrollDisabled = true;
                 const type = this.$route.params.type;

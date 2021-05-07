@@ -19,10 +19,10 @@ public class Comment {
 
     public CommentDto toCommentDto(SimpleUserDto author) {
         CommentDto dto = new CommentDto();
+        dto.setAuthor(author);
         dto.setContent(content);
         dto.setPublishTime(publishTime);
         dto.setId(id);
-        dto.setAuthor(author);
         return dto;
     }
 
