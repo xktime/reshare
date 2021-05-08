@@ -45,6 +45,9 @@
         <commons.lang.version>3.7</commons.lang.version>
         <commons.codec.version>1.13</commons.codec.version>
         <org.reflections.version>0.9.11</org.reflections.version>
+        <redis.version>2.3.3.RELEASE</redis.version>
+        <jedis.version>3.3.0</jedis.version>
+        <session.data.redis.version>2.3.0.RELEASE</session.data.redis.version>
     </properties>
 
     <dependencyManagement>
@@ -199,6 +202,23 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>${session.data.redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>

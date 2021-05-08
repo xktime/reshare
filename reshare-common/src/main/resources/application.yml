@@ -43,6 +43,10 @@ spring:
   flyway:
     enabled: false
 
+  redis:
+    host: 192.168.0.194
+    port: 8001
+
 port:
   api: 80
   eureka-registry: 8991
