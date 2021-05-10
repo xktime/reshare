@@ -1,7 +1,7 @@
 package com.xktime.config;
 
 
-import com.xktime.config.redis.RedisUtils;
+import com.xktime.utils.RedisUtil;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,16 +12,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RedisConnectTest {
 
     @Autowired
-    private RedisUtils redisUtils;
+    private RedisUtil redisUtil;
 
     @org.junit.Test
     public void testConnect() {
         String key = "2";
-        boolean hasKey = redisUtils.exists(key);
+        boolean hasKey = redisUtil.exists(key);
         System.out.println("hasKey:" + hasKey);
-        redisUtils.add(key, "key");
-        hasKey = redisUtils.exists(key);
+        redisUtil.add(key, "key");
+        hasKey = redisUtil.exists(key);
         System.out.println("hasKey:" + hasKey);
-        System.out.println("Key:" + redisUtils.setMembers(key));
+        System.out.println("Key:" + redisUtil.setMembers(key));
     }
 }

@@ -1,24 +1,20 @@
-package com.xktime.config.redis;
+package com.xktime.utils;
+
+import org.springframework.data.redis.core.*;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SetOperations;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.stereotype.Service;
+public class RedisUtil {
 
-@Service
-public class RedisUtils {
-
-    @Autowired
     private RedisTemplate redisTemplate;
+
+
+    public RedisUtil(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 写入缓存
