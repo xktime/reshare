@@ -44,8 +44,10 @@ spring:
     enabled: false
 
   redis:
-    host: 192.168.0.194
-    port: 8001
+    host: 192.168.2.255
+    password:
+    port: 6379
+    timeout: 30000
 
 port:
   api: 80

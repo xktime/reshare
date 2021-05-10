@@ -16,12 +16,12 @@ public class RedisConnectTest {
 
     @org.junit.Test
     public void testConnect() {
-        String key = "1";
+        String key = "2";
         boolean hasKey = redisUtils.exists(key);
         System.out.println("hasKey:" + hasKey);
         redisUtils.add(key, "key");
         hasKey = redisUtils.exists(key);
         System.out.println("hasKey:" + hasKey);
-        System.out.println("Key:" + redisUtils.get(key));
+        System.out.println("Key:" + redisUtils.setMembers(key));
     }
 }
