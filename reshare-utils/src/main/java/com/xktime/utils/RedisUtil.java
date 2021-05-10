@@ -1,6 +1,7 @@
 package com.xktime.utils;
 
 import org.springframework.data.redis.core.*;
+import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +13,7 @@ public class RedisUtil {
     private RedisTemplate redisTemplate;
 
 
-    public RedisUtil(RedisTemplate redisTemplate) {
+    public RedisUtil(@NonNull RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -23,10 +24,10 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public boolean set(final String key, Object value) {
+    public <V extends Serializable> boolean set(final String key, V value) {
         boolean result = false;
         try {
-            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            ValueOperations<String, V> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             result = true;
         } catch (Exception e) {
@@ -42,10 +43,10 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public boolean set(final String key, Object value, Long expireTime, TimeUnit timeUnit) {
+    public <V extends Serializable> boolean set(final String key, V value, Long expireTime, TimeUnit timeUnit) {
         boolean result = false;
         try {
-            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            ValueOperations<String, V> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             redisTemplate.expire(key, expireTime, timeUnit);
             result = true;
@@ -105,11 +106,9 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public Object get(final String key) {
-        Object result = null;
-        ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-        result = operations.get(key);
-        return result;
+    public <V extends Serializable> V get(final String key) {
+        ValueOperations<String, V> operations = redisTemplate.opsForValue();
+        return operations.get(key);
     }
 
     /**
@@ -119,8 +118,8 @@ public class RedisUtil {
      * @param hashKey
      * @param value
      */
-    public void hmSet(String key, Object hashKey, Object value) {
-        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
+    public <K extends Serializable, V extends Serializable> void hmSet(String key, K hashKey, V value) {
+        HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         hash.put(key, hashKey, value);
     }
 
@@ -131,8 +130,8 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public Object hmGet(String key, Object hashKey) {
-        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
+    public <K extends Serializable, V extends Serializable> V hmGet(String key, K hashKey) {
+        HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         return hash.get(key, hashKey);
     }
 
@@ -142,22 +141,33 @@ public class RedisUtil {
      * @param k
      * @param v
      */
-    public void lPush(String k, Object v) {
-        ListOperations<String, Object> list = redisTemplate.opsForList();
+    public <V extends Serializable>void listAddTail(String k, V v) {
+        ListOperations<String, V> list = redisTemplate.opsForList();
         list.rightPush(k, v);
+    }
+
+    /**
+     * 列表添加
+     *
+     * @param k
+     * @param v
+     */
+    public <V extends Serializable>void listAddHead(String k, V v) {
+        ListOperations<String, V> list = redisTemplate.opsForList();
+        list.leftPush(k, v);
     }
 
     /**
      * 列表获取
      *
      * @param k
-     * @param l
-     * @param l1
+     * @param star
+     * @param end
      * @return
      */
-    public List<Object> lRange(String k, long l, long l1) {
-        ListOperations<String, Object> list = redisTemplate.opsForList();
-        return list.range(k, l, l1);
+    public <V extends Serializable> List<V> listRange(String k, long star, long end) {
+        ListOperations<String, V> list = redisTemplate.opsForList();
+        return list.range(k, star, end);
     }
 
     /**
@@ -166,8 +176,8 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public void add(String key, Object value) {
-        SetOperations<String, Object> set = redisTemplate.opsForSet();
+    public <V extends Serializable> void setAdd(String key, V value) {
+        SetOperations<String, V> set = redisTemplate.opsForSet();
         set.add(key, value);
     }
 
@@ -177,8 +187,8 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public Set<Object> setMembers(String key) {
-        SetOperations<String, Object> set = redisTemplate.opsForSet();
+    public <V extends Serializable> Set<V> setMembers(String key) {
+        SetOperations<String, V> set = redisTemplate.opsForSet();
         return set.members(key);
     }
 
@@ -189,8 +199,8 @@ public class RedisUtil {
      * @param value
      * @param scoure
      */
-    public void zAdd(String key, Object value, double scoure) {
-        ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
+    public <V extends Serializable> void zAdd(String key, V value, double scoure) {
+        ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
         zset.add(key, value, scoure);
     }
 
@@ -198,12 +208,12 @@ public class RedisUtil {
      * 有序集合获取
      *
      * @param key
-     * @param scoure
-     * @param scoure1
+     * @param start
+     * @param end
      * @return
      */
-    public Set<Object> rangeByScore(String key, double scoure, double scoure1) {
-        ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
-        return zset.rangeByScore(key, scoure, scoure1);
+    public <V extends Serializable> Set<V> zRange(String key, double start, double end) {
+        ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
+        return zset.rangeByScore(key, start, end);
     }
 }
