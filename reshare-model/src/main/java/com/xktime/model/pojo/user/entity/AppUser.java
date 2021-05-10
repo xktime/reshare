@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class AppUser {
+public class AppUser implements Serializable {
     private long id;
     private long userId;
     private String userName;

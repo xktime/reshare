@@ -3,11 +3,12 @@ package com.xktime.model.pojo.article.dto.s2c;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @ApiModel(description = "被审核的文章")
-public class VerifyArticleDto {
+public class VerifyArticleDto implements Serializable {
     private long id;
     private String title;
     private String content;
