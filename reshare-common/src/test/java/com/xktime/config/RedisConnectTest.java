@@ -2,10 +2,13 @@ package com.xktime.config;
 
 
 import com.xktime.utils.RedisUtil;
+import com.xktime.utils.common.RedisCommonKey;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Set;
 
 @SpringBootTest(classes = ReshareCommonApplication.class)
 @RunWith(SpringRunner.class)
@@ -16,12 +19,14 @@ public class RedisConnectTest {
 
     @org.junit.Test
     public void testConnect() {
-        String key = "3";
+        RedisCommonKey key = RedisCommonKey.APP_USR;
         boolean hasKey = redisUtil.exists(key);
         System.out.println("hasKey:" + hasKey);
-        redisUtil.setAdd(key, "key33");
+        redisUtil.sAdd(key, "key33");
+        redisUtil.sAdd(key, "key44");
         hasKey = redisUtil.exists(key);
         System.out.println("hasKey:" + hasKey);
-        System.out.println("Key:" + redisUtil.setMembers(key));
+        Set<String> set = redisUtil.sMembers(key);
+        System.out.println("Key:" + set);
     }
 }

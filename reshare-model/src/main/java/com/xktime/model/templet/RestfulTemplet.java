@@ -10,6 +10,7 @@ import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.user.entity.AppUser;
+import com.xktime.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,7 +24,6 @@ import java.util.List;
 //todo url分类？
 //todo 模板放在model内好像不太合适
 //todo 数据使用redis缓存，如果有缓存就不必请求
-//todo 使用AOP读入以及读取缓存
 @Service
 public class RestfulTemplet {
 
@@ -38,6 +38,9 @@ public class RestfulTemplet {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    RedisUtil redisUtil;
 
 
     //todo 最好不要直接返回实体

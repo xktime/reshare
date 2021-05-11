@@ -1,5 +1,7 @@
 package com.xktime.utils;
 
+import com.xktime.utils.common.RedisCommonKey;
+import com.xktime.utils.common.RedisKeyUtil;
 import org.springframework.data.redis.core.*;
 import org.springframework.lang.NonNull;
 
@@ -21,14 +23,15 @@ public class RedisUtil {
      * 写入缓存
      *
      * @param key
+     * @param uniqueId
      * @param value
      * @return
      */
-    public <V extends Serializable> boolean set(final String key, V value) {
+    public <V extends Serializable> boolean set(final RedisCommonKey key, long uniqueId, V value) {
         boolean result = false;
         try {
             ValueOperations<String, V> operations = redisTemplate.opsForValue();
-            operations.set(key, value);
+            operations.set(RedisKeyUtil.getUniqueKeyById(uniqueId, key), value);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,17 +41,20 @@ public class RedisUtil {
 
     /**
      * 写入缓存设置时效时间
-     *
      * @param key
+     * @param uniqueId
      * @param value
+     * @param expireTime
+     * @param timeUnit
      * @return
      */
-    public <V extends Serializable> boolean set(final String key, V value, Long expireTime, TimeUnit timeUnit) {
+    public <V extends Serializable> boolean set(final RedisCommonKey key, long uniqueId, V value, Long expireTime, TimeUnit timeUnit) {
         boolean result = false;
         try {
+            String uniqueKey = RedisKeyUtil.getUniqueKeyById(uniqueId, key);
             ValueOperations<String, V> operations = redisTemplate.opsForValue();
-            operations.set(key, value);
-            redisTemplate.expire(key, expireTime, timeUnit);
+            operations.set(uniqueKey, value);
+            redisTemplate.expire(uniqueKey, expireTime, timeUnit);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,47 +63,25 @@ public class RedisUtil {
     }
 
     /**
-     * 批量删除对应的value
-     *
-     * @param keys
-     */
-    public void remove(final String... keys) {
-        for (String key : keys) {
-            remove(key);
-        }
-    }
-
-    /**
-     * 批量删除key
-     *
-     * @param pattern
-     */
-    public void removePattern(final String pattern) {
-        Set<Serializable> keys = redisTemplate.keys(pattern);
-        if (keys.size() > 0) {
-            redisTemplate.delete(keys);
-        }
-    }
-
-    /**
-     * 删除对应的value
+     * 判断缓存中是否有对应的value
      *
      * @param key
+     * @return
      */
-    public void remove(final String key) {
-        if (exists(key)) {
-            redisTemplate.delete(key);
-        }
+    public boolean exists(final RedisCommonKey key) {
+        return redisTemplate.hasKey(key);
     }
 
     /**
      * 判断缓存中是否有对应的value
      *
      * @param key
+     * @param uniqueId
      * @return
      */
-    public boolean exists(final String key) {
-        return redisTemplate.hasKey(key);
+    public boolean exists(final RedisCommonKey key, long uniqueId) {
+        Boolean result = redisTemplate.hasKey(RedisKeyUtil.getUniqueKeyById(uniqueId, key));
+        return result == null ? false : result;
     }
 
     /**
@@ -106,9 +90,21 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public <V extends Serializable> V get(final String key) {
-        ValueOperations<String, V> operations = redisTemplate.opsForValue();
+    public <V extends Serializable> V get(final RedisCommonKey key) {
+        ValueOperations<RedisCommonKey, V> operations = redisTemplate.opsForValue();
         return operations.get(key);
+    }
+
+    /**
+     * 读取缓存
+     *
+     * @param key
+     * @param uniqueId
+     * @return
+     */
+    public <V extends Serializable> V get(final RedisCommonKey key, long uniqueId) {
+        ValueOperations<RedisCommonKey, V> operations = redisTemplate.opsForValue();
+        return operations.get(RedisKeyUtil.getUniqueKeyById(uniqueId, key));
     }
 
     /**
@@ -118,8 +114,8 @@ public class RedisUtil {
      * @param hashKey
      * @param value
      */
-    public <K extends Serializable, V extends Serializable> void hmSet(String key, K hashKey, V value) {
-        HashOperations<String, K, V> hash = redisTemplate.opsForHash();
+    public <K extends Serializable, V extends Serializable> void hmSet(RedisCommonKey key, K hashKey, V value) {
+        HashOperations<RedisCommonKey, K, V> hash = redisTemplate.opsForHash();
         hash.put(key, hashKey, value);
     }
 
@@ -130,30 +126,30 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public <K extends Serializable, V extends Serializable> V hmGet(String key, K hashKey) {
-        HashOperations<String, K, V> hash = redisTemplate.opsForHash();
+    public <K extends Serializable, V extends Serializable> V hmGet(RedisCommonKey key, K hashKey) {
+        HashOperations<RedisCommonKey, K, V> hash = redisTemplate.opsForHash();
         return hash.get(key, hashKey);
     }
 
     /**
-     * 列表添加
+     * 列表从右侧添加
      *
      * @param k
      * @param v
      */
-    public <V extends Serializable>void listAddTail(String k, V v) {
-        ListOperations<String, V> list = redisTemplate.opsForList();
+    public <V extends Serializable> void listAddTail(RedisCommonKey k, V v) {
+        ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
         list.rightPush(k, v);
     }
 
     /**
-     * 列表添加
+     * 列表从左侧添加
      *
      * @param k
      * @param v
      */
-    public <V extends Serializable>void listAddHead(String k, V v) {
-        ListOperations<String, V> list = redisTemplate.opsForList();
+    public <V extends Serializable> void listAddHead(RedisCommonKey k, V v) {
+        ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
         list.leftPush(k, v);
     }
 
@@ -165,8 +161,8 @@ public class RedisUtil {
      * @param end
      * @return
      */
-    public <V extends Serializable> List<V> listRange(String k, long star, long end) {
-        ListOperations<String, V> list = redisTemplate.opsForList();
+    public <V extends Serializable> List<V> listRange(RedisCommonKey k, long star, long end) {
+        ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
         return list.range(k, star, end);
     }
 
@@ -176,8 +172,8 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public <V extends Serializable> void setAdd(String key, V value) {
-        SetOperations<String, V> set = redisTemplate.opsForSet();
+    public <V extends Serializable> void sAdd(RedisCommonKey key, V value) {
+        SetOperations<RedisCommonKey, V> set = redisTemplate.opsForSet();
         set.add(key, value);
     }
 
@@ -187,8 +183,8 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public <V extends Serializable> Set<V> setMembers(String key) {
-        SetOperations<String, V> set = redisTemplate.opsForSet();
+    public <V extends Serializable> Set<V> sMembers(RedisCommonKey key) {
+        SetOperations<RedisCommonKey, V> set = redisTemplate.opsForSet();
         return set.members(key);
     }
 
@@ -197,11 +193,11 @@ public class RedisUtil {
      *
      * @param key
      * @param value
-     * @param scoure
+     * @param score
      */
-    public <V extends Serializable> void zAdd(String key, V value, double scoure) {
-        ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
-        zset.add(key, value, scoure);
+    public <V extends Serializable> void zAdd(RedisCommonKey key, V value, double score) {
+        ZSetOperations<RedisCommonKey, V> zset = redisTemplate.opsForZSet();
+        zset.add(key, value, score);
     }
 
     /**
@@ -212,8 +208,8 @@ public class RedisUtil {
      * @param end
      * @return
      */
-    public <V extends Serializable> Set<V> zRange(String key, double start, double end) {
-        ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
+    public <V extends Serializable> Set<V> zRange(RedisCommonKey key, double start, double end) {
+        ZSetOperations<RedisCommonKey, V> zset = redisTemplate.opsForZSet();
         return zset.rangeByScore(key, start, end);
     }
 }
