@@ -148,7 +148,7 @@ public class RedisUtil {
      * @param k
      * @param v
      */
-    public <V extends Serializable> void listAddHead(RedisCommonKey k, V v) {
+    public <V extends Serializable> void lAddHead(RedisCommonKey k, V v) {
         ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
         list.leftPush(k, v);
     }
@@ -157,13 +157,13 @@ public class RedisUtil {
      * 列表获取
      *
      * @param k
-     * @param star
+     * @param start
      * @param end
      * @return
      */
-    public <V extends Serializable> List<V> listRange(RedisCommonKey k, long star, long end) {
+    public <V extends Serializable> List<V> lRange(RedisCommonKey k, long start, long end) {
         ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
-        return list.range(k, star, end);
+        return list.range(k, start, end);
     }
 
     /**
