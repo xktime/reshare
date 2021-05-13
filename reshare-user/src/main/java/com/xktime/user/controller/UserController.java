@@ -7,7 +7,10 @@ import com.xktime.model.pojo.common.type.HttpCodeEnum;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
+import com.xktime.utils.RedisUtil;
 import com.xktime.utils.SnowflakeIdUtil;
+import com.xktime.utils.common.RedisCommonKey;
+import com.xktime.utils.common.RedisKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,9 @@ public class UserController {
     @Autowired
     SnowflakeIdUtil snowflakeIdUtil;
 
+    @Autowired
+    RedisUtil redisUtil;
+
     @RequestMapping("register")
     public ResponseResult register(@RequestBody RegisterDto dto) {
         ResponseResult result = new ResponseResult();
@@ -33,6 +39,10 @@ public class UserController {
         }
         AppUser user = dto.toUser(snowflakeIdUtil);
         appUserService.save(user);
-        return result.ok(CodeUtil.encryptBase64(dto.getAccount(), CodeConstant.LOGIN_TOKEN_BASE64_KEY));
+        //todo redis缓存统一处理
+        String token = CodeUtil.encryptBase64(user.getAccount(), CodeConstant.LOGIN_TOKEN_BASE64_KEY);
+        redisUtil.hmSet(RedisCommonKey.APP_USR, RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_ID, user.getUserId()), user);
+        redisUtil.hmSet(RedisCommonKey.APP_USR, RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token), user);
+        return result.ok(token);
     }
 }

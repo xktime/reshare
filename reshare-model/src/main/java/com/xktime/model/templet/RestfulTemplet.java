@@ -8,9 +8,13 @@ import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
+import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.user.entity.AppUser;
+import com.xktime.utils.CodeUtil;
 import com.xktime.utils.RedisUtil;
+import com.xktime.utils.common.RedisCommonKey;
+import com.xktime.utils.common.RedisKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -45,30 +49,38 @@ public class RestfulTemplet {
 
     //todo 最好不要直接返回实体
     public AppUser getUserByToken(String token) {
-        return restTemplate.exchange(
-                USER_REST_URL_PREFIX + "/api/getUserByToken",
-                HttpMethod.POST,
-                new HttpEntity<>(token),
-                new ParameterizedTypeReference<AppUser>() {
-                }).getBody();
+        String key = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token);
+        AppUser user = redisUtil.hmGet(RedisCommonKey.APP_USR, key);
+        if (user == null) {
+            user = restTemplate.exchange(
+                    USER_REST_URL_PREFIX + "/api/getUserByToken",
+                    HttpMethod.POST,
+                    new HttpEntity<>(token),
+                    new ParameterizedTypeReference<AppUser>() {
+                    }).getBody();
+            redisUtil.hmSet(RedisCommonKey.APP_USR, key, user);
+        }
+        return user;
     }
 
     public AppUser getUserByAccount(String account) {
-        return restTemplate.exchange(
-                USER_REST_URL_PREFIX + "/api/getUserByToken",
-                HttpMethod.POST,
-                new HttpEntity<>(account),
-                new ParameterizedTypeReference<AppUser>() {
-                }).getBody();
+        String token = CodeUtil.encryptBase64(account, CodeConstant.LOGIN_TOKEN_BASE64_KEY);
+        return getUserByToken(token);
     }
 
     public AppUser getUserByUserId(long userId) {
-        return restTemplate.exchange(
-                USER_REST_URL_PREFIX + "/api/getUserByUserId",
-                HttpMethod.POST,
-                new HttpEntity<>(userId),
-                new ParameterizedTypeReference<AppUser>() {
-                }).getBody();
+        String key = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_ID, userId);
+        AppUser user = redisUtil.hmGet(RedisCommonKey.APP_USR, key);
+        if (user == null) {
+            user = restTemplate.exchange(
+                    USER_REST_URL_PREFIX + "/api/getUserByUserId",
+                    HttpMethod.POST,
+                    new HttpEntity<>(userId),
+                    new ParameterizedTypeReference<AppUser>() {
+                    }).getBody();
+            redisUtil.hmSet(RedisCommonKey.APP_USR, key, user);
+        }
+        return user;
     }
 
     public List<CommentDto> getComments(com.xktime.model.pojo.comment.dto.c2s.LoadDto loadDto) {
@@ -131,11 +143,11 @@ public class RestfulTemplet {
 
     public List<SimpleArticleDto> loadSimpleArticle(LoadDto dto) {
         return restTemplate.exchange(
-                    ARTICLE_REST_URL_PREFIX + "/load/simpleArticles",
-                    HttpMethod.POST,
-                    new HttpEntity<>(dto),
-                    new ParameterizedTypeReference<List<SimpleArticleDto>>() {
-                    }).getBody();
+                ARTICLE_REST_URL_PREFIX + "/load/simpleArticles",
+                HttpMethod.POST,
+                new HttpEntity<>(dto),
+                new ParameterizedTypeReference<List<SimpleArticleDto>>() {
+                }).getBody();
     }
 
     public ArticleDetailsDto loadArticleDetails(String articleId) {

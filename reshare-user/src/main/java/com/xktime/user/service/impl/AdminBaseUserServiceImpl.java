@@ -22,4 +22,14 @@ public class AdminBaseUserServiceImpl implements BaseUserService<AdminUser> {
     public AdminUser queryByAccount(String account) {
         return adminUserMapper.queryByAccount(account);
     }
+
+    @Override
+    public AdminUser queryByUserId(long userId) {
+        return null;
+    }
+
+    @Override
+    public String getAccountByToken(String token) {
+        return null;
+    }
 }

@@ -2,12 +2,17 @@ package com.xktime.utils.common;
 
 public class RedisKeyUtil
 {
-    public static String getUniqueKeyById(long id, RedisCommonKey key)
+    public static String getUniqueKey(RedisCommonKey key, long id)
     {
         return id + "_" + key.name();
     }
 
-    public static String getUniqueKeyById(long id, String key)
+    public static String getUniqueKey(RedisCommonKey key, String id)
+    {
+        return id + "_" + key.name();
+    }
+
+    public static String getUniqueKey(String key, long id)
     {
         return id + "_" + key;
     }

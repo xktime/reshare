@@ -31,7 +31,7 @@ public class RedisUtil {
         boolean result = false;
         try {
             ValueOperations<String, V> operations = redisTemplate.opsForValue();
-            operations.set(RedisKeyUtil.getUniqueKeyById(uniqueId, key), value);
+            operations.set(RedisKeyUtil.getUniqueKey(key, uniqueId), value);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class RedisUtil {
     public <V extends Serializable> boolean set(final RedisCommonKey key, long uniqueId, V value, Long expireTime, TimeUnit timeUnit) {
         boolean result = false;
         try {
-            String uniqueKey = RedisKeyUtil.getUniqueKeyById(uniqueId, key);
+            String uniqueKey = RedisKeyUtil.getUniqueKey(key, uniqueId);
             ValueOperations<String, V> operations = redisTemplate.opsForValue();
             operations.set(uniqueKey, value);
             redisTemplate.expire(uniqueKey, expireTime, timeUnit);
@@ -80,7 +80,7 @@ public class RedisUtil {
      * @return
      */
     public boolean exists(final RedisCommonKey key, long uniqueId) {
-        Boolean result = redisTemplate.hasKey(RedisKeyUtil.getUniqueKeyById(uniqueId, key));
+        Boolean result = redisTemplate.hasKey(RedisKeyUtil.getUniqueKey(key, uniqueId));
         return result == null ? false : result;
     }
 
@@ -104,7 +104,7 @@ public class RedisUtil {
      */
     public <V extends Serializable> V get(final RedisCommonKey key, long uniqueId) {
         ValueOperations<RedisCommonKey, V> operations = redisTemplate.opsForValue();
-        return operations.get(RedisKeyUtil.getUniqueKeyById(uniqueId, key));
+        return operations.get(RedisKeyUtil.getUniqueKey(key, uniqueId));
     }
 
     /**
@@ -115,8 +115,8 @@ public class RedisUtil {
      * @param value
      */
     public <K extends Serializable, V extends Serializable> void hmSet(RedisCommonKey key, K hashKey, V value) {
-        HashOperations<RedisCommonKey, K, V> hash = redisTemplate.opsForHash();
-        hash.put(key, hashKey, value);
+        HashOperations<String, K, V> hash = redisTemplate.opsForHash();
+        hash.put(key.name(), hashKey, value);
     }
 
     /**
@@ -127,8 +127,8 @@ public class RedisUtil {
      * @return
      */
     public <K extends Serializable, V extends Serializable> V hmGet(RedisCommonKey key, K hashKey) {
-        HashOperations<RedisCommonKey, K, V> hash = redisTemplate.opsForHash();
-        return hash.get(key, hashKey);
+        HashOperations<String, K, V> hash = redisTemplate.opsForHash();
+        return hash.get(key.name(), hashKey);
     }
 
     /**

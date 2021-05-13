@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@SpringBootApplication(scanBasePackages = {"com.xktime.config","com.xktime.user"})
+@SpringBootApplication(scanBasePackages = {"com.xktime.config","com.xktime.user","com.xktime.model"})
 @EnableEurekaClient
 public class ReshareUserApplication {
 
