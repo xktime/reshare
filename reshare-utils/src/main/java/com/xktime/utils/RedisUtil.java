@@ -69,7 +69,7 @@ public class RedisUtil {
      * @return
      */
     public boolean exists(final RedisCommonKey key) {
-        return redisTemplate.hasKey(key);
+        return redisTemplate.hasKey(key.name());
     }
 
     /**
@@ -91,7 +91,7 @@ public class RedisUtil {
      * @return
      */
     public <V extends Serializable> V get(final RedisCommonKey key) {
-        ValueOperations<RedisCommonKey, V> operations = redisTemplate.opsForValue();
+        ValueOperations<String, V> operations = redisTemplate.opsForValue();
         return operations.get(key);
     }
 
@@ -103,7 +103,7 @@ public class RedisUtil {
      * @return
      */
     public <V extends Serializable> V get(final RedisCommonKey key, long uniqueId) {
-        ValueOperations<RedisCommonKey, V> operations = redisTemplate.opsForValue();
+        ValueOperations<String, V> operations = redisTemplate.opsForValue();
         return operations.get(RedisKeyUtil.getUniqueKey(key, uniqueId));
     }
 
@@ -114,7 +114,7 @@ public class RedisUtil {
      * @param hashKey
      * @param value
      */
-    public <K extends Serializable, V extends Serializable> void hmSet(RedisCommonKey key, K hashKey, V value) {
+    public <K extends Serializable, V extends Serializable> void hmSet(final RedisCommonKey key, K hashKey, V value) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         hash.put(key.name(), hashKey, value);
     }
@@ -126,7 +126,7 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public <K extends Serializable, V extends Serializable> V hmGet(RedisCommonKey key, K hashKey) {
+    public <K extends Serializable, V extends Serializable> V hmGet(final RedisCommonKey key, K hashKey) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         return hash.get(key.name(), hashKey);
     }
@@ -134,36 +134,36 @@ public class RedisUtil {
     /**
      * 列表从右侧添加
      *
-     * @param k
-     * @param v
+     * @param key
+     * @param value
      */
-    public <V extends Serializable> void listAddTail(RedisCommonKey k, V v) {
-        ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
-        list.rightPush(k, v);
+    public <V extends Serializable> void listAddTail(final RedisCommonKey key, V value) {
+        ListOperations<String, V> list = redisTemplate.opsForList();
+        list.rightPush(key.name(), value);
     }
 
     /**
      * 列表从左侧添加
      *
-     * @param k
-     * @param v
+     * @param key
+     * @param value
      */
-    public <V extends Serializable> void lAddHead(RedisCommonKey k, V v) {
-        ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
-        list.leftPush(k, v);
+    public <V extends Serializable> void lAddHead(final RedisCommonKey key, V value) {
+        ListOperations<String, V> list = redisTemplate.opsForList();
+        list.leftPush(key.name(), value);
     }
 
     /**
      * 列表获取
      *
-     * @param k
+     * @param key
      * @param start
      * @param end
      * @return
      */
-    public <V extends Serializable> List<V> lRange(RedisCommonKey k, long start, long end) {
-        ListOperations<RedisCommonKey, V> list = redisTemplate.opsForList();
-        return list.range(k, start, end);
+    public <V extends Serializable> List<V> lRange(final RedisCommonKey key, long start, long end) {
+        ListOperations<String, V> list = redisTemplate.opsForList();
+        return list.range(key.name(), start, end);
     }
 
     /**
@@ -172,9 +172,9 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public <V extends Serializable> void sAdd(RedisCommonKey key, V value) {
-        SetOperations<RedisCommonKey, V> set = redisTemplate.opsForSet();
-        set.add(key, value);
+    public <V extends Serializable> void sAdd(final RedisCommonKey key, V value) {
+        SetOperations<String, V> set = redisTemplate.opsForSet();
+        set.add(key.name(), value);
     }
 
     /**
@@ -183,9 +183,9 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public <V extends Serializable> Set<V> sMembers(RedisCommonKey key) {
-        SetOperations<RedisCommonKey, V> set = redisTemplate.opsForSet();
-        return set.members(key);
+    public <V extends Serializable> Set<V> sMembers(final RedisCommonKey key) {
+        SetOperations<String, V> set = redisTemplate.opsForSet();
+        return set.members(key.name());
     }
 
     /**
@@ -195,9 +195,9 @@ public class RedisUtil {
      * @param value
      * @param score
      */
-    public <V extends Serializable> void zAdd(RedisCommonKey key, V value, double score) {
-        ZSetOperations<RedisCommonKey, V> zset = redisTemplate.opsForZSet();
-        zset.add(key, value, score);
+    public <V extends Serializable> void zAdd(final RedisCommonKey key, V value, double score) {
+        ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
+        zset.add(key.name(), value, score);
     }
 
     /**
@@ -208,8 +208,8 @@ public class RedisUtil {
      * @param end
      * @return
      */
-    public <V extends Serializable> Set<V> zRange(RedisCommonKey key, double start, double end) {
-        ZSetOperations<RedisCommonKey, V> zset = redisTemplate.opsForZSet();
-        return zset.rangeByScore(key, start, end);
+    public <V extends Serializable> Set<V> zRange(final RedisCommonKey key, double start, double end) {
+        ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
+        return zset.rangeByScore(key.name(), start, end);
     }
 }
