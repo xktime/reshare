@@ -81,6 +81,7 @@ eureka:
       defaultZone: http://localhost:${port.eureka-registry}/eureka
 
 code:
+  # 雪花算法id配置
   snow-flake-id:
     workerId: 0
     dataCenterId: 0

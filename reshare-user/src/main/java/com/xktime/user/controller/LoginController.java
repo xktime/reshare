@@ -9,6 +9,9 @@ import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.impl.AdminBaseUserServiceImpl;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
+import com.xktime.utils.RedisUtil;
+import com.xktime.utils.common.RedisCommonKey;
+import com.xktime.utils.common.RedisKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +27,9 @@ public class LoginController {
 
     @Autowired
     AppBaseUserServiceImpl appUserService;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @PostMapping("admin")
     public ResponseResult adminLogin(@RequestBody LoginDto dto) {
@@ -49,7 +55,14 @@ public class LoginController {
         if (dto == null || dto.getAccount() == null || dto.getPassword() == null) {
             return result.error(HttpCodeEnum.FAIL.getCode(), HttpCodeEnum.FAIL.getErrorMessage());
         }
-        AppUser user = appUserService.queryByAccount(dto.getAccount());
+        String token = appUserService.getTokenByAccount(dto.getAccount());
+        //todo 获取redis缓存方式需要重构（太乱了）
+        AppUser user = redisUtil.hmGet(RedisCommonKey.APP_USR, RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token));
+        //先判断缓存
+        if (user == null) {
+            user = appUserService.queryByAccount(dto.getAccount());
+        }
+        //再从库里判断
         if (user == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT);
         }
@@ -58,7 +71,7 @@ public class LoginController {
         if (!password.equals(encryptedPassWord)) {
             return result.error(HttpCodeEnum.LOGIN_FAIL_PASSWORD);
         }
-        return result.ok(appUserService.getTokenByAccount(dto.getAccount()));
+        return result.ok(token);
     }
 
 }

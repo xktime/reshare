@@ -37,7 +37,7 @@ public class UserController {
             result.error(HttpCodeEnum.ACCOUNT_EXISTS);
             return result;
         }
-        AppUser user = dto.toUser(snowflakeIdUtil);
+        AppUser user = dto.toUser(snowflakeIdUtil.nextId());
         appUserService.save(user);
         //todo redis缓存统一处理
         String token = CodeUtil.encryptBase64(user.getAccount(), CodeConstant.LOGIN_TOKEN_BASE64_KEY);

@@ -1,5 +1,6 @@
 package com.xktime.user;
 
+import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.templet.RestfulTemplet;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,6 @@ public class RedisGetValueTest {
 
     @org.junit.Test
     public void getValue() {
-        restfulTemplet.getUserByAccount("z761628819");
+        AppUser user = restfulTemplet.getUserByAccount("z761628819");
     }
 }
