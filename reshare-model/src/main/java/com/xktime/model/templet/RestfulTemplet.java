@@ -27,7 +27,6 @@ import java.util.List;
 
 //todo url分类？
 //todo 模板放在model内好像不太合适
-//todo 数据使用redis缓存，如果有缓存就不必请求
 @Service
 public class RestfulTemplet {
 

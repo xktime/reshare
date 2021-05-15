@@ -13,4 +13,5 @@ public class ArticleTest {
     public void testArticle() {
         System.out.println(ArticleTypeEnum.CRAWLER_ARTICLE.getService().findById(1));
     }
+
 }

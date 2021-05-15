@@ -132,6 +132,18 @@ public class RedisUtil {
     }
 
     /**
+     * 哈希是否存在
+     *
+     * @param key
+     * @param hashKey
+     * @return
+     */
+    public <K extends Serializable> boolean hmExists(final RedisCommonKey key, K hashKey) {
+        HashOperations<String, K, Object> hash = redisTemplate.opsForHash();
+        return hash.hasKey(key.name(),hashKey);
+    }
+
+    /**
      * 列表从右侧添加
      *
      * @param key
