@@ -114,7 +114,7 @@ public class RedisUtil {
      * @param hashKey
      * @param value
      */
-    public <K extends Serializable, V extends Serializable> void hmSet(final RedisCommonKey key, K hashKey, V value) {
+    public <K extends Serializable, V extends Serializable> void mapSet(final RedisCommonKey key, K hashKey, V value) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         hash.put(key.name(), hashKey, value);
     }
@@ -126,7 +126,7 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public <K extends Serializable, V extends Serializable> V hmGet(final RedisCommonKey key, K hashKey) {
+    public <K extends Serializable, V extends Serializable> V mapGet(final RedisCommonKey key, K hashKey) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         return hash.get(key.name(), hashKey);
     }
@@ -138,7 +138,7 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public <K extends Serializable> boolean hmExists(final RedisCommonKey key, K hashKey) {
+    public <K extends Serializable> boolean mapExists(final RedisCommonKey key, K hashKey) {
         HashOperations<String, K, Object> hash = redisTemplate.opsForHash();
         return hash.hasKey(key.name(),hashKey);
     }
@@ -160,7 +160,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public <V extends Serializable> void lAddHead(final RedisCommonKey key, V value) {
+    public <V extends Serializable> void listAddHead(final RedisCommonKey key, V value) {
         ListOperations<String, V> list = redisTemplate.opsForList();
         list.leftPush(key.name(), value);
     }
@@ -173,7 +173,7 @@ public class RedisUtil {
      * @param end
      * @return
      */
-    public <V extends Serializable> List<V> lRange(final RedisCommonKey key, long start, long end) {
+    public <V extends Serializable> List<V> listRange(final RedisCommonKey key, long start, long end) {
         ListOperations<String, V> list = redisTemplate.opsForList();
         return list.range(key.name(), start, end);
     }

@@ -49,7 +49,7 @@ public class RestfulTemplet {
     //todo 最好不要直接返回实体
     public AppUser getUserByToken(String token) {
         String key = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token);
-        AppUser user = redisUtil.hmGet(RedisCommonKey.APP_USR, key);
+        AppUser user = redisUtil.mapGet(RedisCommonKey.APP_USR, key);
         if (user == null) {
             user = restTemplate.exchange(
                     USER_REST_URL_PREFIX + "/api/getUserByToken",
@@ -57,7 +57,7 @@ public class RestfulTemplet {
                     new HttpEntity<>(token),
                     new ParameterizedTypeReference<AppUser>() {
                     }).getBody();
-            redisUtil.hmSet(RedisCommonKey.APP_USR, key, user);
+            redisUtil.mapSet(RedisCommonKey.APP_USR, key, user);
         }
         return user;
     }
@@ -69,7 +69,7 @@ public class RestfulTemplet {
 
     public AppUser getUserByUserId(long userId) {
         String key = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_ID, userId);
-        AppUser user = redisUtil.hmGet(RedisCommonKey.APP_USR, key);
+        AppUser user = redisUtil.mapGet(RedisCommonKey.APP_USR, key);
         if (user == null) {
             user = restTemplate.exchange(
                     USER_REST_URL_PREFIX + "/api/getUserByUserId",
@@ -77,7 +77,7 @@ public class RestfulTemplet {
                     new HttpEntity<>(userId),
                     new ParameterizedTypeReference<AppUser>() {
                     }).getBody();
-            redisUtil.hmSet(RedisCommonKey.APP_USR, key, user);
+            redisUtil.mapSet(RedisCommonKey.APP_USR, key, user);
         }
         return user;
     }

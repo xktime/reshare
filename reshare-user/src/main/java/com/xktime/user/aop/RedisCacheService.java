@@ -37,11 +37,11 @@ public class RedisCacheService {
         String token = CodeUtil.encryptBase64(user.getAccount(), CodeConstant.LOGIN_TOKEN_BASE64_KEY);
         String userKey = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_ID, user.getUserId());
         String tokenKey = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token);
-        if (redisUtil.hmExists(RedisCommonKey.APP_USR, userKey)
-                && redisUtil.hmExists(RedisCommonKey.APP_USR, tokenKey)) {
+        if (redisUtil.mapExists(RedisCommonKey.APP_USR, userKey)
+                && redisUtil.mapExists(RedisCommonKey.APP_USR, tokenKey)) {
             return;
         }
-        redisUtil.hmSet(RedisCommonKey.APP_USR, userKey, user);
-        redisUtil.hmSet(RedisCommonKey.APP_USR, tokenKey, user);
+        redisUtil.mapSet(RedisCommonKey.APP_USR, userKey, user);
+        redisUtil.mapSet(RedisCommonKey.APP_USR, tokenKey, user);
     }
 }

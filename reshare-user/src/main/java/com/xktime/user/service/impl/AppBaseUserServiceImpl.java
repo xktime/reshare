@@ -26,12 +26,13 @@ public class AppBaseUserServiceImpl implements BaseUserService<AppUser> {
     @Override
     public AppUser queryByAccount(String account) {
         String token = getTokenByAccount(account);
-        AppUser user = redisUtil.hmGet(RedisCommonKey.APP_USR, RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token));
+        AppUser user = redisUtil.mapGet(RedisCommonKey.APP_USR, RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token));
         return user != null ? user : appUserMapper.queryByAccount(account);
     }
 
     @Override
     public AppUser queryByUserId(long userId) {
-        return appUserMapper.queryByUserId(userId);
+        AppUser user = redisUtil.mapGet(RedisCommonKey.APP_USR, RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_ID, userId));
+        return user != null ? user : appUserMapper.queryByUserId(userId);
     }
 }
