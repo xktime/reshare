@@ -5,7 +5,7 @@ public enum RedisCommonKey {
     USER_TOKEN,
     USER_ID,
     COMMENTS,
-    VERIFY_ARTICLE,
-    SIMPLE_ARTICLE,
-    ARTICLE_DETAIL,
+    CRAWLER_ARTICLE,
+    ORIGINAL_ARTICLE,
+    COMMON_ARTICLE,
 }

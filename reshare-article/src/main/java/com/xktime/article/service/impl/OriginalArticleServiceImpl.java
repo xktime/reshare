@@ -8,6 +8,8 @@ import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.utils.RedisUtil;
+import com.xktime.utils.common.RedisCommonKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArt
 
     @Autowired
     OriginalArticleMapper originalArticleMapper;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public void save(OriginalVerifyArticle article) {
@@ -43,7 +48,8 @@ public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArt
 
     @Override
     public OriginalVerifyArticle findById(long id) {
-        return originalArticleMapper.findById(id);
+        OriginalVerifyArticle article = redisUtil.mapGet(RedisCommonKey.ORIGINAL_ARTICLE, id);
+        return article != null ? article : originalArticleMapper.findById(id);
     }
 
     @Override

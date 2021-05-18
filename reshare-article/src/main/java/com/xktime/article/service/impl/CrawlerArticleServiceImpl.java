@@ -8,6 +8,8 @@ import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.utils.RedisUtil;
+import com.xktime.utils.common.RedisCommonKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ import java.util.List;
 public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArticleService<CrawlerVerifyArticle> {
     @Autowired
     CrawlerArticleMapper crawlerArticleMapper;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public void save(CrawlerVerifyArticle article) {
@@ -42,7 +47,8 @@ public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArti
 
     @Override
     public CrawlerVerifyArticle findById(long id) {
-        return crawlerArticleMapper.findById(id);
+        CrawlerVerifyArticle article = redisUtil.mapGet(RedisCommonKey.CRAWLER_ARTICLE, id);
+        return article != null ? article : crawlerArticleMapper.findById(id);
     }
 
     @Override

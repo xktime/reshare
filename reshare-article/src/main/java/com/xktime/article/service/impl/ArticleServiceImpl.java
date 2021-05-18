@@ -5,6 +5,8 @@ import com.xktime.model.mappers.article.ArticleMapper;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.entity.Article;
 import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.utils.RedisUtil;
+import com.xktime.utils.common.RedisCommonKey;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 
     @Autowired
     ArticleMapper articleMapper;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public void save(Article article) {
@@ -44,7 +49,8 @@ public class ArticleServiceImpl implements BaseArticleService<Article> {
 
     @Override
     public Article findById(long id) {
-        return articleMapper.findById(id);
+        Article article = redisUtil.mapGet(RedisCommonKey.COMMON_ARTICLE, id);
+        return article != null ? article : articleMapper.findById(id);
     }
 
     @Override

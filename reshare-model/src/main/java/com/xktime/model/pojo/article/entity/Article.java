@@ -10,6 +10,7 @@ import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * 审核通过的文章
  */
 @Data
-public class Article {
+public class Article implements Serializable {
     private long id;
     private String title;
     private long authorId;
