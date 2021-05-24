@@ -4,11 +4,11 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
+import com.xktime.config.annotation.EnumTypeService;
 import com.xktime.config.annotation.EnumTypeServiceInjector;
 import org.springframework.context.ApplicationContext;
 
-@EnumTypeServiceInjector
-public enum ArticleTypeEnum {
+public enum ArticleTypeEnum implements EnumTypeService{
     CRAWLER_ARTICLE(1, "crawler", CrawlerArticleServiceImpl.class),
     ORIGINAL_ARTICLE(2, "original", OriginalArticleServiceImpl.class),
     RECOMMEND_ARTICLE(3, "recommend", ArticleServiceImpl.class),
@@ -51,7 +51,7 @@ public enum ArticleTypeEnum {
         return service;
     }
 
-    private void setService(ApplicationContext bean) {
+    public void setService(ApplicationContext bean) {
         this.service = bean.getBean(serviceClass);
     }
 }
