@@ -33,13 +33,9 @@ public enum ArticleTypeEnum implements EnumTypeService {
         return null;
     }
 
-    public static BaseArticleService getService(ArticleTypeEnum typeEnum) {
-        return typeEnum == null ? null : typeEnum.getService();
-    }
-
     public static BaseArticleService getService(int type) {
         ArticleTypeEnum typeEnum = getEnum(type);
-        return getService(typeEnum);
+        return typeEnum == null ? null : typeEnum.getService();
     }
 
     public int getType() {
