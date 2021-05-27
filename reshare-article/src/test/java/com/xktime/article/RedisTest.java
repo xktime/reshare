@@ -1,8 +1,8 @@
 package com.xktime.article;
 
-import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
+import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RedisTest {
 
     @Autowired
-    ArticleServiceImpl articleService;
+    VerifiedArticleServiceImpl verifiedArticleService;
 
     @Autowired
     CrawlerArticleServiceImpl crawlerArticleService;
@@ -23,7 +23,6 @@ public class RedisTest {
 
     @org.junit.Test
     public void testAop() {
-        articleService.findById(19201l);
-        crawlerArticleService.findById(19201l);
+        System.out.println(verifiedArticleService.findById(19205));
     }
 }

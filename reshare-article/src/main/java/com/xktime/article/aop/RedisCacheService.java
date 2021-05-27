@@ -1,6 +1,6 @@
 package com.xktime.article.aop;
 
-import com.xktime.model.pojo.article.entity.Article;
+import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
 import com.xktime.utils.RedisUtil;
@@ -34,12 +34,12 @@ public class RedisCacheService {
             return;
         }
         //todo 不够优雅，需要重构
-        if (obj instanceof Article) {
-            Article article = (Article)obj;
-            if (redisUtil.mapExists(RedisCommonKey.COMMON_ARTICLE, article.getId())) {
+        if (obj instanceof VerifiedArticle) {
+            VerifiedArticle verifiedArticle = (VerifiedArticle)obj;
+            if (redisUtil.mapExists(RedisCommonKey.COMMON_ARTICLE, verifiedArticle.getId())) {
                 return;
             }
-            redisUtil.mapSet(RedisCommonKey.COMMON_ARTICLE, article.getId(), article);
+            redisUtil.mapSet(RedisCommonKey.COMMON_ARTICLE, verifiedArticle.getId(), verifiedArticle);
         } else if (obj instanceof CrawlerVerifyArticle) {
             CrawlerVerifyArticle article = (CrawlerVerifyArticle)obj;
             if (redisUtil.mapExists(RedisCommonKey.CRAWLER_ARTICLE, article.getId())) {

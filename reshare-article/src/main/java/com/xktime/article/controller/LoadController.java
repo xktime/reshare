@@ -2,13 +2,13 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.article.service.impl.ArticleServiceImpl;
+import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
-import com.xktime.model.pojo.article.entity.Article;
+import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import com.xktime.model.pojo.user.entity.AppUser;
@@ -28,7 +28,7 @@ import java.util.List;
 public class LoadController {
 
     @Autowired
-    ArticleServiceImpl articleService;
+    VerifiedArticleServiceImpl verifiedArticleService;
 
     @Autowired
     RestfulTemplet restfulTemplet;
@@ -49,7 +49,7 @@ public class LoadController {
             //todo 根据玩家推荐文章
             return null;
         } else {
-            return articleService.loadSimpleArticles(dto.toQuery());
+            return verifiedArticleService.loadSimpleArticles(dto.toQuery());
         }
     }
 
@@ -59,12 +59,12 @@ public class LoadController {
             return null;
         }
         long id = Long.parseLong(articleId);
-        Article article = articleService.findById(id);
+        VerifiedArticle verifiedArticle = verifiedArticleService.findById(id);
 
         //获取评论详情
         List<CommentDto> comments = null;
         try{
-            comments = restfulTemplet.getComments(article.getCommentLoadDto());
+            comments = restfulTemplet.getComments(verifiedArticle.getCommentLoadDto());
         } catch (Exception e) {
             //todo 打印报错日志
         }
@@ -72,12 +72,12 @@ public class LoadController {
         //获取文章作者信息
         SimpleUserDto author = null;
         try{
-            AppUser user = restfulTemplet.getUserByUserId(article.getAuthorId());
+            AppUser user = restfulTemplet.getUserByUserId(verifiedArticle.getAuthorId());
             author = user.toSimpleUserDto();
         } catch (Exception e) {
             //todo 打印报错日志
         }
-        return article.toArticleDetailsDto(comments, author);
+        return verifiedArticle.toArticleDetailsDto(comments, author);
     }
 
 }

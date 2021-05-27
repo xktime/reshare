@@ -1,7 +1,7 @@
 package com.xktime.article.controller;
 
-import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
+import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.model.pojo.article.dto.c2s.PublishDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
@@ -23,7 +23,7 @@ public class ArticleController {
     OriginalArticleServiceImpl originalBaseArticleService;
 
     @Autowired
-    ArticleServiceImpl articleService;
+    VerifiedArticleServiceImpl verifiedArticleService;
 
 
     @RequestMapping("publish")

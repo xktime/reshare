@@ -1,7 +1,7 @@
 package com.xktime.model.mappers.article;
 
 import com.xktime.model.pojo.article.query.LoadQuery;
-import com.xktime.model.pojo.article.entity.Article;
+import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -10,15 +10,15 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface ArticleMapper {
+public interface VerifiedArticleMapper {
 
-    void saveArticle(Article article);
+    void saveArticle(VerifiedArticle verifiedArticle);
 
-    List<Article> load(LoadQuery loadQuery);
+    List<VerifiedArticle> load(LoadQuery loadQuery);
 
-    Article findById(@Param("id") long id);
+    VerifiedArticle findById(@Param("id") long id);
 
     void removeById(@Param("id") long id);
 
-    void update(Article article);
+    void update(VerifiedArticle verifiedArticle);
 }

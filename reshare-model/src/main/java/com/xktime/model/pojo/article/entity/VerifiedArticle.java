@@ -10,7 +10,6 @@ import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +17,12 @@ import java.util.List;
  * 审核通过的文章
  */
 @Data
-public class Article implements Serializable {
+public class VerifiedArticle extends BaseArticle {
     private long id;
     private String title;
+    private String content;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date publishTime;
     private long authorId;
     private String authorName;
     private int channelId;
@@ -31,10 +33,7 @@ public class Article implements Serializable {
     private int collection;
     private int comment;
     private int views;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date publishTime;
     private String origin;
-    private String content;
     private String tag;
     private int status;
 

@@ -1,23 +1,14 @@
 package com.xktime.model.pojo.article.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.Date;
-
 @Data
-public class BaseVerifyArticle implements Serializable {
-    protected long id;
-    protected String title;
-    protected String content;
+public class BaseVerifyArticle extends BaseArticle {
     protected String authorName;
     protected String channelName;
     protected String labels;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    protected Date publishTime;
     protected String url;
     protected String origin;
     protected int status;
@@ -38,14 +29,14 @@ public class BaseVerifyArticle implements Serializable {
         return dto;
     }
 
-    public Article toArticle() {
-        Article article = new Article();
-        article.setId(id);
-        article.setTitle(title);
-        article.setContent(content);
-        article.setAuthorName(authorName);
-        article.setStatus(status);
-        return article;
+    public VerifiedArticle toArticle() {
+        VerifiedArticle verifiedArticle = new VerifiedArticle();
+        verifiedArticle.setId(id);
+        verifiedArticle.setTitle(title);
+        verifiedArticle.setContent(content);
+        verifiedArticle.setAuthorName(authorName);
+        verifiedArticle.setStatus(status);
+        return verifiedArticle;
     }
 
     public SimpleArticleDto toSimpleArticleDto() {

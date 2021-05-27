@@ -1,16 +1,16 @@
 package com.xktime.article.type;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.article.service.impl.ArticleServiceImpl;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
+import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.config.annotation.EnumTypeService;
 import org.springframework.context.ApplicationContext;
 
 public enum ArticleTypeEnum implements EnumTypeService {
     CRAWLER_ARTICLE(1, "crawler", CrawlerArticleServiceImpl.class),
     ORIGINAL_ARTICLE(2, "original", OriginalArticleServiceImpl.class),
-    RECOMMEND_ARTICLE(3, "recommend", ArticleServiceImpl.class),
+    RECOMMEND_ARTICLE(3, "recommend", VerifiedArticleServiceImpl.class),
     ;
 
     private String dec;

@@ -1,10 +1,10 @@
 package com.xktime.article.service;
 
-import com.xktime.article.service.impl.ArticleServiceImpl;
+import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
-import com.xktime.model.pojo.article.entity.Article;
+import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.entity.BaseVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
@@ -18,7 +18,7 @@ import java.util.List;
 public abstract class BaseAuditable {
 
     @Autowired
-    ArticleServiceImpl articleService;
+    VerifiedArticleServiceImpl verifiedArticleService;
 
     public void verify(VerifyDto dto) {
         BaseArticleService service = ArticleTypeEnum.getService(dto.getType());
@@ -32,12 +32,12 @@ public abstract class BaseAuditable {
         VerifyQuery verifyQuery = dto.toQuery();
         if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
             //如果是通过审核,插入数据库
-            Article article = verifyArticle.toArticle();
-            articleService.save(article);
-            verifyQuery.setBindId(article.getId());
+            VerifiedArticle verifiedArticle = verifyArticle.toArticle();
+            verifiedArticleService.save(verifiedArticle);
+            verifyQuery.setBindId(verifiedArticle.getId());
         } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {
             //如果是不通过,从数据库删除
-            articleService.removeById(verifyArticle.getBindId());
+            verifiedArticleService.removeById(verifyArticle.getBindId());
             verifyQuery.setBindId(0);
         }
         ((BaseAuditable) service).modifyState(verifyQuery);
