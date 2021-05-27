@@ -1,5 +1,6 @@
 package com.xktime.article.aop;
 
+import com.xktime.model.pojo.article.entity.BaseArticle;
 import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
@@ -30,28 +31,28 @@ public class RedisCacheService {
 
     @AfterReturning(returning = "obj", pointcut = "execution(public * com.xktime.article.service..*.find*(..))")
     public void after(Object obj) {
-        if (obj == null) {
+        if (!(obj instanceof BaseArticle)) {
             return;
         }
-        //todo 不够优雅，需要重构
-        if (obj instanceof VerifiedArticle) {
-            VerifiedArticle verifiedArticle = (VerifiedArticle)obj;
-            if (redisUtil.mapExists(RedisCommonKey.COMMON_ARTICLE, verifiedArticle.getId())) {
-                return;
-            }
-            redisUtil.mapSet(RedisCommonKey.COMMON_ARTICLE, verifiedArticle.getId(), verifiedArticle);
-        } else if (obj instanceof CrawlerVerifyArticle) {
-            CrawlerVerifyArticle article = (CrawlerVerifyArticle)obj;
-            if (redisUtil.mapExists(RedisCommonKey.CRAWLER_ARTICLE, article.getId())) {
-                return;
-            }
-            redisUtil.mapSet(RedisCommonKey.CRAWLER_ARTICLE, article.getId(), article);
-        } else if (obj instanceof OriginalVerifyArticle) {
-            OriginalVerifyArticle article = (OriginalVerifyArticle)obj;
-            if (redisUtil.mapExists(RedisCommonKey.ORIGINAL_ARTICLE, article.getId())) {
-                return;
-            }
-            redisUtil.mapSet(RedisCommonKey.ORIGINAL_ARTICLE, article.getId(), article);
+        BaseArticle baseArticle = (BaseArticle)obj;
+        RedisCommonKey redisKey = getRedisKey(baseArticle);
+        if (redisKey == null) {
+            return;
         }
+        if (redisUtil.mapExists(redisKey, baseArticle.getId())) {
+            return;
+        }
+        redisUtil.mapSet(redisKey, baseArticle.getId(), baseArticle);
+    }
+
+    private RedisCommonKey getRedisKey(BaseArticle article) {
+        if (article instanceof VerifiedArticle) {
+            return RedisCommonKey.COMMON_ARTICLE;
+        } else if (article instanceof CrawlerVerifyArticle) {
+            return RedisCommonKey.CRAWLER_ARTICLE;
+        } else if (article instanceof OriginalVerifyArticle) {
+            return RedisCommonKey.ORIGINAL_ARTICLE;
+        }
+        return null;
     }
 }
