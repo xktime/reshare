@@ -3,7 +3,7 @@ package com.xktime.model.pojo.user.entity;
 import lombok.Data;
 
 @Data
-public class AdminUser {
+public class AdminUser extends BaseUser {
     private long id;
     private long userId;
     private String userName;
