@@ -65,12 +65,6 @@
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>
 
-        <!--日志依赖-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-
         <!--eureka依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

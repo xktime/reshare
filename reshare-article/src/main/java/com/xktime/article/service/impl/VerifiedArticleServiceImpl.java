@@ -7,8 +7,8 @@ import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.utils.RedisUtil;
 import com.xktime.utils.common.RedisCommonKey;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
