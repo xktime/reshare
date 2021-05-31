@@ -6,6 +6,8 @@ import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.templet.RestfulTemplet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,8 @@ import java.util.List;
 @RequestMapping("load")
 public class LoadController {
 
+    Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
     @Autowired
     CommentService commentService;
 
@@ -29,13 +33,13 @@ public class LoadController {
     public List<CommentDto> loadComment(@RequestBody LoadDto dto) {
         List<Comment> comments = commentService.load(dto.toQuery());
         List<CommentDto> commentDtos = new ArrayList<>();
-        try{
+        try {
             for (Comment comment : comments) {
                 AppUser user = restfulTemplet.getUserByUserId(comment.getAuthorId());
                 commentDtos.add(comment.toCommentDto(user.toSimpleUserDto()));
             }
         } catch (Exception e) {
-            //todo 打印报错日志
+            logger.error("获取评论失败", e);
         }
         return commentDtos;
     }
