@@ -8,7 +8,7 @@
     <Properties>
         <!-- 定义日志存储的路径 -->
         <property name="LOG_BASE_HOME">./logs</property>
-        <property name="LOG_NAME">GameServer.log</property>
+        <property name="LOG_NAME">server.log</property>
     </Properties>
 
     <appenders>
