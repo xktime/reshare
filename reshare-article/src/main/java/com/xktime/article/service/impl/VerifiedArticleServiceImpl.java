@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 首页显示文章
+ * 已被审核通过的文章
  */
 @Service("Article")
 public class VerifiedArticleServiceImpl implements BaseArticleService<VerifiedArticle> {

@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 爬虫爬取的文章
+ */
 @Service("CrawlerArticle")
 public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArticleService<CrawlerVerifyArticle> {
     @Autowired

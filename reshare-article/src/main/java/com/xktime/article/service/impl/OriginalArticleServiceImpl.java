@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 平台发布文章
+ */
 @Service("OriginalArticle")
 public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalVerifyArticle> {
 

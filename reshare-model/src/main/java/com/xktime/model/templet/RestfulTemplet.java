@@ -45,8 +45,7 @@ public class RestfulTemplet {
     @Autowired
     RedisUtil redisUtil;
 
-
-    //todo 最好不要直接返回实体
+    
     public AppUser getUserByToken(String token) {
         String key = RedisKeyUtil.getUniqueKey(RedisCommonKey.USER_TOKEN, token);
         AppUser user = redisUtil.mapGet(RedisCommonKey.APP_USR, key);
