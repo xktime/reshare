@@ -3,7 +3,8 @@ package com.xktime.model.pojo.article.query;
 import com.xktime.model.pojo.common.constant.GlobalConstant;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 public class LoadQuery {
@@ -15,7 +16,7 @@ public class LoadQuery {
 
     int pageStartIndex;//该页第一条数据在数据库的下标
 
-    long lastTime;
+    Timestamp lastTime;
 
     public int getSize() {
         return size == 0 ? GlobalConstant.DEFAULT_LOAD_ARTICLE_SIZE : size;

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 @SpringBootTest(classes = ReshareArticleApplication.class)
 @RunWith(SpringRunner.class)
 public class VerifiedArticleTest {
@@ -19,7 +22,7 @@ public class VerifiedArticleTest {
         LoadQuery loadQuery = new LoadQuery();
         loadQuery.setSize(10);
         loadQuery.setPage(0);
-        loadQuery.setLastTime(1622096628000l);
+        loadQuery.setLastTime(new Timestamp(1622096628000l));
         System.out.println(verifiedArticle.loadSimpleArticles(loadQuery).toString());
     }
 

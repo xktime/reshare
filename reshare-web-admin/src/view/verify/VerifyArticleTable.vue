@@ -79,10 +79,11 @@
                     //如果切换加载类型，清空之前的数据
                     this.tableData = [];
                 }
-                let lastTime = new Date().toLocaleDateString();
+                //todo 滚动加载好像有一些问题
+                let lastTime = new Date().getTime();
                 if (this.tableData[this.tableData.length - 1]) {
                     const publishTime = this.tableData[this.tableData.length - 1].publishTime;
-                    lastTime = new Date(publishTime).toLocaleDateString();
+                    lastTime = new Date(publishTime).getTime();
                 }
                 const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type) + '&lastTime=' + lastTime + '&size=' + 10;
                 const _this = this;

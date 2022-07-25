@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -31,15 +32,14 @@ public class LoadDto {
     long authorId;
 
     @ApiModelProperty("上次加载时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastTime;
+    private long lastTime;
 
     public LoadQuery toQuery() {
         LoadQuery loadQuery = new LoadQuery();
         loadQuery.setPage(page);
         loadQuery.setSize(size);
         loadQuery.setToken(token);
-        loadQuery.setLastTime(lastTime.getTime());
+        loadQuery.setLastTime(new Timestamp(lastTime));
         return loadQuery;
     }
 }
