@@ -84,7 +84,7 @@
                     const publishTime = this.tableData[this.tableData.length - 1].publishTime;
                     lastTime = new Date(publishTime).toLocaleDateString();
                 }
-                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type) + '&lastTime=' + lastTime;
+                const api = this.$loadArticleUrl + '?page=' + this.page + '&loadArticleType=' + this.getType(type) + '&lastTime=' + lastTime + '&size=' + 10;
                 const _this = this;
                 this.axios.get(api).then((response) => {
                     if (response.data.code !== 200) {

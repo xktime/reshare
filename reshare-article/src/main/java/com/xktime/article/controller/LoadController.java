@@ -43,6 +43,7 @@ public class LoadController {
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getLoadArticleType());
         }
+        //todo size校验
         return ((BaseAuditable) service).loadVerifyArticles(dto.toQuery());
     }
 

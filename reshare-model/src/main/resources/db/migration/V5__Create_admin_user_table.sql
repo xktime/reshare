@@ -13,4 +13,4 @@ CREATE TABLE `admin_user` (
   `enable` tinyint(1) NOT NULL default '1' COMMENT '启用状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理系统用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理系统用户表';

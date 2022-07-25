@@ -12,7 +12,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
-    password: root
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
@@ -43,7 +43,7 @@ spring:
     enabled: false
 
   redis:
-    host: 192.168.2.255
+    host: 127.0.0.1
     password:
     port: 6379
     timeout: 30000
