@@ -14,12 +14,12 @@
         <module>reshare-utils</module>
         <module>reshare-apis</module>
         <module>reshare-model</module>
-        <module>reshare-article</module>
-        <module>reshare-crawler</module>
-        <module>reshare-euraka-registry</module>
+        <module>reshare-article-service</module>
+        <module>reshare-crawler-service</module>
+        <module>reshare-registry</module>
         <module>reshare-getway</module>
-        <module>reshare-user</module>
-        <module>reshare-comment</module>
+        <module>reshare-user-service</module>
+        <module>reshare-comment-service</module>
     </modules>
 
     <properties>
