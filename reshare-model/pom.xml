@@ -73,6 +73,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+        </dependency>
+
         <!--数据源依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>

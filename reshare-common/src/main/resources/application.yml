@@ -48,6 +48,11 @@ spring:
     port: 6379
     timeout: 30000
 
+  data:
+    mongodb:
+      uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
+      database: reshar
+
 port:
   api: 80
   eureka-registry: 8991

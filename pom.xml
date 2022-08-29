@@ -34,6 +34,7 @@
         <mybatis.version>1.3.2</mybatis.version>
         <druid.version>1.1.10</druid.version>
         <mysql.version>8.0.16</mysql.version>
+        <mongo.version>3.8.2</mongo.version>
         <flyway.version>5.2.4</flyway.version>
         <junit.version>5.5.2</junit.version>
         <eureka.version>2.2.2.RELEASE</eureka.version>
@@ -134,6 +135,13 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <!--mongodb依赖-->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver</artifactId>
+                <version>${mongo.version}</version>
             </dependency>
 
             <!--数据源依赖-->
@@ -242,7 +250,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
             </plugin>
 
             <plugin>

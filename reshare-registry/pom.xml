@@ -12,8 +12,8 @@
     <description>eureka注册中心</description>
 
     <version>0.0.1-SNAPSHOT</version>
-    <name>reshare-euraka-registry</name>
-    <artifactId>reshare-euraka-registry</artifactId>
+    <name>reshare-registry</name>
+    <artifactId>reshare-registry</artifactId>
 
     <properties>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>
@@ -80,5 +80,16 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <finalName>${project.name}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

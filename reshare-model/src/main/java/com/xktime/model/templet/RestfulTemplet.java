@@ -27,6 +27,7 @@ import java.util.List;
 
 //todo url分类？
 //todo 模板放在model内好像不太合适
+//todo 或许改成Rpc？
 @Service
 public class RestfulTemplet {
 
