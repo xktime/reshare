@@ -1,6 +1,5 @@
 package com.xktime.model.pojo.article.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,6 +13,6 @@ public class BaseArticle implements Serializable {
     protected long id;
     protected String title;
     protected String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date publishTime;
 }

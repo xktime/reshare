@@ -1,7 +1,6 @@
 package com.xktime.model.pojo.article.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
@@ -21,7 +20,7 @@ public class VerifiedArticle extends BaseArticle {
     private long id;
     private String title;
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publishTime;
     private long authorId;
     private String authorName;

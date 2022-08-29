@@ -8,18 +8,11 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
-        <relativePath/>
-    </parent>
     <modules>
-        <!--        <module>reshare-common</module>-->
+        <!--                <module>reshare-common</module>-->
         <!--        <module>reshare-utils</module>-->
         <!--        <module>reshare-apis</module>-->
-        <!--        <module>reshare-model</module>-->
+        <module>reshare-model</module>
         <!--        <module>reshare-article-service</module>-->
         <!--        <module>reshare-crawler-service</module>-->
         <!--        <module>reshare-registry</module>-->
@@ -34,21 +27,30 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <springboot.version>2.2.2.RELEASE</springboot.version>
         <lombok.version>1.18.10</lombok.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger-models.version>1.6.0</swagger-models.version>
         <reflections.version>0.9.11</reflections.version>
+        <jackson.version>2.10.0</jackson.version>
+        <gson.version>2.8.5</gson.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--spring boot的依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
             <!--spring cloud的依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
-                <scope>compile</scope>
+                <scope>import</scope>
             </dependency>
 
             <!--lombok依赖-->
@@ -58,23 +60,37 @@
                 <version>${lombok.version}</version>
             </dependency>
 
+            <!--jackson-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!--gson 解决GsonBuilder问题-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
             <!--Swagger-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.swagger</groupId>
-                        <artifactId>swagger-models</artifactId>
-                    </exclusion>
-                </exclusions>
+<!--                <exclusions>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>io.swagger</groupId>-->
+<!--                        <artifactId>swagger-models</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
             </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-models</artifactId>
-                <version>${swagger-models.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>io.swagger</groupId>-->
+<!--                <artifactId>swagger-models</artifactId>-->
+<!--                <version>${swagger-models.version}</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
@@ -94,15 +110,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
-            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-surefire-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <testFailureIgnore>true</testFailureIgnore>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 

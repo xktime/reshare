@@ -1,6 +1,5 @@
 package com.xktime.model.pojo.article.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
@@ -12,7 +11,7 @@ public class BaseVerifyArticle extends BaseArticle {
     protected long id;
     protected String title;
     protected String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected Date publishTime;
     protected String authorName;
     protected String channelName;
