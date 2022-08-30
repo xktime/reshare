@@ -1,4 +1,4 @@
-package com.xktime.config.mysql.core;
+package com.xktime.core;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -28,7 +28,9 @@ public class MysqlCoreConfig {
 
     @Bean
     public ServletRegistrationBean statViewServlet() {
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+//        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+        //todo 需要修改
+        ServletRegistrationBean bean = new ServletRegistrationBean();
         Map<String, String> initParams = new HashMap<>();
         initParams.put("loginUsername", "admin"); //后台管理界面的登录账号
         initParams.put("loginPassword", "123456"); //后台管理界面的登录密码

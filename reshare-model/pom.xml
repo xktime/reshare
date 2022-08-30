@@ -40,12 +40,6 @@
         <!--            <version>${reshare.version}</version>-->
         <!--        </dependency>-->
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.lym</groupId>-->
-        <!--            <artifactId>Common</artifactId>-->
-        <!--            <version>1.0-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-
 
         <!--springboot的依赖-->
         <dependency>
