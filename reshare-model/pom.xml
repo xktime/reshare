@@ -34,11 +34,11 @@
         <!--            <version>${reshare.version}</version>-->
         <!--        </dependency>-->
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.xktime</groupId>-->
-        <!--            <artifactId>reshare-utils</artifactId>-->
-        <!--            <version>${reshare.version}</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-utils</artifactId>
+            <version>${reshare.version}</version>
+        </dependency>
 
 
         <!--springboot的依赖-->
@@ -103,12 +103,6 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

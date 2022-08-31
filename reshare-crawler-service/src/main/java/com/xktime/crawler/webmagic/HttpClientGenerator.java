@@ -35,9 +35,9 @@ import java.util.Map;
  * @since 0.4.0
  */
 public class HttpClientGenerator {
-	
-	private transient Logger logger = LoggerFactory.getLogger(getClass());
-	
+
+    private transient Logger logger = LoggerFactory.getLogger(getClass());
+
     private PoolingHttpClientConnectionManager connectionManager;
 
     public HttpClientGenerator() {
@@ -62,30 +62,30 @@ public class HttpClientGenerator {
         return SSLConnectionSocketFactory.getSocketFactory();
     }
 
-	private SSLContext createIgnoreVerifySSL() throws NoSuchAlgorithmException, KeyManagementException {
-		// 实现一个X509TrustManager接口，用于绕过验证，不用修改里面的方法
-		X509TrustManager trustManager = new X509TrustManager() {
+    private SSLContext createIgnoreVerifySSL() throws NoSuchAlgorithmException, KeyManagementException {
+        // 实现一个X509TrustManager接口，用于绕过验证，不用修改里面的方法
+        X509TrustManager trustManager = new X509TrustManager() {
 
-			@Override
-			public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-			}
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
 
-			@Override
-			public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-			}
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
 
-			@Override
-			public X509Certificate[] getAcceptedIssuers() {
-				return null;
-			}
-			
-		};
-		
-		SSLContext sc = SSLContext.getInstance("SSLv3");
-		sc.init(null, new TrustManager[] { trustManager }, null);
-		return sc;
-	}
-    
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
+
+        };
+
+        SSLContext sc = SSLContext.getInstance("SSLv3");
+        sc.init(null, new TrustManager[]{trustManager}, null);
+        return sc;
+    }
+
     public HttpClientGenerator setPoolSize(int poolSize) {
         connectionManager.setMaxTotal(poolSize);
         return this;
@@ -97,7 +97,7 @@ public class HttpClientGenerator {
 
     private CloseableHttpClient generateClient(Site site) {
         HttpClientBuilder httpClientBuilder = HttpClients.custom();
-        
+
         httpClientBuilder.setConnectionManager(connectionManager);
         if (site.getUserAgent() != null) {
             httpClientBuilder.setUserAgent(site.getUserAgent());

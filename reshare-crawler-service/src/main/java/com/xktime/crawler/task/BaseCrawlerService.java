@@ -1,6 +1,5 @@
 package com.xktime.crawler.task;
 
-import com.xktime.crawler.pipe.DatabasePipeline;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.processor.PageProcessor;

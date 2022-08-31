@@ -3,7 +3,6 @@ package com.xktime.crawler.util;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.util.Iterator;
 
 public class FormatUtil {

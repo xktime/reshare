@@ -19,32 +19,27 @@
         <webMagic.version>0.7.3</webMagic.version>
         <commons.io.version>2.6</commons.io.version>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+        <jackson.version>2.10.0</jackson.version>
     </properties>
 
     <dependencies>
+
+        <!--springboot的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--springboot test的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons.io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-common</artifactId>
-            <version>${reshare.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-model</artifactId>
-            <version>${reshare.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-article</artifactId>
-            <version>${reshare.version}</version>
         </dependency>
 
         <dependency>
@@ -59,45 +54,10 @@
             <version>${webMagic.version}</version>
         </dependency>
 
-        <!--springboot的依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <!--springboot web的依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--springboot test的依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
-        <!--springboot AOP的依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <!-- junit -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-        </dependency>
-
-        <!--eureka依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>

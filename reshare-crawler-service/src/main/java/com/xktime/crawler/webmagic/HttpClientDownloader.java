@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 /**
  * The http downloader based on HttpClient.
  *
@@ -116,7 +115,7 @@ public class HttpClientDownloader extends AbstractDownloader {
         String contentType = httpResponse.getEntity().getContentType() == null ? "" : httpResponse.getEntity().getContentType().getValue();
         Page page = new Page();
         page.setBytes(bytes);
-        if (!request.isBinaryContent()){
+        if (!request.isBinaryContent()) {
             if (charset == null) {
                 charset = getHtmlCharset(contentType, bytes);
             }
