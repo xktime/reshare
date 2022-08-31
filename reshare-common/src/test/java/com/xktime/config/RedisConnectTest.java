@@ -1,8 +1,8 @@
 package com.xktime.config;
 
 
-import com.xktime.utils.RedisUtil;
-import com.xktime.utils.common.RedisCommonKey;
+import com.xktime.redis.RedisCommonKey;
+import com.xktime.redis.RedisUtil;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

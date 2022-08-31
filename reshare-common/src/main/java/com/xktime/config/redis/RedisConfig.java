@@ -1,6 +1,6 @@
 package com.xktime.config.redis;
 
-import com.xktime.utils.RedisUtil;
+import com.xktime.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

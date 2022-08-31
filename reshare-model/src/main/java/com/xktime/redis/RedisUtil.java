@@ -1,7 +1,5 @@
-package com.xktime.utils;
+package com.xktime.redis;
 
-import com.xktime.utils.common.RedisCommonKey;
-import com.xktime.utils.common.RedisKeyUtil;
 import org.springframework.data.redis.core.*;
 import org.springframework.lang.NonNull;
 

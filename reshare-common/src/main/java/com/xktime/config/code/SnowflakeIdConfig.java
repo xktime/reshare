@@ -16,6 +16,8 @@ public class SnowflakeIdConfig {
 
     @Bean
     public SnowflakeIdUtil getSnowflakeIdUtil() {
+
         return new SnowflakeIdUtil(workerId, dataCenterId);
     }
+
 }

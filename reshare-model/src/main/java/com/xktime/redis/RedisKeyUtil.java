@@ -1,4 +1,4 @@
-package com.xktime.utils.common;
+package com.xktime.redis;
 
 public class RedisKeyUtil
 {

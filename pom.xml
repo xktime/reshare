@@ -10,9 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>reshare-common</module>
-        <!--        <module>reshare-utils</module>-->
-        <!--        <module>reshare-apis</module>-->
+        <module>reshare-utils</module>
         <module>reshare-model</module>
+        <!--        <module>reshare-apis</module>-->
         <!--        <module>reshare-article-service</module>-->
         <!--        <module>reshare-crawler-service</module>-->
         <!--        <module>reshare-registry</module>-->
@@ -28,10 +28,10 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <springboot.version>2.2.2.RELEASE</springboot.version>
+        <springweb.version>5.3.20</springweb.version>
         <lombok.version>1.18.10</lombok.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger-models.version>1.6.0</swagger-models.version>
-        <reflections.version>0.9.11</reflections.version>
         <jackson.version>2.10.0</jackson.version>
         <gson.version>2.8.5</gson.version>
     </properties>
@@ -44,6 +44,13 @@
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>${springboot.version}</version>
+            </dependency>
             <!--spring cloud的依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -52,6 +59,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${springweb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${springweb.version}</version>
+            </dependency>
+
 
             <!--lombok依赖-->
             <dependency>
@@ -95,12 +115,6 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>${reflections.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
