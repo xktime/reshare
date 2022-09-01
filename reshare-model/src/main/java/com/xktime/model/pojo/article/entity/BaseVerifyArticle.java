@@ -3,6 +3,8 @@ package com.xktime.model.pojo.article.entity;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
