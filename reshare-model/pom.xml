@@ -26,23 +26,23 @@
         <jedis.version>3.3.0</jedis.version>
         <redis.version>2.3.3.RELEASE</redis.version>
         <session.data.redis.version>2.3.0.RELEASE</session.data.redis.version>
-        <mongo.version>2.6.3</mongo.version>
+        <mongo.version>2.3.12.RELEASE</mongo.version>
         <druid.version>1.2.11</druid.version>
         <flyway.version>5.2.4</flyway.version>
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.xktime</groupId>-->
-<!--            <artifactId>reshare-common</artifactId>-->
-<!--            <version>${reshare.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.xktime</groupId>-->
+        <!--            <artifactId>reshare-common</artifactId>-->
+        <!--            <version>${reshare.version}</version>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>com.xktime</groupId>-->
-<!--            <artifactId>reshare-utils</artifactId>-->
-<!--            <version>${reshare.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.xktime</groupId>-->
+        <!--            <artifactId>reshare-utils</artifactId>-->
+        <!--            <version>${reshare.version}</version>-->
+        <!--        </dependency>-->
 
 
         <!--springboot的依赖-->
@@ -62,11 +62,11 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-mongodb</artifactId>-->
-<!--            <version>${mongo.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>${mongo.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,17 +102,17 @@
             <version>${jdbc.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.data</groupId>-->
-<!--            <artifactId>spring-data-redis</artifactId>-->
-<!--            <version>${redis.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>redis.clients</groupId>-->
-<!--            <artifactId>jedis</artifactId>-->
-<!--            <version>${jedis.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>

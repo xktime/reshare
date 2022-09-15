@@ -3,18 +3,9 @@ package com.xktime.model.pojo.article.entity;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
-//import org.springframework.data.annotation.Id;
-//import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
 
 @Data
 public class BaseVerifyArticle extends BaseArticle {
-    protected long id;
-    protected String title;
-    protected String content;
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    protected Date publishTime;
     protected String authorName;
     protected String channelName;
     protected String labels;

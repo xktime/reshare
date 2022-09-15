@@ -1,6 +1,8 @@
 package com.xktime.model.pojo.article.entity;
 
 import lombok.Data;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
  */
 @Data
 public class BaseArticle implements Serializable {
+    @Id
     protected long id;
     protected String title;
     protected String content;
