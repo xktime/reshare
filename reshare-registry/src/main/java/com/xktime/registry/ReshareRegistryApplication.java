@@ -8,6 +8,11 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @EnableEurekaServer
 public class ReshareRegistryApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ReshareRegistryApplication.class, args);
+        try {
+
+            SpringApplication.run(ReshareRegistryApplication.class, args);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

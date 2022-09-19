@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: registry
+
+server:
+  port: 8760
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka: false #不把自己（eureka-server）注册到eureka上（不做高可用的情况下）
+    fetch-registry: false #不从eureka上来获取服务的注册信息（因为本身就是注册中心，消费者就需要获取提供者的信息）
