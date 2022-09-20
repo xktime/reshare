@@ -9,9 +9,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>reshare-article</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>reshare-article</name>
+    <artifactId>reshare-article</artifactId>
+    <name>article-service</name>
     <description>文章管理模块</description>
 
     <properties>
@@ -59,12 +59,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <!-- junit -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
         </dependency>
 
         <!--eureka依赖-->

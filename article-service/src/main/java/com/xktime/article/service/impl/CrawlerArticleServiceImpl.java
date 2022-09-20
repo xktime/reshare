@@ -8,8 +8,8 @@ import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
-import com.xktime.utils.RedisUtil;
-import com.xktime.utils.common.RedisCommonKey;
+import com.xktime.model.redis.RedisCommonKey;
+import com.xktime.model.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

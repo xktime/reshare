@@ -2,11 +2,11 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
+import com.xktime.article.templet.RestfulTemplet;
 import com.xktime.model.pojo.article.dto.c2s.PublishDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
 import com.xktime.model.pojo.user.entity.AppUser;
-import com.xktime.model.templet.RestfulTemplet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

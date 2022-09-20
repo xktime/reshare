@@ -1,4 +1,4 @@
-package com.xktime.model.templet;
+package com.xktime.article.templet;
 
 import com.xktime.model.pojo.account.dto.LoginDto;
 import com.xktime.model.pojo.account.dto.RegisterDto;
@@ -29,6 +29,7 @@ import java.util.List;
 //todo 模板放在model内好像不太合适
 //todo 或许改成Rpc？
 //todo util包导入
+@Service
 public class RestfulTemplet {
 
     @Value("${restful.url.user}")

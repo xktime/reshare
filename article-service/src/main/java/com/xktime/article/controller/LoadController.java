@@ -3,6 +3,7 @@ package com.xktime.article.controller;
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
+import com.xktime.article.templet.RestfulTemplet;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
@@ -12,11 +13,10 @@ import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import com.xktime.model.pojo.user.entity.AppUser;
-import com.xktime.model.templet.RestfulTemplet;
 import com.xktime.utils.FormatUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +29,7 @@ import java.util.List;
 @RequestMapping("load")
 public class LoadController {
 
-    Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     VerifiedArticleServiceImpl verifiedArticleService;
@@ -68,7 +68,7 @@ public class LoadController {
 
         //获取评论详情
         List<CommentDto> comments = null;
-        try{
+        try {
             comments = restfulTemplet.getComments(verifiedArticle.getCommentLoadDto());
         } catch (Exception e) {
             logger.error("获取评论详情失败", e);
@@ -76,7 +76,7 @@ public class LoadController {
 
         //获取文章作者信息
         SimpleUserDto author = null;
-        try{
+        try {
             AppUser user = restfulTemplet.getUserByUserId(verifiedArticle.getAuthorId());
             author = user.toSimpleUserDto();
         } catch (Exception e) {

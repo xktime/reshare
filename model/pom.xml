@@ -38,11 +38,11 @@
 <!--                    <version>${reshare.version}</version>-->
 <!--                </dependency>-->
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.xktime</groupId>-->
-        <!--            <artifactId>reshare-utils</artifactId>-->
-        <!--            <version>${reshare.version}</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.xktime</groupId>
+            <artifactId>reshare-utils</artifactId>
+            <version>${reshare.version}</version>
+        </dependency>
 
 
         <!--springboot的依赖-->
