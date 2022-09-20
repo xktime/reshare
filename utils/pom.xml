@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.xktime</groupId>
+        <artifactId>reshare</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>reshare-utils</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>utils</name>
+    <description>公共工具模块</description>
+
+    <properties>
+        <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+        <commons-codec.version>1.13</commons-codec.version>
+        <reflections.version>0.9.11</reflections.version>
+        <commons-lang.version>3.7</commons-lang.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+
+</project>

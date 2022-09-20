@@ -1,0 +1,94 @@
+spring:
+  application:
+    name: config
+  #  cloud:
+  #    config:
+  #      server:
+  #        git:
+  #          uri: https://github.com/xktime/reshare.git
+  #          search-paths:
+  #            -reshare-config
+  #      label: master
+  datasource:
+    url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #解决Incorrect string value: '\xF0\x9F\x98\x81 \xE5...' for column问题
+    connectionInitSqls: set names utf8mb4;
+
+    #druid 数据源配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+    #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #则导入 log4j 依赖即可，Maven 地址： https://mvnrepository.com/artifact/log4j/log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  flyway:
+    enabled: false
+
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    timeout: 30000
+
+  data:
+    mongodb:
+      uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
+      database: reshar
+
+port:
+  api: 80
+  eureka-registry: 8991
+  article: 8992
+  crawler: 8993
+  admin: 8994
+  gateway: 8995
+  user: 8996
+  comment: 8997
+
+service-name:
+  api: api
+  eureka-registry: eureka-registry
+  article: article
+  crawler: crawler
+  admin: admin
+  gateway: getway
+  user: user
+  comment: comment
+
+restful:
+  url:
+    user: http://${service-name.user}
+    article: http://${service-name.article}
+    comment: http://${service-name.comment}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:${port.eureka-registry}/eureka
+
+code:
+  # 雪花算法id配置
+  snow-flake-id:
+    workerId: 0
+    dataCenterId: 0
+
+server:
+  port: 8991

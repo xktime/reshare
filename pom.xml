@@ -9,13 +9,13 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>reshare-common</module>
-        <module>reshare-utils</module>
-        <module>reshare-model</module>
-        <module>reshare-crawler-service</module>
+        <module>common</module>
+        <module>utils</module>
+        <module>model</module>
+        <module>crawler-service</module>
+        <module>registry</module>
+<!--        <module>reshare-article-service</module>-->
         <!--        <module>reshare-apis</module>-->
-        <!--        <module>reshare-article-service</module>-->
-        <module>reshare-registry</module>
         <!--        <module>reshare-getway</module>-->
         <!--        <module>reshare-user-service</module>-->
         <!--        <module>reshare-comment-service</module>-->
@@ -29,7 +29,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <springboot.version>2.3.12.RELEASE</springboot.version>
-        <springweb.version>5.3.20</springweb.version>
         <lombok.version>1.18.10</lombok.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger-models.version>1.6.0</swagger-models.version>
@@ -95,7 +94,7 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!--gson 解决GsonBuilder问题-->
+            <!--gson-->
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>

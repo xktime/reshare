@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>reshare</artifactId>
+        <groupId>com.xktime</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <description>eureka注册中心</description>
+
+    <version>0.0.1-SNAPSHOT</version>
+    <name>registry</name>
+    <artifactId>reshare-registry</artifactId>
+
+    <properties>
+        <reshare.version>0.0.1-SNAPSHOT</reshare.version>
+    </properties>
+
+    <dependencies>
+        <!--springboot的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--springboot web的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--eureka依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <finalName>${project.name}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
