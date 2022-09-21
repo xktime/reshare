@@ -2,10 +2,10 @@ package com.xktime.user.service.impl;
 
 import com.xktime.model.mappers.user.AppUserMapper;
 import com.xktime.model.pojo.user.entity.AppUser;
+import com.xktime.model.redis.RedisCommonKey;
+import com.xktime.model.redis.RedisKeyUtil;
+import com.xktime.model.redis.RedisUtil;
 import com.xktime.user.service.BaseUserService;
-import com.xktime.utils.RedisUtil;
-import com.xktime.utils.common.RedisCommonKey;
-import com.xktime.utils.common.RedisKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

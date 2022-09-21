@@ -11,7 +11,7 @@
 
     <artifactId>reshare-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>reshare-user</name>
+    <name>user-service</name>
     <description>用户模块</description>
 
     <properties>
@@ -60,11 +60,6 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!-- junit -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-        </dependency>
 
         <!--eureka依赖-->
         <dependency>

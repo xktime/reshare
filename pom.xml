@@ -15,9 +15,9 @@
         <module>crawler-service</module>
         <module>registry</module>
         <module>article-service</module>
+        <module>user-service</module>
         <!--        <module>reshare-apis</module>-->
         <!--        <module>reshare-getway</module>-->
-        <!--        <module>reshare-user-service</module>-->
         <!--        <module>reshare-comment-service</module>-->
     </modules>
 

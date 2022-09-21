@@ -2,10 +2,10 @@ package com.xktime.user.aop;
 
 import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.model.pojo.user.entity.BaseUser;
+import com.xktime.model.redis.RedisCommonKey;
+import com.xktime.model.redis.RedisKeyUtil;
+import com.xktime.model.redis.RedisUtil;
 import com.xktime.utils.CodeUtil;
-import com.xktime.utils.RedisUtil;
-import com.xktime.utils.common.RedisCommonKey;
-import com.xktime.utils.common.RedisKeyUtil;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
