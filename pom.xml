@@ -12,13 +12,12 @@
         <module>common</module>
         <module>utils</module>
         <module>model</module>
-        <module>crawler-service</module>
+        <module>service-crawler</module>
         <module>registry</module>
-        <module>article-service</module>
-        <module>user-service</module>
-        <!--        <module>reshare-apis</module>-->
-        <!--        <module>reshare-getway</module>-->
-        <!--        <module>reshare-comment-service</module>-->
+        <module>service-article</module>
+        <module>service-user</module>
+        <module>service-apis</module>
+        <module>service-comment</module>
     </modules>
 
     <properties>
