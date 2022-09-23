@@ -26,12 +26,6 @@
             <version>${reshare.version}</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.xktime</groupId>-->
-        <!--            <artifactId>reshare-model</artifactId>-->
-        <!--            <version>${reshare.version}</version>-->
-        <!--        </dependency>-->
-
         <dependency>
             <groupId>com.xktime</groupId>
             <artifactId>reshare-utils</artifactId>
@@ -43,27 +37,10 @@
             <artifactId>spring-cloud-commons</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!--Swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>

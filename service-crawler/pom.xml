@@ -19,22 +19,9 @@
         <webMagic.version>0.7.3</webMagic.version>
         <commons.io.version>2.6</commons.io.version>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>
-        <jackson.version>2.10.0</jackson.version>
     </properties>
 
     <dependencies>
-
-        <!--springboot的依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <!--springboot test的依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
@@ -52,12 +39,6 @@
             <groupId>us.codecraft</groupId>
             <artifactId>webmagic-extension</artifactId>
             <version>${webMagic.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>
