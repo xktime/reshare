@@ -11,7 +11,7 @@
 
     <artifactId>reshare-article</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>article-service</name>
+    <name>service-article</name>
     <description>文章管理模块</description>
 
     <properties>

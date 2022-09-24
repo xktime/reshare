@@ -18,6 +18,7 @@
         <module>service-user</module>
         <module>service-apis</module>
         <module>service-comment</module>
+        <module>config</module>
     </modules>
 
     <properties>
@@ -44,12 +45,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${springboot.version}</version>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.springframework.boot</groupId>-->
-<!--                        <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
             </dependency>
 
             <dependency>
