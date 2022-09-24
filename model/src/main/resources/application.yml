@@ -51,34 +51,4 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
-      database: reshar
-
-restful:
-  url:
-    user: http://${service-name.user}
-    article: http://${service-name.article}
-    comment: http://${service-name.comment}
-
-service-name:
-  api: api
-  eureka-registry: eureka-registry
-  article: article
-  crawler: crawler
-  admin: admin
-  gateway: getway
-  user: user
-  comment: comment
-
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:${port.eureka-registry}/eureka
-
-code:
-  # 雪花算法id配置
-  snow-flake-id:
-    workerId: 0
-    dataCenterId: 0
-
-server:
-  port: 8998
+      database: reshare
