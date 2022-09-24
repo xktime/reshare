@@ -16,7 +16,6 @@
         <module>registry</module>
         <module>service-article</module>
         <module>service-user</module>
-        <module>service-apis</module>
         <module>service-comment</module>
         <module>config</module>
     </modules>

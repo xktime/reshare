@@ -29,13 +29,13 @@ import java.util.List;
 @Service
 public class RestfulTemplate {
 
-//    @Value("${restful.url.user}")
+    @Value("${restful.url.user}")
     private String USER_REST_URL_PREFIX;
 
-//    @Value("${restful.url.article}")
+    @Value("${restful.url.article}")
     private String ARTICLE_REST_URL_PREFIX;
 
-//    @Value("${restful.url.comment}")
+    @Value("${restful.url.comment}")
     private String COMMENT_REST_URL_PREFIX;
 
     @Autowired

@@ -14,6 +14,7 @@ import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.utils.FormatUtil;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("load")
+@Api(tags = "文章加载")
 public class LoadController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
