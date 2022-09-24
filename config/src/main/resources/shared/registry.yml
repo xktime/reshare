@@ -1,8 +1,5 @@
-spring:
-  application:
-    name: registry
 server:
-  port: 8760
+  port: 9999
 
 eureka:
   instance:

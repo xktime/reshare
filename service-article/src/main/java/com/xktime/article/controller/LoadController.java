@@ -3,7 +3,7 @@ package com.xktime.article.controller;
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
-import com.xktime.article.templet.RestfulTemplet;
+import com.xktime.article.templet.RestfulTemplate;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
@@ -35,7 +35,7 @@ public class LoadController {
     VerifiedArticleServiceImpl verifiedArticleService;
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     @PostMapping("verifyArticles")
     public List<VerifyArticleDto> verifyArticles(@RequestBody LoadDto dto) {

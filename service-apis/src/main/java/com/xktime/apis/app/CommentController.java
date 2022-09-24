@@ -3,7 +3,7 @@ package com.xktime.apis.app;
 import com.xktime.model.pojo.comment.dto.c2s.PublishDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
-import com.xktime.apis.templet.RestfulTemplet;
+import com.xktime.apis.templet.RestfulTemplate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommentController {
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     /**
      * 发布评论

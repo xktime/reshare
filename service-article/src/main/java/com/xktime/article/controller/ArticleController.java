@@ -2,7 +2,7 @@ package com.xktime.article.controller;
 
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
-import com.xktime.article.templet.RestfulTemplet;
+import com.xktime.article.templet.RestfulTemplate;
 import com.xktime.model.pojo.article.dto.c2s.PublishDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleController {
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     @Autowired
     OriginalArticleServiceImpl originalBaseArticleService;

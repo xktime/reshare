@@ -1,6 +1,6 @@
 package com.xktime.apis.admin;
 
-import com.xktime.apis.templet.RestfulTemplet;
+import com.xktime.apis.templet.RestfulTemplate;
 import com.xktime.model.pojo.account.dto.LoginDto;
 import com.xktime.model.pojo.article.dto.c2s.LoadDto;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
@@ -23,7 +23,7 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     @ApiOperation("加载文章")
     @GetMapping("loadArticle")

@@ -6,7 +6,7 @@ import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
-import com.xktime.apis.templet.RestfulTemplet;
+import com.xktime.apis.templet.RestfulTemplate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.List;
 public class ArticleController {
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     /**
      * 发布文章

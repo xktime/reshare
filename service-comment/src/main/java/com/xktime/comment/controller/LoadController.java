@@ -1,7 +1,7 @@
 package com.xktime.comment.controller;
 
 import com.xktime.comment.service.CommentService;
-import com.xktime.comment.templet.RestfulTemplet;
+import com.xktime.comment.templet.RestfulTemplate;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.comment.entity.Comment;
@@ -27,7 +27,7 @@ public class LoadController {
     CommentService commentService;
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     @PostMapping("comment")
     public List<CommentDto> loadComment(@RequestBody LoadDto dto) {

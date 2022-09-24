@@ -1,8 +1,8 @@
 package com.xktime.user;
 
 import com.xktime.model.pojo.user.entity.AppUser;
-import com.xktime.model.templet.RestfulTemplet;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
+import com.xktime.user.templet.RestfulTemplate;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RedisTest {
 
     @Autowired
-    private RestfulTemplet restfulTemplet;
+    private RestfulTemplate restfulTemplet;
 
     @org.junit.Test
     public void getValue() {

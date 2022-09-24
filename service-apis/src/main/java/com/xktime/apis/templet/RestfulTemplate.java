@@ -1,4 +1,4 @@
-package com.xktime.comment.templet;
+package com.xktime.apis.templet;
 
 import com.xktime.model.pojo.account.dto.LoginDto;
 import com.xktime.model.pojo.account.dto.RegisterDto;
@@ -25,20 +25,17 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-//todo url分类？
-//todo 模板放在model内好像不太合适
-//todo 或许改成Rpc？
-//todo util包导入
+//todo 整理
 @Service
-public class RestfulTemplet {
+public class RestfulTemplate {
 
-    @Value("${restful.url.user}")
+//    @Value("${restful.url.user}")
     private String USER_REST_URL_PREFIX;
 
-    @Value("${restful.url.article}")
+//    @Value("${restful.url.article}")
     private String ARTICLE_REST_URL_PREFIX;
 
-    @Value("${restful.url.comment}")
+//    @Value("${restful.url.comment}")
     private String COMMENT_REST_URL_PREFIX;
 
     @Autowired

@@ -1,7 +1,7 @@
 package com.xktime.comment.controller;
 
 import com.xktime.comment.service.CommentService;
-import com.xktime.comment.templet.RestfulTemplet;
+import com.xktime.comment.templet.RestfulTemplate;
 import com.xktime.model.pojo.comment.dto.c2s.PublishDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.common.type.HttpCodeEnum;
@@ -19,7 +19,7 @@ public class CommentController {
     CommentService commentService;
 
     @Autowired
-    RestfulTemplet restfulTemplet;
+    RestfulTemplate restfulTemplet;
 
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {

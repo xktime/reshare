@@ -1,4 +1,4 @@
-package com.xktime.config.code;
+package com.xktime.config.component;
 
 import com.xktime.utils.SnowflakeIdUtil;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +16,6 @@ public class SnowflakeIdConfig {
 
     @Bean
     public SnowflakeIdUtil getSnowflakeIdUtil() {
-
         return new SnowflakeIdUtil(workerId, dataCenterId);
     }
-
 }
