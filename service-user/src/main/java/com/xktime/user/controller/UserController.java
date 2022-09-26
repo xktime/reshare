@@ -9,6 +9,7 @@ import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import com.xktime.utils.CodeUtil;
 import com.xktime.utils.SnowflakeIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

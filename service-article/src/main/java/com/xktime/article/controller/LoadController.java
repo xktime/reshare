@@ -19,10 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,7 +34,7 @@ public class LoadController {
     VerifiedArticleServiceImpl verifiedArticleService;
 
     @Autowired
-    RestfulTemplate restfulTemplet;
+    RestfulTemplate restfulTemplate;
 
     @PostMapping("verifyArticles")
     public List<VerifyArticleDto> verifyArticles(@RequestBody LoadDto dto) {
@@ -71,7 +68,7 @@ public class LoadController {
         //获取评论详情
         List<CommentDto> comments = null;
         try {
-            comments = restfulTemplet.getComments(verifiedArticle.getCommentLoadDto());
+            comments = restfulTemplate.getComments(verifiedArticle.getCommentLoadDto());
         } catch (Exception e) {
             logger.error("获取评论详情失败", e);
         }
@@ -79,7 +76,7 @@ public class LoadController {
         //获取文章作者信息
         SimpleUserDto author = null;
         try {
-            AppUser user = restfulTemplet.getUserByUserId(verifiedArticle.getAuthorId());
+            AppUser user = restfulTemplate.getUserByUserId(verifiedArticle.getAuthorId());
             author = user.toSimpleUserDto();
         } catch (Exception e) {
             logger.error("获取文章作者失败", e);

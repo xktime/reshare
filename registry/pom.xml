@@ -8,7 +8,7 @@
         <groupId>com.xktime</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <description>eureka注册中心</description>
+    <description>注册中心</description>
 
     <version>0.0.1-SNAPSHOT</version>
     <name>registry</name>
