@@ -2,10 +2,10 @@ import Vue from 'vue'
 
 export default {
   install() {
-    Vue.prototype.$apiUrl = "http://localhost";
-    Vue.prototype.$loadArticleUrl = Vue.prototype.$apiUrl + '/admin/loadArticle';
-    Vue.prototype.$loginUrl = Vue.prototype.$apiUrl + '/admin/login';
-    Vue.prototype.$verifyUrl = Vue.prototype.$apiUrl + '/admin/verify';
+    Vue.prototype.$gatewayUrl = "http://localhost";
+    Vue.prototype.$loadArticleUrl = Vue.prototype.$gatewayUrl + '/article/load/verifyArticles';
+    Vue.prototype.$loginUrl = Vue.prototype.$gatewayUrl + '/user/login/admin';
+    Vue.prototype.$verifyUrl = Vue.prototype.$gatewayUrl + '/article/admin/verify';
 
     Vue.prototype.$crawlerArticleType = {type: 1, dec: 'crawler'};
     Vue.prototype.$originalArticleType = {type: 2, dec: 'original'};

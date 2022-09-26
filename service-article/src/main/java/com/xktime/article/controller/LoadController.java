@@ -10,7 +10,9 @@ import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.VerifiedArticle;
+import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
+import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.utils.FormatUtil;
@@ -36,8 +38,8 @@ public class LoadController {
     @Autowired
     RestfulTemplate restfulTemplate;
 
-    @PostMapping("verifyArticles")
-    public List<VerifyArticleDto> verifyArticles(@RequestBody LoadDto dto) {
+    @GetMapping("verifyArticles")
+    public List<VerifyArticleDto> verifyArticles(LoadDto dto) {
         BaseArticleService<?> service = ArticleTypeEnum.getService(dto.getLoadArticleType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getLoadArticleType());
@@ -45,6 +47,7 @@ public class LoadController {
         //todo size校验
         return ((BaseAuditable) service).loadVerifyArticles(dto.toQuery());
     }
+
 
     @PostMapping("simpleArticles")
     public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
