@@ -49,18 +49,18 @@ public class LoadController {
 
 
     @PostMapping("simpleArticles")
-    public List<SimpleArticleDto> simpleArticles(@RequestBody LoadDto dto) {
+    public ResponseResult<List<SimpleArticleDto>> simpleArticles(LoadDto dto) {
         if (!StringUtils.isBlank(dto.getToken())
                 && dto.getLoadArticleType() == ArticleTypeEnum.RECOMMEND_ARTICLE.getType()) {
             //todo 根据玩家推荐文章
-            return null;
+            return ResponseResult.okResult(verifiedArticleService.loadSimpleArticles(dto.toQuery()));
         } else {
-            return verifiedArticleService.loadSimpleArticles(dto.toQuery());
+            return ResponseResult.okResult(verifiedArticleService.loadSimpleArticles(dto.toQuery()));
         }
     }
 
-    @PostMapping("articleDetails")
-    public ArticleDetailsDto articleDetails(@RequestBody String articleId) {
+    @GetMapping("articleDetails")
+    public ResponseResult<ArticleDetailsDto> articleDetails(String articleId) {
         if (!FormatUtil.isNumber(articleId)) {
             return null;
         }
@@ -83,7 +83,7 @@ public class LoadController {
         } catch (Exception e) {
             logger.error("获取文章作者失败", e);
         }
-        return verifiedArticle.toArticleDetailsDto(comments, author);
+        return ResponseResult.okResult(verifiedArticle.toArticleDetailsDto(comments, author));
     }
 
 }

@@ -19,12 +19,12 @@ public class CommentController {
     CommentService commentService;
 
     @Autowired
-    RestfulTemplate restfulTemplet;
+    RestfulTemplate restfulTemplate;
 
     @RequestMapping("publish")
     public ResponseResult publish(@RequestBody PublishDto dto) {
         ResponseResult result = new ResponseResult();
-        AppUser author = restfulTemplet.getUserByToken(dto.getToken());
+        AppUser author = restfulTemplate.getUserByToken(dto.getToken());
         if (author == null) {
             return result.error(HttpCodeEnum.NOT_FIND_ACCOUNT);
         }

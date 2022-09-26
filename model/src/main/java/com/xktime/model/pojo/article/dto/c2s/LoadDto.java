@@ -36,8 +36,13 @@ public class LoadDto {
 
     public LoadQuery toQuery() {
         LoadQuery loadQuery = new LoadQuery();
+        if (size == 0) {
+            //todo 注入方式需要修改
+            loadQuery.setPage(10);
+        } else {
+            loadQuery.setSize(size);
+        }
         loadQuery.setPage(page);
-        loadQuery.setSize(size);
         loadQuery.setToken(token);
         loadQuery.setLastTime(new Timestamp(lastTime));
         return loadQuery;

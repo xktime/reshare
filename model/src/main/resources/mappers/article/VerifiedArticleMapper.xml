@@ -9,7 +9,7 @@
 
     <select id="load" resultType="com.xktime.model.pojo.article.entity.VerifiedArticle">
         SELECT * FROM article
-        WHERE #{lastTime} > (unix_timestamp(publish_time) * 1000)
+        WHERE #{lastTime} > publish_time
         ORDER BY publish_time DESC
         LIMIT #{size} OFFSET #{pageStartIndex}
     </select>

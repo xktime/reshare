@@ -3,10 +3,7 @@ package com.xktime.user.controller;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api")
@@ -15,13 +12,13 @@ public class ApiController {
     AppBaseUserServiceImpl userService;
 
     @PostMapping("getUserByToken")
-    public AppUser getUserByToken(@RequestBody String token) {
+    public AppUser getUserByToken(String token) {
         String account = userService.getAccountByToken(token);
         return getUserByAccount(account);
     }
 
     @PostMapping("getUserByAccount")
-    public AppUser getUserByAccount(@RequestBody String account) {
+    public AppUser getUserByAccount(String account) {
         return userService.queryByAccount(account);
     }
 

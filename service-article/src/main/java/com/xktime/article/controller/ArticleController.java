@@ -27,7 +27,7 @@ public class ArticleController {
 
 
     @RequestMapping("publish")
-    public ResponseResult publish(@RequestBody PublishDto dto) {
+    public ResponseResult publish(PublishDto dto) {
         ResponseResult result = new ResponseResult();
         AppUser author = restfulTemplet.getUserByToken(dto.getToken());
         if (author == null) {

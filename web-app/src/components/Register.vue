@@ -109,7 +109,7 @@
                         const api = this.$registerUrl;
                         this.axios.post(api, data).then(
                             (response) => {
-                                if (response.data.code != 200) {
+                                if (response.data.code !== 200) {
                                     this.$alert(response.data.errorMessage);
                                     return;
                                 }

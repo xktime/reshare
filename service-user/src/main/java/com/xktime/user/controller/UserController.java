@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("user")
 public class UserController {
 
     @Autowired
@@ -25,7 +24,7 @@ public class UserController {
     SnowflakeIdUtil snowflakeIdUtil;
 
     @RequestMapping("register")
-    public ResponseResult register(@RequestBody RegisterDto dto) {
+    public ResponseResult register(RegisterDto dto) {
         ResponseResult result = new ResponseResult();
         String account = dto.getAccount();
         if (appUserService.queryByAccount(account) != null) {

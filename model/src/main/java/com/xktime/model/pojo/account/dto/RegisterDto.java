@@ -1,7 +1,9 @@
 package com.xktime.model.pojo.account.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.model.pojo.user.entity.AppUser;
+import com.xktime.utils.CodeUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -32,9 +34,8 @@ public class RegisterDto {
         user.setPhoneNumber(phoneNumber);
         user.setRegion(region);
         user.setSex(sex);
-        //todo Util包
-//        String encryptedPassword = CodeUtil.encryptBase64(password, CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
-//        user.setPassword(encryptedPassword);
+        String encryptedPassword = CodeUtil.encryptBase64(password, CodeConstant.LOGIN_PASSWORD_BASE64_KEY);
+        user.setPassword(encryptedPassword);
         user.setCreateTime(new Date());
         user.setUserName(account);
         user.setUserId(id);

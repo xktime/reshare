@@ -32,9 +32,6 @@ public class RestfulTemplate {
     @Value("${restful.url.user}")
     private String USER_REST_URL_PREFIX;
 
-    @Value("${restful.url.article}")
-    private String ARTICLE_REST_URL_PREFIX;
-
     @Value("${restful.url.comment}")
     private String COMMENT_REST_URL_PREFIX;
 
@@ -58,11 +55,6 @@ public class RestfulTemplate {
             redisUtil.mapSet(RedisCommonKey.APP_USR, key, user);
         }
         return user;
-    }
-
-    public AppUser getUserByAccount(String account) {
-        String token = CodeUtil.encryptBase64(account, CodeConstant.LOGIN_TOKEN_BASE64_KEY);
-        return getUserByToken(token);
     }
 
     public AppUser getUserByUserId(long userId) {
@@ -89,79 +81,4 @@ public class RestfulTemplate {
                 }).getBody();
     }
 
-    public List<VerifyArticleDto> loadArticle(LoadDto dto) {
-        return restTemplate.exchange(
-                ARTICLE_REST_URL_PREFIX + "/load/verifyArticles",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<List<VerifyArticleDto>>() {
-                }).getBody();
-    }
-
-    public void verifyArticle(VerifyDto dto) {
-        restTemplate.put(ARTICLE_REST_URL_PREFIX + "/admin/verify", dto);
-    }
-
-    public ResponseResult loginAdmin(LoginDto dto) {
-        return restTemplate.exchange(
-                USER_REST_URL_PREFIX + "/login/admin",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<ResponseResult>() {
-                }).getBody();
-    }
-
-    public ResponseResult publishArticle(com.xktime.model.pojo.article.dto.c2s.PublishDto dto) {
-        return restTemplate.exchange(
-                ARTICLE_REST_URL_PREFIX + "/article/publish",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<ResponseResult>() {
-                }).getBody();
-    }
-
-    public ResponseResult publishComment(com.xktime.model.pojo.comment.dto.c2s.PublishDto dto) {
-        return restTemplate.exchange(
-                COMMENT_REST_URL_PREFIX + "/comment/publish",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<ResponseResult>() {
-                }).getBody();
-    }
-
-    public ResponseResult registerApp(RegisterDto dto) {
-        return restTemplate.exchange(
-                USER_REST_URL_PREFIX + "/user/register",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<ResponseResult>() {
-                }).getBody();
-    }
-
-    public List<SimpleArticleDto> loadSimpleArticle(LoadDto dto) {
-        return restTemplate.exchange(
-                ARTICLE_REST_URL_PREFIX + "/load/simpleArticles",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<List<SimpleArticleDto>>() {
-                }).getBody();
-    }
-
-    public ArticleDetailsDto loadArticleDetails(String articleId) {
-        return restTemplate.exchange(
-                ARTICLE_REST_URL_PREFIX + "/load/articleDetails",
-                HttpMethod.POST,
-                new HttpEntity<>(articleId),
-                new ParameterizedTypeReference<ArticleDetailsDto>() {
-                }).getBody();
-    }
-
-    public ResponseResult commonLoginApp(LoginDto dto) {
-        return restTemplate.exchange(
-                USER_REST_URL_PREFIX + "/login/app",
-                HttpMethod.POST,
-                new HttpEntity<>(dto),
-                new ParameterizedTypeReference<ResponseResult>() {
-                }).getBody();
-    }
 }
