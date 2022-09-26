@@ -5,6 +5,8 @@ import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
+import com.xktime.model.pojo.common.dto.ResponseResult;
+import com.xktime.model.pojo.common.type.HttpCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +20,12 @@ public class AdminController {
     CrawlerArticleServiceImpl articleService;
 
     @RequestMapping("verify")
-    public void audit(@RequestBody VerifyDto dto) {
+    public ResponseResult audit(VerifyDto dto) {
         BaseArticleService service = ArticleTypeEnum.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
         }
         ((BaseAuditable) service).verify(dto);
+        return ResponseResult.okResult(HttpCodeEnum.SUCCESS);
     }
 }

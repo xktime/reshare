@@ -38,14 +38,13 @@ public class LoadController {
     @Autowired
     RestfulTemplate restfulTemplate;
 
-    @GetMapping("verifyArticles")
-    public List<VerifyArticleDto> verifyArticles(LoadDto dto) {
+    @PostMapping("verifyArticles")
+    public ResponseResult<List<VerifyArticleDto>> verifyArticles(LoadDto dto) {
         BaseArticleService<?> service = ArticleTypeEnum.getService(dto.getLoadArticleType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getLoadArticleType());
         }
-        //todo size校验
-        return ((BaseAuditable) service).loadVerifyArticles(dto.toQuery());
+        return ResponseResult.okResult(((BaseAuditable) service).loadVerifyArticles(dto.toQuery()));
     }
 
 
