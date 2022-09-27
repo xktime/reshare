@@ -1,12 +1,12 @@
 package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
-import com.xktime.model.mappers.article.VerifiedArticleMapper;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisUtil;
+import com.xktime.model.services.IVerifiedArticleDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -22,14 +22,14 @@ import java.util.List;
 public class VerifiedArticleServiceImpl implements BaseArticleService<VerifiedArticle> {
 
     @Autowired
-    VerifiedArticleMapper verifiedArticleMapper;
+    IVerifiedArticleDBService verifiedArticleDBService;
 
     @Autowired
     RedisUtil redisUtil;
 
     @Override
     public void save(VerifiedArticle verifiedArticle) {
-        verifiedArticleMapper.saveArticle(verifiedArticle);
+        verifiedArticleDBService.saveArticle(verifiedArticle);
     }
 
     @Override
@@ -50,12 +50,12 @@ public class VerifiedArticleServiceImpl implements BaseArticleService<VerifiedAr
     @Override
     public VerifiedArticle findById(long id) {
         VerifiedArticle verifiedArticle = redisUtil.mapGet(RedisCommonKey.COMMON_ARTICLE, id);
-        return verifiedArticle != null ? verifiedArticle : verifiedArticleMapper.findById(id);
+        return verifiedArticle != null ? verifiedArticle : verifiedArticleDBService.findById(id);
     }
 
     @Override
     public List<VerifiedArticle> loadArticles(LoadQuery loadQuery) {
-        return verifiedArticleMapper.load(loadQuery);
+        return verifiedArticleDBService.load(loadQuery);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class VerifiedArticleServiceImpl implements BaseArticleService<VerifiedAr
     }
 
     public void removeById(@Param("id") long id) {
-        verifiedArticleMapper.removeById(id);
+        verifiedArticleDBService.removeById(id);
     }
 
 }

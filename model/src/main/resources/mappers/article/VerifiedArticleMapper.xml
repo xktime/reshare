@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xktime.model.mappers.article.VerifiedArticleMapper">
+<mapper namespace="com.xktime.model.mysql.mappers.article.VerifiedArticleMapper">
     <insert id="saveArticle" parameterType="com.xktime.model.pojo.article.entity.VerifiedArticle" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO article(title,content,author_id,author_name,channel_id,channel_name,images,labels,likes,collection,comment,views,publish_time,origin)

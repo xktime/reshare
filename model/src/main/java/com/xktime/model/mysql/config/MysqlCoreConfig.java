@@ -1,23 +1,19 @@
-package com.xktime.model.core;
+package com.xktime.model.mysql.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.support.http.StatViewServlet;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
-@MapperScan(basePackages = "com.xktime.model.mappers", sqlSessionFactoryRef = "mysqlCoreSqlSessionFactory")
+@MapperScan(basePackages = "com.xktime.model.mysql.mappers", sqlSessionFactoryRef = "mysqlCoreSqlSessionFactory")
 public class MysqlCoreConfig {
 
     @Bean("mysqlCoreDataSource")

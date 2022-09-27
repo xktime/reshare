@@ -1,4 +1,4 @@
-package com.xktime.model.mappers.article;
+package com.xktime.model.mysql.mappers.article;
 
 import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;

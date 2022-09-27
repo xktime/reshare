@@ -2,7 +2,6 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.mappers.article.OriginalArticleMapper;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.OriginalVerifyArticle;
@@ -10,6 +9,7 @@ import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisUtil;
+import com.xktime.model.services.IOriginalArticleDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +24,14 @@ import java.util.List;
 public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalVerifyArticle> {
 
     @Autowired
-    OriginalArticleMapper originalArticleMapper;
+    IOriginalArticleDBService originalArticleDBService;
 
     @Autowired
     RedisUtil redisUtil;
 
     @Override
     public void save(OriginalVerifyArticle article) {
-        originalArticleMapper.saveArticle(article);
+        originalArticleDBService.saveArticle(article);
     }
 
     @Override
@@ -52,12 +52,12 @@ public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArt
     @Override
     public OriginalVerifyArticle findById(long id) {
         OriginalVerifyArticle article = redisUtil.mapGet(RedisCommonKey.ORIGINAL_ARTICLE, id);
-        return article != null ? article : originalArticleMapper.findById(id);
+        return article != null ? article : originalArticleDBService.findById(id);
     }
 
     @Override
     public List<OriginalVerifyArticle> loadArticles(LoadQuery loadQuery) {
-        return originalArticleMapper.load(loadQuery);
+        return originalArticleDBService.load(loadQuery);
     }
 
     @Override
@@ -88,6 +88,6 @@ public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArt
 
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
-        originalArticleMapper.modifyState(verifyQuery);
+        originalArticleDBService.modifyState(verifyQuery);
     }
 }

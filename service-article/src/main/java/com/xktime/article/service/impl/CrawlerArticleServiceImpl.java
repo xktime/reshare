@@ -2,7 +2,7 @@ package com.xktime.article.service.impl;
 
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
-import com.xktime.model.mappers.article.CrawlerArticleMapper;
+import com.xktime.model.mysql.services.CrawlerArticleDBService;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
@@ -10,6 +10,7 @@ import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisUtil;
+import com.xktime.model.services.ICrawlerArticleDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +24,14 @@ import java.util.List;
 @Service("CrawlerArticle")
 public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArticleService<CrawlerVerifyArticle> {
     @Autowired
-    CrawlerArticleMapper crawlerArticleMapper;
+    ICrawlerArticleDBService crawlerArticleDBService;
 
     @Autowired
     RedisUtil redisUtil;
 
     @Override
     public void save(CrawlerVerifyArticle article) {
-        crawlerArticleMapper.saveArticle(article);
+        crawlerArticleDBService.saveArticle(article);
     }
 
     @Override
@@ -45,18 +46,18 @@ public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArti
 
     @Override
     public void update(CrawlerVerifyArticle article) {
-        crawlerArticleMapper.update(article);
+        crawlerArticleDBService.update(article);
     }
 
     @Override
     public CrawlerVerifyArticle findById(long id) {
         CrawlerVerifyArticle article = redisUtil.mapGet(RedisCommonKey.CRAWLER_ARTICLE, id);
-        return article != null ? article : crawlerArticleMapper.findById(id);
+        return article != null ? article : crawlerArticleDBService.findById(id);
     }
 
     @Override
     public List<CrawlerVerifyArticle> loadArticles(LoadQuery loadQuery) {
-        return crawlerArticleMapper.load(loadQuery);
+        return crawlerArticleDBService.load(loadQuery);
     }
 
     @Override
@@ -87,10 +88,10 @@ public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArti
 
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
-        crawlerArticleMapper.modifyState(verifyQuery);
+        crawlerArticleDBService.modifyState(verifyQuery);
     }
 
     public int getUrlCount(String url) {
-        return crawlerArticleMapper.getUrlCount(url);
+        return crawlerArticleDBService.getUrlCount(url);
     }
 }

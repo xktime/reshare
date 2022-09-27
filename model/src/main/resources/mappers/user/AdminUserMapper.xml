@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xktime.model.mappers.user.AdminUserMapper">
+<mapper namespace="com.xktime.model.mysql.mappers.user.AdminUserMapper">
     <insert id="saveUser" parameterType="com.xktime.model.pojo.user.entity.AdminUser">
         INSERT INTO admin_user(id,user_name,account,password,sex,dept_id,locked,remark,user_type,enable)
         VALUES (#{id},#{userName},#{account},#{password},#{sex},#{deptId},#{locked},#{remark},#{userType},#{enable})

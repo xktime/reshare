@@ -1,4 +1,4 @@
-package com.xktime.model.mappers.comment;
+package com.xktime.model.mysql.mappers.comment;
 
 import com.xktime.model.pojo.comment.query.LoadQuery;
 import com.xktime.model.pojo.comment.entity.Comment;

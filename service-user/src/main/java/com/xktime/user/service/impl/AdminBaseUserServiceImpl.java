@@ -1,8 +1,8 @@
 package com.xktime.user.service.impl;
 
 
-import com.xktime.model.mappers.user.AdminUserMapper;
 import com.xktime.model.pojo.user.entity.AdminUser;
+import com.xktime.model.services.IAdminUserDBService;
 import com.xktime.user.service.BaseUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class AdminBaseUserServiceImpl implements BaseUserService<AdminUser> {
 
     @Autowired
-    AdminUserMapper adminUserMapper;
+    IAdminUserDBService adminUserMapper;
 
     @Override
     public void save(AdminUser user) {

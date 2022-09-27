@@ -1,25 +1,29 @@
-package com.xktime.comment.service;
+package com.xktime.model.mysql.services;
 
 import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.comment.query.LoadQuery;
 import com.xktime.model.services.ICommentDBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
+import com.xktime.model.mysql.mappers.comment.*;
 
 import java.util.List;
 
 @Service
-public class CommentServiceImpl implements CommentService{
+@ConditionalOnProperty(name = "spring.datasource.enable-mongo", havingValue = "false")
+public class CommentDBService extends ICommentDBService {
+
     @Autowired
-    ICommentDBService commentDBService;
+    CommentMapper commentMapper;
 
     @Override
     public void saveComment(Comment comment) {
-        commentDBService.saveComment(comment);
+        commentMapper.saveComment(comment);
     }
 
     @Override
     public List<Comment> load(LoadQuery loadQuery) {
-        return commentDBService.load(loadQuery);
+        return commentMapper.load(loadQuery);
     }
 }
