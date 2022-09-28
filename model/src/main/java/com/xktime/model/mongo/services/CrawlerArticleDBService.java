@@ -4,7 +4,16 @@ import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.services.ICrawlerArticleDBService;
+import com.xktime.utils.util.SnowflakeIdUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,33 +22,53 @@ import java.util.List;
 @ConditionalOnProperty(name = "spring.datasource.enable-mongo", havingValue = "true")
 public class CrawlerArticleDBService extends ICrawlerArticleDBService {
 
+    @Autowired
+    MongoTemplate mongoTemplate;
+
+    @Autowired
+    SnowflakeIdUtil snowflakeIdUtil;
+
     @Override
     public void saveArticle(CrawlerVerifyArticle article) {
-
+        //todo id赋值
+        article.setId(snowflakeIdUtil.nextId());
+        mongoTemplate.insert(article);
     }
 
     @Override
     public int getUrlCount(String url) {
-        return 0;
+        Query query = Query.query(Criteria.where("url").is(url));
+        return mongoTemplate.find(query, CrawlerVerifyArticle.class).size();
     }
 
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
-        return null;
+        //SELECT * FROM crwaler_article
+        //        WHERE #{lastTime} > publish_time
+        //        ORDER BY publish_time DESC
+        //        LIMIT #{size} OFFSET #{pageStartIndex}
+        Criteria criteria = Criteria.where("publish_time").lte(loadQuery.getLastTime());
+        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
+        Query query = Query.query(criteria).with(pageable);
+        return mongoTemplate.find(query, CrawlerVerifyArticle.class);
     }
 
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
-
+        //UPDATE crwaler_article SET status= #{status}, bind_id=#{bindId} WHERE id = #{articleId};
+        Update update = Update.update("status", verifyQuery.getStatus()).set("bind_id", verifyQuery.getBindId());
+        Query query = Query.query(Criteria.where("id").is(verifyQuery.getArticleId()));
+        mongoTemplate.findAndModify(query, update, CrawlerVerifyArticle.class);
     }
 
     @Override
     public CrawlerVerifyArticle findById(long id) {
-        return null;
+        Query query = Query.query(Criteria.where("id").is(id));
+        return mongoTemplate.findOne(query, CrawlerVerifyArticle.class);
     }
 
     @Override
     public void update(CrawlerVerifyArticle article) {
-
+        mongoTemplate.save(article);
     }
 }

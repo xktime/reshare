@@ -27,7 +27,7 @@
         <redis.version>2.3.3.RELEASE</redis.version>
         <session.data.redis.version>2.3.0.RELEASE</session.data.redis.version>
         <mongo.version>2.3.12.RELEASE</mongo.version>
-        <druid.version>1.2.11</druid.version>
+        <druid.version>1.2.6</druid.version>
         <flyway.version>5.2.4</flyway.version>
     </properties>
 
@@ -50,6 +50,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>

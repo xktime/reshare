@@ -1,6 +1,7 @@
 package com.xktime.model.pojo.article.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.comment.dto.c2s.LoadDto;
@@ -8,6 +9,7 @@ import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.comment.type.CommentTypeEnum;
 import com.xktime.model.pojo.user.dto.s2c.SimpleUserDto;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
@@ -16,12 +18,8 @@ import java.util.List;
  * 审核通过的文章
  */
 @Data
+@Document(collection = "OriginalVerifyArticle")
 public class VerifiedArticle extends BaseArticle {
-    private long id;
-    private String title;
-    private String content;
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date publishTime;
     private long authorId;
     private String authorName;
     private int channelId;

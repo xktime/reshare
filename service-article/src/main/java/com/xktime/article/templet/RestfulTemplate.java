@@ -1,20 +1,10 @@
 package com.xktime.article.templet;
 
-import com.xktime.model.pojo.account.dto.LoginDto;
-import com.xktime.model.pojo.account.dto.RegisterDto;
-import com.xktime.model.pojo.article.dto.c2s.LoadDto;
-import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
-import com.xktime.model.pojo.article.dto.s2c.ArticleDetailsDto;
-import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
-import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
-import com.xktime.model.pojo.common.constant.CodeConstant;
-import com.xktime.model.pojo.common.dto.ResponseResult;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisKeyUtil;
 import com.xktime.model.redis.RedisUtil;
-import com.xktime.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;

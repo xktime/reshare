@@ -1,4 +1,4 @@
-package com.xktime.utils;
+package com.xktime.utils.util;
 
 import org.apache.commons.codec.binary.Base64;
 

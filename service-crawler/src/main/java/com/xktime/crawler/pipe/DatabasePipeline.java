@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 将爬取结果存储到数据库
  */
-//todo SQL: INSERT INTO crwaler_article(title,content,author_name,channel_name,labels,publish_time,origin,url)         VALUES (?,?,?,?,?,?,?,?)
+//todo com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'channel_name' at row 1
 @Component
 public class DatabasePipeline implements Pipeline {
 

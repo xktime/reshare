@@ -1,4 +1,4 @@
-package com.xktime.utils;
+package com.xktime.utils.util;
 
 /**
  * Twitter_Snowflake<br>

@@ -1,6 +1,7 @@
 package com.xktime.model;
 
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
+import com.xktime.model.services.ICrawlerArticleDBService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,12 @@ public class MongoDBTest {
         mongoTemplate.findAndModify(query, update, CrawlerVerifyArticle.class);
         System.out.println("======================修改后查询=========================");
         System.out.println(mongoTemplate.findOne(query, CrawlerVerifyArticle.class));
+    }
+
+    @Autowired
+    ICrawlerArticleDBService crawlerArticleDBService;
+    @Test
+    public void testUrlCount() {
+        System.out.println(crawlerArticleDBService.getUrlCount("123"));
     }
 }

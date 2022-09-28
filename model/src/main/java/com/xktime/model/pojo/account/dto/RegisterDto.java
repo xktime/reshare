@@ -3,7 +3,7 @@ package com.xktime.model.pojo.account.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.common.constant.CodeConstant;
 import com.xktime.model.pojo.user.entity.AppUser;
-import com.xktime.utils.CodeUtil;
+import com.xktime.utils.util.CodeUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

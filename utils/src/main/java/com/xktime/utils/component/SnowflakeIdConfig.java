@@ -1,6 +1,6 @@
-package com.xktime.config.component;
+package com.xktime.utils.component;
 
-import com.xktime.utils.SnowflakeIdUtil;
+import com.xktime.utils.util.SnowflakeIdUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

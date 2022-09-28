@@ -18,13 +18,6 @@
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>
     </properties>
     <dependencies>
-
-        <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-common</artifactId>
-            <version>${reshare.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.xktime</groupId>
             <artifactId>reshare-model</artifactId>

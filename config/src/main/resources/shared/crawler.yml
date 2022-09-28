@@ -14,7 +14,7 @@ eureka:
 
 spring:
   datasource:
-    enable-mongo: false #true:mongodb生效；false:mysql生效
+    enable-mongo: true #true:mongodb生效；false:mysql生效
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
     password: 1234
@@ -41,16 +41,16 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-    redis:
-      host: 127.0.0.1
-      password:
-      port: 6379
-      timeout: 30000
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    timeout: 30000
 
-    data:
-      mongodb:
-        uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
-        database: reshare
+  data:
+    mongodb:
+      uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
+      database: reshare
         
   flyway:
     enabled: false

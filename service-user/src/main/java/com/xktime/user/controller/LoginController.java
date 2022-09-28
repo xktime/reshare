@@ -8,7 +8,7 @@ import com.xktime.model.pojo.user.entity.AdminUser;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.user.service.impl.AdminBaseUserServiceImpl;
 import com.xktime.user.service.impl.AppBaseUserServiceImpl;
-import com.xktime.utils.CodeUtil;
+import com.xktime.utils.util.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

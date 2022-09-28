@@ -1,6 +1,6 @@
 package com.xktime.config.annotation;
 
-import com.xktime.utils.ClassUtil;
+import com.xktime.utils.util.ClassUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;

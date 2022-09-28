@@ -41,16 +41,16 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-    redis:
-      host: 127.0.0.1
-      password:
-      port: 6379
-      timeout: 30000
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    timeout: 30000
 
-    data:
-      mongodb:
-        uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
-        database: reshare
+  data:
+    mongodb:
+      uri: mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000
+      database: reshare
 
   flyway:
     enabled: false
