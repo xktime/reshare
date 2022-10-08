@@ -15,15 +15,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-//todo 整理
 @Service
 public class RestfulTemplate {
 
-    @Value("${restful.url.user}")
-    private String USER_REST_URL_PREFIX;
+    private final String USER_REST_URL_PREFIX = "http://user";
 
-    @Value("${restful.url.comment}")
-    private String COMMENT_REST_URL_PREFIX;
+    private final String COMMENT_REST_URL_PREFIX = "http://comment";
 
     @Autowired
     RestTemplate restTemplate;

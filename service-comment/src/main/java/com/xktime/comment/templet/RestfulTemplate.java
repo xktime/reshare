@@ -1,29 +1,21 @@
 package com.xktime.comment.templet;
 
-import com.xktime.model.pojo.comment.dto.s2c.CommentDto;
 import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisKeyUtil;
 import com.xktime.model.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
-//todo 整理
 @Service
 public class RestfulTemplate {
 
-    @Value("${restful.url.user}")
-    private String USER_REST_URL_PREFIX;
+    private static final String USER_REST_URL_PREFIX = "http://user";
 
-    @Value("${restful.url.comment}")
-    private String COMMENT_REST_URL_PREFIX;
 
     @Autowired
     RestTemplate restTemplate;

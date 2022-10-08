@@ -55,3 +55,8 @@ spring:
 
   flyway:
     enabled: false
+
+code:
+  snow-flake-id:
+    workerId: 0
+    dataCenterId: 0
