@@ -20,7 +20,7 @@
     
 ##### reshare-apis:
    - 公共接口模块
-   - 启动模块后访问 [swagger接口文档](http://localhost/swagger-ui.html)
+   - 启动模块后访问 [swagger接口文档](http://localhost/article/swagger-ui.html)
     
 ##### reshare-utils:
    - 公共工具模块
