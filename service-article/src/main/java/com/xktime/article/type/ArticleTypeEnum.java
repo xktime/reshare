@@ -4,7 +4,7 @@ import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
 import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
-import com.xktime.config.annotation.EnumTypeService;
+import com.xktime.common.annotation.EnumTypeService;
 import org.springframework.context.ApplicationContext;
 
 public enum ArticleTypeEnum implements EnumTypeService {

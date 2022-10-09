@@ -25,13 +25,8 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    @Autowired
-    SnowflakeIdUtil snowflakeIdUtil;
-
     @Override
     public void saveArticle(CrawlerVerifyArticle article) {
-        //todo id赋值
-        article.setId(snowflakeIdUtil.nextId());
         mongoTemplate.insert(article);
     }
 
@@ -43,10 +38,6 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
 
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
-        //SELECT * FROM crwaler_article
-        //        WHERE #{lastTime} > publish_time
-        //        ORDER BY publish_time DESC
-        //        LIMIT #{size} OFFSET #{pageStartIndex}
         Criteria criteria = Criteria.where("publish_time").lte(loadQuery.getLastTime());
         Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
         Query query = Query.query(criteria).with(pageable);
@@ -55,7 +46,6 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
 
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
-        //UPDATE crwaler_article SET status= #{status}, bind_id=#{bindId} WHERE id = #{articleId};
         Update update = Update.update("status", verifyQuery.getStatus()).set("bind_id", verifyQuery.getBindId());
         Query query = Query.query(Criteria.where("id").is(verifyQuery.getArticleId()));
         mongoTemplate.findAndModify(query, update, CrawlerVerifyArticle.class);

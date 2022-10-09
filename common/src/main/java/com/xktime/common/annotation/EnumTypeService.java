@@ -1,4 +1,4 @@
-package com.xktime.config.annotation;
+package com.xktime.common.annotation;
 
 import org.springframework.context.ApplicationContext;
 

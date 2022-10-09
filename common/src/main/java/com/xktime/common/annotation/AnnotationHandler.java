@@ -1,4 +1,4 @@
-package com.xktime.config.annotation;
+package com.xktime.common.annotation;
 
 import com.xktime.utils.util.ClassUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import java.lang.reflect.Method;
 import java.util.Set;
 
-@Component
+@Component//todo 换种实现方法
 public class AnnotationHandler {
     @Autowired
     private ApplicationContext bean;
