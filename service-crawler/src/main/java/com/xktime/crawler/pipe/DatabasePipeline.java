@@ -1,6 +1,7 @@
 package com.xktime.crawler.pipe;
 
 
+import com.xktime.crawler.task.TaskMain;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.services.ICrawlerArticleDBService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 将爬取结果存储到数据库
@@ -19,24 +22,27 @@ import java.util.Map;
 @Component
 public class DatabasePipeline implements Pipeline {
 
-    @Autowired
-    ICrawlerArticleDBService articleDBService;
-
-    private static final Object LOCK_ME = new Object();
-
+//    @Autowired
+//    ICrawlerArticleDBService articleDBService;
+//
+//    private static final Object LOCK_ME = new Object();
 
     @Override
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.getRequest().getUrl();
-        //todo 缓存批量处理
-        if (articleDBService.getUrlCount(url) == 0) {//防止重复写入
-            synchronized (LOCK_ME) {
-                if (articleDBService.getUrlCount(url) == 0) {
-                    articleDBService.saveArticle(trans(resultItems));
-                }
-            }
+        if (TaskMain.cacheArticle.containsKey(url)) {
+            return;
         }
-        System.out.println(url);
+        TaskMain.cacheArticle.put(url, trans(resultItems));
+        //todo 需要优化
+//        if (articleDBService.getUrlCount(url) == 0) {//防止重复写入
+//            synchronized (LOCK_ME) {
+//                if (articleDBService.getUrlCount(url) == 0) {
+//                    articleDBService.saveArticle(trans(resultItems));
+//                }
+//            }
+//        }
+//        System.out.println(url);
     }
 
     private CrawlerVerifyArticle trans(ResultItems resultItems) {

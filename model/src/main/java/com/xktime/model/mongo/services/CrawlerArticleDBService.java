@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -28,6 +29,11 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
     @Override
     public void saveArticle(CrawlerVerifyArticle article) {
         mongoTemplate.insert(article);
+    }
+
+    @Override
+    public void saveArticle(Collection<CrawlerVerifyArticle> articles) {
+        mongoTemplate.insert(articles, CrawlerVerifyArticle.class);
     }
 
     @Override

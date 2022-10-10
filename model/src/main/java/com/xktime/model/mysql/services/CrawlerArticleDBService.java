@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -20,6 +21,11 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
     @Override
     public void saveArticle(CrawlerVerifyArticle article) {
         articleMapper.saveArticle(article);
+    }
+
+    @Override
+    public void saveArticle(Collection<CrawlerVerifyArticle> articles) {
+        //todo 暂未实现
     }
 
     @Override

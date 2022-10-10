@@ -5,11 +5,14 @@ import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Collection;
 import java.util.List;
 
 public abstract class ICrawlerArticleDBService {
 
     abstract public void saveArticle(CrawlerVerifyArticle article);
+
+    abstract public void saveArticle(Collection<CrawlerVerifyArticle> articles);
 
     abstract public int getUrlCount(@Param("url") String url);
 

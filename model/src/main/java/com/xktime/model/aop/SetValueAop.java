@@ -21,32 +21,39 @@ public class SetValueAop {
     @Autowired
     SnowflakeIdUtil snowflakeIdUtil;
 
-    @Pointcut("execution(public * com.xktime.model.services..*.save*(..))")
-    public void setId() {
+    public void setId(Object o) {
+        Set<Field> fields = getFields(o.getClass());
+        for (Field field : fields) {
+            Id id = field.getAnnotation(Id.class);
+            if (id == null) {
+                continue;
+            }
+            if (field.getType() != long.class) {
+                continue;
+            }
+            try {
+                field.setAccessible(true);
+                long snowflakeId = snowflakeIdUtil.nextId();
+                field.set(o, snowflakeId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
-    @Before(value = "setId()")
+    @Before(value = "execution(public * com.xktime.model.services..*.save*(..))")
     public void before(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
         for (Object arg : args) {//todo 未处理批量保存
-            Set<Field> fields = getFields(arg.getClass());
-            for (Field field : fields) {
-                Id id = field.getAnnotation(Id.class);
-                if (id == null) {
-                    continue;
+            if (arg instanceof Collection) {
+                Collection collection = (Collection) arg;
+                for (Object o : collection) {
+                    setId(o);
                 }
-                if (field.getType() != long.class) {
-                    continue;
-                }
-                try {
-                    field.setAccessible(true);
-                    long snowflakeId = snowflakeIdUtil.nextId();
-                    field.set(arg, snowflakeId);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                continue;
             }
+            setId(arg);
         }
     }
 
