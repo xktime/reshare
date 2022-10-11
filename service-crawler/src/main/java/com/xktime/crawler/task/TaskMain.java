@@ -25,17 +25,12 @@ public class TaskMain {
     @Autowired
     SegmentfaultCrawlerServiceImpl segmentfaultService;
 
-    @Autowired
-    ICrawlerArticleDBService articleDBService;
-
-    public static Map<String, CrawlerVerifyArticle> cacheArticle = new ConcurrentHashMap<>();
-
     @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void crawling() {
         try {
             csdnService.run(this.databasePipeline);
             segmentfaultService.run(this.databasePipeline);
-            articleDBService.saveArticle(cacheArticle.values());
+            this.databasePipeline.save();
             System.out.println("当前时间" + new Date());
         } catch (Exception e) {
             e.printStackTrace();

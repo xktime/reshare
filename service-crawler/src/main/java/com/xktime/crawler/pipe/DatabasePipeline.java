@@ -22,15 +22,34 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class DatabasePipeline implements Pipeline {
 
+    @Autowired
+    ICrawlerArticleDBService articleDBService;
+
+    public static Map<String, CrawlerVerifyArticle> cacheArticle = new ConcurrentHashMap<>();
+
+    private final Object LOCK_ME = new Object();
+
 
     @Override
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.getRequest().getUrl();
-        if (TaskMain.cacheArticle.containsKey(url)) {
+        if (cacheArticle.containsKey(url)) {
             return;
         }
-        TaskMain.cacheArticle.put(url, trans(resultItems));
-        //todo 存储需要优化
+        synchronized (LOCK_ME) {
+            cacheArticle.put(url, trans(resultItems));
+        }
+    }
+
+    public void save() {
+        if (!cacheArticle.isEmpty()) {
+            synchronized (LOCK_ME) {
+                if (!cacheArticle.isEmpty()) {
+                    articleDBService.saveArticle(cacheArticle.values());
+                    cacheArticle.clear();
+                }
+            }
+        }
     }
 
     private CrawlerVerifyArticle trans(ResultItems resultItems) {
