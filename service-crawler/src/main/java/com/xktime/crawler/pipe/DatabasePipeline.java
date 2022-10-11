@@ -22,10 +22,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class DatabasePipeline implements Pipeline {
 
-//    @Autowired
-//    ICrawlerArticleDBService articleDBService;
-//
-//    private static final Object LOCK_ME = new Object();
 
     @Override
     public void process(ResultItems resultItems, Task task) {
@@ -34,15 +30,7 @@ public class DatabasePipeline implements Pipeline {
             return;
         }
         TaskMain.cacheArticle.put(url, trans(resultItems));
-        //todo 需要优化
-//        if (articleDBService.getUrlCount(url) == 0) {//防止重复写入
-//            synchronized (LOCK_ME) {
-//                if (articleDBService.getUrlCount(url) == 0) {
-//                    articleDBService.saveArticle(trans(resultItems));
-//                }
-//            }
-//        }
-//        System.out.println(url);
+        //todo 存储需要优化
     }
 
     private CrawlerVerifyArticle trans(ResultItems resultItems) {

@@ -1,4 +1,4 @@
-package com.xktime.common.util;
+package com.xktime.common.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

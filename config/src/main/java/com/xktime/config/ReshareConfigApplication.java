@@ -1,4 +1,4 @@
-package com.xktime.common;
+package com.xktime.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

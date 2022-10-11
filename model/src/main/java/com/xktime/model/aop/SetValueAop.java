@@ -21,7 +21,23 @@ public class SetValueAop {
     @Autowired
     SnowflakeIdUtil snowflakeIdUtil;
 
-    public void setId(Object o) {
+
+    @Before(value = "execution(public * com.xktime.model.services..*.save*(..))")
+    public void before(JoinPoint joinPoint) {
+        Object[] args = joinPoint.getArgs();
+        for (Object arg : args) {
+            if (arg instanceof Collection) {//列表参数，每个元素要单独处理
+                Collection collection = (Collection) arg;
+                for (Object o : collection) {
+                    setId(o);
+                }
+                continue;
+            }
+            setId(arg);
+        }
+    }
+
+    private void setId(Object o) {
         Set<Field> fields = getFields(o.getClass());
         for (Field field : fields) {
             Id id = field.getAnnotation(Id.class);
@@ -38,22 +54,6 @@ public class SetValueAop {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-
-    @Before(value = "execution(public * com.xktime.model.services..*.save*(..))")
-    public void before(JoinPoint joinPoint) {
-        Object[] args = joinPoint.getArgs();
-        for (Object arg : args) {//todo 未处理批量保存
-            if (arg instanceof Collection) {
-                Collection collection = (Collection) arg;
-                for (Object o : collection) {
-                    setId(o);
-                }
-                continue;
-            }
-            setId(arg);
         }
     }
 
