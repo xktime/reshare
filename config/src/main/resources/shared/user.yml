@@ -14,7 +14,7 @@ eureka:
 
 spring:
   datasource:
-    enable-mongo: false #true:mongodb生效；false:mysql生效
+    enable-mongo: true #true:mongodb生效；false:mysql生效
     url: jdbc:mysql://localhost:3306/reshare?useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
     password: 1234

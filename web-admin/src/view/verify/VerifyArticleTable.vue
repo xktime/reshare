@@ -101,6 +101,7 @@ export default {
         if (response.data.data == null || response.data.data.length <= 0) {
           this.scrollDisabled = true;
         }
+        //todo id精度问题需要解决
         _this.tableData = _this.tableData.concat(response.data.data);
         this.page++;
       });

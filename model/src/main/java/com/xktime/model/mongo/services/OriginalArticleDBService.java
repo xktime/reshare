@@ -41,13 +41,13 @@ public class OriginalArticleDBService extends IOriginalArticleDBService {
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
         Update update = Update.update("status", verifyQuery.getStatus()).set("bind_id", verifyQuery.getBindId());
-        Query query = Query.query(Criteria.where("id").is(verifyQuery.getArticleId()));
+        Query query = Query.query(Criteria.where("_id").is(verifyQuery.getArticleId()));
         mongoTemplate.findAndModify(query, update, OriginalVerifyArticle.class);
     }
 
     @Override
     public OriginalVerifyArticle findById(long id) {
-        Query query = Query.query(Criteria.where("id").is(id));
+        Query query = Query.query(Criteria.where("_id").is(id));
         return mongoTemplate.findOne(query, OriginalVerifyArticle.class);
     }
 

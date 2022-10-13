@@ -1,6 +1,5 @@
 package com.xktime.model.mongo.services;
 
-import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.services.IVerifiedArticleDBService;
@@ -39,13 +38,13 @@ public class VerifiedArticleDBService extends IVerifiedArticleDBService {
 
     @Override
     public VerifiedArticle findById(long id) {
-        Query query = Query.query(Criteria.where("id").is(id));
+        Query query = Query.query(Criteria.where("_id").is(id));
         return mongoTemplate.findOne(query, VerifiedArticle.class);
     }
 
     @Override
     public void removeById(long id) {
-        Query query = Query.query(Criteria.where("id").is(id));
+        Query query = Query.query(Criteria.where("_id").is(id));
         mongoTemplate.remove(query, VerifiedArticle.class);
     }
 
