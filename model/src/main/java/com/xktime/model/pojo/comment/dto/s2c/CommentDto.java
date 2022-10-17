@@ -12,6 +12,5 @@ public class CommentDto implements Serializable {
     private long id;
     private SimpleUserDto author;
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date publishTime;
+    private long publishTime;
 }

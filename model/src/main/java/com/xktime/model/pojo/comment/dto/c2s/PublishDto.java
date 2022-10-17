@@ -26,7 +26,7 @@ public class PublishDto {
         comment.setBindId(bindId);
         comment.setType(type);
         comment.setContent(content);
-        comment.setPublishTime(new Date());
+        comment.setPublishTime(System.currentTimeMillis());
         return comment;
     }
 }

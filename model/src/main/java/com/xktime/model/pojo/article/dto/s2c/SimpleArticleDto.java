@@ -14,7 +14,7 @@ public class SimpleArticleDto implements Serializable {
     private String title;
     private SimpleUserDto author;
     private String channelName;
-    private Date publishTime;
+    private long publishTime;
     private int comment;
     private int views;
 }

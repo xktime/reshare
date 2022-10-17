@@ -45,10 +45,8 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
         //todo 数据库时间存储改为时间戳
-//        Criteria criteria = Criteria.where("publish_time").lte(loadQuery.getLastTime());
-//        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
-        Criteria criteria = Criteria.where("_id").gt(1);
-        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("_id")));
+        Criteria criteria = Criteria.where("publish_time").lte(loadQuery.getLastTime());
+        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
         Query query = Query.query(criteria).with(pageable);
         return mongoTemplate.find(query, CrawlerVerifyArticle.class);
     }

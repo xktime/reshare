@@ -111,7 +111,7 @@ public class CsdnCrawlerServiceImpl extends BaseCrawlerService {
     }
 
     @Override
-    public Date getPublishTime(Page page) {
+    public long getPublishTime(Page page) {
         Element publishTime = page.getHtml().getDocument().select(".bar-content").select(".time").first();
         if (publishTime != null) {
             String time = publishTime.text();
@@ -119,12 +119,12 @@ public class CsdnCrawlerServiceImpl extends BaseCrawlerService {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 Date date = format.parse(builder.toString());
-                return date;
+                return date.getTime();
             } catch (ParseException e) {
-                return null;
+                return System.currentTimeMillis();
             }
         }
-        return null;
+        return System.currentTimeMillis();
     }
 
     private Site site = Site.me().setRetryTimes(1).setSleepTime(1000);

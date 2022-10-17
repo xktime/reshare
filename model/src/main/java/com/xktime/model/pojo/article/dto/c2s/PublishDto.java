@@ -22,7 +22,7 @@ public class PublishDto {
         OriginalVerifyArticle article = new OriginalVerifyArticle();
         article.setContent(content);
         article.setTitle(title);
-        article.setPublishTime(new Date());
+        article.setPublishTime(System.currentTimeMillis());
         article.setAuthorId(author.getUserId());
         article.setAuthorName(author.getUserName());
         article.setUrl("/");

@@ -22,7 +22,7 @@ public class VerifiedArticleTest {
         LoadQuery loadQuery = new LoadQuery();
         loadQuery.setSize(10);
         loadQuery.setPage(0);
-        loadQuery.setLastTime(new Timestamp(1622096628000l));
+        loadQuery.setLastTime(1622096628000l);
         System.out.println(verifiedArticle.loadSimpleArticles(loadQuery).toString());
     }
 

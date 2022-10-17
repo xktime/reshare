@@ -16,7 +16,7 @@ public class LoadQuery {
 
     int pageStartIndex;//该页第一条数据在数据库的下标
 
-    Timestamp lastTime;
+    long lastTime;
 
     public int getSize() {
         return size == 0 ? GlobalConstant.DEFAULT_LOAD_ARTICLE_SIZE : size;

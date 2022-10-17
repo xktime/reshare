@@ -15,7 +15,7 @@ public class VerifyArticleDto implements Serializable {
     private String authorName;
     private String channelName;
     private String labels;
-    private Date publishTime;
+    private long publishTime;
     private String url;
     private String origin;
     private int status;

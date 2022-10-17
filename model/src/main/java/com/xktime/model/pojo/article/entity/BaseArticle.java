@@ -18,6 +18,5 @@ public class BaseArticle implements Serializable {
     @Field
     protected String title;
     protected String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    protected Date publishTime;
+    protected long publishTime;
 }

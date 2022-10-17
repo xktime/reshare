@@ -44,7 +44,7 @@ public class LoadDto {
         }
         loadQuery.setPage(page);
         loadQuery.setToken(token);
-        loadQuery.setLastTime(new Timestamp(lastTime));
+        loadQuery.setLastTime(lastTime);
         return loadQuery;
     }
 }

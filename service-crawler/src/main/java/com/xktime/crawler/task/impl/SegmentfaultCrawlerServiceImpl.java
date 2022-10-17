@@ -101,8 +101,8 @@ public class SegmentfaultCrawlerServiceImpl extends BaseCrawlerService {
     }
 
     @Override
-    public Date getPublishTime(Page page) {
-        return new Date();
+    public long getPublishTime(Page page) {
+        return new Date().getTime();
     }
 
     private Site site = Site.me().setRetryTimes(1).setSleepTime(1000);

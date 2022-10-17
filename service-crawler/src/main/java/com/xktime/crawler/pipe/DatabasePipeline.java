@@ -82,8 +82,8 @@ public class DatabasePipeline implements Pipeline {
         if (channelName instanceof String) {
             article.setChannelName((String) channelName);
         }
-        if (publishTime instanceof Date) {
-            article.setPublishTime((Date) publishTime);
+        if (publishTime instanceof Long) {
+            article.setPublishTime((long) publishTime);
         }
         return article;
     }

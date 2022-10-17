@@ -59,5 +59,5 @@ public abstract class BaseCrawlerService implements PageProcessor {
 
     public abstract String getAuthorName(Page page);
 
-    public abstract Date getPublishTime(Page page);
+    public abstract long getPublishTime(Page page);
 }

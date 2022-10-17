@@ -17,8 +17,7 @@ public class Comment {
     private long authorId;
     private long bindId;
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date publishTime;
+    private long publishTime;
     private int type;
 
     public CommentDto toCommentDto(SimpleUserDto author) {
