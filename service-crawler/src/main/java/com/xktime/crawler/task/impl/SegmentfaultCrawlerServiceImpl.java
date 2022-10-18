@@ -83,10 +83,10 @@ public class SegmentfaultCrawlerServiceImpl extends BaseCrawlerService {
     }
 
     @Override
-    public String getLables(Page page) {
-        Elements lables = page.getHtml().getDocument().select("[name = keywords]");
-        if (lables != null) {
-            return lables.attr("content");
+    public String getLabels(Page page) {
+        Elements labels = page.getHtml().getDocument().select("[name = keywords]");
+        if (labels != null) {
+            return labels.attr("content");
         }
         return null;
     }

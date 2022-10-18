@@ -4,7 +4,6 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-import java.util.Date;
 import java.util.List;
 
 public abstract class BaseCrawlerService implements PageProcessor {
@@ -20,7 +19,7 @@ public abstract class BaseCrawlerService implements PageProcessor {
         page.putField("channelName", getChannelName(page));
         page.putField("origin", getOrigin(page));
         page.putField("content", getContent(page));
-        page.putField("lables", getLables(page));
+        page.putField("labels", getLabels(page));
         page.putField("authorName", getAuthorName(page));
         page.putField("publishTime", getPublishTime(page));
     }
@@ -55,7 +54,7 @@ public abstract class BaseCrawlerService implements PageProcessor {
 
     public abstract String getContent(Page page);
 
-    public abstract String getLables(Page page);
+    public abstract String getLabels(Page page);
 
     public abstract String getAuthorName(Page page);
 

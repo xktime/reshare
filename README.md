@@ -32,6 +32,10 @@
    - 爬虫模块
    - 技术栈：WebMagic
    - 对一些技术论坛文章进行爬取
+
+##### reshare-crawler-python:
+   - pip install -i http://mirrors.aliyun.com/pypi/simple scrapy
+   - scrapy crawl csdn
     
 ##### reshare-article:
    - 文章管理模块

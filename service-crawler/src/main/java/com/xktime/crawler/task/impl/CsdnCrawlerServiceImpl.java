@@ -90,7 +90,7 @@ public class CsdnCrawlerServiceImpl extends BaseCrawlerService {
     }
 
     @Override
-    public String getLables(Page page) {
+    public String getLabels(Page page) {
         Elements elements = page.getHtml().getDocument().select(".tag-link");
         if (elements != null) {
             Elements nextAll = elements.next();

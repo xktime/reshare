@@ -60,7 +60,7 @@ public class DatabasePipeline implements Pipeline {
         Object channelName = all.get("channelName");
         Object origin = all.get("origin");
         Object content = all.get("content");
-        Object lables = all.get("lables");
+        Object labels = all.get("labels");
         Object authorName = all.get("authorName");
         Object publishTime = all.get("publishTime");
         article.setUrl(url);
@@ -73,8 +73,8 @@ public class DatabasePipeline implements Pipeline {
         if (content instanceof String) {
             article.setContent((String) content);
         }
-        if (lables instanceof String) {
-            article.setLabels((String) lables);
+        if (labels instanceof String) {
+            article.setLabels((String) labels);
         }
         if (origin instanceof String) {
             article.setOrigin((String) origin);

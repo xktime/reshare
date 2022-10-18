@@ -5,6 +5,7 @@ target/
 !**/src/test/**
 
 *.stackdump
+*.txt
 
 ### STS ###
 .apt_generated
@@ -34,3 +35,9 @@ target/
 ### logs ###
 logs/
 out/
+
+### python ###
+__pycache__/
+
+### node ###
+node_modules/
