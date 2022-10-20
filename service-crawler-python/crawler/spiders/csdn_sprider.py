@@ -1,7 +1,7 @@
 import scrapy
-from scrapy.spiders import Rule
-from scrapy.linkextractors import LinkExtractor
+
 from crawler.items import CrawlerItem
+import datetime
 
 
 class CSDNSpider(scrapy.Spider):
@@ -10,18 +10,28 @@ class CSDNSpider(scrapy.Spider):
     start_urls = ["https://www.csdn.net/"]
 
     def parse(self, response):
-        print("parse start")
         for sel in response.xpath('//ul/li'):
             link = sel.xpath('a/@href').extract()
             if len(link) == 0:
                 continue
-            req = scrapy.Request(str(link[0]), callback=self.parse_details)
+            req = scrapy.Request(str(link[0]), callback=self.parse_url)
+            yield req
+
+    def parse_url(self, response):
+        for url in response.xpath("//a[@ class = 'blog']/@href").getall():
+            if len(url) == 0:
+                continue
+            req = scrapy.Request(str(url), callback=self.parse_details)
             yield req
 
     def parse_details(self, response):
-        print("parse_details start")
-        for url in response.xpath("//a[@ class = 'blog']/@href").getall():
-            item = CrawlerItem()
-            item["url"] = url
-            yield item
-
+        item = CrawlerItem()
+        item["url"] = response.request.url
+        item["origin"] = "CSDN博客"
+        item["title"] = response.xpath("//h1[@ id = 'articleContentId']/text()").get()
+        item["channelName"] = response.xpath("//a[@ class = 'tag-link']/text()").get()
+        item["content"] = response.xpath("//div[@ id = 'content_views']//p").getall()
+        item["labels"] = response.xpath("//a[@ class = 'tag-link']/text()").getall()
+        item["publishTime"] = datetime.datetime.now()
+        item["authorName"] = response.xpath("//a[@ class = 'follow-nickName']/text()").get()
+        yield item

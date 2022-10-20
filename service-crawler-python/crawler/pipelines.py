@@ -20,7 +20,6 @@ class CrawlerPipeline:
         self.fp.close()
 
     def process_item(self, item, spider):
-        print("write spider:", spider)
         url = str(item["url"])
         self.fp.write(url + "\n")
         return item
