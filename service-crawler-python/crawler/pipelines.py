@@ -5,15 +5,12 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
-
-from crawler.items import CrawlerItem
 
 
 class CrawlerPipeline:
     def open_spider(self, spider):
         print("=============open====================")
-        self.fp = open( "data.txt", "w")
+        self.fp = open(spider.name + ".txt", "w")
 
     def close_spider(self, spider):
         print("=============close====================")
