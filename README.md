@@ -34,8 +34,8 @@
    - 对一些技术论坛文章进行爬取
 
 ##### reshare-crawler-python:
-   - pip install -i http://mirrors.aliyun.com/pypi/simple scrapy
-   - scrapy crawl csdn
+   - python3 -m pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ scrapy
+   - python3 -m pip3 install  -i https://pypi.tuna.tsinghua.edu.cn/simple/ pymongo
     
 ##### reshare-article:
    - 文章管理模块

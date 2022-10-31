@@ -1,5 +1,3 @@
-import json
-
 import scrapy
 
 from crawler.items import CrawlerItem
@@ -28,6 +26,7 @@ class SegmentFaultSpider(scrapy.Spider):
                 continue
 
             url = response.urljoin(url)
+            response.meta["item"]["_id"] = url.split("/")[-1]
             req = scrapy.Request(url, callback=self.parse_details, meta=response.meta)
             yield req
 
