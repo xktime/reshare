@@ -30,7 +30,7 @@ class CSDNSpider(scrapy.Spider):
         item["origin"] = "CSDN博客"
         item["title"] = response.xpath("//h1[@ id = 'articleContentId']/text()").get()
         item["channelName"] = response.xpath("//a[@ class = 'tag-link']/text()").get()
-        item["content"] = response.xpath("//div[@ id = 'content_views']//p").getall()
+        item["content"] = response.xpath("//div[@ id = 'content_views']//*").getall()
         item["labels"] = response.xpath("//a[@ class = 'tag-link']/text()").getall()
         item["publishTime"] = datetime.datetime.now()
         item["authorName"] = response.xpath("//a[@ class = 'follow-nickName']/text()").get()
