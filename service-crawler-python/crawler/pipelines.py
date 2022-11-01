@@ -7,13 +7,14 @@
 # useful for handling different item types with a single interface
 
 import pymongo
+import customize_settings as setting
 
 
 class CrawlerPipeline:
     def open_spider(self, spider):
         my_client = pymongo.MongoClient(
-            "mongodb://root:1234@localhost:27017/?serverSelectionTimeoutMS=5000;connectTimeoutMS=10000")
-        self.my_db = my_client["reshare"]["CrawlerVerifyArticle"]
+            setting.get_config("mongo_url"))
+        self.my_db = my_client[setting.get_config("mongo_name")][setting.get_config("mongo_collect_name")]
 
     # def close_spider(self, spider):
 

@@ -40,5 +40,5 @@ class SegmentFaultSpider(scrapy.Spider):
         item["publishTime"] = time.mktime(time.strptime(response.xpath("//time/@datetime").get(), "%Y-%m-%dT%H:%M:%S.%f%z")) * 1000
         item["authorName"] = response.xpath("//strong[@ class='align-self-center']/text()").get()
         if len(item["channelName"]) == 0 and len(item["labels"]) > 0:
-            item["channelName"] = item["labels"][0]
+            item["channelName"] = str(item["labels"][0])
         yield item
