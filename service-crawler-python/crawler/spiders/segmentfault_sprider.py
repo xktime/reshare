@@ -14,7 +14,7 @@ class SegmentFaultSpider(scrapy.Spider):
             if len(url) == 0:
                 continue
             item = CrawlerItem()
-            item["channelName"] = sel.xpath("text()").extract()
+            item["channelName"] = sel.xpath("text()").get()
             req = scrapy.Request(url, callback=self.parse_url, meta={"item": item})
             yield req
 
