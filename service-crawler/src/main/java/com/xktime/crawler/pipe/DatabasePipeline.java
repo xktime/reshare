@@ -1,7 +1,6 @@
 package com.xktime.crawler.pipe;
 
 
-import com.xktime.crawler.task.TaskMain;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.services.ICrawlerArticleDBService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -34,6 +31,9 @@ public class DatabasePipeline implements Pipeline {
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.getRequest().getUrl();
         if (cacheArticle.containsKey(url)) {
+            return;
+        }
+        if (articleDBService.getUrlCount(url) > 0){
             return;
         }
         synchronized (LOCK_ME) {
