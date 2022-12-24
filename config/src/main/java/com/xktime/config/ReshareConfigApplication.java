@@ -11,6 +11,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  */
 @SpringBootApplication
 @EnableConfigServer
+//todo localhost配置要整理
 public class ReshareConfigApplication {
     public static void main(String[] args) {
         SpringApplication.run(ReshareConfigApplication.class, args);
