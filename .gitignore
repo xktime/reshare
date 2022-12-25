@@ -20,8 +20,9 @@ target/
 .idea
 .iws
 .iml
-.ipr
+.ip
 .DS_Store
+.fleet
 
 ### NetBeans ###
 /nbproject/private/
