@@ -38,7 +38,7 @@ public class CommentDBService extends ICommentDBService {
         if (!StringUtil.isNullOrEmpty(loadQuery.getLoadCommentType())){
             criteria = criteria.and("loadCommentType").is(loadQuery.getLoadCommentType());
         }
-        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
+        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publishTime")));
         Query query = Query.query(criteria).with(pageable);
         return mongoTemplate.find(query, Comment.class);
     }

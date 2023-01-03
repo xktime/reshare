@@ -30,8 +30,8 @@ public class VerifiedArticleDBService extends IVerifiedArticleDBService {
 
     @Override
     public List<VerifiedArticle> load(LoadQuery loadQuery) {
-        Criteria criteria = Criteria.where("publish_time").lte(loadQuery.getLastTime());
-        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
+        Criteria criteria = Criteria.where("publishTime").lte(loadQuery.getLastTime());
+        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publishTime")));
         Query query = Query.query(criteria).with(pageable);
         return mongoTemplate.find(query, VerifiedArticle.class);
     }

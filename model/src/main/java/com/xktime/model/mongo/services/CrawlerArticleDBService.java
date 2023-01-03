@@ -44,15 +44,15 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
 
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
-        Criteria criteria = Criteria.where("publish_time").lte(loadQuery.getLastTime());
-        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publish_time")));
+        Criteria criteria = Criteria.where("publishTime").lte(loadQuery.getLastTime());
+        Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publishTime")));
         Query query = Query.query(criteria).with(pageable);
         return mongoTemplate.find(query, CrawlerVerifyArticle.class);
     }
 
     @Override
     public void modifyState(VerifyQuery verifyQuery) {
-        Update update = Update.update("status", verifyQuery.getStatus()).set("bind_id", verifyQuery.getBindId());
+        Update update = Update.update("status", verifyQuery.getStatus()).set("bindId", verifyQuery.getBindId());
         Query query = Query.query(Criteria.where("_id").is(verifyQuery.getArticleId()));
         mongoTemplate.findAndModify(query, update, CrawlerVerifyArticle.class);
     }
