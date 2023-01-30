@@ -5,7 +5,7 @@ CREATE TABLE `article` (
   `author_id` bigint unsigned NOT NULL COMMENT '文章作者的ID',
   `author_name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '作者昵称',
   `channel_id` int unsigned DEFAULT '0' COMMENT '文章所属频道ID',
-  `channel_name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '频道名称',
+  `channel_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '频道名称',
   `images` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '文章图片\r\n            多张逗号分隔',
   `labels` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '文章标签最多3个 逗号分隔',
   `likes` int unsigned DEFAULT '0' COMMENT '点赞数量',

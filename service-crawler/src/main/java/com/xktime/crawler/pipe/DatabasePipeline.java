@@ -15,7 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 将爬取结果存储到数据库
  */
-//todo com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'channel_name' at row 1
 @Component
 public class DatabasePipeline implements Pipeline {
 
