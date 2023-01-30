@@ -21,7 +21,7 @@ RUN mkdir /opt/java && \
 
 
 ADD ./src/main/resources/shared /app/shared
-ADD ./src/main/resources/application.yml /app
+ADD ./src/main/resources/*.yml /app
 ADD ./target/config.jar /app/
 CMD ["java", "-Xmx200m", "-Dspring.config.location=/app/", "-Xbootclasspath/a:/app", "-jar", "/app/config.jar"]
 

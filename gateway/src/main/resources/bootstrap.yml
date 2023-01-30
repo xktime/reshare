@@ -1,7 +1,7 @@
 spring:
   application:
-    name: crawler
+    name: gateway
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://config:8888
       fail-fast: true

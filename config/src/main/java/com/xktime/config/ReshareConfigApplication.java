@@ -12,6 +12,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @SpringBootApplication
 @EnableConfigServer
 //todo localhost配置要整理
+//todo 数据库网络docker别名
 public class ReshareConfigApplication {
     public static void main(String[] args) {
         SpringApplication.run(ReshareConfigApplication.class, args);
