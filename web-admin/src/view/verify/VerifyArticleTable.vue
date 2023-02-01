@@ -100,7 +100,14 @@ export default {
         if (response.data.data == null || response.data.data.length <= 0) {
           this.scrollDisabled = true;
         }
-        _this.tableData = _this.tableData.concat(response.data.data);
+        for (let index in response.data.data) {
+          let item = response.data.data[index]
+          if (_this.tableData.find(tableItem => item.url === tableItem.url) != null) {
+            continue
+          }
+          _this.tableData.push(item);
+        }
+
         this.page++;
       });
       this.scrollDisabled = false;
