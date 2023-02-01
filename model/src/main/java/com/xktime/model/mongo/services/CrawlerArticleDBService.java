@@ -44,6 +44,7 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
 
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
+        //todo 查询条件有问题
         Criteria criteria = Criteria.where("publishTime").lte(loadQuery.getLastTime());
         Pageable pageable = PageRequest.of(loadQuery.getPageStartIndex(), loadQuery.getSize(), Sort.by(Sort.Order.asc("publishTime")));
         Query query = Query.query(criteria).with(pageable);

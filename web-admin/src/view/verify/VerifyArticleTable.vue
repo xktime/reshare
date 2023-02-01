@@ -79,7 +79,6 @@ export default {
         //如果切换加载类型，清空之前的数据
         this.tableData = [];
       }
-      //todo 滚动加载好像有一些问题
       let lastTime = new Date().getTime();
       if (this.tableData[this.tableData.length - 1]) {
         const publishTime = this.tableData[this.tableData.length - 1].publishTime;
@@ -101,7 +100,6 @@ export default {
         if (response.data.data == null || response.data.data.length <= 0) {
           this.scrollDisabled = true;
         }
-        //todo id精度问题需要解决
         _this.tableData = _this.tableData.concat(response.data.data);
         this.page++;
       });

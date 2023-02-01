@@ -8,13 +8,30 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
-import elTableInfiniteScroll from 'el-table-infinite-scroll';
+import elTableInfiniteScroll from 'el-table-infinite-scroll'
 import global from './constant/global.js'
+import JSONbig from 'json-bigint';
 
 Vue.config.productionTip = false;
 
+const JSONbigToString = JSONbig({ storeAsString: true })
+
+const service = axios.create({
+  timeout: 50000,
+  baseURL: '',
+  transformResponse: [function (data) {
+    try {
+      //转换
+      return JSONbigToString.parse(data)
+    } catch (err) {
+      //转换失败就直接按原数据返回
+      return data;
+    }
+  }]
+});
+
 //引入axios
-Vue.use(VueAxios, axios);
+Vue.use(VueAxios, service);
 Vue.use(Vuex);
 //引入Element框架
 Vue.use(ElementUI);

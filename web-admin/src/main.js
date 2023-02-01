@@ -13,13 +13,30 @@ import './theme/index.css'
 import './assets/css/font-awesome.min.css'
 import './assets/css/style.css'
 import global from './constant/global.js'
+import JSONbig from 'json-bigint';
+
+const JSONbigToString = JSONbig({ storeAsString: true })
+
+const service = axios.create({
+  timeout: 50000,
+  baseURL: '',
+  transformResponse: [function (data) {
+    try {
+      //转换
+      return JSONbigToString.parse(data)
+    } catch (err) {
+      //转换失败就直接按原数据返回
+      return data;
+    }
+  }]
+});
 
 Vue.config.productionTip = false;
 
 Vue.prototype.$apiUrl = "http://localhost/";
 
 //引入axios
-Vue.use(VueAxios, axios);
+Vue.use(VueAxios, service);
 Vue.use(Vuex);
 //引入Element框架
 Vue.use(ElementUI);
