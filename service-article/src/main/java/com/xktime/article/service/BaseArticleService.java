@@ -1,22 +1,23 @@
 package com.xktime.article.service;
 
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
+import com.xktime.model.pojo.article.entity.BaseArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 
 import java.util.Collection;
 import java.util.List;
 
-public interface BaseArticleService<T> {
-    void save(T article);
+public abstract class BaseArticleService<T extends BaseArticle> {
+    public abstract void save(T article);
 
-    void saveArticles(Collection<T> articles);
+    public abstract void saveArticles(Collection<T> articles);
 
-    void update(T article);
+    public abstract void update(T article);
 
-    T findById(long id);
+    public abstract T findById(long id);
 
-    List<T> loadArticles(LoadQuery loadQuery);
+    public abstract List<T> loadArticles(LoadQuery loadQuery);
 
-    List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery);
+    public abstract List<SimpleArticleDto> loadSimpleArticles(LoadQuery loadQuery);
 
 }

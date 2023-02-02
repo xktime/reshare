@@ -22,7 +22,7 @@ import java.util.List;
  * 爬虫爬取的文章
  */
 @Service("CrawlerArticle")
-public class CrawlerArticleServiceImpl extends BaseAuditable implements BaseArticleService<CrawlerVerifyArticle> {
+public class CrawlerArticleServiceImpl extends BaseArticleService<CrawlerVerifyArticle> implements BaseAuditable {
     @Autowired
     ICrawlerArticleDBService crawlerArticleDBService;
 

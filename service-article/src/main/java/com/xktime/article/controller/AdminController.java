@@ -3,6 +3,7 @@ package com.xktime.article.controller;
 import com.xktime.article.service.BaseArticleService;
 import com.xktime.article.service.BaseAuditable;
 import com.xktime.article.service.impl.CrawlerArticleServiceImpl;
+import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.common.dto.ResponseResult;
@@ -19,13 +20,16 @@ public class AdminController {
     @Autowired
     CrawlerArticleServiceImpl articleService;
 
+    @Autowired
+    VerifiedArticleServiceImpl verifiedArticleService;
+
     @RequestMapping("verify")
     public ResponseResult audit(VerifyDto dto) {
         BaseArticleService service = ArticleTypeEnum.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
         }
-        ((BaseAuditable) service).verify(dto);
+        ((BaseAuditable) service).verify(verifiedArticleService, dto);
         return ResponseResult.okResult(HttpCodeEnum.SUCCESS);
     }
 }

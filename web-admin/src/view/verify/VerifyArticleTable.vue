@@ -100,6 +100,7 @@ export default {
         if (response.data.data == null || response.data.data.length <= 0) {
           this.scrollDisabled = true;
         }
+        //todo 做请求缓存来解决重复缓存问题
         for (let index in response.data.data) {
           let item = response.data.data[index]
           if (_this.tableData.find(tableItem => item.url === tableItem.url) != null) {

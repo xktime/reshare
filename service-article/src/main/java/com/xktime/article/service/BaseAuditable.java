@@ -15,12 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
-public abstract class BaseAuditable {
+public interface BaseAuditable {
 
-    @Autowired
-    VerifiedArticleServiceImpl verifiedArticleService;
-
-    public void verify(VerifyDto dto) {
+    //todo 太丑陋了 重构
+    default void verify(VerifiedArticleServiceImpl verifiedArticleService, VerifyDto dto) {
         BaseArticleService service = ArticleTypeEnum.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
@@ -43,7 +41,7 @@ public abstract class BaseAuditable {
         ((BaseAuditable) service).modifyState(verifyQuery);
     }
 
-    public abstract void modifyState(VerifyQuery verifyQuery);
+    void modifyState(VerifyQuery verifyQuery);
 
-    public abstract List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery);
+    List<VerifyArticleDto> loadVerifyArticles(LoadQuery loadQuery);
 }

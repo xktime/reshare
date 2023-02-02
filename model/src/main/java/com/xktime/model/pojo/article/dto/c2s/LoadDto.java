@@ -1,13 +1,9 @@
 package com.xktime.model.pojo.article.dto.c2s;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.sql.Timestamp;
-import java.util.Date;
 
 @Data
 @ApiModel(description = "请求加载文章dto")

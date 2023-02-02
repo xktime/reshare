@@ -21,7 +21,7 @@ import java.util.List;
  * 平台发布文章
  */
 @Service("OriginalArticle")
-public class OriginalArticleServiceImpl extends BaseAuditable implements BaseArticleService<OriginalVerifyArticle> {
+public class OriginalArticleServiceImpl extends BaseArticleService<OriginalVerifyArticle> implements BaseAuditable {
 
     @Autowired
     IOriginalArticleDBService originalArticleDBService;

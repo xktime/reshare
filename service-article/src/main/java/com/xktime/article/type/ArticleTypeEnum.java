@@ -13,9 +13,9 @@ public enum ArticleTypeEnum implements EnumTypeService {
     RECOMMEND_ARTICLE(3, "recommend", VerifiedArticleServiceImpl.class),
     ;
 
-    private String dec;
-    private int type;
-    private Class<? extends BaseArticleService> serviceClass;
+    private final String dec;
+    private final int type;
+    private final Class<? extends BaseArticleService> serviceClass;
     private BaseArticleService service;
 
     ArticleTypeEnum(int type, String dec, Class<? extends BaseArticleService> serviceClass) {

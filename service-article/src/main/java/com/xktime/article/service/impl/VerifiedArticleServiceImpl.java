@@ -19,7 +19,7 @@ import java.util.List;
  * 已被审核通过的文章
  */
 @Service("Article")
-public class VerifiedArticleServiceImpl implements BaseArticleService<VerifiedArticle> {
+public class VerifiedArticleServiceImpl extends BaseArticleService<VerifiedArticle> {
 
     @Autowired
     IVerifiedArticleDBService verifiedArticleDBService;
