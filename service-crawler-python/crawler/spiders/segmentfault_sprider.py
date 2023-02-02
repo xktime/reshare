@@ -5,11 +5,11 @@ import time
 
 class SegmentFaultSpider(scrapy.Spider):
     name = "segmentfault"
-    allowed_domains = ["segmentfault.com"]
+    # allowed_domains = ["segmentfault.com"]
     start_urls = ["https://segmentfault.com/"]
 
     def parse(self, response):
-        for sel in response.xpath("//*[@id='root']/div[4]/div/div[1]/div[1]/div//a"):
+        for sel in response.xpath("//*[@id='__next']/div[4]/div/div[1]/div[1]/div//a"):
             url = response.urljoin(sel.xpath("@href").get())
             if len(url) == 0:
                 continue

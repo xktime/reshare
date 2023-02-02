@@ -28,7 +28,6 @@ class CSDNSpider(scrapy.Spider):
     def parse_details(self, response):
         item = CrawlerItem()
         item["url"] = response.request.url
-        item["_id"] = item["url"].split("/")[-1]
         item["origin"] = "CSDN博客"
         item["title"] = response.xpath("//h1[@ id = 'articleContentId']/text()").get()
         item["channelName"] = response.xpath("//a[@ class = 'tag-link']/text()").get()

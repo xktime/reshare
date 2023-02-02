@@ -65,7 +65,6 @@ class JuejinSpider(scrapy.Spider):
             item["title"] = data[article_info_key]["title"]
             item["labels"] = get_tags(data[tags_key])
             item["url"] = url + data["article_id"]
-            item["_id"] = data["article_id"]
             item["publishTime"] = int(data[article_info_key]["ctime"]) * 1000
             item["channelName"] = data[category_key]["category_name"]
             item["authorName"] = data[author_user_info_key]["user_name"]
