@@ -18,7 +18,8 @@ public class RedisCacheService {
     @Autowired
     RedisUtil redisUtil;
 
-    @AfterReturning(returning = "user", pointcut = "execution(public * com.xktime.user.service..*.query*(..))")
+    //todo 缓存先屏蔽了
+//    @AfterReturning(returning = "user", pointcut = "execution(public * com.xktime.user.service..*.query*(..))")
     public void after(BaseUser user) {
         if (user == null) {
             return;

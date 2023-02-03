@@ -28,17 +28,17 @@ public interface BaseAuditable {
             throw new NullPointerException("文章为空");
         }
         VerifyQuery verifyQuery = dto.toQuery();
-        if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
+        if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {//todo bug 前端一直点通过会一直插入问题
             //如果是通过审核,插入数据库
             VerifiedArticle verifiedArticle = verifyArticle.toArticle();
             verifiedArticleService.save(verifiedArticle);
             verifyQuery.setBindId(verifiedArticle.getId());
         } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {
             //如果是不通过,从数据库删除
-            verifiedArticleService.removeById(verifyArticle.getBindId());
+            verifiedArticleService.removeById(verifyArticle.getBindId());//todo bug id不对删除失败的情况需要处理
             verifyQuery.setBindId(0);
         }
-        ((BaseAuditable) service).modifyState(verifyQuery);
+        modifyState(verifyQuery);
     }
 
     void modifyState(VerifyQuery verifyQuery);

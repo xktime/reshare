@@ -18,7 +18,8 @@ public class RedisCacheService {
     @Autowired
     RedisUtil redisUtil;
 
-    @AfterReturning(returning = "article", pointcut = "execution(public * com.xktime.article.service..*.find*(..))")
+    //todo 缓存先屏蔽了 读取有个脏读问题
+//    @AfterReturning(returning = "article", pointcut = "execution(public * com.xktime.article.service..*.find*(..))")
     public void after(BaseArticle article) {
         RedisCommonKey redisKey = getRedisKey(article);
         if (redisKey == null) {
