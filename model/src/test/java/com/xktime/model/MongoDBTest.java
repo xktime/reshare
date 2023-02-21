@@ -2,15 +2,13 @@ package com.xktime.model;
 
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.services.ICrawlerArticleDBService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @Author: luoliwen
@@ -18,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @Date: 2022/8/9 16:35
  */
 @SpringBootTest(classes = ReshareModelApplication.class)
-@RunWith(SpringRunner.class)
 public class MongoDBTest {
     @Autowired
     MongoTemplate mongoTemplate;

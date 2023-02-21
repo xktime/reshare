@@ -16,6 +16,9 @@
     <description>爬虫模块</description>
 
     <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <webMagic.version>0.7.3</webMagic.version>
         <commons.io.version>2.6</commons.io.version>
         <reshare.version>0.0.1-SNAPSHOT</reshare.version>

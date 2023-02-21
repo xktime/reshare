@@ -45,6 +45,13 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
         //todo 查询排序内存不足
+        /*
+                todo
+                 Cannot convert [机器学习, 人工智能, 机器学习, 深度学习, AI, ML] of type class java.util.ArrayList into an instance of class java.lang.String;
+                 Implement a custom Converter<class java.util.ArrayList, class java.lang.String>
+                 and register it with the CustomConversions;
+                 Parent object was: CrawlerVerifyArticle() -> null
+         */
         Criteria criteria = Criteria.where("publishTime").lt(loadQuery.getLastTime());
         Pageable pageable = PageRequest.of(0, loadQuery.getSize(), Sort.by(Sort.Order.desc("publishTime")));
         Query query = Query.query(criteria).with(pageable);

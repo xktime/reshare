@@ -1,11 +1,11 @@
 package com.xktime.common.annotation;
 
 import com.xktime.utils.util.ClassUtil;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.lang.reflect.Method;
 import java.util.Set;
 

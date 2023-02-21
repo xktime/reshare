@@ -2,10 +2,8 @@ package com.xktime.comment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication(scanBasePackages = {"com.xktime.common", "com.xktime.comment","com.xktime.model"})
-@EnableEurekaClient
 public class ReshareCommentApplication {
 
     public static void main(String[] args) {

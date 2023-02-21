@@ -22,20 +22,19 @@
     </modules>
 
     <properties>
-        <java.version>15</java.version>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
-        <maven.compiler.compilerVersion>15</maven.compiler.compilerVersion>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springcloud.version>Hoxton.RELEASE</springcloud.version>
-        <springboot.version>2.3.12.RELEASE</springboot.version>
-        <lombok.version>1.18.10</lombok.version>
-        <swagger.version>2.9.2</swagger.version>
-        <swagger-models.version>1.6.0</swagger-models.version>
+        <springcloud.version>2022.0.1</springcloud.version>
+        <springboot.version>3.0.2</springboot.version>
+        <lombok.version>1.18.20</lombok.version>
+        <swagger.version>3.0.0</swagger.version>
         <jackson.version>2.10.0</jackson.version>
         <gson.version>2.8.5</gson.version>
-        <eureka-server.version>2.2.10.RELEASE</eureka-server.version>
-        <eureka-client.version>2.2.10.RELEASE</eureka-client.version>
+        <eureka-server.version>4.0.0</eureka-server.version>
+        <eureka-client.version>4.0.0</eureka-client.version>
         <maven-plugin.version>3.0.0-M5</maven-plugin.version>
     </properties>
 
@@ -46,6 +45,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${springboot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -83,11 +88,11 @@
             </dependency>
 
             <!--jackson-->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--                <artifactId>jackson-core</artifactId>-->
+            <!--                <version>${jackson.version}</version>-->
+            <!--            </dependency>-->
 
             <!--gson-->
             <dependency>
@@ -107,6 +112,10 @@
                         <groupId>org.springframework</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -115,6 +124,7 @@
                 <version>${swagger.version}</version>
             </dependency>
 
+            <!--            todo 转成nacos-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -123,6 +133,10 @@
                     <exclusion>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-starter</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>

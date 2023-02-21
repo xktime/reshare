@@ -2,9 +2,9 @@ package com.xktime.model.mongo.services;
 
 import com.xktime.model.pojo.comment.entity.Comment;
 import com.xktime.model.pojo.comment.query.LoadQuery;
-import com.xktime.model.pojo.user.entity.AppUser;
 import com.xktime.model.services.ICommentDBService;
 import io.netty.util.internal.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.domain.PageRequest;

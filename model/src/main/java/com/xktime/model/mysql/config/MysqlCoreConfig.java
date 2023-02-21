@@ -1,7 +1,7 @@
 package com.xktime.model.mysql.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.support.http.StatViewServlet;
+import org.apache.catalina.manager.StatusManagerServlet;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,7 +30,7 @@ public class MysqlCoreConfig {
 
     @Bean
     public ServletRegistrationBean statViewServlet() {
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), true, "/druid/*");
+        ServletRegistrationBean bean = new ServletRegistrationBean(new StatusManagerServlet(), true, "/druid/*");
         Map<String, String> initParams = new HashMap<>();
         initParams.put("loginUsername", "admin"); //后台管理界面的登录账号
         initParams.put("loginPassword", "123456"); //后台管理界面的登录密码

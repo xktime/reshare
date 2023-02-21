@@ -4,24 +4,16 @@ import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.article.type.ArticleTypeEnum;
 import com.xktime.model.pojo.article.dto.c2s.VerifyDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
-import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.entity.BaseVerifyArticle;
+import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.article.type.ArticleStatusEnum;
-import com.xktime.model.pojo.common.type.HttpCodeEnum;
-import javassist.NotFoundException;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.logging.Logger;
-
 public interface BaseAuditable {
 
     //todo 太丑陋了 重构
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     default void verify(VerifiedArticleServiceImpl verifiedArticleService, VerifyDto dto) {
         BaseArticleService<BaseVerifyArticle> service = ArticleTypeEnum.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {

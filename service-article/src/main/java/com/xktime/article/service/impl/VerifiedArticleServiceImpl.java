@@ -49,6 +49,7 @@ public class VerifiedArticleServiceImpl extends BaseArticleService<VerifiedArtic
 
     @Override
     public VerifiedArticle findById(long id) {
+        //todo 缓存需要重写
         VerifiedArticle verifiedArticle = redisUtil.mapGet(RedisCommonKey.COMMON_ARTICLE, id);
         return verifiedArticle != null ? verifiedArticle : verifiedArticleDBService.findById(id);
     }

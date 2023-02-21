@@ -2,22 +2,18 @@ package com.xktime.article;
 
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.model.pojo.article.query.LoadQuery;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 @SpringBootTest(classes = ReshareArticleApplication.class)
-@RunWith(SpringRunner.class)
 public class VerifiedArticleTest {
 
     @Autowired
     VerifiedArticleServiceImpl verifiedArticle;
 
-    @org.junit.Test
+    @Test
     public void testArticle() {
         LoadQuery loadQuery = new LoadQuery();
         loadQuery.setSize(10);

@@ -5,13 +5,11 @@ import com.xktime.article.service.impl.OriginalArticleServiceImpl;
 import com.xktime.article.service.impl.VerifiedArticleServiceImpl;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisUtil;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest(classes = ReshareArticleApplication.class)
-@RunWith(SpringRunner.class)
 public class RedisTest {
 
     @Autowired
@@ -26,7 +24,7 @@ public class RedisTest {
     @Autowired
     RedisUtil redisUtil;
 
-    @org.junit.Test
+    @Test
     public void testAop() {
         long articleId = 19206;
         boolean isExists= redisUtil.mapExists(RedisCommonKey.COMMON_ARTICLE,articleId);
