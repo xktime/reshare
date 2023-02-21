@@ -3,5 +3,5 @@ spring:
     name: crawler
   cloud:
     config:
-      uri: http://config:8888
+      uri: http://localhost:8888
       fail-fast: true
