@@ -1,6 +1,6 @@
-FROM openjdk:15
+FROM openjdk:17
 
 ADD ./target/registry.jar /app/
-CMD ["java", "-Xmx200m", "-jar", "/app/registry.jar"]
+CMD ["java", "-XX:+UseZGC", "-Xmx200m", "-jar", "/app/registry.jar"]
 
 EXPOSE 9999

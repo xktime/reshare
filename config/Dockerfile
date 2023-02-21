@@ -17,12 +17,12 @@ ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
 
 RUN mkdir /opt/java && \
-    curl https://cdn.azul.com/zulu/bin/zulu17.40.19-ca-jdk17.0.6-linux_x64.tar.gz | tar -xz -x /opt/java/
+    curl https://cdn.azul.com/zulu/bin/zulu17.40.19-ca-jdk17.0.6-linux_x64.tar.gz | tar -xz -C /opt/java/
 
 
 ADD ./src/main/resources/shared /app/shared
 ADD ./src/main/resources/*.yml /app
 ADD ./target/config.jar /app/
-CMD ["java", "-Xmx200m", "-Dspring.config.location=/app/", "-Xbootclasspath/a:/app", "-jar", "/app/config.jar"]
+CMD ["java", "-XX:+UseZGC","-Xmx200m", "-Dspring.config.location=/app/", "-Xbootclasspath/a:/app", "-jar", "/app/config.jar"]
 
 EXPOSE 8888
