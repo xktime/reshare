@@ -116,7 +116,7 @@ public class RedisUtil {
      * @param hashKey
      * @param value
      */
-    public <K extends Serializable, V extends Serializable> void mapSet(final RedisCommonKey key, K hashKey, V value) {
+    public <K extends Serializable, V>/*todo 未继承序列化，可能会出问题*/ void mapSet(final RedisCommonKey key, K hashKey, V value) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         hash.put(key.name(), hashKey, value);
     }
