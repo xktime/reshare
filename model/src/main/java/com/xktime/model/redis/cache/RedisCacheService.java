@@ -23,9 +23,9 @@ public class RedisCacheService {
     //todo 要做更新数据时更新缓存
     @Around("@annotation(com.xktime.model.redis.cache.RedisCache)")
     public Object around(ProceedingJoinPoint point) {
-        Object[] args = point.getArgs();
+        var args = point.getArgs();
         long id = (long) args[0];
-        RedisCommonKey redisKey = getRedisKey(point);
+        var redisKey = getRedisKey(point);
         if (redisKey == null) {
             try {
                 return point.proceed();
@@ -35,7 +35,7 @@ public class RedisCacheService {
         }
         if (!redisUtil.mapExists(redisKey, id)) {
             try {
-                Object o = point.proceed();
+                var o = point.proceed();
                 redisUtil.mapSet(redisKey, id, o);
                 return o;
             } catch (Throwable e) {
@@ -47,11 +47,11 @@ public class RedisCacheService {
     }
 
     public RedisCommonKey getRedisKey(ProceedingJoinPoint point) {
-        MethodSignature signature = (MethodSignature) point.getSignature();
-        Object target = point.getTarget();
+        var signature = (MethodSignature) point.getSignature();
+        var target = point.getTarget();
         try {
-            Method realMethod = target.getClass().getDeclaredMethod(signature.getName(), signature.getParameterTypes());
-            RedisCache redisCache = AnnotationUtils.findAnnotation(realMethod, RedisCache.class);
+            var realMethod = target.getClass().getDeclaredMethod(signature.getName(), signature.getParameterTypes());
+            var redisCache = AnnotationUtils.findAnnotation(realMethod, RedisCache.class);
             if (Objects.nonNull(redisCache)) {
                 return redisCache.key();
             }

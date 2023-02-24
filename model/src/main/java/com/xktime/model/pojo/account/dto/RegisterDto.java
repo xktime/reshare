@@ -28,7 +28,7 @@ public class RegisterDto {
     private String region;
 
     public AppUser toUser(long id) {
-        AppUser user = new AppUser();
+        var user = new AppUser();
         user.setAccount(account);
         user.setBirthday(birthday);
         user.setPhoneNumber(phoneNumber);

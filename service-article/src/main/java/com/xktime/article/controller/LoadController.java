@@ -42,7 +42,7 @@ public class LoadController {
 
     @PostMapping("verifyArticles")
     public ResponseResult<List<VerifyArticleDto>> verifyArticles(LoadDto dto) {
-        BaseArticleService<?> service = ArticleTypeEnum.getService(dto.getLoadArticleType());
+        var service = ArticleTypeEnum.getService(dto.getLoadArticleType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getLoadArticleType());
         }
@@ -67,7 +67,7 @@ public class LoadController {
             return null;
         }
         long id = Long.parseLong(articleId);
-        VerifiedArticle verifiedArticle = verifiedArticleService.findById(id);
+        var verifiedArticle = verifiedArticleService.findById(id);
 
         //获取评论详情
         List<CommentDto> comments = null;
@@ -80,7 +80,7 @@ public class LoadController {
         //获取文章作者信息
         SimpleUserDto author = null;
         try {
-            AppUser user = restfulTemplate.getUserByUserId(verifiedArticle.getAuthorId());
+            var user = restfulTemplate.getUserByUserId(verifiedArticle.getAuthorId());
             author = user.toSimpleUserDto();
         } catch (Exception e) {
             logger.error("获取文章作者失败", e);

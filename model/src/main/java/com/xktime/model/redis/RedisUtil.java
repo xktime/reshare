@@ -1,20 +1,21 @@
 package com.xktime.model.redis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.lang.NonNull;
-import com.xktime.model.redis.*;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static com.xktime.model.redis.RedisKeyUtil.*;
+import static com.xktime.model.redis.RedisKeyUtil.getUniqueKey;
 
 public class RedisUtil {
 
-    private RedisTemplate redisTemplate;
+    Logger logger = LoggerFactory.getLogger(getClass());
 
+    private RedisTemplate redisTemplate;
 
     public RedisUtil(@NonNull RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
@@ -28,14 +29,14 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public <V extends Serializable> boolean set(final RedisCommonKey key, long uniqueId, V value) {
+    public <V> boolean set(final RedisCommonKey key, long uniqueId, V value) {
         boolean result = false;
         try {
             ValueOperations<String, V> operations = redisTemplate.opsForValue();
             operations.set(getUniqueKey(key, uniqueId), value);
             result = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         return result;
     }
@@ -50,7 +51,7 @@ public class RedisUtil {
      * @param timeUnit
      * @return
      */
-    public <V extends Serializable> boolean set(final RedisCommonKey key, long uniqueId, V value, Long expireTime, TimeUnit timeUnit) {
+    public <V> boolean set(final RedisCommonKey key, long uniqueId, V value, Long expireTime, TimeUnit timeUnit) {
         boolean result = false;
         try {
             String uniqueKey = getUniqueKey(key, uniqueId);
@@ -59,7 +60,7 @@ public class RedisUtil {
             redisTemplate.expire(uniqueKey, expireTime, timeUnit);
             result = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
         return result;
     }
@@ -92,7 +93,7 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public <V extends Serializable> V get(final RedisCommonKey key) {
+    public <V> V get(final RedisCommonKey key) {
         ValueOperations<String, V> operations = redisTemplate.opsForValue();
         return operations.get(key);
     }
@@ -104,7 +105,7 @@ public class RedisUtil {
      * @param uniqueId
      * @return
      */
-    public <V extends Serializable> V get(final RedisCommonKey key, long uniqueId) {
+    public <V> V get(final RedisCommonKey key, long uniqueId) {
         ValueOperations<String, V> operations = redisTemplate.opsForValue();
         return operations.get(getUniqueKey(key, uniqueId));
     }
@@ -116,7 +117,7 @@ public class RedisUtil {
      * @param hashKey
      * @param value
      */
-    public <K extends Serializable, V>/*todo 未继承序列化，可能会出问题*/ void mapSet(final RedisCommonKey key, K hashKey, V value) {
+    public <K, V> void mapSet(final RedisCommonKey key, K hashKey, V value) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         hash.put(key.name(), hashKey, value);
     }
@@ -128,7 +129,7 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public <K extends Serializable, V extends Serializable> V mapGet(final RedisCommonKey key, K hashKey) {
+    public <K, V> V mapGet(final RedisCommonKey key, K hashKey) {
         HashOperations<String, K, V> hash = redisTemplate.opsForHash();
         return hash.get(key.name(), hashKey);
     }
@@ -140,7 +141,7 @@ public class RedisUtil {
      * @param hashKey
      * @return
      */
-    public <K extends Serializable> boolean mapExists(final RedisCommonKey key, K hashKey) {
+    public <K> boolean mapExists(final RedisCommonKey key, K hashKey) {
         HashOperations<String, K, Object> hash = redisTemplate.opsForHash();
         return hash.hasKey(key.name(), hashKey);
     }
@@ -151,7 +152,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public <V extends Serializable> void listAddTail(final RedisCommonKey key, V value) {
+    public <V> void listAddTail(final RedisCommonKey key, V value) {
         ListOperations<String, V> list = redisTemplate.opsForList();
         list.rightPush(key.name(), value);
     }
@@ -162,7 +163,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public <V extends Serializable> void listAddHead(final RedisCommonKey key, V value) {
+    public <V> void listAddHead(final RedisCommonKey key, V value) {
         ListOperations<String, V> list = redisTemplate.opsForList();
         list.leftPush(key.name(), value);
     }
@@ -175,7 +176,7 @@ public class RedisUtil {
      * @param end
      * @return
      */
-    public <V extends Serializable> List<V> listRange(final RedisCommonKey key, long start, long end) {
+    public <V> List<V> listRange(final RedisCommonKey key, long start, long end) {
         ListOperations<String, V> list = redisTemplate.opsForList();
         return list.range(key.name(), start, end);
     }
@@ -186,7 +187,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public <V extends Serializable> void sAdd(final RedisCommonKey key, V value) {
+    public <V> void sAdd(final RedisCommonKey key, V value) {
         SetOperations<String, V> set = redisTemplate.opsForSet();
         set.add(key.name(), value);
     }
@@ -197,7 +198,7 @@ public class RedisUtil {
      * @param key
      * @return
      */
-    public <V extends Serializable> Set<V> sMembers(final RedisCommonKey key) {
+    public <V> Set<V> sMembers(final RedisCommonKey key) {
         SetOperations<String, V> set = redisTemplate.opsForSet();
         return set.members(key.name());
     }
@@ -209,7 +210,7 @@ public class RedisUtil {
      * @param value
      * @param score
      */
-    public <V extends Serializable> void zAdd(final RedisCommonKey key, V value, double score) {
+    public <V> void zAdd(final RedisCommonKey key, V value, double score) {
         ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
         zset.add(key.name(), value, score);
     }
@@ -222,7 +223,7 @@ public class RedisUtil {
      * @param end
      * @return
      */
-    public <V extends Serializable> Set<V> zRange(final RedisCommonKey key, double start, double end) {
+    public <V> Set<V> zRange(final RedisCommonKey key, double start, double end) {
         ZSetOperations<String, V> zset = redisTemplate.opsForZSet();
         return zset.rangeByScore(key.name(), start, end);
     }

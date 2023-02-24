@@ -16,6 +16,8 @@ public class BaseArticle implements Serializable {
     protected long id;
     @Field
     protected String title;
-    protected List<String> content;//todo 读取有映射问题，mongo里面是list;Spring Converter
+    //todo 读取有映射问题，mongo里面是list;Spring Converter
+    //todo 太大了，要拆出来单独存
+    protected List<String> content;
     protected long publishTime;
 }
