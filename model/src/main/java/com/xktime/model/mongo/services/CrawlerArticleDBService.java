@@ -3,6 +3,8 @@ package com.xktime.model.mongo.services;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.redis.RedisCommonKey;
+import com.xktime.model.redis.cache.RedisCache;
 import com.xktime.model.services.ICrawlerArticleDBService;
 import com.xktime.utils.util.SnowflakeIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,6 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
 
     @Override
     public List<CrawlerVerifyArticle> load(LoadQuery loadQuery) {
-        //todo 查询排序内存不足
         /*
                 todo
                  Cannot convert [机器学习, 人工智能, 机器学习, 深度学习, AI, ML] of type class java.util.ArrayList into an instance of class java.lang.String;
@@ -66,6 +67,7 @@ public class CrawlerArticleDBService extends ICrawlerArticleDBService {
     }
 
     @Override
+    @RedisCache(key = RedisCommonKey.CRAWLER_ARTICLE)
     public CrawlerVerifyArticle findById(long id) {
         Query query = Query.query(Criteria.where("_id").is(id));
         return mongoTemplate.findOne(query, CrawlerVerifyArticle.class);

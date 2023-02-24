@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @ApiModel(description = "请求发布文章dto")
@@ -14,7 +15,7 @@ public class PublishDto {
     @ApiModelProperty("文章标题")
     String title;
     @ApiModelProperty("文章内容")
-    String content;
+    List<String> content;
     @ApiModelProperty("当前账户token")
     String token;
 

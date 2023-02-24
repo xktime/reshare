@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Article基类，所有Article实体都需要继承该类
@@ -15,6 +16,6 @@ public class BaseArticle implements Serializable {
     protected long id;
     @Field
     protected String title;
-    protected String content;
+    protected List<String> content;//todo 读取有映射问题，mongo里面是list;Spring Converter
     protected long publishTime;
 }

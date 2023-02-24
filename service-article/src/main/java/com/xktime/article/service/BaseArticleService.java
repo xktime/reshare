@@ -3,6 +3,8 @@ package com.xktime.article.service;
 import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.entity.BaseArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
+import com.xktime.model.redis.RedisCommonKey;
+import com.xktime.model.redis.cache.RedisCache;
 
 import java.util.Collection;
 import java.util.List;

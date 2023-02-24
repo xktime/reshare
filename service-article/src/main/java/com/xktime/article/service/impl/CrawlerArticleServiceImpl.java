@@ -10,6 +10,7 @@ import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.redis.RedisCommonKey;
 import com.xktime.model.redis.RedisUtil;
+import com.xktime.model.redis.cache.RedisCache;
 import com.xktime.model.services.ICrawlerArticleDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,9 +51,9 @@ public class CrawlerArticleServiceImpl extends BaseArticleService<CrawlerVerifyA
     }
 
     @Override
+    @RedisCache(key = RedisCommonKey.CRAWLER_ARTICLE)
     public CrawlerVerifyArticle findById(long id) {
-        CrawlerVerifyArticle article = redisUtil.mapGet(RedisCommonKey.CRAWLER_ARTICLE, id);
-        return article != null ? article : crawlerArticleDBService.findById(id);
+        return crawlerArticleDBService.findById(id);
     }
 
     @Override

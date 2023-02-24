@@ -4,11 +4,13 @@ import com.xktime.model.pojo.article.dto.s2c.SimpleArticleDto;
 import com.xktime.model.pojo.article.dto.s2c.VerifyArticleDto;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class BaseVerifyArticle extends BaseArticle {
     protected String authorName;
     protected String channelName;
-    protected String labels;
+    protected List<String> labels;
     protected String url;
     protected String origin;
     protected int status;
@@ -23,7 +25,7 @@ public class BaseVerifyArticle extends BaseArticle {
         dto.setContent(content);
         dto.setAuthorName(authorName);
         dto.setStatus(status);
-        dto.setLabels(labels);
+        dto.setLabels(labels.toString());
         dto.setUrl(url);
         dto.setOrigin(origin);
         return dto;

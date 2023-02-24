@@ -23,7 +23,7 @@ public class ArticleDetailsDto implements Serializable {
     private int views;
     private long publishTime;
     private String origin;
-    private String content;
+    private List<String> content;
     private String tag;
     private List<CommentDto> comments;
 }

@@ -3,6 +3,8 @@ package com.xktime.model.services;
 import com.xktime.model.pojo.article.entity.CrawlerVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
+import com.xktime.model.redis.RedisCommonKey;
+import com.xktime.model.redis.cache.RedisCache;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;

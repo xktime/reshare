@@ -36,11 +36,5 @@ public class MongoDBTest {
         System.out.println("======================修改后查询=========================");
         System.out.println(mongoTemplate.findOne(query, CrawlerVerifyArticle.class));
     }
-
-    @Autowired
-    ICrawlerArticleDBService crawlerArticleDBService;
-    @Test
-    public void testUrlCount() {
-        System.out.println(crawlerArticleDBService.getUrlCount("123"));
-    }
+    
 }
