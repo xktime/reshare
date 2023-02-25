@@ -71,8 +71,8 @@ public class VerifiedArticleServiceImpl extends BaseArticleService<VerifiedArtic
         return SimpleArticles;
     }
 
-    public void removeById(@Param("id") long id) {
-        verifiedArticleDBService.removeById(id);
+    public boolean removeById(@Param("id") long id) {
+        return verifiedArticleDBService.removeById(id);
     }
 
 }

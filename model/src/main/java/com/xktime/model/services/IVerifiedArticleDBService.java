@@ -14,7 +14,7 @@ public abstract class IVerifiedArticleDBService {
 
     abstract public VerifiedArticle findById(long id);
 
-    abstract public void removeById(long id);
+    abstract public boolean removeById(long id);
 
     abstract public void update(VerifiedArticle verifiedArticle);
 }

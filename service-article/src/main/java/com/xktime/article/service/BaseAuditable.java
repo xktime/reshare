@@ -9,33 +9,43 @@ import com.xktime.model.pojo.article.entity.BaseVerifyArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.pojo.article.query.VerifyQuery;
 import com.xktime.model.pojo.article.type.ArticleStatusEnum;
+import com.xktime.model.pojo.common.type.HttpCodeEnum;
+import javassist.NotFoundException;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 
-@Transactional
 public interface BaseAuditable {
 
     //todo 太丑陋了 重构
+    @Transactional(rollbackFor = Exception.class)
     default void verify(VerifiedArticleServiceImpl verifiedArticleService, VerifyDto dto) {
-        BaseArticleService service = ArticleTypeEnum.getService(dto.getType());
+        BaseArticleService<BaseVerifyArticle> service = ArticleTypeEnum.getService(dto.getType());
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
         }
-        BaseVerifyArticle verifyArticle = (BaseVerifyArticle) service.findById(dto.getArticleId());
+        BaseVerifyArticle verifyArticle = service.findById(dto.getArticleId());
         if (verifyArticle == null) {
             throw new NullPointerException("文章为空");
         }
+        if (verifyArticle.getStatus() == dto.getStatus()){//状态未改变直接返回
+            return;
+        }
         VerifyQuery verifyQuery = dto.toQuery();
-        if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {//todo bug 前端一直点通过会一直插入问题
+        if (dto.getStatus() == ArticleStatusEnum.PASSED.getStatus()) {
+            //todo 幻读问题需要处理
             //如果是通过审核,插入数据库
             VerifiedArticle verifiedArticle = verifyArticle.toArticle();
-            verifiedArticleService.save(verifiedArticle);
-            verifyQuery.setBindId(verifiedArticle.getId());
+            if (verifiedArticleService.findById(verifiedArticle.getId()) == null) {
+                verifiedArticleService.save(verifiedArticle);
+                verifyQuery.setBindId(verifiedArticle.getId());
+            }
         } else if (dto.getStatus() == ArticleStatusEnum.UNPASSED.getStatus()) {
             //如果是不通过,从数据库删除
-            verifiedArticleService.removeById(verifyArticle.getBindId());//todo bug id不对删除失败的情况需要处理
+            verifiedArticleService.removeById(verifyArticle.getBindId());//todo 需要处理删除失败情况
             verifyQuery.setBindId(0);
         }
         modifyState(verifyQuery);

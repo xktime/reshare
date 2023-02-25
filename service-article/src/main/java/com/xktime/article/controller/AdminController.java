@@ -29,7 +29,11 @@ public class AdminController {
         if (!(service instanceof BaseAuditable)) {
             throw new IllegalArgumentException("articleType错误:" + dto.getType());
         }
-        ((BaseAuditable) service).verify(verifiedArticleService, dto);
+        try {
+            ((BaseAuditable) service).verify(verifiedArticleService, dto);
+        } catch (Exception e) {
+            return ResponseResult.errorResult(HttpCodeEnum.ILLEGAL_ARGUMENT, e.getMessage());
+        }
         return ResponseResult.okResult(HttpCodeEnum.SUCCESS);
     }
 }

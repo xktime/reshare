@@ -1,5 +1,6 @@
 package com.xktime.model.mongo.services;
 
+import com.mongodb.client.result.DeleteResult;
 import com.xktime.model.pojo.article.entity.VerifiedArticle;
 import com.xktime.model.pojo.article.query.LoadQuery;
 import com.xktime.model.services.IVerifiedArticleDBService;
@@ -43,9 +44,10 @@ public class VerifiedArticleDBService extends IVerifiedArticleDBService {
     }
 
     @Override
-    public void removeById(long id) {
+    public boolean removeById(long id) {
         Query query = Query.query(Criteria.where("_id").is(id));
-        mongoTemplate.remove(query, VerifiedArticle.class);
+        DeleteResult result = mongoTemplate.remove(query, VerifiedArticle.class);
+        return result.getDeletedCount() > 0;
     }
 
     @Override

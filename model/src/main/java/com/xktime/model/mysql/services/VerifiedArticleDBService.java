@@ -33,8 +33,9 @@ public class VerifiedArticleDBService extends IVerifiedArticleDBService {
     }
 
     @Override
-    public void removeById(long id) {
-        articleMapper.removeById(id);
+    public boolean removeById(long id) {
+        articleMapper.removeById(id);//todo 需要返回值
+        return true;
     }
 
     @Override
