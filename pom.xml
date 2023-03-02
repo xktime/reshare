@@ -36,6 +36,7 @@
         <eureka-server.version>4.0.0</eureka-server.version>
         <eureka-client.version>4.0.0</eureka-client.version>
         <maven-plugin.version>3.0.0-M5</maven-plugin.version>
+        <log4j2.version>3.0.2</log4j2.version>
     </properties>
 
     <dependencyManagement>
@@ -55,6 +56,12 @@
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
@@ -64,6 +71,12 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
                 <version>${springboot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -87,12 +100,6 @@
                 <version>${lombok.version}</version>
             </dependency>
 
-            <!--jackson-->
-            <!--            <dependency>-->
-            <!--                <groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--                <artifactId>jackson-core</artifactId>-->
-            <!--                <version>${jackson.version}</version>-->
-            <!--            </dependency>-->
 
             <!--gson-->
             <dependency>
@@ -116,6 +123,10 @@
                         <groupId>com.fasterxml.jackson.core</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -138,6 +149,10 @@
                         <groupId>com.fasterxml.jackson.core</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
 
@@ -149,6 +164,10 @@
                     <exclusion>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-starter</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>

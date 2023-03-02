@@ -30,9 +30,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.xktime</groupId>
-            <artifactId>reshare-utils</artifactId>
-            <version>${reshare.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
         <dependency>
