@@ -31,7 +31,6 @@
 ##### reshare-crawler:
    - 爬虫模块
    - 技术栈：WebMagic
-   - 对一些技术论坛文章进行爬取
 
 ##### reshare-crawler-python:
    - python3 -m pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ scrapy
