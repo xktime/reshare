@@ -9,6 +9,7 @@ import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -70,10 +71,10 @@ public class DatabasePipeline implements Pipeline {
             article.setAuthorName((String) authorName);
         }
         if (content instanceof String) {
-            article.setContent((String) content);
+            article.setContent(Collections.singletonList((String) content));
         }
         if (labels instanceof String) {
-            article.setLabels((String) labels);
+            article.setLabels(Collections.singletonList((String) labels));
         }
         if (origin instanceof String) {
             article.setOrigin((String) origin);
